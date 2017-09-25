@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<context:component-scan base-package="com.hust.bigdataplatform"
+		use-default-filters="false">
+		<context:include-filter type="regex"
+			expression="com.hust.bigdataplatform.*" />
+	</context:component-scan>
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/images/**" />
+			<mvc:exclude-mapping path="/js/**" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/libs/**" />
+			<mvc:exclude-mapping path="/login" />
+			<mvc:exclude-mapping path="/error.html" />
+			<mvc:exclude-mapping path="/favicon.ico" />
+			<bean class="com.hust.bigdataplatform.interceptor.PermissionInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!--RequestMappingHandlerAdapter -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<ref bean="byteArrayHttpMessageConverter" />
+			<ref bean="stringHttpMessageConverter" />
+			<ref bean="mappingJackson2HttpMessageConverter" />
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<mvc:default-servlet-handler />
+
+	<mvc:resources location="/images/" mapping="/images/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/page/" mapping="/page/**" />
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/page/" />
+		<property name="suffix" value=".html" />
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="GBK" />
+		<property name="maxUploadSize" value="104857600" />
+	</bean>
+
+	<!-- <bean id="exceptionHandler" class="com.baidu.fbu.mis.mvc.ExceptionHandler" 
+		/> -->
+
+	<bean id="byteArrayHttpMessageConverter"
+		class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+	<bean id="stringHttpMessageConverter"
+		class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+				<value>text/plain;charset=UTF-8</value>
+				<value>application/xml;charset=UTF-8</value>
+				<value>text/xml;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="mappingJackson2HttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+		<!-- <property name="objectMapper"> <bean class="com.baidu.fbu.mis.util.EscapeObjectMapper" 
+			/> </property> -->
+	</bean>
+
+	<bean id="contentNegotiationManagerFactoryBean"
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="defaultContentType" value="text/html" />
+		<property name="ignoreAcceptHeader" value="true" />
+		<property name="favorPathExtension" value="true" />
+		<property name="favorParameter" value="false" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="atom" value="application/atom+xml" />
+				<entry key="html" value="text/html" />
+				<entry key="json" value="application/json" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- 第三步：注册处理器映射器/处理器适配器 ，添加conversion-service属性 -->
+	<mvc:annotation-driven conversion-service="conversionService" />
+
+	<!-- 第二步： 创建convertion-Service ，并注入dateConvert -->
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<ref bean="dateConvert" />
+			</set>
+		</property>
+	</bean>
+	<!-- 第一步: 创建自定义日期转换规则 -->
+	<bean id="dateConvert" class="com.hust.bigdataplatform.util.DateConverter" />
+
+</beans>
+    

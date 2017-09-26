@@ -245,6 +245,216 @@ public class CourseExample {
             return (Criteria) this;
         }
 
+        public Criteria andCourseIntroduceIsNull() {
+            addCriterion("course_introduce is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceIsNotNull() {
+            addCriterion("course_introduce is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceEqualTo(String value) {
+            addCriterion("course_introduce =", value, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceNotEqualTo(String value) {
+            addCriterion("course_introduce <>", value, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceGreaterThan(String value) {
+            addCriterion("course_introduce >", value, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceGreaterThanOrEqualTo(String value) {
+            addCriterion("course_introduce >=", value, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceLessThan(String value) {
+            addCriterion("course_introduce <", value, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceLessThanOrEqualTo(String value) {
+            addCriterion("course_introduce <=", value, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceLike(String value) {
+            addCriterion("course_introduce like", value, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceNotLike(String value) {
+            addCriterion("course_introduce not like", value, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceIn(List<String> values) {
+            addCriterion("course_introduce in", values, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceNotIn(List<String> values) {
+            addCriterion("course_introduce not in", values, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceBetween(String value1, String value2) {
+            addCriterion("course_introduce between", value1, value2, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseIntroduceNotBetween(String value1, String value2) {
+            addCriterion("course_introduce not between", value1, value2, "courseIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineIsNull() {
+            addCriterion("course_outline is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineIsNotNull() {
+            addCriterion("course_outline is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineEqualTo(String value) {
+            addCriterion("course_outline =", value, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineNotEqualTo(String value) {
+            addCriterion("course_outline <>", value, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineGreaterThan(String value) {
+            addCriterion("course_outline >", value, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineGreaterThanOrEqualTo(String value) {
+            addCriterion("course_outline >=", value, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineLessThan(String value) {
+            addCriterion("course_outline <", value, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineLessThanOrEqualTo(String value) {
+            addCriterion("course_outline <=", value, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineLike(String value) {
+            addCriterion("course_outline like", value, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineNotLike(String value) {
+            addCriterion("course_outline not like", value, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineIn(List<String> values) {
+            addCriterion("course_outline in", values, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineNotIn(List<String> values) {
+            addCriterion("course_outline not in", values, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineBetween(String value1, String value2) {
+            addCriterion("course_outline between", value1, value2, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseOutlineNotBetween(String value1, String value2) {
+            addCriterion("course_outline not between", value1, value2, "courseOutline");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandIsNull() {
+            addCriterion("course_demand is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandIsNotNull() {
+            addCriterion("course_demand is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandEqualTo(String value) {
+            addCriterion("course_demand =", value, "courseDemand");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandNotEqualTo(String value) {
+            addCriterion("course_demand <>", value, "courseDemand");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandGreaterThan(String value) {
+            addCriterion("course_demand >", value, "courseDemand");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandGreaterThanOrEqualTo(String value) {
+            addCriterion("course_demand >=", value, "courseDemand");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandLessThan(String value) {
+            addCriterion("course_demand <", value, "courseDemand");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandLessThanOrEqualTo(String value) {
+            addCriterion("course_demand <=", value, "courseDemand");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandLike(String value) {
+            addCriterion("course_demand like", value, "courseDemand");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandNotLike(String value) {
+            addCriterion("course_demand not like", value, "courseDemand");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandIn(List<String> values) {
+            addCriterion("course_demand in", values, "courseDemand");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandNotIn(List<String> values) {
+            addCriterion("course_demand not in", values, "courseDemand");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandBetween(String value1, String value2) {
+            addCriterion("course_demand between", value1, value2, "courseDemand");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseDemandNotBetween(String value1, String value2) {
+            addCriterion("course_demand not between", value1, value2, "courseDemand");
+            return (Criteria) this;
+        }
+
         public Criteria andCourseBegintimeIsNull() {
             addCriterion("course_beginTime is null");
             return (Criteria) this;
@@ -365,133 +575,73 @@ public class CourseExample {
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathIsNull() {
-            addCriterion("course_path is null");
+        public Criteria andCourseCoursewarepathIsNull() {
+            addCriterion("course_CoursewarePath is null");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathIsNotNull() {
-            addCriterion("course_path is not null");
+        public Criteria andCourseCoursewarepathIsNotNull() {
+            addCriterion("course_CoursewarePath is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathEqualTo(String value) {
-            addCriterion("course_path =", value, "coursePath");
+        public Criteria andCourseCoursewarepathEqualTo(String value) {
+            addCriterion("course_CoursewarePath =", value, "courseCoursewarepath");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathNotEqualTo(String value) {
-            addCriterion("course_path <>", value, "coursePath");
+        public Criteria andCourseCoursewarepathNotEqualTo(String value) {
+            addCriterion("course_CoursewarePath <>", value, "courseCoursewarepath");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathGreaterThan(String value) {
-            addCriterion("course_path >", value, "coursePath");
+        public Criteria andCourseCoursewarepathGreaterThan(String value) {
+            addCriterion("course_CoursewarePath >", value, "courseCoursewarepath");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathGreaterThanOrEqualTo(String value) {
-            addCriterion("course_path >=", value, "coursePath");
+        public Criteria andCourseCoursewarepathGreaterThanOrEqualTo(String value) {
+            addCriterion("course_CoursewarePath >=", value, "courseCoursewarepath");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathLessThan(String value) {
-            addCriterion("course_path <", value, "coursePath");
+        public Criteria andCourseCoursewarepathLessThan(String value) {
+            addCriterion("course_CoursewarePath <", value, "courseCoursewarepath");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathLessThanOrEqualTo(String value) {
-            addCriterion("course_path <=", value, "coursePath");
+        public Criteria andCourseCoursewarepathLessThanOrEqualTo(String value) {
+            addCriterion("course_CoursewarePath <=", value, "courseCoursewarepath");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathLike(String value) {
-            addCriterion("course_path like", value, "coursePath");
+        public Criteria andCourseCoursewarepathLike(String value) {
+            addCriterion("course_CoursewarePath like", value, "courseCoursewarepath");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathNotLike(String value) {
-            addCriterion("course_path not like", value, "coursePath");
+        public Criteria andCourseCoursewarepathNotLike(String value) {
+            addCriterion("course_CoursewarePath not like", value, "courseCoursewarepath");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathIn(List<String> values) {
-            addCriterion("course_path in", values, "coursePath");
+        public Criteria andCourseCoursewarepathIn(List<String> values) {
+            addCriterion("course_CoursewarePath in", values, "courseCoursewarepath");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathNotIn(List<String> values) {
-            addCriterion("course_path not in", values, "coursePath");
+        public Criteria andCourseCoursewarepathNotIn(List<String> values) {
+            addCriterion("course_CoursewarePath not in", values, "courseCoursewarepath");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathBetween(String value1, String value2) {
-            addCriterion("course_path between", value1, value2, "coursePath");
+        public Criteria andCourseCoursewarepathBetween(String value1, String value2) {
+            addCriterion("course_CoursewarePath between", value1, value2, "courseCoursewarepath");
             return (Criteria) this;
         }
 
-        public Criteria andCoursePathNotBetween(String value1, String value2) {
-            addCriterion("course_path not between", value1, value2, "coursePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleIsNull() {
-            addCriterion("course_UsualGradesScale is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleIsNotNull() {
-            addCriterion("course_UsualGradesScale is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleEqualTo(Float value) {
-            addCriterion("course_UsualGradesScale =", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleNotEqualTo(Float value) {
-            addCriterion("course_UsualGradesScale <>", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleGreaterThan(Float value) {
-            addCriterion("course_UsualGradesScale >", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleGreaterThanOrEqualTo(Float value) {
-            addCriterion("course_UsualGradesScale >=", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleLessThan(Float value) {
-            addCriterion("course_UsualGradesScale <", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleLessThanOrEqualTo(Float value) {
-            addCriterion("course_UsualGradesScale <=", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleIn(List<Float> values) {
-            addCriterion("course_UsualGradesScale in", values, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleNotIn(List<Float> values) {
-            addCriterion("course_UsualGradesScale not in", values, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleBetween(Float value1, Float value2) {
-            addCriterion("course_UsualGradesScale between", value1, value2, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleNotBetween(Float value1, Float value2) {
-            addCriterion("course_UsualGradesScale not between", value1, value2, "courseUsualgradesscale");
+        public Criteria andCourseCoursewarepathNotBetween(String value1, String value2) {
+            addCriterion("course_CoursewarePath not between", value1, value2, "courseCoursewarepath");
             return (Criteria) this;
         }
 
@@ -564,6 +714,66 @@ public class CourseExample {
             addCriterion("course_videoPath not between", value1, value2, "courseVideopath");
             return (Criteria) this;
         }
+
+        public Criteria andCourseUsualgradesscaleIsNull() {
+            addCriterion("course_UsualGradesScale is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseUsualgradesscaleIsNotNull() {
+            addCriterion("course_UsualGradesScale is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseUsualgradesscaleEqualTo(Float value) {
+            addCriterion("course_UsualGradesScale =", value, "courseUsualgradesscale");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseUsualgradesscaleNotEqualTo(Float value) {
+            addCriterion("course_UsualGradesScale <>", value, "courseUsualgradesscale");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseUsualgradesscaleGreaterThan(Float value) {
+            addCriterion("course_UsualGradesScale >", value, "courseUsualgradesscale");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseUsualgradesscaleGreaterThanOrEqualTo(Float value) {
+            addCriterion("course_UsualGradesScale >=", value, "courseUsualgradesscale");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseUsualgradesscaleLessThan(Float value) {
+            addCriterion("course_UsualGradesScale <", value, "courseUsualgradesscale");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseUsualgradesscaleLessThanOrEqualTo(Float value) {
+            addCriterion("course_UsualGradesScale <=", value, "courseUsualgradesscale");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseUsualgradesscaleIn(List<Float> values) {
+            addCriterion("course_UsualGradesScale in", values, "courseUsualgradesscale");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseUsualgradesscaleNotIn(List<Float> values) {
+            addCriterion("course_UsualGradesScale not in", values, "courseUsualgradesscale");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseUsualgradesscaleBetween(Float value1, Float value2) {
+            addCriterion("course_UsualGradesScale between", value1, value2, "courseUsualgradesscale");
+            return (Criteria) this;
+        }
+
+        public Criteria andCourseUsualgradesscaleNotBetween(Float value1, Float value2) {
+            addCriterion("course_UsualGradesScale not between", value1, value2, "courseUsualgradesscale");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -622,6 +832,9 @@ public class CourseExample {
             return typeHandler;
         }
 
+        public Criterion(){
+        	super();
+        }
         protected Criterion(String condition) {
             super();
             this.condition = condition;

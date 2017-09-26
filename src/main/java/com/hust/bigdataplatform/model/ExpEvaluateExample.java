@@ -3,14 +3,14 @@ package com.hust.bigdataplatform.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskScoreExample {
+public class ExpEvaluateExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public TaskScoreExample() {
+    public ExpEvaluateExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,6 +104,76 @@ public class TaskScoreExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andExperimentIdIsNull() {
+            addCriterion("experiment_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdIsNotNull() {
+            addCriterion("experiment_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdEqualTo(String value) {
+            addCriterion("experiment_id =", value, "experimentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdNotEqualTo(String value) {
+            addCriterion("experiment_id <>", value, "experimentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdGreaterThan(String value) {
+            addCriterion("experiment_id >", value, "experimentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdGreaterThanOrEqualTo(String value) {
+            addCriterion("experiment_id >=", value, "experimentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdLessThan(String value) {
+            addCriterion("experiment_id <", value, "experimentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdLessThanOrEqualTo(String value) {
+            addCriterion("experiment_id <=", value, "experimentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdLike(String value) {
+            addCriterion("experiment_id like", value, "experimentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdNotLike(String value) {
+            addCriterion("experiment_id not like", value, "experimentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdIn(List<String> values) {
+            addCriterion("experiment_id in", values, "experimentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdNotIn(List<String> values) {
+            addCriterion("experiment_id not in", values, "experimentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdBetween(String value1, String value2) {
+            addCriterion("experiment_id between", value1, value2, "experimentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentIdNotBetween(String value1, String value2) {
+            addCriterion("experiment_id not between", value1, value2, "experimentId");
+            return (Criteria) this;
+        }
+
         public Criteria andStudentIdIsNull() {
             addCriterion("student_id is null");
             return (Criteria) this;
@@ -174,133 +244,133 @@ public class TaskScoreExample {
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdIsNull() {
-            addCriterion("task_id is null");
+        public Criteria andEvaluatorIsNull() {
+            addCriterion("evaluator is null");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdIsNotNull() {
-            addCriterion("task_id is not null");
+        public Criteria andEvaluatorIsNotNull() {
+            addCriterion("evaluator is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdEqualTo(String value) {
-            addCriterion("task_id =", value, "taskId");
+        public Criteria andEvaluatorEqualTo(String value) {
+            addCriterion("evaluator =", value, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdNotEqualTo(String value) {
-            addCriterion("task_id <>", value, "taskId");
+        public Criteria andEvaluatorNotEqualTo(String value) {
+            addCriterion("evaluator <>", value, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdGreaterThan(String value) {
-            addCriterion("task_id >", value, "taskId");
+        public Criteria andEvaluatorGreaterThan(String value) {
+            addCriterion("evaluator >", value, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdGreaterThanOrEqualTo(String value) {
-            addCriterion("task_id >=", value, "taskId");
+        public Criteria andEvaluatorGreaterThanOrEqualTo(String value) {
+            addCriterion("evaluator >=", value, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdLessThan(String value) {
-            addCriterion("task_id <", value, "taskId");
+        public Criteria andEvaluatorLessThan(String value) {
+            addCriterion("evaluator <", value, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdLessThanOrEqualTo(String value) {
-            addCriterion("task_id <=", value, "taskId");
+        public Criteria andEvaluatorLessThanOrEqualTo(String value) {
+            addCriterion("evaluator <=", value, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdLike(String value) {
-            addCriterion("task_id like", value, "taskId");
+        public Criteria andEvaluatorLike(String value) {
+            addCriterion("evaluator like", value, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdNotLike(String value) {
-            addCriterion("task_id not like", value, "taskId");
+        public Criteria andEvaluatorNotLike(String value) {
+            addCriterion("evaluator not like", value, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdIn(List<String> values) {
-            addCriterion("task_id in", values, "taskId");
+        public Criteria andEvaluatorIn(List<String> values) {
+            addCriterion("evaluator in", values, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdNotIn(List<String> values) {
-            addCriterion("task_id not in", values, "taskId");
+        public Criteria andEvaluatorNotIn(List<String> values) {
+            addCriterion("evaluator not in", values, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdBetween(String value1, String value2) {
-            addCriterion("task_id between", value1, value2, "taskId");
+        public Criteria andEvaluatorBetween(String value1, String value2) {
+            addCriterion("evaluator between", value1, value2, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskIdNotBetween(String value1, String value2) {
-            addCriterion("task_id not between", value1, value2, "taskId");
+        public Criteria andEvaluatorNotBetween(String value1, String value2) {
+            addCriterion("evaluator not between", value1, value2, "evaluator");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreIsNull() {
-            addCriterion("taskScore is null");
+        public Criteria andEvaluatesoreIsNull() {
+            addCriterion("evaluateSore is null");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreIsNotNull() {
-            addCriterion("taskScore is not null");
+        public Criteria andEvaluatesoreIsNotNull() {
+            addCriterion("evaluateSore is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreEqualTo(Integer value) {
-            addCriterion("taskScore =", value, "taskscore");
+        public Criteria andEvaluatesoreEqualTo(Integer value) {
+            addCriterion("evaluateSore =", value, "evaluatesore");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreNotEqualTo(Integer value) {
-            addCriterion("taskScore <>", value, "taskscore");
+        public Criteria andEvaluatesoreNotEqualTo(Integer value) {
+            addCriterion("evaluateSore <>", value, "evaluatesore");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreGreaterThan(Integer value) {
-            addCriterion("taskScore >", value, "taskscore");
+        public Criteria andEvaluatesoreGreaterThan(Integer value) {
+            addCriterion("evaluateSore >", value, "evaluatesore");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreGreaterThanOrEqualTo(Integer value) {
-            addCriterion("taskScore >=", value, "taskscore");
+        public Criteria andEvaluatesoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("evaluateSore >=", value, "evaluatesore");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreLessThan(Integer value) {
-            addCriterion("taskScore <", value, "taskscore");
+        public Criteria andEvaluatesoreLessThan(Integer value) {
+            addCriterion("evaluateSore <", value, "evaluatesore");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreLessThanOrEqualTo(Integer value) {
-            addCriterion("taskScore <=", value, "taskscore");
+        public Criteria andEvaluatesoreLessThanOrEqualTo(Integer value) {
+            addCriterion("evaluateSore <=", value, "evaluatesore");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreIn(List<Integer> values) {
-            addCriterion("taskScore in", values, "taskscore");
+        public Criteria andEvaluatesoreIn(List<Integer> values) {
+            addCriterion("evaluateSore in", values, "evaluatesore");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreNotIn(List<Integer> values) {
-            addCriterion("taskScore not in", values, "taskscore");
+        public Criteria andEvaluatesoreNotIn(List<Integer> values) {
+            addCriterion("evaluateSore not in", values, "evaluatesore");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreBetween(Integer value1, Integer value2) {
-            addCriterion("taskScore between", value1, value2, "taskscore");
+        public Criteria andEvaluatesoreBetween(Integer value1, Integer value2) {
+            addCriterion("evaluateSore between", value1, value2, "evaluatesore");
             return (Criteria) this;
         }
 
-        public Criteria andTaskscoreNotBetween(Integer value1, Integer value2) {
-            addCriterion("taskScore not between", value1, value2, "taskscore");
+        public Criteria andEvaluatesoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("evaluateSore not between", value1, value2, "evaluatesore");
             return (Criteria) this;
         }
     }
@@ -360,7 +430,9 @@ public class TaskScoreExample {
         public String getTypeHandler() {
             return typeHandler;
         }
-
+        public Criterion(){
+        	super();
+        }
         protected Criterion(String condition) {
             super();
             this.condition = condition;

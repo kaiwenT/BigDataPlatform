@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hust.bigdataplatform.dao.mapper.ExperimentMapper">
+  <resultMap id="BaseResultMap" type="com.hust.bigdataplatform.model.Experiment">
+    <id column="experiment_id" jdbcType="VARCHAR" property="experimentId" />
+    <id column="course_id" jdbcType="VARCHAR" property="courseId" />
+    <result column="experiment_name" jdbcType="VARCHAR" property="experimentName" />
+    <result column="experiment_deadline" jdbcType="TIMESTAMP" property="experimentDeadline" />
+    <result column="experiment_submitDemand" jdbcType="VARCHAR" property="experimentSubmitdemand" />
+    <result column="experiment_manualPath" jdbcType="VARCHAR" property="experimentManualpath" />
+    <result column="experiment_resultsPath" jdbcType="VARCHAR" property="experimentResultspath" />
+    <result column="experiment_reportPath" jdbcType="VARCHAR" property="experimentReportpath" />
+    <result column="experiment_videoPath" jdbcType="VARCHAR" property="experimentVideopath" />
+    <result column="experiment_scale" jdbcType="REAL" property="experimentScale" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    experiment_id, course_id, experiment_name, experiment_deadline, experiment_submitDemand, 
+    experiment_manualPath, experiment_resultsPath, experiment_reportPath, experiment_videoPath, 
+    experiment_scale
+  </sql>
+  <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.ExperimentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from experiment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from experiment
+    where experiment_id = #{experimentId,jdbcType=VARCHAR}
+      and course_id = #{courseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from experiment
+    where experiment_id = #{experimentId,jdbcType=VARCHAR}
+      and course_id = #{courseId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hust.bigdataplatform.model.ExperimentExample">
+    delete from experiment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hust.bigdataplatform.model.Experiment">
+    insert into experiment (experiment_id, course_id, experiment_name, 
+      experiment_deadline, experiment_submitDemand, 
+      experiment_manualPath, experiment_resultsPath, 
+      experiment_reportPath, experiment_videoPath, 
+      experiment_scale)
+    values (#{experimentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{experimentName,jdbcType=VARCHAR}, 
+      #{experimentDeadline,jdbcType=TIMESTAMP}, #{experimentSubmitdemand,jdbcType=VARCHAR}, 
+      #{experimentManualpath,jdbcType=VARCHAR}, #{experimentResultspath,jdbcType=VARCHAR}, 
+      #{experimentReportpath,jdbcType=VARCHAR}, #{experimentVideopath,jdbcType=VARCHAR}, 
+      #{experimentScale,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.Experiment">
+    insert into experiment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="experimentId != null">
+        experiment_id,
+      </if>
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="experimentName != null">
+        experiment_name,
+      </if>
+      <if test="experimentDeadline != null">
+        experiment_deadline,
+      </if>
+      <if test="experimentSubmitdemand != null">
+        experiment_submitDemand,
+      </if>
+      <if test="experimentManualpath != null">
+        experiment_manualPath,
+      </if>
+      <if test="experimentResultspath != null">
+        experiment_resultsPath,
+      </if>
+      <if test="experimentReportpath != null">
+        experiment_reportPath,
+      </if>
+      <if test="experimentVideopath != null">
+        experiment_videoPath,
+      </if>
+      <if test="experimentScale != null">
+        experiment_scale,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="experimentId != null">
+        #{experimentId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentName != null">
+        #{experimentName,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentDeadline != null">
+        #{experimentDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="experimentSubmitdemand != null">
+        #{experimentSubmitdemand,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentManualpath != null">
+        #{experimentManualpath,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentResultspath != null">
+        #{experimentResultspath,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentReportpath != null">
+        #{experimentReportpath,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentVideopath != null">
+        #{experimentVideopath,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentScale != null">
+        #{experimentScale,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hust.bigdataplatform.model.ExperimentExample" resultType="java.lang.Long">
+    select count(*) from experiment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update experiment
+    <set>
+      <if test="record.experimentId != null">
+        experiment_id = #{record.experimentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseId != null">
+        course_id = #{record.courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experimentName != null">
+        experiment_name = #{record.experimentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experimentDeadline != null">
+        experiment_deadline = #{record.experimentDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.experimentSubmitdemand != null">
+        experiment_submitDemand = #{record.experimentSubmitdemand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experimentManualpath != null">
+        experiment_manualPath = #{record.experimentManualpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experimentResultspath != null">
+        experiment_resultsPath = #{record.experimentResultspath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experimentReportpath != null">
+        experiment_reportPath = #{record.experimentReportpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experimentVideopath != null">
+        experiment_videoPath = #{record.experimentVideopath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experimentScale != null">
+        experiment_scale = #{record.experimentScale,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update experiment
+    set experiment_id = #{record.experimentId,jdbcType=VARCHAR},
+      course_id = #{record.courseId,jdbcType=VARCHAR},
+      experiment_name = #{record.experimentName,jdbcType=VARCHAR},
+      experiment_deadline = #{record.experimentDeadline,jdbcType=TIMESTAMP},
+      experiment_submitDemand = #{record.experimentSubmitdemand,jdbcType=VARCHAR},
+      experiment_manualPath = #{record.experimentManualpath,jdbcType=VARCHAR},
+      experiment_resultsPath = #{record.experimentResultspath,jdbcType=VARCHAR},
+      experiment_reportPath = #{record.experimentReportpath,jdbcType=VARCHAR},
+      experiment_videoPath = #{record.experimentVideopath,jdbcType=VARCHAR},
+      experiment_scale = #{record.experimentScale,jdbcType=REAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hust.bigdataplatform.model.Experiment">
+    update experiment
+    <set>
+      <if test="experimentName != null">
+        experiment_name = #{experimentName,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentDeadline != null">
+        experiment_deadline = #{experimentDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="experimentSubmitdemand != null">
+        experiment_submitDemand = #{experimentSubmitdemand,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentManualpath != null">
+        experiment_manualPath = #{experimentManualpath,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentResultspath != null">
+        experiment_resultsPath = #{experimentResultspath,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentReportpath != null">
+        experiment_reportPath = #{experimentReportpath,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentVideopath != null">
+        experiment_videoPath = #{experimentVideopath,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentScale != null">
+        experiment_scale = #{experimentScale,jdbcType=REAL},
+      </if>
+    </set>
+    where experiment_id = #{experimentId,jdbcType=VARCHAR}
+      and course_id = #{courseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hust.bigdataplatform.model.Experiment">
+    update experiment
+    set experiment_name = #{experimentName,jdbcType=VARCHAR},
+      experiment_deadline = #{experimentDeadline,jdbcType=TIMESTAMP},
+      experiment_submitDemand = #{experimentSubmitdemand,jdbcType=VARCHAR},
+      experiment_manualPath = #{experimentManualpath,jdbcType=VARCHAR},
+      experiment_resultsPath = #{experimentResultspath,jdbcType=VARCHAR},
+      experiment_reportPath = #{experimentReportpath,jdbcType=VARCHAR},
+      experiment_videoPath = #{experimentVideopath,jdbcType=VARCHAR},
+      experiment_scale = #{experimentScale,jdbcType=REAL}
+    where experiment_id = #{experimentId,jdbcType=VARCHAR}
+      and course_id = #{courseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

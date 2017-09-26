@@ -7,6 +7,8 @@ public class Student {
 
     private String studentPwd;
 
+    private String studentGroupid;
+
     private String studentFaculty;
 
     private String studentTele;
@@ -33,6 +35,14 @@ public class Student {
 
     public void setStudentPwd(String studentPwd) {
         this.studentPwd = studentPwd == null ? null : studentPwd.trim();
+    }
+
+    public String getStudentGroupid() {
+        return studentGroupid;
+    }
+
+    public void setStudentGroupid(String studentGroupid) {
+        this.studentGroupid = studentGroupid == null ? null : studentGroupid.trim();
     }
 
     public String getStudentFaculty() {

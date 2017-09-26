@@ -5,6 +5,7 @@
     <id column="student_id" jdbcType="VARCHAR" property="studentId" />
     <result column="student_name" jdbcType="VARCHAR" property="studentName" />
     <result column="student_pwd" jdbcType="VARCHAR" property="studentPwd" />
+    <result column="student_groupId" jdbcType="VARCHAR" property="studentGroupid" />
     <result column="student_faculty" jdbcType="VARCHAR" property="studentFaculty" />
     <result column="student_tele" jdbcType="VARCHAR" property="studentTele" />
   </resultMap>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    student_id, student_name, student_pwd, student_faculty, student_tele
+    student_id, student_name, student_pwd, student_groupId, student_faculty, student_tele
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.StudentExample" resultMap="BaseResultMap">
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="com.hust.bigdataplatform.model.Student">
     insert into student (student_id, student_name, student_pwd, 
-      student_faculty, student_tele)
+      student_groupId, student_faculty, student_tele
+      )
     values (#{studentId,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, #{studentPwd,jdbcType=VARCHAR}, 
-      #{studentFaculty,jdbcType=VARCHAR}, #{studentTele,jdbcType=VARCHAR})
+      #{studentGroupid,jdbcType=VARCHAR}, #{studentFaculty,jdbcType=VARCHAR}, #{studentTele,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.Student">
     insert into student
@@ -116,6 +119,9 @@
       </if>
       <if test="studentPwd != null">
         student_pwd,
+      </if>
+      <if test="studentGroupid != null">
+        student_groupId,
       </if>
       <if test="studentFaculty != null">
         student_faculty,
@@ -133,6 +139,9 @@
       </if>
       <if test="studentPwd != null">
         #{studentPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="studentGroupid != null">
+        #{studentGroupid,jdbcType=VARCHAR},
       </if>
       <if test="studentFaculty != null">
         #{studentFaculty,jdbcType=VARCHAR},
@@ -160,6 +169,9 @@
       <if test="record.studentPwd != null">
         student_pwd = #{record.studentPwd,jdbcType=VARCHAR},
       </if>
+      <if test="record.studentGroupid != null">
+        student_groupId = #{record.studentGroupid,jdbcType=VARCHAR},
+      </if>
       <if test="record.studentFaculty != null">
         student_faculty = #{record.studentFaculty,jdbcType=VARCHAR},
       </if>
@@ -176,6 +188,7 @@
     set student_id = #{record.studentId,jdbcType=VARCHAR},
       student_name = #{record.studentName,jdbcType=VARCHAR},
       student_pwd = #{record.studentPwd,jdbcType=VARCHAR},
+      student_groupId = #{record.studentGroupid,jdbcType=VARCHAR},
       student_faculty = #{record.studentFaculty,jdbcType=VARCHAR},
       student_tele = #{record.studentTele,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -191,6 +204,9 @@
       <if test="studentPwd != null">
         student_pwd = #{studentPwd,jdbcType=VARCHAR},
       </if>
+      <if test="studentGroupid != null">
+        student_groupId = #{studentGroupid,jdbcType=VARCHAR},
+      </if>
       <if test="studentFaculty != null">
         student_faculty = #{studentFaculty,jdbcType=VARCHAR},
       </if>
@@ -204,6 +220,7 @@
     update student
     set student_name = #{studentName,jdbcType=VARCHAR},
       student_pwd = #{studentPwd,jdbcType=VARCHAR},
+      student_groupId = #{studentGroupid,jdbcType=VARCHAR},
       student_faculty = #{studentFaculty,jdbcType=VARCHAR},
       student_tele = #{studentTele,jdbcType=VARCHAR}
     where student_id = #{studentId,jdbcType=VARCHAR}

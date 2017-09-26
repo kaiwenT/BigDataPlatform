@@ -7,15 +7,21 @@ public class Course {
 
     private String courseName;
 
+    private String courseIntroduce;
+
+    private String courseOutline;
+
+    private String courseDemand;
+
     private Date courseBegintime;
 
     private Integer courseCredit;
 
-    private String coursePath;
-
-    private Float courseUsualgradesscale;
+    private String courseCoursewarepath;
 
     private String courseVideopath;
+
+    private Float courseUsualgradesscale;
 
     public String getCourseId() {
         return courseId;
@@ -31,6 +37,30 @@ public class Course {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName == null ? null : courseName.trim();
+    }
+
+    public String getCourseIntroduce() {
+        return courseIntroduce;
+    }
+
+    public void setCourseIntroduce(String courseIntroduce) {
+        this.courseIntroduce = courseIntroduce == null ? null : courseIntroduce.trim();
+    }
+
+    public String getCourseOutline() {
+        return courseOutline;
+    }
+
+    public void setCourseOutline(String courseOutline) {
+        this.courseOutline = courseOutline == null ? null : courseOutline.trim();
+    }
+
+    public String getCourseDemand() {
+        return courseDemand;
+    }
+
+    public void setCourseDemand(String courseDemand) {
+        this.courseDemand = courseDemand == null ? null : courseDemand.trim();
     }
 
     public Date getCourseBegintime() {
@@ -49,20 +79,12 @@ public class Course {
         this.courseCredit = courseCredit;
     }
 
-    public String getCoursePath() {
-        return coursePath;
+    public String getCourseCoursewarepath() {
+        return courseCoursewarepath;
     }
 
-    public void setCoursePath(String coursePath) {
-        this.coursePath = coursePath == null ? null : coursePath.trim();
-    }
-
-    public Float getCourseUsualgradesscale() {
-        return courseUsualgradesscale;
-    }
-
-    public void setCourseUsualgradesscale(Float courseUsualgradesscale) {
-        this.courseUsualgradesscale = courseUsualgradesscale;
+    public void setCourseCoursewarepath(String courseCoursewarepath) {
+        this.courseCoursewarepath = courseCoursewarepath == null ? null : courseCoursewarepath.trim();
     }
 
     public String getCourseVideopath() {
@@ -71,5 +93,13 @@ public class Course {
 
     public void setCourseVideopath(String courseVideopath) {
         this.courseVideopath = courseVideopath == null ? null : courseVideopath.trim();
+    }
+
+    public Float getCourseUsualgradesscale() {
+        return courseUsualgradesscale;
+    }
+
+    public void setCourseUsualgradesscale(Float courseUsualgradesscale) {
+        this.courseUsualgradesscale = courseUsualgradesscale;
     }
 }

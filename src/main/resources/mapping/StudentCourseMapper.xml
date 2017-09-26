@@ -4,8 +4,8 @@
   <resultMap id="BaseResultMap" type="com.hust.bigdataplatform.model.StudentCourse">
     <id column="student_id" jdbcType="VARCHAR" property="studentId" />
     <id column="course_id" jdbcType="VARCHAR" property="courseId" />
-    <result column="course_totalScore" jdbcType="REAL" property="courseTotalscore" />
     <result column="attendanceRate" jdbcType="INTEGER" property="attendancerate" />
+    <result column="finalResult" jdbcType="INTEGER" property="finalresult" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    student_id, course_id, course_totalScore, attendanceRate
+    student_id, course_id, attendanceRate, finalResult
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.StudentCourseExample" resultMap="BaseResultMap">
     select
@@ -101,10 +101,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.hust.bigdataplatform.model.StudentCourse">
-    insert into student_course (student_id, course_id, course_totalScore, 
-      attendanceRate)
-    values (#{studentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{courseTotalscore,jdbcType=REAL}, 
-      #{attendancerate,jdbcType=INTEGER})
+    insert into student_course (student_id, course_id, attendanceRate, 
+      finalResult)
+    values (#{studentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{attendancerate,jdbcType=INTEGER}, 
+      #{finalresult,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.StudentCourse">
     insert into student_course
@@ -115,11 +115,11 @@
       <if test="courseId != null">
         course_id,
       </if>
-      <if test="courseTotalscore != null">
-        course_totalScore,
-      </if>
       <if test="attendancerate != null">
         attendanceRate,
+      </if>
+      <if test="finalresult != null">
+        finalResult,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -129,11 +129,11 @@
       <if test="courseId != null">
         #{courseId,jdbcType=VARCHAR},
       </if>
-      <if test="courseTotalscore != null">
-        #{courseTotalscore,jdbcType=REAL},
-      </if>
       <if test="attendancerate != null">
         #{attendancerate,jdbcType=INTEGER},
+      </if>
+      <if test="finalresult != null">
+        #{finalresult,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -152,11 +152,11 @@
       <if test="record.courseId != null">
         course_id = #{record.courseId,jdbcType=VARCHAR},
       </if>
-      <if test="record.courseTotalscore != null">
-        course_totalScore = #{record.courseTotalscore,jdbcType=REAL},
-      </if>
       <if test="record.attendancerate != null">
         attendanceRate = #{record.attendancerate,jdbcType=INTEGER},
+      </if>
+      <if test="record.finalresult != null">
+        finalResult = #{record.finalresult,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -167,8 +167,8 @@
     update student_course
     set student_id = #{record.studentId,jdbcType=VARCHAR},
       course_id = #{record.courseId,jdbcType=VARCHAR},
-      course_totalScore = #{record.courseTotalscore,jdbcType=REAL},
-      attendanceRate = #{record.attendancerate,jdbcType=INTEGER}
+      attendanceRate = #{record.attendancerate,jdbcType=INTEGER},
+      finalResult = #{record.finalresult,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -176,11 +176,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.hust.bigdataplatform.model.StudentCourse">
     update student_course
     <set>
-      <if test="courseTotalscore != null">
-        course_totalScore = #{courseTotalscore,jdbcType=REAL},
-      </if>
       <if test="attendancerate != null">
         attendanceRate = #{attendancerate,jdbcType=INTEGER},
+      </if>
+      <if test="finalresult != null">
+        finalResult = #{finalresult,jdbcType=INTEGER},
       </if>
     </set>
     where student_id = #{studentId,jdbcType=VARCHAR}
@@ -188,8 +188,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hust.bigdataplatform.model.StudentCourse">
     update student_course
-    set course_totalScore = #{courseTotalscore,jdbcType=REAL},
-      attendanceRate = #{attendancerate,jdbcType=INTEGER}
+    set attendanceRate = #{attendancerate,jdbcType=INTEGER},
+      finalResult = #{finalresult,jdbcType=INTEGER}
     where student_id = #{studentId,jdbcType=VARCHAR}
       and course_id = #{courseId,jdbcType=VARCHAR}
   </update>

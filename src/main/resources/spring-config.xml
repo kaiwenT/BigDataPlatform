@@ -20,7 +20,7 @@
 	<import resource="ext/spring-ehcache.xml" />
 	
 
-	<bean class="com.hust.mining.constant.Constant" init-method="init"
+	<bean class="com.hust.bigdataplatform.constant.Constant" init-method="init"
 		lazy-init="false" />
 	<context:component-scan base-package="com.hust.bigdataplatform">
 		<context:exclude-filter type="annotation"

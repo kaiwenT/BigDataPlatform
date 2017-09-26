@@ -3,14 +3,14 @@ package com.hust.bigdataplatform.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentCourseExample {
+public class ExperimentScoreExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public StudentCourseExample() {
+    public ExperimentScoreExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -174,193 +174,253 @@ public class StudentCourseExample {
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdIsNull() {
-            addCriterion("course_id is null");
+        public Criteria andExperimentIdIsNull() {
+            addCriterion("experiment_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdIsNotNull() {
-            addCriterion("course_id is not null");
+        public Criteria andExperimentIdIsNotNull() {
+            addCriterion("experiment_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdEqualTo(String value) {
-            addCriterion("course_id =", value, "courseId");
+        public Criteria andExperimentIdEqualTo(String value) {
+            addCriterion("experiment_id =", value, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdNotEqualTo(String value) {
-            addCriterion("course_id <>", value, "courseId");
+        public Criteria andExperimentIdNotEqualTo(String value) {
+            addCriterion("experiment_id <>", value, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdGreaterThan(String value) {
-            addCriterion("course_id >", value, "courseId");
+        public Criteria andExperimentIdGreaterThan(String value) {
+            addCriterion("experiment_id >", value, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdGreaterThanOrEqualTo(String value) {
-            addCriterion("course_id >=", value, "courseId");
+        public Criteria andExperimentIdGreaterThanOrEqualTo(String value) {
+            addCriterion("experiment_id >=", value, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdLessThan(String value) {
-            addCriterion("course_id <", value, "courseId");
+        public Criteria andExperimentIdLessThan(String value) {
+            addCriterion("experiment_id <", value, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdLessThanOrEqualTo(String value) {
-            addCriterion("course_id <=", value, "courseId");
+        public Criteria andExperimentIdLessThanOrEqualTo(String value) {
+            addCriterion("experiment_id <=", value, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdLike(String value) {
-            addCriterion("course_id like", value, "courseId");
+        public Criteria andExperimentIdLike(String value) {
+            addCriterion("experiment_id like", value, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdNotLike(String value) {
-            addCriterion("course_id not like", value, "courseId");
+        public Criteria andExperimentIdNotLike(String value) {
+            addCriterion("experiment_id not like", value, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdIn(List<String> values) {
-            addCriterion("course_id in", values, "courseId");
+        public Criteria andExperimentIdIn(List<String> values) {
+            addCriterion("experiment_id in", values, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdNotIn(List<String> values) {
-            addCriterion("course_id not in", values, "courseId");
+        public Criteria andExperimentIdNotIn(List<String> values) {
+            addCriterion("experiment_id not in", values, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdBetween(String value1, String value2) {
-            addCriterion("course_id between", value1, value2, "courseId");
+        public Criteria andExperimentIdBetween(String value1, String value2) {
+            addCriterion("experiment_id between", value1, value2, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andCourseIdNotBetween(String value1, String value2) {
-            addCriterion("course_id not between", value1, value2, "courseId");
+        public Criteria andExperimentIdNotBetween(String value1, String value2) {
+            addCriterion("experiment_id not between", value1, value2, "experimentId");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateIsNull() {
-            addCriterion("attendanceRate is null");
+        public Criteria andResultsscoreIsNull() {
+            addCriterion("resultsScore is null");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateIsNotNull() {
-            addCriterion("attendanceRate is not null");
+        public Criteria andResultsscoreIsNotNull() {
+            addCriterion("resultsScore is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateEqualTo(Integer value) {
-            addCriterion("attendanceRate =", value, "attendancerate");
+        public Criteria andResultsscoreEqualTo(Integer value) {
+            addCriterion("resultsScore =", value, "resultsscore");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateNotEqualTo(Integer value) {
-            addCriterion("attendanceRate <>", value, "attendancerate");
+        public Criteria andResultsscoreNotEqualTo(Integer value) {
+            addCriterion("resultsScore <>", value, "resultsscore");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateGreaterThan(Integer value) {
-            addCriterion("attendanceRate >", value, "attendancerate");
+        public Criteria andResultsscoreGreaterThan(Integer value) {
+            addCriterion("resultsScore >", value, "resultsscore");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateGreaterThanOrEqualTo(Integer value) {
-            addCriterion("attendanceRate >=", value, "attendancerate");
+        public Criteria andResultsscoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("resultsScore >=", value, "resultsscore");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateLessThan(Integer value) {
-            addCriterion("attendanceRate <", value, "attendancerate");
+        public Criteria andResultsscoreLessThan(Integer value) {
+            addCriterion("resultsScore <", value, "resultsscore");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateLessThanOrEqualTo(Integer value) {
-            addCriterion("attendanceRate <=", value, "attendancerate");
+        public Criteria andResultsscoreLessThanOrEqualTo(Integer value) {
+            addCriterion("resultsScore <=", value, "resultsscore");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateIn(List<Integer> values) {
-            addCriterion("attendanceRate in", values, "attendancerate");
+        public Criteria andResultsscoreIn(List<Integer> values) {
+            addCriterion("resultsScore in", values, "resultsscore");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateNotIn(List<Integer> values) {
-            addCriterion("attendanceRate not in", values, "attendancerate");
+        public Criteria andResultsscoreNotIn(List<Integer> values) {
+            addCriterion("resultsScore not in", values, "resultsscore");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateBetween(Integer value1, Integer value2) {
-            addCriterion("attendanceRate between", value1, value2, "attendancerate");
+        public Criteria andResultsscoreBetween(Integer value1, Integer value2) {
+            addCriterion("resultsScore between", value1, value2, "resultsscore");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateNotBetween(Integer value1, Integer value2) {
-            addCriterion("attendanceRate not between", value1, value2, "attendancerate");
+        public Criteria andResultsscoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("resultsScore not between", value1, value2, "resultsscore");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultIsNull() {
-            addCriterion("finalResult is null");
+        public Criteria andReportscoreIsNull() {
+            addCriterion("reportScore is null");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultIsNotNull() {
-            addCriterion("finalResult is not null");
+        public Criteria andReportscoreIsNotNull() {
+            addCriterion("reportScore is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultEqualTo(Integer value) {
-            addCriterion("finalResult =", value, "finalresult");
+        public Criteria andReportscoreEqualTo(Integer value) {
+            addCriterion("reportScore =", value, "reportscore");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultNotEqualTo(Integer value) {
-            addCriterion("finalResult <>", value, "finalresult");
+        public Criteria andReportscoreNotEqualTo(Integer value) {
+            addCriterion("reportScore <>", value, "reportscore");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultGreaterThan(Integer value) {
-            addCriterion("finalResult >", value, "finalresult");
+        public Criteria andReportscoreGreaterThan(Integer value) {
+            addCriterion("reportScore >", value, "reportscore");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultGreaterThanOrEqualTo(Integer value) {
-            addCriterion("finalResult >=", value, "finalresult");
+        public Criteria andReportscoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("reportScore >=", value, "reportscore");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultLessThan(Integer value) {
-            addCriterion("finalResult <", value, "finalresult");
+        public Criteria andReportscoreLessThan(Integer value) {
+            addCriterion("reportScore <", value, "reportscore");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultLessThanOrEqualTo(Integer value) {
-            addCriterion("finalResult <=", value, "finalresult");
+        public Criteria andReportscoreLessThanOrEqualTo(Integer value) {
+            addCriterion("reportScore <=", value, "reportscore");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultIn(List<Integer> values) {
-            addCriterion("finalResult in", values, "finalresult");
+        public Criteria andReportscoreIn(List<Integer> values) {
+            addCriterion("reportScore in", values, "reportscore");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultNotIn(List<Integer> values) {
-            addCriterion("finalResult not in", values, "finalresult");
+        public Criteria andReportscoreNotIn(List<Integer> values) {
+            addCriterion("reportScore not in", values, "reportscore");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultBetween(Integer value1, Integer value2) {
-            addCriterion("finalResult between", value1, value2, "finalresult");
+        public Criteria andReportscoreBetween(Integer value1, Integer value2) {
+            addCriterion("reportScore between", value1, value2, "reportscore");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultNotBetween(Integer value1, Integer value2) {
-            addCriterion("finalResult not between", value1, value2, "finalresult");
+        public Criteria andReportscoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("reportScore not between", value1, value2, "reportscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreIsNull() {
+            addCriterion("exp_finalScore is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreIsNotNull() {
+            addCriterion("exp_finalScore is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreEqualTo(Integer value) {
+            addCriterion("exp_finalScore =", value, "expFinalscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreNotEqualTo(Integer value) {
+            addCriterion("exp_finalScore <>", value, "expFinalscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreGreaterThan(Integer value) {
+            addCriterion("exp_finalScore >", value, "expFinalscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("exp_finalScore >=", value, "expFinalscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreLessThan(Integer value) {
+            addCriterion("exp_finalScore <", value, "expFinalscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreLessThanOrEqualTo(Integer value) {
+            addCriterion("exp_finalScore <=", value, "expFinalscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreIn(List<Integer> values) {
+            addCriterion("exp_finalScore in", values, "expFinalscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreNotIn(List<Integer> values) {
+            addCriterion("exp_finalScore not in", values, "expFinalscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreBetween(Integer value1, Integer value2) {
+            addCriterion("exp_finalScore between", value1, value2, "expFinalscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpFinalscoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("exp_finalScore not between", value1, value2, "expFinalscore");
             return (Criteria) this;
         }
     }

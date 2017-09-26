@@ -5,9 +5,9 @@ public class StudentCourse {
 
     private String courseId;
 
-    private Float courseTotalscore;
-
     private Integer attendancerate;
+
+    private Integer finalresult;
 
     public String getStudentId() {
         return studentId;
@@ -25,19 +25,19 @@ public class StudentCourse {
         this.courseId = courseId == null ? null : courseId.trim();
     }
 
-    public Float getCourseTotalscore() {
-        return courseTotalscore;
-    }
-
-    public void setCourseTotalscore(Float courseTotalscore) {
-        this.courseTotalscore = courseTotalscore;
-    }
-
     public Integer getAttendancerate() {
         return attendancerate;
     }
 
     public void setAttendancerate(Integer attendancerate) {
         this.attendancerate = attendancerate;
+    }
+
+    public Integer getFinalresult() {
+        return finalresult;
+    }
+
+    public void setFinalresult(Integer finalresult) {
+        this.finalresult = finalresult;
     }
 }

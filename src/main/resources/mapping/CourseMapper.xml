@@ -4,11 +4,14 @@
   <resultMap id="BaseResultMap" type="com.hust.bigdataplatform.model.Course">
     <id column="course_id" jdbcType="VARCHAR" property="courseId" />
     <result column="course_name" jdbcType="VARCHAR" property="courseName" />
+    <result column="course_introduce" jdbcType="VARCHAR" property="courseIntroduce" />
+    <result column="course_outline" jdbcType="VARCHAR" property="courseOutline" />
+    <result column="course_demand" jdbcType="VARCHAR" property="courseDemand" />
     <result column="course_beginTime" jdbcType="TIMESTAMP" property="courseBegintime" />
     <result column="course_credit" jdbcType="INTEGER" property="courseCredit" />
-    <result column="course_path" jdbcType="VARCHAR" property="coursePath" />
-    <result column="course_UsualGradesScale" jdbcType="REAL" property="courseUsualgradesscale" />
+    <result column="course_CoursewarePath" jdbcType="VARCHAR" property="courseCoursewarepath" />
     <result column="course_videoPath" jdbcType="VARCHAR" property="courseVideopath" />
+    <result column="course_UsualGradesScale" jdbcType="REAL" property="courseUsualgradesscale" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    course_id, course_name, course_beginTime, course_credit, course_path, course_UsualGradesScale, 
-    course_videoPath
+    course_id, course_name, course_introduce, course_outline, course_demand, course_beginTime, 
+    course_credit, course_CoursewarePath, course_videoPath, course_UsualGradesScale
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.CourseExample" resultMap="BaseResultMap">
     select
@@ -103,12 +106,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.hust.bigdataplatform.model.Course">
-    insert into course (course_id, course_name, course_beginTime, 
-      course_credit, course_path, course_UsualGradesScale, 
-      course_videoPath)
-    values (#{courseId,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, #{courseBegintime,jdbcType=TIMESTAMP}, 
-      #{courseCredit,jdbcType=INTEGER}, #{coursePath,jdbcType=VARCHAR}, #{courseUsualgradesscale,jdbcType=REAL}, 
-      #{courseVideopath,jdbcType=VARCHAR})
+    insert into course (course_id, course_name, course_introduce, 
+      course_outline, course_demand, course_beginTime, 
+      course_credit, course_CoursewarePath, course_videoPath, 
+      course_UsualGradesScale)
+    values (#{courseId,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, #{courseIntroduce,jdbcType=VARCHAR}, 
+      #{courseOutline,jdbcType=VARCHAR}, #{courseDemand,jdbcType=VARCHAR}, #{courseBegintime,jdbcType=TIMESTAMP}, 
+      #{courseCredit,jdbcType=INTEGER}, #{courseCoursewarepath,jdbcType=VARCHAR}, #{courseVideopath,jdbcType=VARCHAR}, 
+      #{courseUsualgradesscale,jdbcType=REAL})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.Course">
     insert into course
@@ -119,20 +124,29 @@
       <if test="courseName != null">
         course_name,
       </if>
+      <if test="courseIntroduce != null">
+        course_introduce,
+      </if>
+      <if test="courseOutline != null">
+        course_outline,
+      </if>
+      <if test="courseDemand != null">
+        course_demand,
+      </if>
       <if test="courseBegintime != null">
         course_beginTime,
       </if>
       <if test="courseCredit != null">
         course_credit,
       </if>
-      <if test="coursePath != null">
-        course_path,
-      </if>
-      <if test="courseUsualgradesscale != null">
-        course_UsualGradesScale,
+      <if test="courseCoursewarepath != null">
+        course_CoursewarePath,
       </if>
       <if test="courseVideopath != null">
         course_videoPath,
+      </if>
+      <if test="courseUsualgradesscale != null">
+        course_UsualGradesScale,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -142,20 +156,29 @@
       <if test="courseName != null">
         #{courseName,jdbcType=VARCHAR},
       </if>
+      <if test="courseIntroduce != null">
+        #{courseIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="courseOutline != null">
+        #{courseOutline,jdbcType=VARCHAR},
+      </if>
+      <if test="courseDemand != null">
+        #{courseDemand,jdbcType=VARCHAR},
+      </if>
       <if test="courseBegintime != null">
         #{courseBegintime,jdbcType=TIMESTAMP},
       </if>
       <if test="courseCredit != null">
         #{courseCredit,jdbcType=INTEGER},
       </if>
-      <if test="coursePath != null">
-        #{coursePath,jdbcType=VARCHAR},
-      </if>
-      <if test="courseUsualgradesscale != null">
-        #{courseUsualgradesscale,jdbcType=REAL},
+      <if test="courseCoursewarepath != null">
+        #{courseCoursewarepath,jdbcType=VARCHAR},
       </if>
       <if test="courseVideopath != null">
         #{courseVideopath,jdbcType=VARCHAR},
+      </if>
+      <if test="courseUsualgradesscale != null">
+        #{courseUsualgradesscale,jdbcType=REAL},
       </if>
     </trim>
   </insert>
@@ -174,20 +197,29 @@
       <if test="record.courseName != null">
         course_name = #{record.courseName,jdbcType=VARCHAR},
       </if>
+      <if test="record.courseIntroduce != null">
+        course_introduce = #{record.courseIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseOutline != null">
+        course_outline = #{record.courseOutline,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseDemand != null">
+        course_demand = #{record.courseDemand,jdbcType=VARCHAR},
+      </if>
       <if test="record.courseBegintime != null">
         course_beginTime = #{record.courseBegintime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.courseCredit != null">
         course_credit = #{record.courseCredit,jdbcType=INTEGER},
       </if>
-      <if test="record.coursePath != null">
-        course_path = #{record.coursePath,jdbcType=VARCHAR},
-      </if>
-      <if test="record.courseUsualgradesscale != null">
-        course_UsualGradesScale = #{record.courseUsualgradesscale,jdbcType=REAL},
+      <if test="record.courseCoursewarepath != null">
+        course_CoursewarePath = #{record.courseCoursewarepath,jdbcType=VARCHAR},
       </if>
       <if test="record.courseVideopath != null">
         course_videoPath = #{record.courseVideopath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseUsualgradesscale != null">
+        course_UsualGradesScale = #{record.courseUsualgradesscale,jdbcType=REAL},
       </if>
     </set>
     <if test="_parameter != null">
@@ -198,11 +230,14 @@
     update course
     set course_id = #{record.courseId,jdbcType=VARCHAR},
       course_name = #{record.courseName,jdbcType=VARCHAR},
+      course_introduce = #{record.courseIntroduce,jdbcType=VARCHAR},
+      course_outline = #{record.courseOutline,jdbcType=VARCHAR},
+      course_demand = #{record.courseDemand,jdbcType=VARCHAR},
       course_beginTime = #{record.courseBegintime,jdbcType=TIMESTAMP},
       course_credit = #{record.courseCredit,jdbcType=INTEGER},
-      course_path = #{record.coursePath,jdbcType=VARCHAR},
-      course_UsualGradesScale = #{record.courseUsualgradesscale,jdbcType=REAL},
-      course_videoPath = #{record.courseVideopath,jdbcType=VARCHAR}
+      course_CoursewarePath = #{record.courseCoursewarepath,jdbcType=VARCHAR},
+      course_videoPath = #{record.courseVideopath,jdbcType=VARCHAR},
+      course_UsualGradesScale = #{record.courseUsualgradesscale,jdbcType=REAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,20 +248,29 @@
       <if test="courseName != null">
         course_name = #{courseName,jdbcType=VARCHAR},
       </if>
+      <if test="courseIntroduce != null">
+        course_introduce = #{courseIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="courseOutline != null">
+        course_outline = #{courseOutline,jdbcType=VARCHAR},
+      </if>
+      <if test="courseDemand != null">
+        course_demand = #{courseDemand,jdbcType=VARCHAR},
+      </if>
       <if test="courseBegintime != null">
         course_beginTime = #{courseBegintime,jdbcType=TIMESTAMP},
       </if>
       <if test="courseCredit != null">
         course_credit = #{courseCredit,jdbcType=INTEGER},
       </if>
-      <if test="coursePath != null">
-        course_path = #{coursePath,jdbcType=VARCHAR},
-      </if>
-      <if test="courseUsualgradesscale != null">
-        course_UsualGradesScale = #{courseUsualgradesscale,jdbcType=REAL},
+      <if test="courseCoursewarepath != null">
+        course_CoursewarePath = #{courseCoursewarepath,jdbcType=VARCHAR},
       </if>
       <if test="courseVideopath != null">
         course_videoPath = #{courseVideopath,jdbcType=VARCHAR},
+      </if>
+      <if test="courseUsualgradesscale != null">
+        course_UsualGradesScale = #{courseUsualgradesscale,jdbcType=REAL},
       </if>
     </set>
     where course_id = #{courseId,jdbcType=VARCHAR}
@@ -234,11 +278,14 @@
   <update id="updateByPrimaryKey" parameterType="com.hust.bigdataplatform.model.Course">
     update course
     set course_name = #{courseName,jdbcType=VARCHAR},
+      course_introduce = #{courseIntroduce,jdbcType=VARCHAR},
+      course_outline = #{courseOutline,jdbcType=VARCHAR},
+      course_demand = #{courseDemand,jdbcType=VARCHAR},
       course_beginTime = #{courseBegintime,jdbcType=TIMESTAMP},
       course_credit = #{courseCredit,jdbcType=INTEGER},
-      course_path = #{coursePath,jdbcType=VARCHAR},
-      course_UsualGradesScale = #{courseUsualgradesscale,jdbcType=REAL},
-      course_videoPath = #{courseVideopath,jdbcType=VARCHAR}
+      course_CoursewarePath = #{courseCoursewarepath,jdbcType=VARCHAR},
+      course_videoPath = #{courseVideopath,jdbcType=VARCHAR},
+      course_UsualGradesScale = #{courseUsualgradesscale,jdbcType=REAL}
     where course_id = #{courseId,jdbcType=VARCHAR}
   </update>
 </mapper>

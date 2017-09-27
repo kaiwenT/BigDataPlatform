@@ -1,8 +1,9 @@
 package com.hust.bigdataplatform.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Course {
+public class Course implements Serializable{
     private String courseId;
 
     private String courseName;

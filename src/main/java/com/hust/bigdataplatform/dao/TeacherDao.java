@@ -38,6 +38,4 @@ public class TeacherDao {
 		 return teacherMapper.selectByPrimaryKey(teacherId);
 	}
 	
-	
-
 }

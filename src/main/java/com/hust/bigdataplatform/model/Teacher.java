@@ -1,6 +1,9 @@
 package com.hust.bigdataplatform.model;
 
-public class Teacher {
+import java.io.Serializable;
+
+//实现了序列化Serializable接口
+public class Teacher implements Serializable{
     private String teacherId;
 
     private String teacherName;

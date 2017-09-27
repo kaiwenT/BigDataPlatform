@@ -5,6 +5,8 @@ public class StudentCourse {
 
     private String courseId;
 
+    private String studentGroupid;
+
     private Integer attendancerate;
 
     private Integer finalresult;
@@ -23,6 +25,14 @@ public class StudentCourse {
 
     public void setCourseId(String courseId) {
         this.courseId = courseId == null ? null : courseId.trim();
+    }
+
+    public String getStudentGroupid() {
+        return studentGroupid;
+    }
+
+    public void setStudentGroupid(String studentGroupid) {
+        this.studentGroupid = studentGroupid == null ? null : studentGroupid.trim();
     }
 
     public Integer getAttendancerate() {

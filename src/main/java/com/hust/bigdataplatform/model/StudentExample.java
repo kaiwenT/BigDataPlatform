@@ -10,27 +10,7 @@ public class StudentExample {
 
     protected List<Criteria> oredCriteria;
 
-    protected int start;
-
-	protected int limit;
-	
-    public int getStart() {
-		return start;
-	}
-
-	public void setStart(int start) {
-		this.start = start;
-	}
-
-	public int getLimit() {
-		return limit;
-	}
-
-	public void setLimit(int limit) {
-		this.limit = limit;
-	}
-
-	public StudentExample() {
+    public StudentExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -334,76 +314,6 @@ public class StudentExample {
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidIsNull() {
-            addCriterion("student_groupId is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidIsNotNull() {
-            addCriterion("student_groupId is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidEqualTo(String value) {
-            addCriterion("student_groupId =", value, "studentGroupid");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidNotEqualTo(String value) {
-            addCriterion("student_groupId <>", value, "studentGroupid");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidGreaterThan(String value) {
-            addCriterion("student_groupId >", value, "studentGroupid");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidGreaterThanOrEqualTo(String value) {
-            addCriterion("student_groupId >=", value, "studentGroupid");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidLessThan(String value) {
-            addCriterion("student_groupId <", value, "studentGroupid");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidLessThanOrEqualTo(String value) {
-            addCriterion("student_groupId <=", value, "studentGroupid");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidLike(String value) {
-            addCriterion("student_groupId like", value, "studentGroupid");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidNotLike(String value) {
-            addCriterion("student_groupId not like", value, "studentGroupid");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidIn(List<String> values) {
-            addCriterion("student_groupId in", values, "studentGroupid");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidNotIn(List<String> values) {
-            addCriterion("student_groupId not in", values, "studentGroupid");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidBetween(String value1, String value2) {
-            addCriterion("student_groupId between", value1, value2, "studentGroupid");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentGroupidNotBetween(String value1, String value2) {
-            addCriterion("student_groupId not between", value1, value2, "studentGroupid");
-            return (Criteria) this;
-        }
-
         public Criteria andStudentFacultyIsNull() {
             addCriterion("student_faculty is null");
             return (Criteria) this;
@@ -568,6 +478,10 @@ public class StudentExample {
         private boolean listValue;
 
         private String typeHandler;
+        
+        public Criterion(){
+        	super();
+        }
 
         public String getCondition() {
             return condition;
@@ -600,9 +514,7 @@ public class StudentExample {
         public String getTypeHandler() {
             return typeHandler;
         }
-        public Criterion(){
-        	super();
-        }
+
         protected Criterion(String condition) {
             super();
             this.condition = condition;

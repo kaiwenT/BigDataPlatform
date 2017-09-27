@@ -23,8 +23,8 @@ public class StudentDao {
 		StudentExample example = new StudentExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andStudentIdIsNotNull();
-		example.setStart(start);
-		example.setLimit(limit);
+	//	example.setStart(start);
+	//	example.setLimit(limit);
 		List<Student> students = studentMapper.selectByExample(example);
 		return students;
 	}

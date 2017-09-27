@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.hust.bigdataplatform.model.StudentCourse">
     <id column="student_id" jdbcType="VARCHAR" property="studentId" />
     <id column="course_id" jdbcType="VARCHAR" property="courseId" />
+    <result column="student_groupId" jdbcType="VARCHAR" property="studentGroupid" />
     <result column="attendanceRate" jdbcType="INTEGER" property="attendancerate" />
     <result column="finalResult" jdbcType="INTEGER" property="finalresult" />
   </resultMap>
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    student_id, course_id, attendanceRate, finalResult
+    student_id, course_id, student_groupId, attendanceRate, finalResult
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.StudentCourseExample" resultMap="BaseResultMap">
     select
@@ -101,10 +102,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.hust.bigdataplatform.model.StudentCourse">
-    insert into student_course (student_id, course_id, attendanceRate, 
-      finalResult)
-    values (#{studentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{attendancerate,jdbcType=INTEGER}, 
-      #{finalresult,jdbcType=INTEGER})
+    insert into student_course (student_id, course_id, student_groupId, 
+      attendanceRate, finalResult)
+    values (#{studentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{studentGroupid,jdbcType=VARCHAR}, 
+      #{attendancerate,jdbcType=INTEGER}, #{finalresult,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.StudentCourse">
     insert into student_course
@@ -114,6 +115,9 @@
       </if>
       <if test="courseId != null">
         course_id,
+      </if>
+      <if test="studentGroupid != null">
+        student_groupId,
       </if>
       <if test="attendancerate != null">
         attendanceRate,
@@ -128,6 +132,9 @@
       </if>
       <if test="courseId != null">
         #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentGroupid != null">
+        #{studentGroupid,jdbcType=VARCHAR},
       </if>
       <if test="attendancerate != null">
         #{attendancerate,jdbcType=INTEGER},
@@ -152,6 +159,9 @@
       <if test="record.courseId != null">
         course_id = #{record.courseId,jdbcType=VARCHAR},
       </if>
+      <if test="record.studentGroupid != null">
+        student_groupId = #{record.studentGroupid,jdbcType=VARCHAR},
+      </if>
       <if test="record.attendancerate != null">
         attendanceRate = #{record.attendancerate,jdbcType=INTEGER},
       </if>
@@ -167,6 +177,7 @@
     update student_course
     set student_id = #{record.studentId,jdbcType=VARCHAR},
       course_id = #{record.courseId,jdbcType=VARCHAR},
+      student_groupId = #{record.studentGroupid,jdbcType=VARCHAR},
       attendanceRate = #{record.attendancerate,jdbcType=INTEGER},
       finalResult = #{record.finalresult,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -176,6 +187,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.hust.bigdataplatform.model.StudentCourse">
     update student_course
     <set>
+      <if test="studentGroupid != null">
+        student_groupId = #{studentGroupid,jdbcType=VARCHAR},
+      </if>
       <if test="attendancerate != null">
         attendanceRate = #{attendancerate,jdbcType=INTEGER},
       </if>
@@ -188,7 +202,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hust.bigdataplatform.model.StudentCourse">
     update student_course
-    set attendanceRate = #{attendancerate,jdbcType=INTEGER},
+    set student_groupId = #{studentGroupid,jdbcType=VARCHAR},
+      attendanceRate = #{attendancerate,jdbcType=INTEGER},
       finalResult = #{finalresult,jdbcType=INTEGER}
     where student_id = #{studentId,jdbcType=VARCHAR}
       and course_id = #{courseId,jdbcType=VARCHAR}

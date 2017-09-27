@@ -9,8 +9,28 @@ public class StudentExample {
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
+    
+    protected int start;
+    
+    protected int limit;
+    
+    public int getStart() {
+		return start;
+	}
 
-    public StudentExample() {
+	public void setStart(int start) {
+		this.start = start;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public StudentExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

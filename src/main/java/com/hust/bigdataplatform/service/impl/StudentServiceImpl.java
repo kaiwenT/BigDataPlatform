@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hust.bigdataplatform.dao.StudentDao;
+import com.hust.bigdataplatform.model.Course;
 import com.hust.bigdataplatform.model.Student;
 import com.hust.bigdataplatform.service.StudentService;
 
@@ -17,6 +18,7 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Autowired
 	private StudentDao studentDao;
+		
 	@Override
 	public List<Student> selectAllStudents(int start, int limit) {
 		// TODO Auto-generated method stub
@@ -25,6 +27,18 @@ public class StudentServiceImpl implements StudentService {
 			logger.info("未查找到学生");
 		}
 		return stus;
+	}
+	
+	@Override
+	public List<Course> selectCoursesByStudent(String studentId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int login(String id, String pwd) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

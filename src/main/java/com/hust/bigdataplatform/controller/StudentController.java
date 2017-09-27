@@ -23,7 +23,6 @@ public class StudentController {
 	
 	/**
 	 * 查询所有的学生
-	 * 
 	 * @return
 	 */
 	@ResponseBody

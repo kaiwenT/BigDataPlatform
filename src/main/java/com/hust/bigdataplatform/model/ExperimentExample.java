@@ -315,6 +315,66 @@ public class ExperimentExample {
             return (Criteria) this;
         }
 
+        public Criteria andExperimentCreatetimeIsNull() {
+            addCriterion("experiment_createTime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentCreatetimeIsNotNull() {
+            addCriterion("experiment_createTime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentCreatetimeEqualTo(Date value) {
+            addCriterion("experiment_createTime =", value, "experimentCreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentCreatetimeNotEqualTo(Date value) {
+            addCriterion("experiment_createTime <>", value, "experimentCreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentCreatetimeGreaterThan(Date value) {
+            addCriterion("experiment_createTime >", value, "experimentCreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentCreatetimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("experiment_createTime >=", value, "experimentCreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentCreatetimeLessThan(Date value) {
+            addCriterion("experiment_createTime <", value, "experimentCreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentCreatetimeLessThanOrEqualTo(Date value) {
+            addCriterion("experiment_createTime <=", value, "experimentCreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentCreatetimeIn(List<Date> values) {
+            addCriterion("experiment_createTime in", values, "experimentCreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentCreatetimeNotIn(List<Date> values) {
+            addCriterion("experiment_createTime not in", values, "experimentCreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentCreatetimeBetween(Date value1, Date value2) {
+            addCriterion("experiment_createTime between", value1, value2, "experimentCreatetime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExperimentCreatetimeNotBetween(Date value1, Date value2) {
+            addCriterion("experiment_createTime not between", value1, value2, "experimentCreatetime");
+            return (Criteria) this;
+        }
+
         public Criteria andExperimentDeadlineIsNull() {
             addCriterion("experiment_deadline is null");
             return (Criteria) this;
@@ -841,9 +901,7 @@ public class ExperimentExample {
         public String getTypeHandler() {
             return typeHandler;
         }
-        public Criterion(){
-        	super();
-        }
+
         protected Criterion(String condition) {
             super();
             this.condition = condition;

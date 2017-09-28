@@ -5,6 +5,7 @@
     <id column="experiment_id" jdbcType="VARCHAR" property="experimentId" />
     <id column="course_id" jdbcType="VARCHAR" property="courseId" />
     <result column="experiment_name" jdbcType="VARCHAR" property="experimentName" />
+    <result column="experiment_createTime" jdbcType="TIMESTAMP" property="experimentCreatetime" />
     <result column="experiment_deadline" jdbcType="TIMESTAMP" property="experimentDeadline" />
     <result column="experiment_submitDemand" jdbcType="VARCHAR" property="experimentSubmitdemand" />
     <result column="experiment_manualPath" jdbcType="VARCHAR" property="experimentManualpath" />
@@ -72,9 +73,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    experiment_id, course_id, experiment_name, experiment_deadline, experiment_submitDemand, 
-    experiment_manualPath, experiment_resultsPath, experiment_reportPath, experiment_videoPath, 
-    experiment_scale
+    experiment_id, course_id, experiment_name, experiment_createTime, experiment_deadline, 
+    experiment_submitDemand, experiment_manualPath, experiment_resultsPath, experiment_reportPath, 
+    experiment_videoPath, experiment_scale
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.ExperimentExample" resultMap="BaseResultMap">
     select
@@ -110,15 +111,15 @@
   </delete>
   <insert id="insert" parameterType="com.hust.bigdataplatform.model.Experiment">
     insert into experiment (experiment_id, course_id, experiment_name, 
-      experiment_deadline, experiment_submitDemand, 
-      experiment_manualPath, experiment_resultsPath, 
-      experiment_reportPath, experiment_videoPath, 
-      experiment_scale)
+      experiment_createTime, experiment_deadline, 
+      experiment_submitDemand, experiment_manualPath, 
+      experiment_resultsPath, experiment_reportPath, 
+      experiment_videoPath, experiment_scale)
     values (#{experimentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{experimentName,jdbcType=VARCHAR}, 
-      #{experimentDeadline,jdbcType=TIMESTAMP}, #{experimentSubmitdemand,jdbcType=VARCHAR}, 
-      #{experimentManualpath,jdbcType=VARCHAR}, #{experimentResultspath,jdbcType=VARCHAR}, 
-      #{experimentReportpath,jdbcType=VARCHAR}, #{experimentVideopath,jdbcType=VARCHAR}, 
-      #{experimentScale,jdbcType=REAL})
+      #{experimentCreatetime,jdbcType=TIMESTAMP}, #{experimentDeadline,jdbcType=TIMESTAMP}, 
+      #{experimentSubmitdemand,jdbcType=VARCHAR}, #{experimentManualpath,jdbcType=VARCHAR}, 
+      #{experimentResultspath,jdbcType=VARCHAR}, #{experimentReportpath,jdbcType=VARCHAR}, 
+      #{experimentVideopath,jdbcType=VARCHAR}, #{experimentScale,jdbcType=REAL})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.Experiment">
     insert into experiment
@@ -131,6 +132,9 @@
       </if>
       <if test="experimentName != null">
         experiment_name,
+      </if>
+      <if test="experimentCreatetime != null">
+        experiment_createTime,
       </if>
       <if test="experimentDeadline != null">
         experiment_deadline,
@@ -163,6 +167,9 @@
       </if>
       <if test="experimentName != null">
         #{experimentName,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentCreatetime != null">
+        #{experimentCreatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="experimentDeadline != null">
         #{experimentDeadline,jdbcType=TIMESTAMP},
@@ -205,6 +212,9 @@
       <if test="record.experimentName != null">
         experiment_name = #{record.experimentName,jdbcType=VARCHAR},
       </if>
+      <if test="record.experimentCreatetime != null">
+        experiment_createTime = #{record.experimentCreatetime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.experimentDeadline != null">
         experiment_deadline = #{record.experimentDeadline,jdbcType=TIMESTAMP},
       </if>
@@ -236,6 +246,7 @@
     set experiment_id = #{record.experimentId,jdbcType=VARCHAR},
       course_id = #{record.courseId,jdbcType=VARCHAR},
       experiment_name = #{record.experimentName,jdbcType=VARCHAR},
+      experiment_createTime = #{record.experimentCreatetime,jdbcType=TIMESTAMP},
       experiment_deadline = #{record.experimentDeadline,jdbcType=TIMESTAMP},
       experiment_submitDemand = #{record.experimentSubmitdemand,jdbcType=VARCHAR},
       experiment_manualPath = #{record.experimentManualpath,jdbcType=VARCHAR},
@@ -252,6 +263,9 @@
     <set>
       <if test="experimentName != null">
         experiment_name = #{experimentName,jdbcType=VARCHAR},
+      </if>
+      <if test="experimentCreatetime != null">
+        experiment_createTime = #{experimentCreatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="experimentDeadline != null">
         experiment_deadline = #{experimentDeadline,jdbcType=TIMESTAMP},
@@ -281,6 +295,7 @@
   <update id="updateByPrimaryKey" parameterType="com.hust.bigdataplatform.model.Experiment">
     update experiment
     set experiment_name = #{experimentName,jdbcType=VARCHAR},
+      experiment_createTime = #{experimentCreatetime,jdbcType=TIMESTAMP},
       experiment_deadline = #{experimentDeadline,jdbcType=TIMESTAMP},
       experiment_submitDemand = #{experimentSubmitdemand,jdbcType=VARCHAR},
       experiment_manualPath = #{experimentManualpath,jdbcType=VARCHAR},

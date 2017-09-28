@@ -1,14 +1,15 @@
 package com.hust.bigdataplatform.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Experiment implements Serializable{
+public class Experiment {
     private String experimentId;
 
     private String courseId;
 
     private String experimentName;
+
+    private Date experimentCreatetime;
 
     private Date experimentDeadline;
 
@@ -46,6 +47,14 @@ public class Experiment implements Serializable{
 
     public void setExperimentName(String experimentName) {
         this.experimentName = experimentName == null ? null : experimentName.trim();
+    }
+
+    public Date getExperimentCreatetime() {
+        return experimentCreatetime;
+    }
+
+    public void setExperimentCreatetime(Date experimentCreatetime) {
+        this.experimentCreatetime = experimentCreatetime;
     }
 
     public Date getExperimentDeadline() {

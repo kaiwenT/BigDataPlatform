@@ -3,3 +3,7 @@
 /.settings/*
 .classpath
 /bin/
+*.gitigore
+*.project
+*.tern-project
+*.DS_Store

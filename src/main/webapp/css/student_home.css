@@ -1,0 +1,775 @@
+body{
+    background: #eee;
+    font-size: 12px;
+    min-width: 960px;
+    display: block;
+}
+body,textarea,input,button,select{
+    font-size: 12px;
+    line-height: 1.5;
+    font-family: Arial,"Hiragino Sans GB",SimSun,宋体,serif;
+    color: #333;
+    outline:0;
+}
+body,html{
+    height: 100%;
+}
+body,html,img{
+    border: 0;
+}
+html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, blockquote, pre, hr, figure, table, caption, th, td, form, fieldset, legend, input, button, textarea, menu {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+a:hover{
+    color: #55B929;
+    text-decoration: none;
+}
+a, button {
+    cursor: pointer;
+}
+body li {
+    clear: none;
+}
+li {
+    list-style: none;
+}
+<!-- 字体样式 -->
+.f-f0{
+    font-family: "Arial","Hiragino Sans GB","Microsoft YaHei", \5fae\8f6f\96c5\9ed1, "Helvetica", "sans-serif";
+}
+<!-- 正式内容的css样式 -->
+
+.f-cb, .g-container {
+    zoom: 1;
+}
+#g-container{
+    min-height: 100%;
+    position: relative;
+}
+.web-nav-container{
+    left:0px;
+    top:0px;
+    width: 100%;
+    height: 50px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    z-index:999;
+    color: black;
+    font-size: 16px;
+    background-color: #2e323e;
+    margin: 0px;
+    padding: 0px;
+}
+.web-nav-container > .m-navTop-func{
+    left:0px;
+    top:0px;
+    width: 100%;
+    height: 50px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    z-index:21;
+    color: black;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+}
+.m-navTop-func > .u-navLogin-container{
+    left: 0px;
+    top: 0px;
+    width: 1260px;
+    height: 50px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    color: black;
+    font-size: 16px;
+    background-color: #2e323e;
+    margin: 0px auto;
+    padding: 0px;
+}
+.m-navTop-func > .u-navLogin-container > .u-navLogin-logo {
+    left: 0px;
+    top: 11px;
+    width: 190px;
+    height: 28px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    z-index: 13;
+    color: black;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+}
+.m-navTop-func > .u-navLogin-container > .u-navLogin-logo > a {
+    display: inline-block;
+    width: 100%;
+    height: 28px;
+}
+.m-navTop-func > .u-navLogin-container > .u-navLogin-loginBox {
+    left: 0px;
+    top: 10px;
+    width: 70px;
+    height: 19px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    color: white;
+    font-size: 12px;
+    margin: 0px;
+    padding: 0px;
+    float: right;
+}
+.m-navlinks {
+    float: right;
+    height: 30px;
+    line-height: 30px;
+}
+.m-navlinks .login {
+    width: auto;
+    position: relative;
+    left: -20px;
+    zoom: 1;
+}
+.m-navlinks .info {
+    float: left;
+    display: block;
+    position: relative;
+}
+.m-navlinks:hover .arrow {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.m-navlinks .arrow {
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+.m-navlinks .arrow {
+    float: right;
+    position: relative;
+    top: 13px;
+    left: 4px;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 5px 4px 0px 4px;
+    border-color: #999 transparent transparent transparent;
+}
+.m-navlinks .face {
+    height: 34px;
+    line-height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+}
+.m-navlinks .sets {
+    position: absolute;
+    right: 0;
+    margin-top: -8px;
+    padding-top: 14px;
+    top: 100%;
+}
+.j-nav-set .e-hover-arrow, .j-nav-set .e-hover-arrow-border {
+    left: 149px;
+}
+.m-navTop-func .e-hover-arrow {
+    border: none !important;
+}
+.e-hover-arrow {
+    position: absolute;
+    top: 5px;
+    width: 1px;
+    height: 1px;
+    z-index: 3;
+}
+.e-hover-arrow-border {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    top: 6px;
+    border: 9px solid transparent;
+    border-bottom-color: #fff;
+    border-top-width: 0px;
+    z-index: 3;
+}
+.m-navlinks .set {
+    width: 155px;
+    padding: 5px 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+.m-navlinks .set li a {
+    padding: 0 10px;
+    display: block;
+    line-height: 32px;
+    height: 32px;
+}
+.m-navlinks .set .exit {
+    border-top: 1px solid #eaeaea;
+}
+
+.m-navTop-func > .u-navLogin-container > .u-navLogin-myCourse {
+    left: 0px;
+    top: 15px;
+    width: 56px;
+    height: 19px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    color: black;
+    font-size: 0px;
+    margin: 0px 10px 0px 0px;
+    padding: 0px;
+    float: right;
+}
+
+.m-navTop-func >  .u-navLogin-container > .u-navLogin-myCourse > .u-navLogin-myCourse.u-navLogin-center-container {
+    left: 0px;
+    top: 0px;
+    width: 56px;
+    height: 19px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    font-size: 0px;
+    display: block;
+    min-width: 0px;
+    color: black;
+    margin: 0px 10px 0px 0px;
+    padding: 0px;
+    line-height: 19px;
+}
+.m-navTop-func >  .u-navLogin-container > .u-navLogin-myCourse > .u-navLogin-myCourse.u-navLogin-center-container > a {
+      display: inline-block;
+      width: 100%;
+      height: 19px;
+}
+.m-navTop-func >  .u-navLogin-container > .u-navLogin-myCourse > .u-navLogin-myCourse.u-navLogin-center-container > a > .nav {
+      line-height: 19px;
+      display: inline-block;
+      width: 100%;
+      font-family: 微软雅黑, "Microsoft YaHei";
+      font-size: 14px;
+      color: white;
+      text-align: center;
+      vertical-align: middle;
+}
+.nav:hover {
+    color: #96d013 !important;
+}
+.m-navTop-func > .u-navLogin-container > .u-navLogin-searchFunc {
+    left: 0px;
+    top: 12px;
+    width: 230px;
+    height: 26px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    color: black;
+    font-size: 16px;
+    margin: 0px 30px 0px 0px;
+    padding: 0px;
+    float: right;
+}
+
+.m-navTop-func > .u-navLogin-container > .u-navLogin-searchFunc > .j-search-box.u-search-container {
+    left: 0px;
+    top: 0px;
+    width: 230px;
+    height: 28px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    color: black;
+    font-size: 16px;
+    background-color: whitesmoke;
+    margin: 0px;
+    padding: 0px;
+}
+.m-navTop-func > .u-navLogin-container > .u-navLogin-searchFunc >  .j-search-box.u-search-container > .j-input.u-search-input {
+    left: 0px;
+    top: 0px;
+    width: 194px;
+    height: 26px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    z-index: 1;
+    color: black;
+    font-size: 16px;
+    background-color: whitesmoke;
+    margin: 0px;
+    padding: 0px;
+}
+.ipt {
+    float: left;
+    width: 219px;
+}
+.area {
+    padding: 0;
+    box-shadow: none;
+    height: 28px;
+    background: #fff;
+}
+
+.web-nav-container .u-baseinputui {
+    background-color: whitesmoke;
+    border: 0;
+    height: 28px !important;
+}
+
+.web-nav-container .ipt .u-baseinputui .inputtxt {
+    height: 18px !important;
+    width: 209px;
+}
+.u-baseinputui .inputtxt {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    font-size: 12px;
+    background: #fafafa;
+    border: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    resize: none;
+}
+
+.j-search-box.u-search-container > .u-search-icon {
+    left: 196px;
+    top: 0px;
+    width: 36px;
+    height: 28px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    font-size: 16px;
+    z-index: 1;
+    color: black;
+    background-color: #55b929;
+    margin: 0px;
+    padding: 0px;
+    line-height: 26px;
+}
+
+.j-search-box.u-search-container > .u-search-icon > .u-icon-search2.j-searchBtn {
+    line-height: 26px;
+    display: inline-block;
+    width: 100%;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+.u-icon-search2:before {
+    content: "\f002";
+}
+
+
+#g-body{
+    background-color: #fff;
+    padding-bottom: 300px;
+}
+.top-box{
+    height: auto;
+    background-color: #5c7ba3;
+}
+.top-bg{
+    position: absolute;
+}
+img{
+    vertical-align: top;
+}
+.user-container{
+    left:0px;
+    top: 0px;
+    width: 1260px;
+    height: 220px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    color: rgb(0,0,0);
+    font-size: 16px;
+    margin: 0px auto;
+    padding: 0px;
+}
+.user-container>.u-ui-img {
+    left: 37px;
+    top: 40px;
+    width: 96px;
+    height: 96px;
+    border-radius: 50px;
+    position: absolute;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    z-index: 3;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-width: 3px;
+    background-color: rgb(255, 255, 255);
+    margin: 0px;
+    padding: 0px;
+    cursor: auto;
+}
+.u-ui-img > a {
+    display: inline-block;
+    width: 100%;
+    height: 96px;
+}
+.u-ui-img > a > .user-head-img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50px;
+}
+.e-hover-code {
+    display: none;
+}
+.user-container .e-hover-code a {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 104px;
+    height: 104px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50px;
+    text-align: center;
+    line-height: 104px;
+    color: #ffffff;
+}
+.u-ui-img > .e-hover-code > a {
+    color: #fff;
+}
+.user-container>.u-ui-name {
+    left: 167px;
+    top: 38px;
+    width: 564px;
+    height: 35px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    font-size: 0px;
+    display: block;
+    min-width: 0px;
+    z-index: 3;
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 0px;
+    line-height: 35px;
+}
+
+.u-ui-name > .user-name {
+    line-height: 35px;
+    display: inline-block;
+    width: 100%;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 26px;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    vertical-align: middle;
+}
+.user-container>.u-ui-tag {
+    left: 167px;
+    top: 78px;
+    width: 564px;
+    height: 17px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    font-size: 0px;
+    display: block;
+    min-width: 0px;
+    z-index: 3;
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 0px;
+    line-height: 13px;
+}
+.u-ui-tag > span {
+    line-height: 13px;
+    display: inline-block;
+    width: 100%;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    vertical-align: middle;
+}
+.user-container>.u-ui-desc {
+    left: 167px;
+    top: 147px;
+    width: 560px;
+    height: 40px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    font-size: 0px;
+    display: block;
+    min-width: 0px;
+    z-index: 3;
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 0px;
+    line-height: 20px;
+}
+.u-ui-desc > .f-2lines {
+    line-height: 20px;
+    display: inline-block;
+    width: 100%;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    vertical-align: middle;
+}
+.user-container>.u-ui-f2f {
+    left: 167px;
+    top: 102px;
+    width: 500px;
+    height: 21px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    font-size: 0px;
+    min-width: 0px;
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 0px;
+}
+.u-ui-f2f > span {
+    line-height: normal;
+    display: inline-block;
+    width: 100%;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.home-content,.main-content{
+    width: 1260px;
+    margin: 0 auto;
+}
+.main-box{
+    width: 950px;
+    float: left;
+}
+.module-tab{
+    height: 36px;
+    margin-top: 50px;
+}
+.u-selectTab-container {
+    left: 0px;
+    top: 0px;
+    width: 950px;
+    height: 36px;
+    position: relative;
+    display: block;
+    min-width: 0px;
+    z-index: 0;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    border-style: solid;
+    border-color: rgb(230, 230, 230);
+    border-width: 0px 0px 1px;
+    border-radius: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+.u-st-tag.current {
+    border-bottom: 4px solid #55B929;
+}
+.u-st-tag {
+    top: 0px;
+    width: 100px;
+    height: 32px;
+    position: absolute;
+    font-size: 0px;
+    display: block;
+    min-width: 0px;
+    z-index: 0;
+    color: rgb(0, 0, 0);
+    border-radius: 0px;
+    margin: 0px;
+    padding: 0px;
+    line-height: 16px;
+}
+
+.u-st-tag a {
+    display: inline-block;
+    width: 100%;
+    height: 32px;
+}
+.u-st-tag a span {
+    line-height: 16px;
+    display: inline-block;
+    width: 100%;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 16px;
+    color: rgb(51, 51, 51);
+    text-align: center;
+    vertical-align: top;
+}
+.b-10, .b-20, .b-30, .b-15, .b-40, .b-50 {
+    clear: both;
+    height: 10px;
+    overflow: hidden;
+    display: block;
+}
+.g-mn2 {
+    float: left;
+    width: 100%;
+}
+.g-mn2c {
+    margin-right: 245px;
+}
+.course-panel-body-wrapper {
+    font-size: 0px;
+    width: 960px;
+    margin: auto;
+}
+.course-panel-body-wrapper .course-card-wrapper {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.course-card-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+.course-card-wrapper .box {
+    width: 223px;
+    background: #FFFFFF;
+    border: 1px solid #EDEDED;
+    position: relative;
+    z-index: 990;
+    height: 255px;
+}
+.course-card-wrapper a, .course-card-wrapper a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+.course-card-wrapper .box .img {
+    position: relative;
+    width: 100%;
+    height: 110px;
+    overflow: hidden;
+}
+.course-card-wrapper .box .body {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+.course-card-wrapper .box .body .common-info-wrapper-fix-height {
+    height: 60px;
+}
+.course-card-wrapper .box .body .common-info-wrapper .title {
+    font-size: 14px;
+    color: #111111;
+}
+.course-card-wrapper .box .body .common-info-wrapper .title .text {
+    font-size: 0px;
+}
+.course-card-wrapper .box .body .common-info-wrapper .title .text .text {
+    font-size: 14px;
+}
+.course-card-wrapper .box .body .common-info-wrapper .school {
+    padding-top: 4px;
+    color: #999999;
+    font-size: 12px;
+}
+.course-card-wrapper .box .body .personal-info .course-status {
+    position: absolute;
+    bottom: 16px;
+    font-size: 12px;
+    color: #999999;
+}
+.course-panel-wrapper .course-panel-foot-wrapper {
+    margin-top: 70px;
+}
+.course-panel-wrapper .course-panel-foot-wrapper * {
+    font-size: 13px;
+}
+.ux-pager.z-hdn {
+    display: none;
+}
+.ux-pager {
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 12px;
+}
+.ux-pager>li {
+    background: white;
+}
+.ux-pager_itm, .ux-pager_btn, .ux-pager_sep {
+    margin: 0 2px;
+    display: inline-block;
+    text-align: center;
+}
+wrapper .course-panel-foot-wrapper .ux-pager_btn > a{
+    height: inherit;
+}
+.course-panel-wrapper .course-panel-foot-wrapper .ux-pager_itm > a, .course-panel-wrapper .course-panel-foot-wrapper .ux-pager_btn > a {
+    border: none;
+    border-radius: 0px;
+}
+.ux-pager>li.z-dis>a {
+    cursor: not-allowed;
+    background: white;
+    color: #999;
+    border-color: #ddd;
+}
+#j-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 143px;
+}
+.m-foot {
+    border-top: 1px solid #333;
+    background-color: #333;
+    padding: 30px 0 35px 0;
+    line-height: 20px;
+}
+.course-card-wrapper .box .img img {
+    position: absolute;
+    width: 100%;
+    top: -7.96px;
+}

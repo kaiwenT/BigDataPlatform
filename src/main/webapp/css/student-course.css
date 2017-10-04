@@ -1,0 +1,60 @@
+#g-body {
+    padding-bottom: 0;
+}
+.m-cbg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 250px;
+    bottom: 0;
+    background-color: #fff;
+    z-index: -1;
+    -webkit-box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.1);
+}
+.g-sd1 {
+    position: relative;
+    float: left;
+    width: 225px;
+    margin-right: -225px;
+}
+.m-learnleft {
+    padding: 20px 0;
+}
+.m-learnleft .top {
+    padding-left: 10px;
+    position:relative;
+}
+.m-learnleft .top img {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.m-learnleft .tab {
+    width: 230px;
+    padding: 0;
+    margin: 10px;
+}
+.m-learnleft .tab li {
+    margin-bottom: 0px;
+}
+
+.m-learnleft .tab li a {
+    height: 50px;
+    line-height: 50px;
+    border-top: 1px solid #f0f0f0;
+}
+.u-tabul .u-greentab a {
+    display: block;
+    font-size: 16px;
+    line-height: 40px;
+    padding-left: 12px;
+    background-color: #fff;
+}
+
+.u-tabul .u-curtab a {
+    color: #fff;
+    background-color: #55b929;
+}

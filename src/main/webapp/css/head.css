@@ -1,0 +1,399 @@
+body{
+    background: #eee;
+    font-size: 12px;
+    min-width: 960px;
+    display: block;
+}
+body,textarea,input,button,select{
+    font-size: 12px;
+    line-height: 1.5;
+    font-family: Arial,"Hiragino Sans GB",SimSun,宋体,serif;
+    color: #333;
+    outline:0;
+}
+body,html{
+    height: 100%;
+}
+body,html,img{
+    border: 0;
+}
+html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, blockquote, pre, hr, figure, table, caption, th, td, form, fieldset, legend, input, button, textarea, menu {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+a:hover{
+    color: #55B929;
+    text-decoration: none;
+}
+a, button {
+    cursor: pointer;
+}
+body li {
+    clear: none;
+}
+li {
+    list-style: none;
+}
+<!-- 字体样式 -->
+.f-f0{
+    font-family: "Arial","Hiragino Sans GB","Microsoft YaHei", \5fae\8f6f\96c5\9ed1, "Helvetica", "sans-serif";
+}
+.f-line, .f-thide {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+<!-- 正式内容的css样式 -->
+
+.f-cb, .g-container {
+    zoom: 1;
+}
+#g-container{
+    min-height: 100%;
+    position: relative;
+}
+.web-nav-container{
+    left:0px;
+    top:0px;
+    width: 100%;
+    height: 50px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    z-index:999;
+    color: black;
+    font-size: 16px;
+    background-color: #2e323e;
+    margin: 0px;
+    padding: 0px;
+}
+.web-nav-container > .m-navTop-func{
+    left:0px;
+    top:0px;
+    width: 100%;
+    height: 50px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    z-index:21;
+    color: black;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+}
+.m-navTop-func > .u-navLogin-container{
+    left: 0px;
+    top: 0px;
+    width: 1260px;
+    height: 50px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    color: black;
+    font-size: 16px;
+    background-color: #2e323e;
+    margin: 0px auto;
+    padding: 0px;
+}
+.m-navTop-func > .u-navLogin-container > .u-navLogin-logo {
+    left: 0px;
+    top: 11px;
+    width: 190px;
+    height: 28px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    z-index: 13;
+    color: black;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+}
+.m-navTop-func > .u-navLogin-container > .u-navLogin-logo > a {
+    display: inline-block;
+    width: 100%;
+    height: 28px;
+}
+.m-navTop-func > .u-navLogin-container > .u-navLogin-loginBox {
+    left: 0px;
+    top: 10px;
+    width: 70px;
+    height: 19px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    color: white;
+    font-size: 12px;
+    margin: 0px;
+    padding: 0px;
+    float: right;
+}
+.m-navlinks {
+    float: right;
+    height: 30px;
+    line-height: 30px;
+}
+.m-navlinks .login {
+    width: auto;
+    position: relative;
+    left: -20px;
+    zoom: 1;
+}
+.m-navlinks .info {
+    float: left;
+    display: block;
+    position: relative;
+}
+.m-navlinks:hover .arrow {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.m-navlinks .arrow {
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+.m-navlinks .arrow {
+    float: right;
+    position: relative;
+    top: 13px;
+    left: 4px;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 5px 4px 0px 4px;
+    border-color: #999 transparent transparent transparent;
+}
+.m-navlinks .face {
+    height: 34px;
+    line-height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+}
+.m-navlinks .sets {
+    position: absolute;
+    right: 0;
+    margin-top: -8px;
+    padding-top: 14px;
+    top: 100%;
+}
+.j-nav-set .e-hover-arrow, .j-nav-set .e-hover-arrow-border {
+    left: 149px;
+}
+.m-navTop-func .e-hover-arrow {
+    border: none !important;
+}
+.e-hover-arrow {
+    position: absolute;
+    top: 5px;
+    width: 1px;
+    height: 1px;
+    z-index: 3;
+}
+.e-hover-arrow-border {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    top: 6px;
+    border: 9px solid transparent;
+    border-bottom-color: #fff;
+    border-top-width: 0px;
+    z-index: 3;
+}
+.m-navlinks .set {
+    width: 155px;
+    padding: 5px 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+.m-navlinks .set li a {
+    padding: 0 10px;
+    display: block;
+    line-height: 32px;
+    height: 32px;
+}
+.m-navlinks .set .exit {
+    border-top: 1px solid #eaeaea;
+}
+
+.m-navTop-func > .u-navLogin-container > .u-navLogin-myCourse {
+    left: 0px;
+    top: 15px;
+    width: 56px;
+    height: 19px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    color: black;
+    font-size: 0px;
+    margin: 0px 10px 0px 0px;
+    padding: 0px;
+    float: right;
+}
+
+.m-navTop-func >  .u-navLogin-container > .u-navLogin-myCourse > .u-navLogin-myCourse.u-navLogin-center-container {
+    left: 0px;
+    top: 0px;
+    width: 56px;
+    height: 19px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    font-size: 0px;
+    display: block;
+    min-width: 0px;
+    color: black;
+    margin: 0px 10px 0px 0px;
+    padding: 0px;
+    line-height: 19px;
+}
+.m-navTop-func >  .u-navLogin-container > .u-navLogin-myCourse > .u-navLogin-myCourse.u-navLogin-center-container > a {
+    display: inline-block;
+    width: 100%;
+    height: 19px;
+}
+.m-navTop-func >  .u-navLogin-container > .u-navLogin-myCourse > .u-navLogin-myCourse.u-navLogin-center-container > a > .nav {
+    line-height: 19px;
+    display: inline-block;
+    width: 100%;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+.nav:hover {
+    color: #96d013 !important;
+}
+.m-navTop-func > .u-navLogin-container > .u-navLogin-searchFunc {
+    left: 0px;
+    top: 12px;
+    width: 230px;
+    height: 26px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    color: black;
+    font-size: 16px;
+    margin: 0px 30px 0px 0px;
+    padding: 0px;
+    float: right;
+}
+
+.m-navTop-func > .u-navLogin-container > .u-navLogin-searchFunc > .j-search-box.u-search-container {
+    left: 0px;
+    top: 0px;
+    width: 230px;
+    height: 28px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    color: black;
+    font-size: 16px;
+    background-color: whitesmoke;
+    margin: 0px;
+    padding: 0px;
+}
+.m-navTop-func > .u-navLogin-container > .u-navLogin-searchFunc >  .j-search-box.u-search-container > .j-input.u-search-input {
+    left: 0px;
+    top: 0px;
+    width: 194px;
+    height: 26px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    z-index: 1;
+    color: black;
+    font-size: 16px;
+    background-color: whitesmoke;
+    margin: 0px;
+    padding: 0px;
+}
+.ipt {
+    float: left;
+    width: 219px;
+}
+.area {
+    padding: 0;
+    box-shadow: none;
+    height: 28px;
+    background: #fff;
+}
+
+.web-nav-container .u-baseinputui {
+    background-color: whitesmoke;
+    border: 0;
+    height: 28px !important;
+}
+
+.web-nav-container .ipt .u-baseinputui .inputtxt {
+    height: 18px !important;
+    width: 209px;
+}
+.u-baseinputui .inputtxt {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    font-size: 12px;
+    background: #fafafa;
+    border: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    resize: none;
+}
+
+.j-search-box.u-search-container > .u-search-icon {
+    left: 196px;
+    top: 0px;
+    width: 36px;
+    height: 28px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    font-size: 16px;
+    z-index: 1;
+    color: black;
+    background-color: #55b929;
+    margin: 0px;
+    padding: 0px;
+    line-height: 26px;
+}
+
+.j-search-box.u-search-container > .u-search-icon > .u-icon-search2.j-searchBtn {
+    line-height: 26px;
+    display: inline-block;
+    width: 100%;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+.u-icon-search2:before {
+    content: "\f002";
+}

@@ -1,0 +1,379 @@
+#g-body{
+    background-color: #fff;
+    padding-bottom: 300px;
+}
+.top-box{
+    height: auto;
+    background-color: #5c7ba3;
+}
+.top-bg{
+    position: absolute;
+}
+img{
+    vertical-align: top;
+}
+.user-container{
+    left:0px;
+    top: 0px;
+    width: 1260px;
+    height: 220px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    color: rgb(0,0,0);
+    font-size: 16px;
+    margin: 0px auto;
+    padding: 0px;
+}
+.user-container>.u-ui-img {
+    left: 37px;
+    top: 40px;
+    width: 96px;
+    height: 96px;
+    border-radius: 50px;
+    position: absolute;
+    clear: none;
+    display: block;
+    min-width: 0px;
+    z-index: 3;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-width: 3px;
+    background-color: rgb(255, 255, 255);
+    margin: 0px;
+    padding: 0px;
+    cursor: auto;
+}
+.u-ui-img > a {
+    display: inline-block;
+    width: 100%;
+    height: 96px;
+}
+.u-ui-img > a > .user-head-img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50px;
+}
+.e-hover-code {
+    display: none;
+}
+.user-container .e-hover-code a {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 104px;
+    height: 104px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50px;
+    text-align: center;
+    line-height: 104px;
+    color: #ffffff;
+}
+.u-ui-img > .e-hover-code > a {
+    color: #fff;
+}
+.user-container>.u-ui-name {
+    left: 167px;
+    top: 38px;
+    width: 564px;
+    height: 35px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    font-size: 0px;
+    display: block;
+    min-width: 0px;
+    z-index: 3;
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 0px;
+    line-height: 35px;
+}
+
+.u-ui-name > .user-name {
+    line-height: 35px;
+    display: inline-block;
+    width: 100%;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 26px;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    vertical-align: middle;
+}
+.user-container>.u-ui-tag {
+    left: 167px;
+    top: 78px;
+    width: 564px;
+    height: 17px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    font-size: 0px;
+    display: block;
+    min-width: 0px;
+    z-index: 3;
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 0px;
+    line-height: 13px;
+}
+.u-ui-tag > span {
+    line-height: 13px;
+    display: inline-block;
+    width: 100%;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    vertical-align: middle;
+}
+.user-container>.u-ui-desc {
+    left: 167px;
+    top: 147px;
+    width: 560px;
+    height: 40px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    font-size: 0px;
+    display: block;
+    min-width: 0px;
+    z-index: 3;
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 0px;
+    line-height: 20px;
+}
+.u-ui-desc > .f-2lines {
+    line-height: 20px;
+    display: inline-block;
+    width: 100%;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    vertical-align: middle;
+}
+.user-container>.u-ui-f2f {
+    left: 167px;
+    top: 102px;
+    width: 500px;
+    height: 21px;
+    border-radius: 0px;
+    position: absolute;
+    clear: none;
+    font-size: 0px;
+    min-width: 0px;
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 0px;
+}
+.u-ui-f2f > span {
+    line-height: normal;
+    display: inline-block;
+    width: 100%;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.home-content,.main-content{
+    width: 1260px;
+    margin: 0 auto;
+}
+.main-box{
+    width: 950px;
+    float: left;
+}
+.module-tab{
+    height: 36px;
+    margin-top: 50px;
+}
+.u-selectTab-container {
+    left: 0px;
+    top: 0px;
+    width: 950px;
+    height: 36px;
+    position: relative;
+    display: block;
+    min-width: 0px;
+    z-index: 0;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    border-style: solid;
+    border-color: rgb(230, 230, 230);
+    border-width: 0px 0px 1px;
+    border-radius: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+.u-st-tag.current {
+    border-bottom: 4px solid #55B929;
+}
+.u-st-tag {
+    top: 0px;
+    width: 100px;
+    height: 32px;
+    position: absolute;
+    font-size: 0px;
+    display: block;
+    min-width: 0px;
+    z-index: 0;
+    color: rgb(0, 0, 0);
+    border-radius: 0px;
+    margin: 0px;
+    padding: 0px;
+    line-height: 16px;
+}
+
+.u-st-tag a {
+    display: inline-block;
+    width: 100%;
+    height: 32px;
+}
+.u-st-tag a span {
+    line-height: 16px;
+    display: inline-block;
+    width: 100%;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 16px;
+    color: rgb(51, 51, 51);
+    text-align: center;
+    vertical-align: top;
+}
+.b-10, .b-20, .b-30, .b-15, .b-40, .b-50 {
+    clear: both;
+    height: 10px;
+    overflow: hidden;
+    display: block;
+}
+.g-mn2 {
+    float: left;
+    width: 100%;
+}
+.g-mn2c {
+    margin-right: 245px;
+}
+.course-panel-body-wrapper {
+    font-size: 0px;
+    width: 960px;
+    margin: auto;
+}
+.course-panel-body-wrapper .course-card-wrapper {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.course-card-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+.course-card-wrapper .box {
+    width: 223px;
+    background: #FFFFFF;
+    border: 1px solid #EDEDED;
+    position: relative;
+    z-index: 990;
+    height: 255px;
+}
+.course-card-wrapper a, .course-card-wrapper a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+.course-card-wrapper .box .img {
+    position: relative;
+    width: 100%;
+    height: 110px;
+    overflow: hidden;
+}
+.course-card-wrapper .box .body {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+.course-card-wrapper .box .body .common-info-wrapper-fix-height {
+    height: 60px;
+}
+.course-card-wrapper .box .body .common-info-wrapper .title {
+    font-size: 14px;
+    color: #111111;
+}
+.course-card-wrapper .box .body .common-info-wrapper .title .text {
+    font-size: 0px;
+}
+.course-card-wrapper .box .body .common-info-wrapper .title .text .text {
+    font-size: 14px;
+}
+.course-card-wrapper .box .body .common-info-wrapper .school {
+    padding-top: 4px;
+    color: #999999;
+    font-size: 12px;
+}
+.course-card-wrapper .box .body .personal-info .course-status {
+    position: absolute;
+    bottom: 16px;
+    font-size: 12px;
+    color: #999999;
+}
+.course-panel-wrapper .course-panel-foot-wrapper {
+    margin-top: 70px;
+}
+.course-panel-wrapper .course-panel-foot-wrapper * {
+    font-size: 13px;
+}
+.ux-pager.z-hdn {
+    display: none;
+}
+.ux-pager {
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 12px;
+}
+.ux-pager>li {
+    background: white;
+}
+.ux-pager_itm, .ux-pager_btn, .ux-pager_sep {
+    margin: 0 2px;
+    display: inline-block;
+    text-align: center;
+}
+wrapper .course-panel-foot-wrapper .ux-pager_btn > a{
+    height: inherit;
+}
+.course-panel-wrapper .course-panel-foot-wrapper .ux-pager_itm > a, .course-panel-wrapper .course-panel-foot-wrapper .ux-pager_btn > a {
+    border: none;
+    border-radius: 0px;
+}
+.ux-pager>li.z-dis>a {
+    cursor: not-allowed;
+    background: white;
+    color: #999;
+    border-color: #ddd;
+}
+#j-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 143px;
+}
+.m-foot {
+    border-top: 1px solid #333;
+    background-color: #333;
+    padding: 30px 0 35px 0;
+    line-height: 20px;
+}
+.course-card-wrapper .box .img img {
+    position: absolute;
+    width: 100%;
+    top: -7.96px;
+}

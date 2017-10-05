@@ -1,6 +1,7 @@
 package com.hust.bigdataplatform.dao;
 
 import org.slf4j.Logger;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -8,7 +9,7 @@ import com.hust.bigdataplatform.dao.mapper.CourseMapper;
 import com.hust.bigdataplatform.model.Course;
 /**
  * 该类主要实现对课程表的 增删查改
- * @author Administrator
+ * @author niannian
  *
  */
 @Repository
@@ -21,7 +22,7 @@ public class CourseDao {
 	//为course表中增加课程，参数为实体类course
 	public int insert(Course course)
 	{
-		return courseMapper.insert(course);
+		return courseMapper.insertSelective(course);
 	}
 	//根据课程ID从表中删除对应的记录
 	public int deleteById(String courseId)

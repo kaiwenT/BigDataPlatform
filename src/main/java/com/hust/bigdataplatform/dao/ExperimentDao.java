@@ -10,7 +10,11 @@ import com.hust.bigdataplatform.dao.mapper.ExperimentMapper;
 import com.hust.bigdataplatform.model.Experiment;
 import com.hust.bigdataplatform.model.ExperimentExample;
 import com.hust.bigdataplatform.model.ExperimentExample.Criteria;
-
+/**
+ * 
+ * @author niannian
+ *
+ */
 
 @Repository
 public class ExperimentDao {
@@ -26,7 +30,7 @@ public class ExperimentDao {
 	 */
 	public int insert(Experiment experiment)
 	{
-		return experimentMapper.insert(experiment);
+		return experimentMapper.insertSelective(experiment);
 	}
 	
 	/**

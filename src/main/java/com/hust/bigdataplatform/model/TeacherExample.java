@@ -383,6 +383,76 @@ public class TeacherExample {
             addCriterion("teacher_phone not between", value1, value2, "teacherPhone");
             return (Criteria) this;
         }
+
+        public Criteria andTecherPicturepathIsNull() {
+            addCriterion("techer_picturePath is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathIsNotNull() {
+            addCriterion("techer_picturePath is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathEqualTo(String value) {
+            addCriterion("techer_picturePath =", value, "techerPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathNotEqualTo(String value) {
+            addCriterion("techer_picturePath <>", value, "techerPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathGreaterThan(String value) {
+            addCriterion("techer_picturePath >", value, "techerPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathGreaterThanOrEqualTo(String value) {
+            addCriterion("techer_picturePath >=", value, "techerPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathLessThan(String value) {
+            addCriterion("techer_picturePath <", value, "techerPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathLessThanOrEqualTo(String value) {
+            addCriterion("techer_picturePath <=", value, "techerPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathLike(String value) {
+            addCriterion("techer_picturePath like", value, "techerPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathNotLike(String value) {
+            addCriterion("techer_picturePath not like", value, "techerPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathIn(List<String> values) {
+            addCriterion("techer_picturePath in", values, "techerPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathNotIn(List<String> values) {
+            addCriterion("techer_picturePath not in", values, "techerPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathBetween(String value1, String value2) {
+            addCriterion("techer_picturePath between", value1, value2, "techerPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTecherPicturepathNotBetween(String value1, String value2) {
+            addCriterion("techer_picturePath not between", value1, value2, "techerPicturepath");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

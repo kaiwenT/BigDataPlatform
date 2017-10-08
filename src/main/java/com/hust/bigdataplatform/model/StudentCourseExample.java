@@ -458,10 +458,6 @@ public class StudentCourseExample {
         private boolean listValue;
 
         private String typeHandler;
-        
-        public Criterion(){
-        	super();
-        }
 
         public String getCondition() {
             return condition;
@@ -494,7 +490,9 @@ public class StudentCourseExample {
         public String getTypeHandler() {
             return typeHandler;
         }
-
+        public Criterion(){
+        	super();
+        }
         protected Criterion(String condition) {
             super();
             this.condition = condition;

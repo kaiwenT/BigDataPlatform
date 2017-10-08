@@ -1,9 +1,6 @@
 package com.hust.bigdataplatform.model;
 
-import java.io.Serializable;
-
-//实现了序列化Serializable接口
-public class Teacher implements Serializable{
+public class Teacher {
     private String teacherId;
 
     private String teacherName;
@@ -11,6 +8,8 @@ public class Teacher implements Serializable{
     private String teacherPwd;
 
     private String teacherPhone;
+
+    private String techerPicturepath;
 
     public String getTeacherId() {
         return teacherId;
@@ -42,5 +41,13 @@ public class Teacher implements Serializable{
 
     public void setTeacherPhone(String teacherPhone) {
         this.teacherPhone = teacherPhone == null ? null : teacherPhone.trim();
+    }
+
+    public String getTecherPicturepath() {
+        return techerPicturepath;
+    }
+
+    public void setTecherPicturepath(String techerPicturepath) {
+        this.techerPicturepath = techerPicturepath == null ? null : techerPicturepath.trim();
     }
 }

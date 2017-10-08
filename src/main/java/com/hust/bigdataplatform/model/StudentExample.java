@@ -13,24 +13,8 @@ public class StudentExample {
     protected int start;
     
     protected int limit;
-    
-    public int getStart() {
-		return start;
-	}
 
-	public void setStart(int start) {
-		this.start = start;
-	}
-
-	public int getLimit() {
-		return limit;
-	}
-
-	public void setLimit(int limit) {
-		this.limit = limit;
-	}
-
-	public StudentExample() {
+    public StudentExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -58,7 +42,23 @@ public class StudentExample {
         oredCriteria.add(criteria);
     }
 
-    public Criteria or() {
+    public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public Criteria or() {
         Criteria criteria = createCriteriaInternal();
         oredCriteria.add(criteria);
         return criteria;
@@ -473,6 +473,76 @@ public class StudentExample {
             addCriterion("student_tele not between", value1, value2, "studentTele");
             return (Criteria) this;
         }
+
+        public Criteria andStudentPicturepathIsNull() {
+            addCriterion("student_picturePath is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathIsNotNull() {
+            addCriterion("student_picturePath is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathEqualTo(String value) {
+            addCriterion("student_picturePath =", value, "studentPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathNotEqualTo(String value) {
+            addCriterion("student_picturePath <>", value, "studentPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathGreaterThan(String value) {
+            addCriterion("student_picturePath >", value, "studentPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathGreaterThanOrEqualTo(String value) {
+            addCriterion("student_picturePath >=", value, "studentPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathLessThan(String value) {
+            addCriterion("student_picturePath <", value, "studentPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathLessThanOrEqualTo(String value) {
+            addCriterion("student_picturePath <=", value, "studentPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathLike(String value) {
+            addCriterion("student_picturePath like", value, "studentPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathNotLike(String value) {
+            addCriterion("student_picturePath not like", value, "studentPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathIn(List<String> values) {
+            addCriterion("student_picturePath in", values, "studentPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathNotIn(List<String> values) {
+            addCriterion("student_picturePath not in", values, "studentPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathBetween(String value1, String value2) {
+            addCriterion("student_picturePath between", value1, value2, "studentPicturepath");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentPicturepathNotBetween(String value1, String value2) {
+            addCriterion("student_picturePath not between", value1, value2, "studentPicturepath");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -498,10 +568,6 @@ public class StudentExample {
         private boolean listValue;
 
         private String typeHandler;
-        
-        public Criterion(){
-        	super();
-        }
 
         public String getCondition() {
             return condition;
@@ -534,7 +600,9 @@ public class StudentExample {
         public String getTypeHandler() {
             return typeHandler;
         }
-
+        public Criterion(){
+        	super();
+        }
         protected Criterion(String condition) {
             super();
             this.condition = condition;

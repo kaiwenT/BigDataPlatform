@@ -12,7 +12,7 @@ import com.hust.bigdataplatform.model.Teacher;
 import com.hust.bigdataplatform.model.TeacherExample;
 /**
  * 该类主要实现对teacher的增删查改
- * @author 秦念念
+ * @author niannian
  *
  */
 @Repository

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>课程中心--学生</title>
+    <link rel="stylesheet" href="../css/head.css">
+    <link rel="stylesheet" href="../css/student-course.css">
+</head>
+<body>
+<div id="g-container">
+    <div class="web-nav-container">
+        <div class="m-navTop-func">
+            <div class="u-navLogin-container">
+                <div class="u-navLogin-logo">
+                    <a href="#">
+                        <img src="../img/logo.png" width="190px" height="28px">
+                    </a>
+                </div>
+                <div class="u-navLogin-loginBox">
+                    <div class="u-navLogin-loginBox-i">
+                        <div class="m-navlinks">
+                            <div class="login">
+                                <div class="info">
+                                    <div class="face">
+                                        <a href="#" targe="_self">
+                                            <img id="my-img" src="../img/my-img.png" width="30" height="30" alt="用户名">
+                                        </a>
+                                    </div>
+                                    <div class="j-nav-set sets" style="display: none">
+                                        <div class="e-hover-arrow"></div>
+                                        <div class="e-hover-arrow-border"></div>
+                                        <ul class="set">
+                                            <li>
+                                                <a class="a" href="#" target="_blank">设置</a>
+                                            </li>
+                                            <li class="exit">
+                                                <a href="#">退出</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="u-navLogin-myCourse">
+                    <div class="u-navLogin-myCourse u-navLogin-center-container">
+                        <a href="#" target="_top">
+                            <span class="nav">个人中心</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="u-navLogin-searchFunc">
+                    <div class="j-search-box u-search-container">
+                        <div class="j-input u-search-input">
+                            <div class="ipt">
+                                <div class="area">
+                                    <div class="u-baseinputui">
+                                        <input type="text" name="search" class="j-textarea inputtxt" autocomplete="off"
+                                               placeholder="请输入课程名" style="height: 19px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="u-search-icon">
+                            <span class="u-icon-search2 j-searchBtn" id="auto-id-1506681742568">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="g-body">
+        <div class="m-cbg"></div>
+        <div class="g-sd1">
+            <div class="m-learnleft">
+                <div class="top f-pr">
+                    <img class="" id=""
+                         src="http://imgsize.ph.126.net/?enlarge=true&amp;imgurl=http://img1.ph.126.net/1JJdFGKDIKqvVeS7i9XJrQ==/6630083702792788774.jpg_230x130x1x95.png"
+                         width="230" height="130" alt="数据结构">
+                </div>
+                <ul id="j-courseTabList" class="tab u-tabul">
+                    <li class="u-greentab j-tabitem f-f0 first u-curtab" data-name="公告" data-type="1"
+                        data-id="1002347043" id="auto-id-1507098444830">
+                        <a class="f-thide f-fc3" href="#/learn/announce">公告</a>
+                    </li>
+                    <li class="u-greentab j-tabitem f-f0 " data-name="评分标准" data-type="2" data-id="1002347044"
+                        id="auto-id-1507098444831">
+                        <a class="f-thide f-fc3" href="#/learn/score">评分标准</a>
+                    </li>
+                    <li class="u-greentab j-tabitem f-f0 " data-name="课件" data-type="3" data-id="1002347045"
+                        id="auto-id-1507098444832">
+                        <a class="f-thide f-fc3" href="#/learn/content">课件</a>
+                    </li>
+                    <li class="u-greentab j-tabitem f-f0 " data-name="测验与作业" data-type="4" data-id="1002347046"
+                        id="auto-id-1507098444833">
+                        <a class="f-thide f-fc3" href="#/learn/testlist">测验与作业</a>
+                    </li>
+                    <li class="u-greentab j-tabitem f-f0 " data-name="考试" data-type="6" data-id="1002347047"
+                        id="auto-id-1507098444834">
+                        <a class="f-thide f-fc3" href="#/learn/examlist">考试</a>
+                    </li>
+                    <li class="u-greentab j-tabitem f-f0 last" data-name="讨论区" data-type="7" data-id="1002347048"
+                        id="auto-id-1507098444835">
+                        <a class="f-thide f-fc3" href="#/learn/forumindex">讨论区</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="right" class=""></div>
+    </div>
+</div>
+</body>
+<script type="application/javascript" src="../js/jquery.js"></script>
+<script type="application/javascript">
+    $(".u-greentab").click(function () {
+        $(".u-greentab").removeClass("u-curtab");
+        $(this).addClass("u-curtab");
+    })
+</script>
+</html>

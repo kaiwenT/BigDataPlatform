@@ -3,9 +3,9 @@ package com.hust.bigdataplatform.model;
 public class CourseChapter {
     private String chapterId;
 
-    private String chapterName;
-
     private String courseId;
+
+    private String chapterName;
 
     private String coursewarePath;
 
@@ -19,20 +19,20 @@ public class CourseChapter {
         this.chapterId = chapterId == null ? null : chapterId.trim();
     }
 
-    public String getChapterName() {
-        return chapterName;
-    }
-
-    public void setChapterName(String chapterName) {
-        this.chapterName = chapterName == null ? null : chapterName.trim();
-    }
-
     public String getCourseId() {
         return courseId;
     }
 
     public void setCourseId(String courseId) {
         this.courseId = courseId == null ? null : courseId.trim();
+    }
+
+    public String getChapterName() {
+        return chapterName;
+    }
+
+    public void setChapterName(String chapterName) {
+        this.chapterName = chapterName == null ? null : chapterName.trim();
     }
 
     public String getCoursewarePath() {

@@ -174,76 +174,6 @@ public class CourseChapterExample {
             return (Criteria) this;
         }
 
-        public Criteria andChapterNameIsNull() {
-            addCriterion("chapter_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameIsNotNull() {
-            addCriterion("chapter_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameEqualTo(String value) {
-            addCriterion("chapter_name =", value, "chapterName");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameNotEqualTo(String value) {
-            addCriterion("chapter_name <>", value, "chapterName");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameGreaterThan(String value) {
-            addCriterion("chapter_name >", value, "chapterName");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameGreaterThanOrEqualTo(String value) {
-            addCriterion("chapter_name >=", value, "chapterName");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameLessThan(String value) {
-            addCriterion("chapter_name <", value, "chapterName");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameLessThanOrEqualTo(String value) {
-            addCriterion("chapter_name <=", value, "chapterName");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameLike(String value) {
-            addCriterion("chapter_name like", value, "chapterName");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameNotLike(String value) {
-            addCriterion("chapter_name not like", value, "chapterName");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameIn(List<String> values) {
-            addCriterion("chapter_name in", values, "chapterName");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameNotIn(List<String> values) {
-            addCriterion("chapter_name not in", values, "chapterName");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameBetween(String value1, String value2) {
-            addCriterion("chapter_name between", value1, value2, "chapterName");
-            return (Criteria) this;
-        }
-
-        public Criteria andChapterNameNotBetween(String value1, String value2) {
-            addCriterion("chapter_name not between", value1, value2, "chapterName");
-            return (Criteria) this;
-        }
-
         public Criteria andCourseIdIsNull() {
             addCriterion("course_id is null");
             return (Criteria) this;
@@ -311,6 +241,76 @@ public class CourseChapterExample {
 
         public Criteria andCourseIdNotBetween(String value1, String value2) {
             addCriterion("course_id not between", value1, value2, "courseId");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameIsNull() {
+            addCriterion("chapter_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameIsNotNull() {
+            addCriterion("chapter_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameEqualTo(String value) {
+            addCriterion("chapter_name =", value, "chapterName");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameNotEqualTo(String value) {
+            addCriterion("chapter_name <>", value, "chapterName");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameGreaterThan(String value) {
+            addCriterion("chapter_name >", value, "chapterName");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameGreaterThanOrEqualTo(String value) {
+            addCriterion("chapter_name >=", value, "chapterName");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameLessThan(String value) {
+            addCriterion("chapter_name <", value, "chapterName");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameLessThanOrEqualTo(String value) {
+            addCriterion("chapter_name <=", value, "chapterName");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameLike(String value) {
+            addCriterion("chapter_name like", value, "chapterName");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameNotLike(String value) {
+            addCriterion("chapter_name not like", value, "chapterName");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameIn(List<String> values) {
+            addCriterion("chapter_name in", values, "chapterName");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameNotIn(List<String> values) {
+            addCriterion("chapter_name not in", values, "chapterName");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameBetween(String value1, String value2) {
+            addCriterion("chapter_name between", value1, value2, "chapterName");
+            return (Criteria) this;
+        }
+
+        public Criteria andChapterNameNotBetween(String value1, String value2) {
+            addCriterion("chapter_name not between", value1, value2, "chapterName");
             return (Criteria) this;
         }
 

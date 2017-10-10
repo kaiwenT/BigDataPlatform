@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hust.bigdataplatform.dao.mapper.CourseChapterMapper">
   <resultMap id="BaseResultMap" type="com.hust.bigdataplatform.model.CourseChapter">
-    <result column="chapter_id" jdbcType="VARCHAR" property="chapterId" />
+    <id column="chapter_id" jdbcType="VARCHAR" property="chapterId" />
+    <id column="course_id" jdbcType="VARCHAR" property="courseId" />
     <result column="chapter_name" jdbcType="VARCHAR" property="chapterName" />
-    <result column="course_id" jdbcType="VARCHAR" property="courseId" />
     <result column="courseware_path" jdbcType="VARCHAR" property="coursewarePath" />
     <result column="video_path" jdbcType="VARCHAR" property="videoPath" />
   </resultMap>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    chapter_id, chapter_name, course_id, courseware_path, video_path
+    chapter_id, course_id, chapter_name, courseware_path, video_path
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.CourseChapterExample" resultMap="BaseResultMap">
     select
@@ -83,6 +83,18 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from course_chapter
+    where chapter_id = #{chapterId,jdbcType=VARCHAR}
+      and course_id = #{courseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from course_chapter
+    where chapter_id = #{chapterId,jdbcType=VARCHAR}
+      and course_id = #{courseId,jdbcType=VARCHAR}
+  </delete>
   <delete id="deleteByExample" parameterType="com.hust.bigdataplatform.model.CourseChapterExample">
     delete from course_chapter
     <if test="_parameter != null">
@@ -90,9 +102,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.hust.bigdataplatform.model.CourseChapter">
-    insert into course_chapter (chapter_id, chapter_name, course_id, 
+    insert into course_chapter (chapter_id, course_id, chapter_name, 
       courseware_path, video_path)
-    values (#{chapterId,jdbcType=VARCHAR}, #{chapterName,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, 
+    values (#{chapterId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{chapterName,jdbcType=VARCHAR}, 
       #{coursewarePath,jdbcType=VARCHAR}, #{videoPath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.CourseChapter">
@@ -101,11 +113,11 @@
       <if test="chapterId != null">
         chapter_id,
       </if>
-      <if test="chapterName != null">
-        chapter_name,
-      </if>
       <if test="courseId != null">
         course_id,
+      </if>
+      <if test="chapterName != null">
+        chapter_name,
       </if>
       <if test="coursewarePath != null">
         courseware_path,
@@ -118,11 +130,11 @@
       <if test="chapterId != null">
         #{chapterId,jdbcType=VARCHAR},
       </if>
-      <if test="chapterName != null">
-        #{chapterName,jdbcType=VARCHAR},
-      </if>
       <if test="courseId != null">
         #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterName != null">
+        #{chapterName,jdbcType=VARCHAR},
       </if>
       <if test="coursewarePath != null">
         #{coursewarePath,jdbcType=VARCHAR},
@@ -144,11 +156,11 @@
       <if test="record.chapterId != null">
         chapter_id = #{record.chapterId,jdbcType=VARCHAR},
       </if>
-      <if test="record.chapterName != null">
-        chapter_name = #{record.chapterName,jdbcType=VARCHAR},
-      </if>
       <if test="record.courseId != null">
         course_id = #{record.courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chapterName != null">
+        chapter_name = #{record.chapterName,jdbcType=VARCHAR},
       </if>
       <if test="record.coursewarePath != null">
         courseware_path = #{record.coursewarePath,jdbcType=VARCHAR},
@@ -164,12 +176,36 @@
   <update id="updateByExample" parameterType="map">
     update course_chapter
     set chapter_id = #{record.chapterId,jdbcType=VARCHAR},
-      chapter_name = #{record.chapterName,jdbcType=VARCHAR},
       course_id = #{record.courseId,jdbcType=VARCHAR},
+      chapter_name = #{record.chapterName,jdbcType=VARCHAR},
       courseware_path = #{record.coursewarePath,jdbcType=VARCHAR},
       video_path = #{record.videoPath,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hust.bigdataplatform.model.CourseChapter">
+    update course_chapter
+    <set>
+      <if test="chapterName != null">
+        chapter_name = #{chapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="coursewarePath != null">
+        courseware_path = #{coursewarePath,jdbcType=VARCHAR},
+      </if>
+      <if test="videoPath != null">
+        video_path = #{videoPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where chapter_id = #{chapterId,jdbcType=VARCHAR}
+      and course_id = #{courseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hust.bigdataplatform.model.CourseChapter">
+    update course_chapter
+    set chapter_name = #{chapterName,jdbcType=VARCHAR},
+      courseware_path = #{coursewarePath,jdbcType=VARCHAR},
+      video_path = #{videoPath,jdbcType=VARCHAR}
+    where chapter_id = #{chapterId,jdbcType=VARCHAR}
+      and course_id = #{courseId,jdbcType=VARCHAR}
   </update>
 </mapper>

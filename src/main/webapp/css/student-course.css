@@ -58,3 +58,15 @@
     color: #fff;
     background-color: #55b929;
 }
+.right{
+	position:relative;	
+	float:right;
+	top: 100px;
+    right: 0;
+    left: 250px;
+    bottom: 0;
+    float:right;
+    margin-left:250px;
+    width:790px; 
+    min-height:720px;
+}

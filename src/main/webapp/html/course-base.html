@@ -84,40 +84,179 @@
                 <ul id="j-courseTabList" class="tab u-tabul">
                     <li class="u-greentab j-tabitem f-f0 first u-curtab" data-name="公告" data-type="1"
                         data-id="1002347043" id="auto-id-1507098444830">
-                        <a class="f-thide f-fc3" href="#/learn/announce">公告</a>
+                        <a class="f-thide f-fc3" href="announce">公告</a>
                     </li>
                     <li class="u-greentab j-tabitem f-f0 " data-name="评分标准" data-type="2" data-id="1002347044"
                         id="auto-id-1507098444831">
-                        <a class="f-thide f-fc3" href="#/learn/score">评分标准</a>
+                        <a class="f-thide f-fc3" href="#">评分标准</a>
                     </li>
                     <li class="u-greentab j-tabitem f-f0 " data-name="课件" data-type="3" data-id="1002347045"
                         id="auto-id-1507098444832">
-                        <a class="f-thide f-fc3" href="#/learn/content">课件</a>
-                    </li>
-                    <li class="u-greentab j-tabitem f-f0 " data-name="测验与作业" data-type="4" data-id="1002347046"
-                        id="auto-id-1507098444833">
-                        <a class="f-thide f-fc3" href="#/learn/testlist">测验与作业</a>
-                    </li>
-                    <li class="u-greentab j-tabitem f-f0 " data-name="考试" data-type="6" data-id="1002347047"
-                        id="auto-id-1507098444834">
-                        <a class="f-thide f-fc3" href="#/learn/examlist">考试</a>
+                        <a class="f-thide f-fc3" href="#">课件</a>
                     </li>
                     <li class="u-greentab j-tabitem f-f0 last" data-name="讨论区" data-type="7" data-id="1002347048"
                         id="auto-id-1507098444835">
-                        <a class="f-thide f-fc3" href="#/learn/forumindex">讨论区</a>
+                        <a class="f-thide f-fc3" href="#">实验</a>
                     </li>
+                    <li class="u-greentab j-tabitem f-f0 " data-name="测验与作业" data-type="4" data-id="1002347046"
+                        id="auto-id-1507098444833">
+                        <a class="f-thide f-fc3" href="#">测验与作业</a>
+                    </li>
+                    <li class="u-greentab j-tabitem f-f0 " data-name="考试" data-type="6" data-id="1002347047"
+                        id="auto-id-1507098444834">
+                        <a class="f-thide f-fc3" href="#">考试</a>
+                    </li>
+                    
                 </ul>
             </div>
         </div>
-        <div id="right" class=""></div>
+        <div class="right"></div>
     </div>
 </div>
 </body>
 <script type="application/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/student.js"></script>
+<script type="text/javascript" src="../js/student-course.js"></script>
+<script type="text/javascript" src="../js/tools.js"></script>
 <script type="application/javascript">
-    $(".u-greentab").click(function () {
-        $(".u-greentab").removeClass("u-curtab");
-        $(this).addClass("u-curtab");
-    })
+	bootstrapButton = $.fn.button.noConflict();
+	$.fn.bootstrapBtn = bootstrapButton;
+
+  
+	function baseAjax(item) {
+		if (item == "index") {
+			exit();
+		} else if(item == "error"){
+			window.parent.location.href = "/error.html";
+		} else {
+			$.ajax({
+				type : "get",
+				url : item + ".html",
+				async : false,
+				dataType : "html",
+				data : '',
+				success : function(data) {
+					if(data=="error"){
+						window.parent.location.href = "/index.html";
+					}else{
+					$(".right").empty().html(data);
+					}
+				},
+				error : function() {
+					alert("ajax加载失败！");
+				}
+			});
+			title = document.title;
+			console.log(title + "--------------------------")
+			history.pushState({
+				title : title
+			}, title, "?href=" + item);
+		}
+
+	}
+
+	var eleMenus = $(".u-greentab a").click(function(e) {
+		var e = e || window.event;
+		e.preventDefault();
+		if (history.pushState) {
+
+			$(".u-greentab").removeClass("u-curtab");
+			$(this).parent().addClass("u-curtab").siblings().removeClass("u-curtab"); //点击时左侧导航项换色
+			
+			$.ajax({
+				type : "get",
+				url : this.href + ".html",
+				async : false,
+				dataType : "html",
+				data : '',
+				success : function(data) {
+					if(data=="error"){
+						window.parent.location.href = "/index.html";
+					}else{
+						$(".right").empty().html(data);
+					}
+				},
+				error : function() {
+					alert("ajax加载失败！");
+				}
+
+			});
+			var title = $(this).text();
+			/* document.title=title;*/
+			if (e && /\d/.test(e.button)) {
+				history.pushState({
+					title : title
+				}, title, "?href=" + this.href.slice(this.href.lastIndexOf('/') + 1));
+			}
+
+		}
+
+		return false;
+	})
+
+	var pageTrigger = function(target) {
+
+		var query = location.href.split('?href=')[1], eleTarget = target || null;
+
+		if (typeof query != "undefined") {
+			query = query.split('#')[0];
+		}
+
+		if (typeof query == "undefined") {
+			if (eleTarget = eleMenus.get(1)) {
+				history.replaceState(null, document.title, "?href=" + eleTarget.href);
+				pageTrigger(eleTarget); //直接触发click事件
+
+			}
+		} else {
+			eleMenus.each(function() {
+				//为popstate 事件准备的····
+				if (eleTarget === null && this.href === query) {
+					eleTarget = this;//popsate到之前的页面，必须要触发相应的点击事件，所以确定是那个a元素
+				}
+			});
+
+			if (!eleTarget) { //如果当前元素仍不存在,自己调用,则可能是其他的button跳转
+				
+				$.ajax({
+					type : "get",
+					url : query + ".html",
+					async : false,
+					dataType : "html",
+					data : '',
+					success : function(data) {
+						if(data=="error"){
+							window.parent.location.href = "/index.html";
+						}else{
+						$(".right").empty().html(data);
+						}
+					},
+					error : function() {
+						alert("ajax加载失败！");
+					}
+				});
+
+				if (event && /\d/.test(event.button)) {
+					history.pushState({
+						title : title
+					}, title, "?href=" + query);
+				}
+
+			} else {
+				console.log(eleTarget);
+				$(eleTarget).trigger("click");
+			}
+		}
+	}
+
+	if (history.pushState) { //如果浏览器支持history的pushstate属性,在前进后退的时候直接触发pageTrigger事件
+		window.addEventListener("popstate", function() {
+			pageTrigger();
+
+		});
+		// 默认载入
+		pageTrigger();
+	}
 </script>
 </html>

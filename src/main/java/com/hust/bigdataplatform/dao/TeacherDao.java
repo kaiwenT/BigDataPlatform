@@ -1,6 +1,5 @@
 package com.hust.bigdataplatform.dao;
 
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.hust.bigdataplatform.dao.mapper.TeacherMapper;
 import com.hust.bigdataplatform.model.Teacher;
-import com.hust.bigdataplatform.model.TeacherExample;
 /**
  * 该类主要实现对teacher的增删查改
  * @author niannian

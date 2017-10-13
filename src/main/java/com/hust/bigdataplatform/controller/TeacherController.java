@@ -56,7 +56,7 @@ public class TeacherController {
 	public Object CurrentTeacher(HttpServletRequest request)
 	{
 		String teacherid = (String) sessionService.getObject("teacherId", request);
-		if (teacherid.equals(null)) {
+		if (teacherid==null) {
 			return ResultUtil.errorWithMsg("登录超时，请重新登录！");
 		}
 		//根据id查找教师信息

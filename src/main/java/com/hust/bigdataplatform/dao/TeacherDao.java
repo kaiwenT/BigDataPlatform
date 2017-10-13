@@ -33,7 +33,7 @@ public class TeacherDao {
 	//根据教师ID查找教师
 	public Teacher findById(String teacherId)
 	{
-		 return teacherMapper.selectByPrimaryKey(teacherId);
+		return teacherMapper.selectByPrimaryKey(teacherId);
 	}
 	
 }

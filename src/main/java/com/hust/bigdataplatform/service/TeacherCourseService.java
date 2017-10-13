@@ -2,7 +2,7 @@ package com.hust.bigdataplatform.service;
 
 import java.util.List;
 
-import com.hust.bigdataplatform.model.TeacherCourse;
+import com.hust.bigdataplatform.model.Course;
 
 public interface TeacherCourseService {
 	
@@ -11,6 +11,6 @@ public interface TeacherCourseService {
 	 * @param teacherid
 	 * @return
 	 */
-	public List<TeacherCourse> selectByTeacherid(String teacherid);
+	public List<Course> getCourseByTeacherid(String teacherid);
 
 }

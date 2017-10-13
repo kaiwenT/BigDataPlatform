@@ -575,143 +575,73 @@ public class CourseExample {
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathIsNull() {
-            addCriterion("course_CoursewarePath is null");
+        public Criteria andCoursePicturepathIsNull() {
+            addCriterion("course_picturePath is null");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathIsNotNull() {
-            addCriterion("course_CoursewarePath is not null");
+        public Criteria andCoursePicturepathIsNotNull() {
+            addCriterion("course_picturePath is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathEqualTo(String value) {
-            addCriterion("course_CoursewarePath =", value, "courseCoursewarepath");
+        public Criteria andCoursePicturepathEqualTo(String value) {
+            addCriterion("course_picturePath =", value, "coursePicturepath");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathNotEqualTo(String value) {
-            addCriterion("course_CoursewarePath <>", value, "courseCoursewarepath");
+        public Criteria andCoursePicturepathNotEqualTo(String value) {
+            addCriterion("course_picturePath <>", value, "coursePicturepath");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathGreaterThan(String value) {
-            addCriterion("course_CoursewarePath >", value, "courseCoursewarepath");
+        public Criteria andCoursePicturepathGreaterThan(String value) {
+            addCriterion("course_picturePath >", value, "coursePicturepath");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathGreaterThanOrEqualTo(String value) {
-            addCriterion("course_CoursewarePath >=", value, "courseCoursewarepath");
+        public Criteria andCoursePicturepathGreaterThanOrEqualTo(String value) {
+            addCriterion("course_picturePath >=", value, "coursePicturepath");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathLessThan(String value) {
-            addCriterion("course_CoursewarePath <", value, "courseCoursewarepath");
+        public Criteria andCoursePicturepathLessThan(String value) {
+            addCriterion("course_picturePath <", value, "coursePicturepath");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathLessThanOrEqualTo(String value) {
-            addCriterion("course_CoursewarePath <=", value, "courseCoursewarepath");
+        public Criteria andCoursePicturepathLessThanOrEqualTo(String value) {
+            addCriterion("course_picturePath <=", value, "coursePicturepath");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathLike(String value) {
-            addCriterion("course_CoursewarePath like", value, "courseCoursewarepath");
+        public Criteria andCoursePicturepathLike(String value) {
+            addCriterion("course_picturePath like", value, "coursePicturepath");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathNotLike(String value) {
-            addCriterion("course_CoursewarePath not like", value, "courseCoursewarepath");
+        public Criteria andCoursePicturepathNotLike(String value) {
+            addCriterion("course_picturePath not like", value, "coursePicturepath");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathIn(List<String> values) {
-            addCriterion("course_CoursewarePath in", values, "courseCoursewarepath");
+        public Criteria andCoursePicturepathIn(List<String> values) {
+            addCriterion("course_picturePath in", values, "coursePicturepath");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathNotIn(List<String> values) {
-            addCriterion("course_CoursewarePath not in", values, "courseCoursewarepath");
+        public Criteria andCoursePicturepathNotIn(List<String> values) {
+            addCriterion("course_picturePath not in", values, "coursePicturepath");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathBetween(String value1, String value2) {
-            addCriterion("course_CoursewarePath between", value1, value2, "courseCoursewarepath");
+        public Criteria andCoursePicturepathBetween(String value1, String value2) {
+            addCriterion("course_picturePath between", value1, value2, "coursePicturepath");
             return (Criteria) this;
         }
 
-        public Criteria andCourseCoursewarepathNotBetween(String value1, String value2) {
-            addCriterion("course_CoursewarePath not between", value1, value2, "courseCoursewarepath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathIsNull() {
-            addCriterion("course_videoPath is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathIsNotNull() {
-            addCriterion("course_videoPath is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathEqualTo(String value) {
-            addCriterion("course_videoPath =", value, "courseVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathNotEqualTo(String value) {
-            addCriterion("course_videoPath <>", value, "courseVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathGreaterThan(String value) {
-            addCriterion("course_videoPath >", value, "courseVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathGreaterThanOrEqualTo(String value) {
-            addCriterion("course_videoPath >=", value, "courseVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathLessThan(String value) {
-            addCriterion("course_videoPath <", value, "courseVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathLessThanOrEqualTo(String value) {
-            addCriterion("course_videoPath <=", value, "courseVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathLike(String value) {
-            addCriterion("course_videoPath like", value, "courseVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathNotLike(String value) {
-            addCriterion("course_videoPath not like", value, "courseVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathIn(List<String> values) {
-            addCriterion("course_videoPath in", values, "courseVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathNotIn(List<String> values) {
-            addCriterion("course_videoPath not in", values, "courseVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathBetween(String value1, String value2) {
-            addCriterion("course_videoPath between", value1, value2, "courseVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseVideopathNotBetween(String value1, String value2) {
-            addCriterion("course_videoPath not between", value1, value2, "courseVideopath");
+        public Criteria andCoursePicturepathNotBetween(String value1, String value2) {
+            addCriterion("course_picturePath not between", value1, value2, "coursePicturepath");
             return (Criteria) this;
         }
 
@@ -831,7 +761,6 @@ public class CourseExample {
         public String getTypeHandler() {
             return typeHandler;
         }
-
         public Criterion(){
         	super();
         }

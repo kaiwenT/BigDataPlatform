@@ -6,9 +6,6 @@
     <link rel="stylesheet" href="../css/font-awesome-ie7.css">
     <link rel="stylesheet" href="../css/head.css">
     <link rel="stylesheet" href="../css/student-home.css">
-    
-    <script type="text/javascript" src="../js/jquery.js"></script>    
-   
    </head>
 <body>
    <div id="g-container">
@@ -87,11 +84,10 @@
                         <a href="#">编辑头像</a>
                     </div>
                 </div>
-                <div class="u-ui-name"><span class="user-name" id="stu-name">学生姓名</span></div>
-                <div class="u-ui-tag "><span id="stu-id">学号</span></div>
-                <!-- <div class="u-ui-desc "><span class="f-2lines" id="stu-name">姓名</span></div>
-                 -->
-                 <div class="u-ui-f2f"><span><span>学院</span>:<span id="f-name">学院名</span></span>
+                <div class="u-ui-name"><span class="user-name">用户名</span></div>
+                <div class="u-ui-tag "><span>学生</span></div>
+                <div class="u-ui-desc "><span class="f-2lines">这是一个个人简介</span></div>
+                <div class="u-ui-f2f"><span><span>学院</span>:<span id="f-name">学院名</span></span>
                 </div>
             </div>
         </div>
@@ -101,12 +97,12 @@
                     <div id="j-module-tab" class="module-tab">
                         <div class="u-selectTab-container">
                             <div class="u-st-tag current ga-click" style="left: 0px;" data-action="课程tag点击">
-                                <a href="javascript:;" target="_top">
-                                    <span class="courses_number">课程</span>
+                                <a href="#" target="_top">
+                                    <span>课程</span>
                                 </a>
                             </div>
                             <div class="u-st-tag ga-click" style="left: 100px;" data-action="讨论tag点击">
-                                <a href="#" target="_top" >
+                                <a href="#" target="_top">
                                     <span>成绩</span>
                                 </a>
                             </div>
@@ -117,11 +113,33 @@
                             <div class="b-10"></div>
                             <div class="g-mn2">
                                 <div class="g-mn2c">
-                                    <div class="m-homecourse" id="j-coursewrap" style="">
-                                    <div class="course-panel-wrapper">
+                                    <div class="m-homecourse" id="j-coursewrap" style=""><div class="course-panel-wrapper">
                                         <div class="course-panel-body-wrapper">
-                                            <!--course list-->
-                                            
+                                            <!--Regular list-->
+                                            <div class="course-card-wrapper">
+                                                <div class="box">
+                                                    <a href="/learn/NWU-298002?tid=1002252001" target="_blank" class="ga-click" data-action="课程tag-非新学期课程">
+                                                        <div class="img">
+                                                            <img src="http://img1.ph.126.net/1JJdFGKDIKqvVeS7i9XJrQ==/6630083702792788774.jpg" alt="数据结构">
+                                                        </div>
+                                                        <div class="body">
+                                                            <div class="common-info-wrapper common-info-wrapper-fix-height">
+                                                                <div class="title">
+                                                                    <div class="text">
+                                                                        <span class="text">数据结构</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="school">
+                                                                    <a target="_blank" href="/university/NWU">西北大学</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="personal-info">
+                                                                <div class="course-status">2017年12月31日学期结束</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="course-panel-foot-wrapper">
                                             <ul class="ux-pager z-hdn">
@@ -159,6 +177,4 @@
         $(".e-hover-code").css("display","none");
     })
 </script>
- <script type="text/javascript" src="../js/student.js"></script>
- <script type="text/javascript" src="../js/tools.js"></script>
 </html>

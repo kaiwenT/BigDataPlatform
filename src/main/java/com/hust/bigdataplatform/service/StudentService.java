@@ -27,6 +27,11 @@ public interface StudentService {
 	 * @return
 	 */
 	public List<Course> selectCoursesByStudent(String studentId);
-	
+	/**
+	 * 根据学号查找学生
+	 * @param studentId
+	 * @return
+	 */
+	public Student selectStudentById(String studentId);
 	
 }

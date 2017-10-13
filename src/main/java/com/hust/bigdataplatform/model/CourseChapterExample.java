@@ -3,14 +3,14 @@ package com.hust.bigdataplatform.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentCourseExample {
+public class CourseChapterExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public StudentCourseExample() {
+    public CourseChapterExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,73 +104,73 @@ public class StudentCourseExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andStudentIdIsNull() {
-            addCriterion("student_id is null");
+        public Criteria andChapterIdIsNull() {
+            addCriterion("chapter_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIsNotNull() {
-            addCriterion("student_id is not null");
+        public Criteria andChapterIdIsNotNull() {
+            addCriterion("chapter_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdEqualTo(String value) {
-            addCriterion("student_id =", value, "studentId");
+        public Criteria andChapterIdEqualTo(String value) {
+            addCriterion("chapter_id =", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotEqualTo(String value) {
-            addCriterion("student_id <>", value, "studentId");
+        public Criteria andChapterIdNotEqualTo(String value) {
+            addCriterion("chapter_id <>", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThan(String value) {
-            addCriterion("student_id >", value, "studentId");
+        public Criteria andChapterIdGreaterThan(String value) {
+            addCriterion("chapter_id >", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThanOrEqualTo(String value) {
-            addCriterion("student_id >=", value, "studentId");
+        public Criteria andChapterIdGreaterThanOrEqualTo(String value) {
+            addCriterion("chapter_id >=", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThan(String value) {
-            addCriterion("student_id <", value, "studentId");
+        public Criteria andChapterIdLessThan(String value) {
+            addCriterion("chapter_id <", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThanOrEqualTo(String value) {
-            addCriterion("student_id <=", value, "studentId");
+        public Criteria andChapterIdLessThanOrEqualTo(String value) {
+            addCriterion("chapter_id <=", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLike(String value) {
-            addCriterion("student_id like", value, "studentId");
+        public Criteria andChapterIdLike(String value) {
+            addCriterion("chapter_id like", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotLike(String value) {
-            addCriterion("student_id not like", value, "studentId");
+        public Criteria andChapterIdNotLike(String value) {
+            addCriterion("chapter_id not like", value, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIn(List<String> values) {
-            addCriterion("student_id in", values, "studentId");
+        public Criteria andChapterIdIn(List<String> values) {
+            addCriterion("chapter_id in", values, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotIn(List<String> values) {
-            addCriterion("student_id not in", values, "studentId");
+        public Criteria andChapterIdNotIn(List<String> values) {
+            addCriterion("chapter_id not in", values, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdBetween(String value1, String value2) {
-            addCriterion("student_id between", value1, value2, "studentId");
+        public Criteria andChapterIdBetween(String value1, String value2) {
+            addCriterion("chapter_id between", value1, value2, "chapterId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotBetween(String value1, String value2) {
-            addCriterion("student_id not between", value1, value2, "studentId");
+        public Criteria andChapterIdNotBetween(String value1, String value2) {
+            addCriterion("chapter_id not between", value1, value2, "chapterId");
             return (Criteria) this;
         }
 
@@ -244,193 +244,213 @@ public class StudentCourseExample {
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidIsNull() {
-            addCriterion("student_groupId is null");
+        public Criteria andChapterNameIsNull() {
+            addCriterion("chapter_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidIsNotNull() {
-            addCriterion("student_groupId is not null");
+        public Criteria andChapterNameIsNotNull() {
+            addCriterion("chapter_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidEqualTo(String value) {
-            addCriterion("student_groupId =", value, "studentGroupid");
+        public Criteria andChapterNameEqualTo(String value) {
+            addCriterion("chapter_name =", value, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidNotEqualTo(String value) {
-            addCriterion("student_groupId <>", value, "studentGroupid");
+        public Criteria andChapterNameNotEqualTo(String value) {
+            addCriterion("chapter_name <>", value, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidGreaterThan(String value) {
-            addCriterion("student_groupId >", value, "studentGroupid");
+        public Criteria andChapterNameGreaterThan(String value) {
+            addCriterion("chapter_name >", value, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidGreaterThanOrEqualTo(String value) {
-            addCriterion("student_groupId >=", value, "studentGroupid");
+        public Criteria andChapterNameGreaterThanOrEqualTo(String value) {
+            addCriterion("chapter_name >=", value, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidLessThan(String value) {
-            addCriterion("student_groupId <", value, "studentGroupid");
+        public Criteria andChapterNameLessThan(String value) {
+            addCriterion("chapter_name <", value, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidLessThanOrEqualTo(String value) {
-            addCriterion("student_groupId <=", value, "studentGroupid");
+        public Criteria andChapterNameLessThanOrEqualTo(String value) {
+            addCriterion("chapter_name <=", value, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidLike(String value) {
-            addCriterion("student_groupId like", value, "studentGroupid");
+        public Criteria andChapterNameLike(String value) {
+            addCriterion("chapter_name like", value, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidNotLike(String value) {
-            addCriterion("student_groupId not like", value, "studentGroupid");
+        public Criteria andChapterNameNotLike(String value) {
+            addCriterion("chapter_name not like", value, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidIn(List<String> values) {
-            addCriterion("student_groupId in", values, "studentGroupid");
+        public Criteria andChapterNameIn(List<String> values) {
+            addCriterion("chapter_name in", values, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidNotIn(List<String> values) {
-            addCriterion("student_groupId not in", values, "studentGroupid");
+        public Criteria andChapterNameNotIn(List<String> values) {
+            addCriterion("chapter_name not in", values, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidBetween(String value1, String value2) {
-            addCriterion("student_groupId between", value1, value2, "studentGroupid");
+        public Criteria andChapterNameBetween(String value1, String value2) {
+            addCriterion("chapter_name between", value1, value2, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentGroupidNotBetween(String value1, String value2) {
-            addCriterion("student_groupId not between", value1, value2, "studentGroupid");
+        public Criteria andChapterNameNotBetween(String value1, String value2) {
+            addCriterion("chapter_name not between", value1, value2, "chapterName");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateIsNull() {
-            addCriterion("attendanceRate is null");
+        public Criteria andCoursewarePathIsNull() {
+            addCriterion("courseware_path is null");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateIsNotNull() {
-            addCriterion("attendanceRate is not null");
+        public Criteria andCoursewarePathIsNotNull() {
+            addCriterion("courseware_path is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateEqualTo(Integer value) {
-            addCriterion("attendanceRate =", value, "attendancerate");
+        public Criteria andCoursewarePathEqualTo(String value) {
+            addCriterion("courseware_path =", value, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateNotEqualTo(Integer value) {
-            addCriterion("attendanceRate <>", value, "attendancerate");
+        public Criteria andCoursewarePathNotEqualTo(String value) {
+            addCriterion("courseware_path <>", value, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateGreaterThan(Integer value) {
-            addCriterion("attendanceRate >", value, "attendancerate");
+        public Criteria andCoursewarePathGreaterThan(String value) {
+            addCriterion("courseware_path >", value, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateGreaterThanOrEqualTo(Integer value) {
-            addCriterion("attendanceRate >=", value, "attendancerate");
+        public Criteria andCoursewarePathGreaterThanOrEqualTo(String value) {
+            addCriterion("courseware_path >=", value, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateLessThan(Integer value) {
-            addCriterion("attendanceRate <", value, "attendancerate");
+        public Criteria andCoursewarePathLessThan(String value) {
+            addCriterion("courseware_path <", value, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateLessThanOrEqualTo(Integer value) {
-            addCriterion("attendanceRate <=", value, "attendancerate");
+        public Criteria andCoursewarePathLessThanOrEqualTo(String value) {
+            addCriterion("courseware_path <=", value, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateIn(List<Integer> values) {
-            addCriterion("attendanceRate in", values, "attendancerate");
+        public Criteria andCoursewarePathLike(String value) {
+            addCriterion("courseware_path like", value, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateNotIn(List<Integer> values) {
-            addCriterion("attendanceRate not in", values, "attendancerate");
+        public Criteria andCoursewarePathNotLike(String value) {
+            addCriterion("courseware_path not like", value, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateBetween(Integer value1, Integer value2) {
-            addCriterion("attendanceRate between", value1, value2, "attendancerate");
+        public Criteria andCoursewarePathIn(List<String> values) {
+            addCriterion("courseware_path in", values, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andAttendancerateNotBetween(Integer value1, Integer value2) {
-            addCriterion("attendanceRate not between", value1, value2, "attendancerate");
+        public Criteria andCoursewarePathNotIn(List<String> values) {
+            addCriterion("courseware_path not in", values, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultIsNull() {
-            addCriterion("finalResult is null");
+        public Criteria andCoursewarePathBetween(String value1, String value2) {
+            addCriterion("courseware_path between", value1, value2, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultIsNotNull() {
-            addCriterion("finalResult is not null");
+        public Criteria andCoursewarePathNotBetween(String value1, String value2) {
+            addCriterion("courseware_path not between", value1, value2, "coursewarePath");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultEqualTo(Integer value) {
-            addCriterion("finalResult =", value, "finalresult");
+        public Criteria andVideoPathIsNull() {
+            addCriterion("video_path is null");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultNotEqualTo(Integer value) {
-            addCriterion("finalResult <>", value, "finalresult");
+        public Criteria andVideoPathIsNotNull() {
+            addCriterion("video_path is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultGreaterThan(Integer value) {
-            addCriterion("finalResult >", value, "finalresult");
+        public Criteria andVideoPathEqualTo(String value) {
+            addCriterion("video_path =", value, "videoPath");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultGreaterThanOrEqualTo(Integer value) {
-            addCriterion("finalResult >=", value, "finalresult");
+        public Criteria andVideoPathNotEqualTo(String value) {
+            addCriterion("video_path <>", value, "videoPath");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultLessThan(Integer value) {
-            addCriterion("finalResult <", value, "finalresult");
+        public Criteria andVideoPathGreaterThan(String value) {
+            addCriterion("video_path >", value, "videoPath");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultLessThanOrEqualTo(Integer value) {
-            addCriterion("finalResult <=", value, "finalresult");
+        public Criteria andVideoPathGreaterThanOrEqualTo(String value) {
+            addCriterion("video_path >=", value, "videoPath");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultIn(List<Integer> values) {
-            addCriterion("finalResult in", values, "finalresult");
+        public Criteria andVideoPathLessThan(String value) {
+            addCriterion("video_path <", value, "videoPath");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultNotIn(List<Integer> values) {
-            addCriterion("finalResult not in", values, "finalresult");
+        public Criteria andVideoPathLessThanOrEqualTo(String value) {
+            addCriterion("video_path <=", value, "videoPath");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultBetween(Integer value1, Integer value2) {
-            addCriterion("finalResult between", value1, value2, "finalresult");
+        public Criteria andVideoPathLike(String value) {
+            addCriterion("video_path like", value, "videoPath");
             return (Criteria) this;
         }
 
-        public Criteria andFinalresultNotBetween(Integer value1, Integer value2) {
-            addCriterion("finalResult not between", value1, value2, "finalresult");
+        public Criteria andVideoPathNotLike(String value) {
+            addCriterion("video_path not like", value, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathIn(List<String> values) {
+            addCriterion("video_path in", values, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathNotIn(List<String> values) {
+            addCriterion("video_path not in", values, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathBetween(String value1, String value2) {
+            addCriterion("video_path between", value1, value2, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathNotBetween(String value1, String value2) {
+            addCriterion("video_path not between", value1, value2, "videoPath");
             return (Criteria) this;
         }
     }

@@ -1,9 +1,8 @@
 package com.hust.bigdataplatform.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Course implements Serializable{
+public class Course {
     private String courseId;
 
     private String courseName;
@@ -18,9 +17,7 @@ public class Course implements Serializable{
 
     private Integer courseCredit;
 
-    private String courseCoursewarepath;
-
-    private String courseVideopath;
+    private String coursePicturepath;
 
     private Float courseUsualgradesscale;
 
@@ -80,20 +77,12 @@ public class Course implements Serializable{
         this.courseCredit = courseCredit;
     }
 
-    public String getCourseCoursewarepath() {
-        return courseCoursewarepath;
+    public String getCoursePicturepath() {
+        return coursePicturepath;
     }
 
-    public void setCourseCoursewarepath(String courseCoursewarepath) {
-        this.courseCoursewarepath = courseCoursewarepath == null ? null : courseCoursewarepath.trim();
-    }
-
-    public String getCourseVideopath() {
-        return courseVideopath;
-    }
-
-    public void setCourseVideopath(String courseVideopath) {
-        this.courseVideopath = courseVideopath == null ? null : courseVideopath.trim();
+    public void setCoursePicturepath(String coursePicturepath) {
+        this.coursePicturepath = coursePicturepath == null ? null : coursePicturepath.trim();
     }
 
     public Float getCourseUsualgradesscale() {

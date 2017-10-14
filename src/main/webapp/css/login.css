@@ -1,0 +1,144 @@
+#g-nav-top{
+    top: 0;
+    left: 0;
+    position: relative;
+    clear: none;
+    width: 100%;
+    height: 80px;
+    background-color: #00c0ef;
+    z-index: 2;
+}
+
+#g-background{
+    left:0px;
+    width: 100%;
+    min-height: 630px;
+    border-radius: 0px;
+    position: relative;
+    clear: none;
+    display: block;
+    min-width: 1260px;
+    z-index:1;
+    background-color: #2e323e;
+    margin: 0px;
+    padding: 0px;
+}
+
+.login-box{
+    right: 120px;
+    top:50%;
+    position: absolute;
+    clear:none;
+    display: block;
+    width: 350px;
+    height: 360px;
+    z-index: 999;
+    background-color: #fff;
+    margin: -180px 0 0 0;
+    padding: 0px;
+}
+
+.login-container{
+    left: 50%;
+    top: 55%;
+    position: relative;
+    width: 260px;
+    height: 240px;
+    clear:none;
+    display: block;
+    margin: -120px 0 0 -130px;
+    padding: 0px;
+}
+
+#user-account,#user-pwd{
+    position: relative;
+    width: 258px;
+    height: 44px;
+    border: solid 1px #C0C0C0;
+}
+
+#user-pwd{
+    margin-top: 20px;
+}
+
+.u-input{
+    position:absolute;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 14px;
+    border: 0px;
+    width: 180px;
+    height: 30px;
+    margin: 0;
+    padding: 7px 38px;
+}
+
+#user-account .u-img{
+    top:0;
+    left: 0;
+    position:absolute;
+    margin: 13px 10px 0 10px;
+    z-index: 999;
+}
+#user-pwd .u-img{
+    top:0;
+    left: 0;
+    position:absolute;
+    margin: 12px 11px 0 11px;
+    z-index: 999;
+}
+
+.u-cancel{
+    top:0;
+    left: 218px;
+    position:absolute;
+    display: none;
+    margin: 17px 10px 0 10px;
+    z-index: 999;
+}
+
+.u-cancel:hover{
+    cursor: pointer;
+}
+
+#login-role{
+    width: 100%;
+    height: 31px;
+    line-height: 31px;
+    font-family: 微软雅黑, "Microsoft YaHei";
+    font-size: 14px;
+    padding: 0;
+    margin: 10px 0;
+}
+
+#login-role input[type='radio']{
+    vertical-align: middle;
+}
+
+#login-btn{
+    position: relative;
+    width: 258px;
+    height: 36px;
+}
+
+.login-btn{
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    background: #3DC68E;
+    border-radius: 0;
+    transition: .3s;
+}
+.login-btn:hover{
+    background: #38A97C;
+}
+
+
+#g-nav-bottom{
+    width: 100%;
+    height: 84px;
+    background-color: #00c0ef;
+}

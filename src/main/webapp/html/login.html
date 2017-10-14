@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/head.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+</head>
+<body>
+<div id="g-container">
+    <div id="g-nav-top">
+        大数据教学平台
+    </div>
+    <div id="g-background">
+        <div class="login-box">
+            <div class="login-container">
+                <div id="user-account" class="user-info">
+                    <img class="u-img" src="../img/ico-username.png">
+                    <input class="u-account u-input" type="text" placeholder="请输入帐号">
+                    <img class="u-cancel" src="../img/ico-close-del.png">
+                </div>
+                <div id="user-pwd" class="user-info">
+                    <img class="u-img" src="../img/ico-password.png">
+                    <input class="u-pwd u-input" type="password" placeholder="请输入密码">
+                    <img class="u-cancel" src="../img/ico-close-del.png">
+                </div>
+                <div id="login-role">
+                    <input type="radio" name="role" value="教师" checked="checked" style="margin-left: 50px">教师
+                    <input type="radio" name="role" value="学生" style="margin-left: 70px ">学生
+                </div>
+                <div id="login-btn">
+                    <button class="login-btn">登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="g-nav-bottom">
+        华中科技大学网络中心
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(".user-info").children("input").focus(function () {
+        $(this).parent(".user-info").css("border-color","#3DC68E");
+    });
+    $(".user-info").children("input").blur(function () {
+        $(this).parent(".user-info").css("border-color","#C0C0C0");
+    })
+    $(".user-info").children("input").keyup(function () {
+        if($(this).val()!=""){
+            $(this).next(".u-cancel").css("display","block");
+        }
+        if($(this).val()==""){
+            $(this).next(".u-cancel").css("display","none");
+        }
+    })
+   $(".u-cancel").click(function () {
+       $(this).prev("input").val("");
+       $(this).css("display","none");
+   })
+</script>
+</html>

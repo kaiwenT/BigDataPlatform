@@ -2,19 +2,65 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>课程-公告</title>
-    
+    <title>课程介绍</title>
+    <link rel="stylesheet" href="../css/font-awesome-ie7.css">
+    <link rel="stylesheet" href="../css/student-home.css">
+    <script type="application/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
 </head>
 <body>
 
 <div class="cnt f-f0">
-<h3>亲爱的mooc1507257992466</h3>
-<p class="tnt">欢迎你加入课程《人工智能原理》，赶快开启学习之旅吧~</p>
+<h2>亲爱的<span class="studentName"></span>同学</h2>
+<h3 class="tnt">欢迎你加入课程《<span class="courseName"></span>》，赶快开启学习之旅吧~</h3>
+
+<h2 style="margin-top: 60px;">课程介绍</h2>
+<h3 class="tnt"><span class="courseIntroduce"></span></h3>
 </div>
 </body>
-<script type="application/javascript" src="../js/jquery.js"></script>
-<script type="text/javascript" src="../js/bootstrap.js"></script>
-<script type="text/javascript" src="../js/student.js"></script>
-<script type="text/javascript" src="../js/student-course.js"></script>
-
+<script type="text/javascript">
+	function getCurrentUser(){	
+		$.ajax({
+			type:"GET",
+			url:"/student/getPersonalInfo",
+			dataType:"json",		
+			success : function(msg){
+				if(msg.status == "OK"){
+					var stu = msg.result;
+					$(".studentName").text(stu.studentName);
+				}else{
+					alert(msg.result);
+				}
+			},
+			error : function(msg){
+				error(msg);
+			},
+		})
+	}	
+	function getCourseById(courseId){		
+		$.ajax({
+			type:"POST",
+			url:"/studentcourse/getCourseById",
+			dataType:"json",
+			data:{
+				courseId : courseId
+			},
+			success : function(msg){
+				if(msg.status == "OK"){
+					var course = msg.result;
+					$(".courseName").text(course.courseName);
+					$(".courseIntroduce").html(course.courseIntroduce);
+				}else{
+					alert(msg.result);
+				}
+			},
+			error : function(msg){
+				error(msg);
+			},
+		})
+	}
+	getCurrentUser();
+	var courseId = getCookie('courseId');
+	getCourseById(courseId);;
+</script>
 </html>

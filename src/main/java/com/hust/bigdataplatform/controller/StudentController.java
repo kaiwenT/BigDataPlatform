@@ -41,6 +41,15 @@ public class StudentController {
 		sessionService.setObject("studentId", studentId, request);
 		return ResultUtil.success("登录成功");
 	}
+	@ResponseBody
+	@RequestMapping("/logout")
+	public Object logout(HttpServletRequest request) {		
+		String studentId = (String) sessionService.getObject("studentId", request);		
+		if (studentId != null) {
+			sessionService.remove("studentId", request);
+		}		
+		return ResultUtil.success("登录成功");
+	}
 	/**
 	 * 查询当前登录学生信息
 	 * @return

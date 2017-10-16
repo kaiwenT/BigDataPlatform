@@ -45,7 +45,7 @@ function showStudentPhoto(){
 function showstudentCourses(){
 	$.ajax({
 		type:"POST",
-		url:"/studentcourse/getCouresByStudent",
+		url:"/studentcourse/getCourseByStudent",
 		dataType:"json",
 		
 		success : function(msg){
@@ -56,10 +56,10 @@ function showstudentCourses(){
 				}
 				$(".courses_number").text("课程 "+courses.length);
 				$(".course-panel-body-wrapper").empty();
-				var cookie_courseId = "courseId" ;
+				var cookie_courseId = "'courseId'" ;
 				$.each(courses, function(idx, course){
 					
-					wrapper = '<div class="course-card-wrapper"><div class="box"><a href="course-base.html?href=announce" onclick="setCookie('+cookie_courseId+','+course.courseId+');" target="_blank" class="ga-click">'
+					wrapper = '<div class="course-card-wrapper"><div class="box"><a href="course-base.html?href=course-introduce" onclick="setCookie('+cookie_courseId+','+course.courseId+');" target="_blank" class="ga-click">'
 						+'<div class="img"><img src="http://img1.ph.126.net/1JJdFGKDIKqvVeS7i9XJrQ==/6630083702792788774.jpg" alt="'+course.courseName+'"></div>'
 						+'<div class="body"><div class="common-info-wrapper common-info-wrapper-fix-height">'
 						+'<div class="title"><div class="text"><span class="text">'+course.courseName+'</span></div></div>'
@@ -74,6 +74,26 @@ function showstudentCourses(){
 		},
 		error : function(msg){
 			alert(msg.result);
+		},
+	})
+}
+
+//学生退出登录，返回登录界面
+function studentLogout(){	
+	
+	$.ajax({
+		type:"GET",
+		url:"/student/logout",
+		dataType:"json",		
+		success : function(msg){
+			if(msg.status == "OK"){
+				window.location.href = 'index.html';
+			}else{
+				alert(msg.result);
+			}
+		},
+		error : function(msg){
+			alert(msg);
 		},
 	})
 }

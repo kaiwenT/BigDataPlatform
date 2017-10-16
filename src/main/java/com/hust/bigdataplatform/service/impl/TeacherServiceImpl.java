@@ -28,7 +28,7 @@ public class TeacherServiceImpl implements TeacherService {
 		// TODO Auto-generated method stub
 	
 		Teacher teacher = teacherdao.findById(teacherid);
-		if (teacher.equals(null)) {
+		if (teacher == null) {
 			return 0;
 		}
 		else if (teacher.getTeacherPwd().equals(teacherpwd)) {

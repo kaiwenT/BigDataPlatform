@@ -27,3 +27,8 @@ function getCookie(key) {
         return unescape(arr[2]); 
     return null;
 }
+
+//ajax请求失败时，提示错误信息
+function showErrorMsg(msg){
+	alert(eval('(' + msg.responseText + ')').result);
+}

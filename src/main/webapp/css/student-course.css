@@ -70,3 +70,19 @@
     width:790px; 
     min-height:720px;
 }
+.g-mn1{
+    float: right;
+    width: 100%;
+}
+.m-learnbox {
+    padding: 20px 40px;
+}
+
+.g-mn1c {
+    margin-left: 245px;
+}
+
+.left-mn {
+    float: left;
+    width: 100%;
+}

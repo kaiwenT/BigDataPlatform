@@ -1,0 +1,143 @@
+.name{
+    width: 60%;
+    font-family: "Arial","Hiragino Sans GB","Microsoft YaHei", \5fae\8f6f\96c5\9ed1, "Helvetica", "sans-serif";
+    line-height: 1.5;
+    font-weight: normal;
+}
+.name:focus{
+    border: solid 1px #5cb85c;
+}
+.j-titleName{
+    font-size: 1.33em;
+}
+
+.j-name{
+    font-size: 1.17em;
+}
+
+.m-learnChapterList{
+    position: relative;
+}
+.u-learn-moduletitle {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+.j-moduleName{
+    float: left;
+}
+
+.empty {
+    margin: 0;
+    padding: 40px 0;
+    text-align: left;
+}
+.empty span {
+    background-position: -11px -197px;
+    line-height: 30px;
+    color: #999;
+    font-size: 16px;
+    padding-left: 40px;
+}
+
+.m-learnChapterNormal {
+    position: relative;
+    margin-bottom: 10px;
+}
+.m-learnChapterNormal .titleBox {
+    background-color: #e8f9ff;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+.m-learnChapterNormal .titleBox:hover {
+    background-color: #d2eff7;
+}
+.m-learnChapterNormal .titleBox .cpicon {
+    line-height: 24px;
+    font-size: 14px;
+    color: #666;
+    width: 24px;
+    float: left;
+}
+.f-icon {
+    font-family: 'icon-mooc';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.u-icon-caret-up:before {
+    content: "\e904";
+}
+.u-icon-caret-down:before {
+    content: "\e91b";
+}
+
+.m-learnChapterNormal .titleBox .name {
+    max-width: 80%;
+}
+.m-learnChapterNormal .line {
+    width: 0px;
+    height: 0px;
+    border-left: 1px solid #eee;
+    top: 70px;
+    left: 20px;
+}
+.u-learnLesson {
+    position: relative;
+    padding: 20px 15px 20px 40px;
+    cursor: pointer;
+    border-bottom: 1px dashed #E7E9EF;
+}
+.u-learnLesson:hover {
+    background-color: #f8f8f8;
+    border-bottom: 1px dashed #f8f8f8;
+}
+
+.u-learnLesson.normal .name {
+    max-width: 75%;
+}
+
+.u-learnLesson .icon.icon-1 {
+    background-position: -3px -150px;
+}
+.u-learnLesson .icon.icon-2 {
+    background-position: -27px -150px;
+}
+
+
+.u-learnLesson .icon {
+    height: 20px;
+    width: 20px;
+    top: 21px;
+    left: 10px;
+    background: url(http://mc.stu.126.net/res/images/pages/learn/learn_sprite.png?ded0242…) no-repeat 4449px 4449px;
+}
+
+.lsicon {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 15px;
+}
+.lesson-title-plus , .lesson-content-plus{
+    color: #aaa;
+    font-size: 14px;
+    line-height: 20px;
+    border: dashed 2px;
+    margin-left: 15px;
+    position: relative;
+    float: left;
+    cursor: pointer;
+}
+
+.upload{
+    top:0;
+    left: 0;
+    position: absolute;
+    width: 0px;
+    height: 0px;
+}

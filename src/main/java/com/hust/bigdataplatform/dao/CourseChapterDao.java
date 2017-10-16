@@ -2,8 +2,10 @@ package com.hust.bigdataplatform.dao;
 
 import java.util.List;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hust.bigdataplatform.dao.mapper.CourseChapterMapper;
 import com.hust.bigdataplatform.model.CourseChapter;
@@ -16,7 +18,9 @@ import com.hust.bigdataplatform.model.CourseChapterExample.Criteria;
  *
  */
 public class CourseChapterDao {
+	
 	private static final Logger logger = LoggerFactory.getLogger(CourseChapterDao.class);
+	@Autowired
 	private CourseChapterMapper courseChapterMapper;
 	/**
 	 * 为课程添加章节

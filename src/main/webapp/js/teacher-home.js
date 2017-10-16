@@ -46,7 +46,7 @@ function getCourseByTeacherId() {
 				var cookie_courseId = "courseId" ;
 				$.each(courses, function(idx, course){
 					
-					c = '<div class="course-card-wrapper"><div class="box"><a href="course-base.html?href=announce" onclick="setCookie('+cookie_courseId+','+course.courseId+');" target="_blank" class="ga-click">'
+					c = '<div class="course-card-wrapper"><div class="box"><a href="teacher-course-base.html?href=announce" onclick="setCookie('+cookie_courseId+','+course.courseId+');" target="_blank" class="ga-click">'
 						+'<div class="img"><img src="http://img1.ph.126.net/1JJdFGKDIKqvVeS7i9XJrQ==/6630083702792788774.jpg" alt="'+course.courseName+'"></div>'
 						+'<div class="body">'
 						+'<div class="common-info-wrapper common-info-wrapper-fix-height">'

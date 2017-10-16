@@ -62,10 +62,27 @@
 	position:relative;	
 	float:right;
 	top: 100px;
-    right: 0;   
+    right: 0;
+    left: 250px;
     bottom: 0;
     float:right;
     margin-left:250px;
     width:790px; 
     min-height:720px;
+}
+.g-mn1{
+    float: right;
+    width: 100%;
+}
+.m-learnbox {
+    padding: 20px 40px;
+}
+
+.g-mn1c {
+    margin-left: 245px;
+}
+
+.left-mn {
+    float: left;
+    width: 100%;
 }

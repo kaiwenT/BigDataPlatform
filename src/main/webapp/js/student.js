@@ -25,9 +25,22 @@ function showstudentInfo(){
 		},
 	})
 }
-
+showStudentPhoto();
 showstudentInfo();
 showstudentCourses();
+
+//显示学生头像
+function showStudentPhoto(){
+    
+    $.ajax({type: "post",        //使用post方法访问后台
+        dataType: "text",         //返回text格式的数据，(这里存在疑问，Java部分是response输出流，这里应该指定什么样的数据类型）
+        url: "",    //要访问的后台地址，这里是servlet的地址
+//        data:{"filePath":filePath},   //要发送的数据
+        success: function(data){//data为返回的数据，在这里做数据绑定
+        	$(".u-ui-img.img").attr("src", "data:image/gif;base64," + data);
+        	}
+    });
+}
 //学生所选课程信息展示
 function showstudentCourses(){
 	$.ajax({

@@ -5,6 +5,7 @@
     <title>课程中心--学生</title>
     <link rel="stylesheet" href="../css/head.css">
     <link rel="stylesheet" href="../css/student-course.css">
+    <link rel="stylesheet" href="http://mc.stu.126.net/pub/s/web/pt_home.css?16e6e3fc07c8ec874178a9562aca6ce3">
 </head>
 <body>
 <div id="g-container">
@@ -92,7 +93,7 @@
                     </li>
                     <li class="u-greentab j-tabitem f-f0 " data-name="课件" data-type="3" data-id="1002347045"
                         id="auto-id-1507098444832">
-                        <a class="f-thide f-fc3" href="#">课件</a>
+                        <a class="f-thide f-fc3" href="student-courseware">课件</a>
                     </li>
                     <li class="u-greentab j-tabitem f-f0 last" data-name="讨论区" data-type="7" data-id="1002347048"
                         id="auto-id-1507098444835">
@@ -110,7 +111,14 @@
                 </ul>
             </div>
         </div>
-        <div class="right"></div>
+        <div class="g-mn1">
+            <div class="g-mn1c m-learnbox">
+                <div class="left-mn">
+
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 </body>
@@ -140,7 +148,7 @@
 					if(data=="error"){
 						window.parent.location.href = "/index.html";
 					}else{
-					$(".right").empty().html(data);
+					$(".m-learnbox").empty().html(data);
 					}
 				},
 				error : function() {
@@ -174,7 +182,7 @@
 					if(data=="error"){
 						window.parent.location.href = "/index.html";
 					}else{
-						$(".right").empty().html(data);
+						$(".m-learnbox").empty().html(data);
 					}
 				},
 				error : function() {
@@ -229,7 +237,7 @@
 						if(data=="error"){
 							window.parent.location.href = "/index.html";
 						}else{
-						$(".right").empty().html(data);
+						$(".m-learnbox").empty().html(data);
 						}
 					},
 					error : function() {

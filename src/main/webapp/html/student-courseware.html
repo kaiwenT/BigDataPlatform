@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/student-courseware.css">
+</head>
+<body>
+<div class="m-learnChapterList">
+    <div class="j-moduletitle u-learn-moduletitle f-cb" style="">
+        <h2 class="j-moduleName">课件<br></h2>
+    </div>
+    <div class="empty j-empty" style="display: none;">
+        <span class="f-ib">老师还没有发布任何学习内容，请耐心等待</span>
+    </div>
+    <div class="m-learnChapterNormal f-pr">
+        <div class="titleBox j-titleBox f-cb" id="auto-id-1508033115166">
+            <div class="f-icon cpicon j-down f-fl u-icon-caret-up" style=""></div>
+            <div class="f-icon cpicon j-up f-fl u-icon-caret-down" style="display: none;"></div>
+            <h3 class="j-titleName name f-fl f-thide">第一章 绪论（总时长：56分26秒，共6讲）</h3>
+        </div>
+        <div class="lessonBox j-lessoBox" style="">
+            <div class="u-learnLesson normal f-cb" id="auto-id-1508033115219">
+                <div class="j-icon icon f-pa icon-2"></div>
+                <h4 class="j-name name f-fl f-thide">第1讲 数据结构的基础概念（总时长12分钟）</h4>
+                <div class="j-typebox f-cb f-fr">
+                    <div>
+                        <div class="f-icon lsicon f-fl learned" data-cid="1003495671" title="视频：第1讲&nbsp;数据结构的基础概念视频" id="auto-id-1508033115800">
+                            <span class="u-icon-video2"></span>
+                        </div>
+                        <div class="f-icon lsicon f-fl " data-cid="1003495672" title="富文本：第1讲数据结构的基础概念--内容简介" id="auto-id-1508033115802">
+                            <span class="u-icon-text"></span>
+                        </div>
+                        <div class="f-icon lsicon f-fl " data-cid="1003495673" title="测验题：数据结构的基础概念随堂测验" id="auto-id-1508033115804">
+                            <span class="u-icon-test3"></span>
+                        </div>
+                        <div class="f-icon lsicon f-fl " data-cid="1003495674" title="文档：第1讲数据结构的基础概念--教学内容" id="auto-id-1508033115806">
+                            <span class="u-icon-doc"></span>
+                        </div>
+                        <div class="f-icon lsicon f-fl " data-cid="1003495675" title="讨论：基本概念--讨论题" id="auto-id-1508033115808">
+                            <span class="u-icon-discuss2"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(".titleBox").click(function () {
+        if($(this).children(".u-icon-caret-up").css("display")=="none"){
+            $(this).children(".u-icon-caret-up").css("display","block");
+            $(this).children(".u-icon-caret-down").css("display","none");
+            $(this).next(".lessonBox").css("display","block");
+        }else{
+            $(this).children(".u-icon-caret-up").css("display","none");
+            $(this).children(".u-icon-caret-down").css("display","block");
+            $(this).next(".lessonBox").css("display","none");
+        }
+    })
+</script>
+</html>

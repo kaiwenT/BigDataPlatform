@@ -36,6 +36,30 @@ function addContent(e) {
         ' <span class="u-icon-close"></span>' +
         ' </div>' +
         ' </div>' +
+        '</div>'+
+        '<div class="u-learnLesson video f-cb" style="height:50px;padding: 0; display: none;">'+
+        '<div class="f-pr f-fl" style="height: 100%;width: 40px;">'+
+        '<span class="u-icon-video2"'+
+    'style="font-size: 20px;margin: 0 -10px; top:15px; left:50%;position: relative; "></span>'+
+        '</div>'+
+        '<div class="f-pr f-fl u-source" style="border: 0" title="添加视屏">'+
+        '<div class="f-pa u-source-add" onclick="addVideo(this)">'+
+        '<span class="f-pa u-icon-plus"></span>'+
+        '</div>'+
+        '<input type="file" multiple="multiple" style="width: 0px;height: 0px;display: none">'+
+        '</div>'+
+        '</div>'+
+        '<div class="u-learnLesson pdf f-cb" style="height:50px;padding: 0; display: none;">'+
+        '<div class="f-pr f-fl" style="height: 100%;width: 40px;">'+
+        '<span class="u-icon-book"'+
+    'style="font-size: 20px;margin: 0 -10px; top:15px; left:50%;position: relative; "></span>'+
+        '</div>'+
+        '<div class="f-pr f-fl u-source" style="border: 0" title="添加pdf">'+
+        '<div class="f-pa u-source-add" onclick="addPdf(this)">'+
+        '<span class="f-pa u-icon-plus"></span>'+
+        '</div>'+
+        '<input type="file" multiple="multiple" style="width: 0px;height: 0px;display: none">'+
+        '</div>'+
         '</div>'
     $(e).parent(".u-learnLesson").before(content);
 }
@@ -169,9 +193,16 @@ function addVideo(e,event) {
         } else {
             for (i = 0; i < fileList.length; i++) {
                 var file = fileList[i];
+                var tempStr = file.name.split(".");
+                var fileType = tempStr[tempStr.length-1];
+                alert(fileType.search(/mp4|mpeg|mpeg4|ogg/i))
+                if(fileType.search(/mp4|mpeg|mpeg4|ogg/i)==-1){
+                    alert("不是视频文件！")
+                    continue;
+                }
                 var content = '<div class="f-pr f-fl u-source" title="' + file.name + '" onmousemove="uSHover(this)"' +
                     'onmouseleave="uSBlur(this)">' +
-                    '<div class="f-pa u-source-upload" style="display: none" data-path="'+file+'" onclick="uploadVideo(this)">' +
+                    '<div class="f-pa u-source-upload" data-path="'+file+'" onclick="uploadVideo(this)">' +
                     '<span class="icon-upload-alt"></span>' +
                     '</div>' +
                     '<div class="f-pa u-source-close" style="display:none;" onclick="delVideo(this)">' +
@@ -179,14 +210,98 @@ function addVideo(e,event) {
                     '</div>' +
                     '</div>';
                 $(e).parents(".u-source").before(content);
+                uploadVideo1($(e).parents(".u-source").prev(".u-source"),file);
             }
         }
     });
 }
 
+//视频异步上传
+function uploadVideo1(e,file) {
+    var formData = new FormData();
+    formData.append("file" , file);
+    $.ajax({
+        type: "POST",
+        url: "#",
+        data: formData ,　　//这里上传的数据使用了formData 对象
+        processData : false,//必须false才会自动加上正确的Content-Type
+        contentType : false ,
+        success : function(msg) {
+            if (msg.status == "OK") {
+                e.addClass("u-source-ok");
+                e.children(".u-source-upload").css("display","none");
+            } else {
+
+            }
+        },
+        error : function() {
+            alert("上传文件失败请重新上传！");
+        }
+    })
+}
+
+//在本地添加视频文件准备上传
+function addPdf(e,event) {
+    window.event ? window.event.cancelBubble = true : event.stopPropagation();
+    $(e).next("input").click();
+    $(e).next("input").off("change");
+    $(e).next("input").change(function () {
+        fileList = $(e).next("input")[0].files;
+        alert("文件数：" + fileList.length + "第一个文件名：" + fileList[0].name + "文件" + fileList[0]);
+        if (fileList.length == 0) {
+            return;
+        } else {
+            for (i = 0; i < fileList.length; i++) {
+                var file = fileList[i];
+                var tempStr = file.name.split(".");
+                var fileType = tempStr[tempStr.length-1];
+                if(fileType.search(/pdf/i)==-1){
+                    alert("不是pdf文件！")
+                    continue;
+                }
+                var content = '<div class="f-pr f-fl u-source" title="' + file.name + '" onmousemove="uSHover(this)"' +
+                    'onmouseleave="uSBlur(this)">' +
+                    '<div class="f-pa u-source-upload" data-path="'+file+'" onclick="uploadPdf(this)">' +
+                    '<span class="icon-upload-alt"></span>' +
+                    '</div>' +
+                    '<div class="f-pa u-source-close" style="display:none;" onclick="delPdf(this)">' +
+                    '<span class="u-icon-close"></span>' +
+                    '</div>' +
+                    '</div>';
+                $(e).parents(".u-source").before(content);
+                uploadVideo1($(e).parents(".u-source").prev(".u-source"),file);
+            }
+        }
+    });
+}
+
+//视频异步上传
+function uploadPdf1(e,file) {
+    var formData = new FormData();
+    formData.append("file" , file);
+    $.ajax({
+        type: "POST",
+        url: "#",
+        data: formData ,　　//这里上传的数据使用了formData 对象
+        processData : false,//必须false才会自动加上正确的Content-Type
+        contentType : false ,
+        success : function(msg) {
+            if (msg.status == "OK") {
+                e.addClass("u-source-ok");
+                e.children(".u-source-upload").css("display","none");
+            } else {
+
+            }
+        },
+        error : function() {
+            alert("上传文件失败请重新上传！");
+        }
+    })
+}
+
 //点击上传按钮上传video
 function uploadVideo(e) {
-    alert("1");
+
 }
 
 //点击上传按钮上传pdf

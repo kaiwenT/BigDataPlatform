@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/teacher-courseware.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <script src="../ckeditor/ckeditor.js"></script>
+</head>
+<body>
+<div class="m-learnChapterList">
+    <div class="j-moduletitle u-learn-moduletitle f-cb" style="">
+        <h2 class="j-moduleName">课程介绍<br></h2>
+    </div>
+    <div class="m-learnChapterNormal f-pr">
+        <textarea id="TextArea1" class="ckeditor"></textarea>
+        <button onclick="submit()" class="u-btn u-btn-primary j-getnextbtn f-fr" style="margin-top: 10px;">保存</button>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    CKEDITOR.replace('TextArea1');
+    function submit() {
+        var content = CKEDITOR.instances.TextArea1.getData();
+        alert(content);
+    }
+</script>
+</html>

@@ -83,21 +83,21 @@
                          width="230" height="130" alt="数据结构">
                 </div>
                 <ul id="j-courseTabList" class="tab u-tabul">
-                    <li class="u-greentab j-tabitem f-f0 first u-curtab" data-name="公告" data-type="1"
+                    <li class="u-greentab j-tabitem f-f0 first u-curtab" data-name="课程介绍" data-type="1"
                         data-id="1002347043" id="auto-id-1507098444830">
-                        <a class="f-thide f-fc3" href="announce">公告</a>
+                        <a class="f-thide f-fc3" href="teacher-course-introduce">课程介绍</a>
                     </li>
-                    <li class="u-greentab j-tabitem f-f0 " data-name="评分标准" data-type="2" data-id="1002347044"
+                    <li class="u-greentab j-tabitem f-f0 " data-name="教学大纲管理" data-type="2" data-id="1002347044"
                         id="auto-id-1507098444831">
-                        <a class="f-thide f-fc3" href="#">评分标准</a>
+                        <a class="f-thide f-fc3" href="teacher-course-outline">教学大纲管理</a>
                     </li>
-                    <li class="u-greentab j-tabitem f-f0 " data-name="课件" data-type="3" data-id="1002347045"
+                    <li class="u-greentab j-tabitem f-f0 " data-name="课件管理" data-type="3" data-id="1002347045"
                         id="auto-id-1507098444832">
-                        <a class="f-thide f-fc3" href="teacher-courseware">课件</a>
+                        <a class="f-thide f-fc3" href="teacher-courseware">课件管理</a>
                     </li>
-                    <li class="u-greentab j-tabitem f-f0 last" data-name="讨论区" data-type="7" data-id="1002347048"
+                    <li class="u-greentab j-tabitem f-f0 last" data-name="实验管理" data-type="7" data-id="1002347048"
                         id="auto-id-1507098444835">
-                        <a class="f-thide f-fc3" href="#">实验</a>
+                        <a class="f-thide f-fc3" href="#">实验管理</a>
                     </li>
                     <li class="u-greentab j-tabitem f-f0 " data-name="测验与作业" data-type="4" data-id="1002347046"
                         id="auto-id-1507098444833">
@@ -124,14 +124,11 @@
 </body>
 <script type="application/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/bootstrap.js"></script>
-<script type="text/javascript" src="../js/student.js"></script>
 <script type="text/javascript" src="../js/student-course.js"></script>
 <script type="text/javascript" src="../js/tools.js"></script>
 <script type="application/javascript">
 	bootstrapButton = $.fn.button.noConflict();
 	$.fn.bootstrapBtn = bootstrapButton;
-
-  
 	function baseAjax(item) {
 		if (item == "index") {
 			exit();
@@ -261,7 +258,6 @@
 	if (history.pushState) { //如果浏览器支持history的pushstate属性,在前进后退的时候直接触发pageTrigger事件
 		window.addEventListener("popstate", function() {
 			pageTrigger();
-
 		});
 		// 默认载入
 		pageTrigger();

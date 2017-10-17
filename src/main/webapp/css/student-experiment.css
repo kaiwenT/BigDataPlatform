@@ -1,0 +1,7 @@
+.submitTime,.score{
+    line-height: 23px;
+    margin-left: 30px;
+    margin-right: 10px;
+    font-size: 1.17em;
+    color: #999;
+}

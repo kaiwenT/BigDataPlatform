@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/student-courseware.css">
+    <link rel="stylesheet" href="../css/student-experiment.css">
+</head>
+<body>
+<div class="m-learnChapterList">
+    <div class="j-moduletitle u-learn-moduletitle f-cb" style="">
+        <h2 class="j-moduleName">实验<br></h2>
+    </div>
+    <div class="empty j-empty" style="display: none;">
+        <span class="f-ib">老师还没有发布任何学习内容，请耐心等待</span>
+    </div>
+    <div class="m-learnChapterNormal f-pr">
+        <div class="titleBox j-titleBox f-cb" id="auto-id-1508033115166">
+            <div class="f-icon cpicon j-down f-fl u-icon-caret-up" style=""></div>
+            <div class="f-icon cpicon j-up f-fl u-icon-caret-down" style="display: none;"></div>
+            <h3 class="j-titleName name f-fl f-thide">实验一</h3>
+            <div class="submitTime f-fl">截止时间：2017年10月01日 23:30</div>
+            <div class="score f-fl">成绩：100</div>
+            <button class="u-btn u-btn-default f-pa" style="top:2px; right:0; height: 36px; font-size: 1.23em">提交作业</button>
+        </div>
+        <div class="lessonBox j-lessoBox" style="">
+            <div class="u-learnLesson video f-cb" id="auto-id-1508033115219">
+                <div class="f-pr f-fl" style="height: 100%;width: 40px;">
+                        <span class="u-icon-video2"
+                              style="font-size: 20px;margin: 0 -10px; top:15px; left:50%;position: relative; "></span>
+                </div>
+                <div class="f-pr f-fl u-source" title="这是一个视频的名字" onmousemove="uSHover(this)"
+                     onmouseleave="uSBlur(this)">
+                    <div class="f-pa u-source-play" style="display: none" onclick="uploadVideo(this)">
+                        <span class="icon-video"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(".titleBox").click(function () {
+        if($(this).children(".u-icon-caret-up").css("display")=="none"){
+            $(this).children(".u-icon-caret-up").css("display","block");
+            $(this).children(".u-icon-caret-down").css("display","none");
+            $(this).next(".lessonBox").css("display","block");
+        }else{
+            $(this).children(".u-icon-caret-up").css("display","none");
+            $(this).children(".u-icon-caret-down").css("display","block");
+            $(this).next(".lessonBox").css("display","none");
+        }
+    })
+</script>
+</html>

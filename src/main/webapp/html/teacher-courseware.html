@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="../css/teacher-courseware.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
 </head>
 <body>
 <div class="m-learnChapterList">
@@ -18,39 +20,107 @@
             <div class="titleBox j-titleBox f-cb" onclick="titleClick(this)">
                 <div class="f-icon cpicon j-down f-fl u-icon-caret-up" style=""></div>
                 <div class="f-icon cpicon j-up f-fl u-icon-caret-down" style="display: none;"></div>
-                <input class="j-titleName name f-fl f-thide" value="第一章 绪论（总时长：56分26秒，共6讲）" placeholder="请输入章名">
-                <div class="j-typebox f-cb f-fr">
+                <input class="j-titleName name f-fl f-thide" disabled="disabled" value="第一章 绪论（总时长：56分26秒，共6讲）"
+                       placeholder="请输入章名" onclick="stopBubble()">
+                <div class="j-typebox f-cb f-fr" onclick="stopBubble()">
+                    <div class="f-icon lsicon f-fl " title="编辑" onclick="editInfo(this)">
+                        <span class="u-icon-edit"></span>
+                    </div>
+                    <div class="f-icon lsicon f-fl" title="保存" style="display: none;" onclick="storeInfo(this)">
+                        <span class="u-icon-check"></span>
+                    </div>
                     <div class="f-icon lsicon f-fl " title="删除" onclick="delTitle(this)">
                         <span class="u-icon-close"></span>
                     </div>
                 </div>
             </div>
             <div class="lessonBox j-lessoBox" style="">
-                    <div class="u-learnLesson normal f-cb">
-                        <div class="j-icon icon f-pa icon-1"></div>
-                        <input class="j-name name f-fl f-thide" value="第1讲 数据结构的基础概念（总时长12分钟）" placeholder="请输入节名">
-                        <div class="j-typebox f-cb f-fr">
-                                <div class="f-icon lsicon f-fl learned" title="教学视频上传"
-                                     id="auto-id-1508033115800">
-                                    <span class="u-icon-video2"></span>
-                                    <input type="file" class="upload">
-                                </div>
-                                <div class="f-icon lsicon f-fl "  title="教学文档上传（PDF）">
-                                    <span class="u-icon-doc"></span>
-                                    <input type="file" class="upload">
-                                </div>
-                                <div class="f-icon lsicon f-fl " title="删除" onclick="delContent(this)">
-                                    <span class="u-icon-close"></span>
-                                </div>
+                <div class="u-learnLesson normal f-cb">
+                    <div class="j-icon icon f-pa icon-1"></div>
+                    <input class="j-name name f-fl f-thide" disabled="disabled" value="第1讲 数据结构的基础概念（总时长12分钟）"
+                           placeholder="请输入节名" onclick="stopBubble()">
+                    <div class="j-typebox f-cb f-fr" onclick="stopBubble()">
+                        <div class="f-icon lsicon f-fl " title="教学视频上传">
+                            <span class="u-icon-video2" onclick="videoControl(this)"></span>
+                        </div>
+                        <div class="f-icon lsicon f-fl " title="教学文档上传（PDF）">
+                            <span class="u-icon-book" onclick="pdfControl(this)"></span>
+                        </div>
+                        <div class="f-icon lsicon f-fl " title="编辑" onclick="editInfo(this)">
+                            <span class="u-icon-edit"></span>
+                        </div>
+                        <div class="f-icon lsicon f-fl" title="保存" style="display: none;" onclick="storeInfo(this)">
+                            <span class="u-icon-check"></span>
+                        </div>
+                        <div class="f-icon lsicon f-fl " title="删除" onclick="delContent(this)">
+                            <span class="u-icon-close"></span>
                         </div>
                     </div>
-                <div class="u-learnLesson normal f-cb" style="padding: 0">
-                    <div class="f-icon lesson-content-plus" style="width: 50px;height: 50px; margin: 0 -75px;left:50%" onclick="addContent(this)">
-                    <span class="u-icon-plus"
-                          style=" font-size: 40px;margin: -20px -20px; position: absolute; top:50%; left:50%"></span>
+                </div>
+                <div class="u-learnLesson video f-cb" style="height:50px;padding: 0; display: none;">
+                    <div class="f-pr f-fl" style="height: 100%;width: 40px;">
+                        <span class="u-icon-video2"
+                              style="font-size: 20px;margin: 0 -10px; top:15px; left:50%;position: relative; "></span>
                     </div>
-                    <div class="f-icon lesson-content-ok" style="width: 50px;height: 50px; margin: 0 15px;left:50%" onclick="submitLesson(this)">
-                    <span class="u-icon-check"
+                    <div class="f-pr f-fl u-source u-source-ok" title="这是一个视频的名字" onmousemove="uSHover(this)"
+                         onmouseleave="uSBlur(this)">
+                        <div class="f-pa u-source-upload" style="display: none" onclick="uploadVideo(this)">
+                            <span class="icon-upload-alt"></span>
+                        </div>
+                        <div class="f-pa u-source-close" style="display:none;" onclick="delVideo(this)">
+                            <span class="u-icon-close"></span>
+                        </div>
+                    </div>
+                    <div class="f-pr f-fl u-source" title="这是一个视频的名字" onmousemove="uSHover(this)"
+                         onmouseleave="uSBlur(this)">
+                        <div class="f-pa u-source-upload" style="display: none" onclick="uploadVideo(this)">
+                            <span class="icon-upload-alt"></span>
+                        </div>
+                        <div class="f-pa u-source-close" style="display:none;" onclick="delVideo(this)">
+                            <span class="u-icon-close"></span>
+                        </div>
+                    </div>
+                    <div class="f-pr f-fl u-source" style="border: 0" title="添加视屏">
+                        <div class="f-pa u-source-add" onclick="addVideo(this)">
+                            <span class="f-pa u-icon-plus"></span>
+                        </div>
+                        <input type="file" multiple="multiple" style="width: 0px;height: 0px;display: none">
+                    </div>
+                </div>
+                <div class="u-learnLesson pdf f-cb" style="height:50px;padding: 0; display: none;">
+                    <div class="f-pr f-fl" style="height: 100%;width: 40px;">
+                        <span class="u-icon-book"
+                              style="font-size: 20px;margin: 0 -10px; top:15px; left:50%;position: relative; "></span>
+                    </div>
+                    <div class="f-pr f-fl u-source u-source-ok" title="这是一个pdf的名字" onmousemove="uSHover(this)"
+                         onmouseleave="uSBlur(this)">
+                        <div class="f-pa u-source-upload" style="display: none;" onclick="uploadPdf(this)">
+                            <span class="icon-upload-alt"></span>
+                        </div>
+                        <div class="f-pa u-source-close" style="display:none;" onclick="delPdf(this)">
+                            <span class="u-icon-close"></span>
+                        </div>
+                    </div>
+                    <div class="f-pr f-fl u-source" title="这是一个pdf的名字" onmousemove="uSHover(this)"
+                         onmouseleave="uSBlur(this)">
+                        <div class="f-pa u-source-upload" style="display: none;" onclick="uploadPdf(this)">
+                            <span class="icon-upload-alt"></span>
+                        </div>
+                        <div class="f-pa u-source-close" style="display:none;" onclick="delPdf(this)">
+                            <span class="u-icon-close"></span>
+                        </div>
+                    </div>
+                    <div class="f-pr f-fl u-source" style="border: 0" title="添加pdf">
+                        <div class="f-pa u-source-add" onclick="addPdf(this)">
+                            <span class="f-pa u-icon-plus"></span>
+                        </div>
+                        <input type="file" multiple="multiple" style="width: 0px;height: 0px;display: none">
+                    </div>
+                </div>
+                <div class="u-learnLesson normal f-cb" style="padding: 0">
+                    <div class="f-icon lesson-content-plus" style="width: 50px;height: 50px; margin: 0 -25px;left:50%"
+                         onclick="addContent(this)">
+                    <span class="u-icon-plus"
                           style=" font-size: 40px;margin: -20px -20px; position: absolute; top:50%; left:50%"></span>
                     </div>
                 </div>
@@ -64,12 +134,4 @@
 </div>
 </body>
 <script type="text/javascript" src="../js/teacher-courseware.js"></script>
-<script type="text/javascript">
-    $(".name").click(function () {
-        return false;
-    });
-    $(".lsicon span").click(function () {
-        $(this).next("input").click();
-    });
-</script>
 </html>

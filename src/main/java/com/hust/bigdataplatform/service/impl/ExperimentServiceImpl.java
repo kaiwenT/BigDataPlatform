@@ -23,4 +23,40 @@ public class ExperimentServiceImpl implements ExperimentService {
 		return experimentDao.selectByCourseId(courseId);
 	}
 
+	@Override
+	public int addExperiment(Experiment experiment) {
+		// TODO Auto-generated method stub
+		if(experiment == null){
+			return 0;
+		}
+		return experimentDao.insert(experiment);
+	}
+
+	@Override
+	public int updateExperiment(Experiment experiment) {
+		if(experiment == null){
+			return 0;
+		}
+		return experimentDao.updateById(experiment);
+	}
+
+	@Override
+	public int deleteExperiment(String experimentId, String courseId) {
+		if(experimentId == null || "".equals(experimentId)){
+			return 0;
+		}
+		if(courseId == null || "".equals(courseId)){
+			return 0;
+		}
+		return experimentDao.deleteById(experimentId, courseId);
+	}
+
+	@Override
+	public List<Experiment> findExperimentByExpId(String experimentId) {
+		if(experimentId == null || "".equals(experimentId)){
+			return null;
+		}
+		return experimentDao.selectByExperimentId(experimentId);
+	}
+
 }

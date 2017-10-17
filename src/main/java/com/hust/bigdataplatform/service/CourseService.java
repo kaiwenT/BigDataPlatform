@@ -1,5 +1,7 @@
 package com.hust.bigdataplatform.service;
 
+
+
 import com.hust.bigdataplatform.model.Course;
 
 public interface CourseService {
@@ -10,4 +12,5 @@ public interface CourseService {
 	 * @return
 	 */
 	public Course findCourseById(String courseId);
+	
 }

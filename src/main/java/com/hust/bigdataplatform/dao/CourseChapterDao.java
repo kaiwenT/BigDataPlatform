@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.hust.bigdataplatform.dao.mapper.CourseChapterMapper;
 import com.hust.bigdataplatform.model.CourseChapter;
@@ -17,6 +18,7 @@ import com.hust.bigdataplatform.model.CourseChapterExample.Criteria;
  * @author Administrator
  *
  */
+@Repository
 public class CourseChapterDao {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CourseChapterDao.class);

@@ -46,6 +46,16 @@ public class TeacherController {
 			return ResultUtil.errorWithMsg("密码错误");
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping("/teacherloginout")
+	public Object loginout(HttpServletRequest request) {		
+		String teacherId = (String) sessionService.getObject("teacherId", request);		
+		if (teacherId != null) {
+			sessionService.remove("teacherId", request);
+		}		
+		return ResultUtil.success("退出成功");
+	}
 	/**
 	 * 查询当前登录的教师信息
 	 * @param request

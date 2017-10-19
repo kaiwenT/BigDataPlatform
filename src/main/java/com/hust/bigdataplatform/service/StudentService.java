@@ -21,12 +21,7 @@ public interface StudentService {
 	 * @return 1 登录成功 0登录失败
 	 */
 	public int login(String id, String pwd);
-	/**
-	 * 查找学生所选课程
-	 * @param studentId
-	 * @return
-	 */
-	public List<Course> selectCoursesByStudent(String studentId);
+	
 	/**
 	 * 根据学号查找学生
 	 * @param studentId

@@ -30,9 +30,14 @@ public class StudentController {
 	public Object login(@RequestParam(value = "studentId", required = true) String studentId,
 			@RequestParam(value = "password", required = true) String password,
 			HttpServletRequest request) {
-		
+		if(studentId == null || "".equals(studentId) || password == null || "".equals(password)){
+			return ResultUtil.errorWithMsg("登录失败，用户名或密码为空！");
+		}
 		
 		int islogin = studentService.login(studentId, password);
+		if (islogin == 0) {
+			return ResultUtil.errorWithMsg("登录失败，不存在的用户名！");
+		}
 		if (islogin < 0) {
 			return ResultUtil.errorWithMsg("登录失败，用户名或者密码错误！");
 		}

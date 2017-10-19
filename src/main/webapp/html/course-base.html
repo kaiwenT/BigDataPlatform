@@ -123,13 +123,14 @@
 </div>
 </body>
 <script type="application/javascript" src="../js/jquery.js"></script>
-<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="application/javascript" src="../js/bootstrap.js"></script>
 <script type="text/javascript" src="../js/course.js"></script>
 <script type="text/javascript" src="../js/tools.js"></script>
 <script type="application/javascript">
 	bootstrapButton = $.fn.button.noConflict();
 	$.fn.bootstrapBtn = bootstrapButton;
-
+	//显示课程图片
+	showCoursePhoto();
   
 	function baseAjax(item) {
 		if (item == "index") {

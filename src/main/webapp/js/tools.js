@@ -32,3 +32,7 @@ function getCookie(key) {
 function showErrorMsg(msg){
 	alert(eval('(' + msg.responseText + ')').result);
 }
+//ajax请求失败时，提示错误信息
+function error(msg){
+	alert(eval('(' + msg.responseText + ')').result);
+}

@@ -30,15 +30,16 @@ public class StudentServiceImpl implements StudentService {
 	}
 	
 	@Override
-	public List<Course> selectCoursesByStudent(String studentId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int login(String id, String pwd) {
 		// TODO Auto-generated method stub
-		return 0;
+		Student st = studentDao.findStudentById(id);
+		if(st == null){
+			return 0;
+		}
+		if(!pwd.equals(st.getStudentPwd())){
+			return -1;
+		}
+		return 1;
 	}
 
 	@Override

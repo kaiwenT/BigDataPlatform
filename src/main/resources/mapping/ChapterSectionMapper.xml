@@ -5,6 +5,7 @@
     <id column="sectionId" jdbcType="VARCHAR" property="sectionid" />
     <result column="sectionName" jdbcType="VARCHAR" property="sectionname" />
     <result column="chapter_id" jdbcType="VARCHAR" property="chapterId" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    sectionId, sectionName, chapter_id
+    sectionId, sectionName, chapter_id, creat_time
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.ChapterSectionExample" resultMap="BaseResultMap">
     select
@@ -98,10 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.hust.bigdataplatform.model.ChapterSection">
-    insert into chapter_section (sectionId, sectionName, chapter_id
-      )
-    values (#{sectionid,jdbcType=VARCHAR}, #{sectionname,jdbcType=VARCHAR}, #{chapterId,jdbcType=VARCHAR}
-      )
+    insert into chapter_section (sectionId, sectionName, chapter_id, 
+      creat_time)
+    values (#{sectionid,jdbcType=VARCHAR}, #{sectionname,jdbcType=VARCHAR}, #{chapterId,jdbcType=VARCHAR}, 
+      #{creatTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.ChapterSection">
     insert into chapter_section
@@ -115,6 +116,9 @@
       <if test="chapterId != null">
         chapter_id,
       </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="sectionid != null">
@@ -125,6 +129,9 @@
       </if>
       <if test="chapterId != null">
         #{chapterId,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -146,6 +153,9 @@
       <if test="record.chapterId != null">
         chapter_id = #{record.chapterId,jdbcType=VARCHAR},
       </if>
+      <if test="record.creatTime != null">
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -155,7 +165,8 @@
     update chapter_section
     set sectionId = #{record.sectionid,jdbcType=VARCHAR},
       sectionName = #{record.sectionname,jdbcType=VARCHAR},
-      chapter_id = #{record.chapterId,jdbcType=VARCHAR}
+      chapter_id = #{record.chapterId,jdbcType=VARCHAR},
+      creat_time = #{record.creatTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -169,13 +180,17 @@
       <if test="chapterId != null">
         chapter_id = #{chapterId,jdbcType=VARCHAR},
       </if>
+      <if test="creatTime != null">
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where sectionId = #{sectionid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hust.bigdataplatform.model.ChapterSection">
     update chapter_section
     set sectionName = #{sectionname,jdbcType=VARCHAR},
-      chapter_id = #{chapterId,jdbcType=VARCHAR}
+      chapter_id = #{chapterId,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP}
     where sectionId = #{sectionid,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -1,5 +1,7 @@
 package com.hust.bigdataplatform.model;
 
+import java.util.Date;
+
 public class CourseChapter {
     private String chapterId;
 
@@ -10,6 +12,8 @@ public class CourseChapter {
     private String coursewarePath;
 
     private String videoPath;
+
+    private Date creatTime;
 
     public String getChapterId() {
         return chapterId;
@@ -49,5 +53,13 @@ public class CourseChapter {
 
     public void setVideoPath(String videoPath) {
         this.videoPath = videoPath == null ? null : videoPath.trim();
+    }
+
+    public Date getCreatTime() {
+        return creatTime;
+    }
+
+    public void setCreatTime(Date creatTime) {
+        this.creatTime = creatTime;
     }
 }

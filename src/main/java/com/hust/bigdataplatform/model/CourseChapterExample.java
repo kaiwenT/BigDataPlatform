@@ -572,6 +572,9 @@ public class CourseChapterExample {
             return typeHandler;
         }
 
+        public Criterion(){
+        	super();
+        }
         protected Criterion(String condition) {
             super();
             this.condition = condition;

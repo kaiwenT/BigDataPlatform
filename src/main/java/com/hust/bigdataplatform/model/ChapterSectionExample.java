@@ -431,7 +431,9 @@ public class ChapterSectionExample {
         public String getTypeHandler() {
             return typeHandler;
         }
-
+        public Criterion(){
+        	super();
+        }
         protected Criterion(String condition) {
             super();
             this.condition = condition;

@@ -69,7 +69,7 @@ function addTitle(e) {
         '<div class="titleBox j-titleBox f-cb" onclick="titleClick(this)">' +
         '<div class="f-icon cpicon j-down f-fl u-icon-caret-up" style=""></div>' +
         '<div class="f-icon cpicon j-up f-fl u-icon-caret-down" style="display: none;"></div>' +
-        '<input class="j-titleName name f-fl f-thide" value="" placeholder="请输入章名" onclick="stopBubble()">' +
+        '<input class="j-titleName name f-fl f-thide" id="" value="" placeholder="请输入章名" onclick="stopBubble()">' +
         '<div class="j-typebox f-cb f-fr" onclick="stopBubble()">' +
         '<div class="f-icon lsicon f-fl " title="编辑" style="display: none;" onclick="editInfo(this)">' +
         '<span class="u-icon-edit"></span>' +
@@ -109,9 +109,11 @@ function storeInfo(e) {
     $(e).parent().prev("input.name").attr("disabled", "disabled");
     $(e).css("display", "none");
     $(e).prev("div").css("display", "block");
+    var id = $(e).parent().prev("input.name").attr("id");
+    if(id =="" || id=="undefined")
     //上传数据，更新章节信息
     var courseId = getCookie("courseId");
-    var chapterContent = $("#chapterContent").val();
+    var chapterContent=$(e).parent().prev("input").val();
     alert(chapterContent);
     $.ajax({
     	type:"POST",
@@ -124,6 +126,7 @@ function storeInfo(e) {
 		success:function(msg){
 			if(msg.status=="OK"){
 				alert("添加成功！");
+				$(e).parent().prev("input.name").attr("","");
 			}
 			else{
 				alert(msg.result);

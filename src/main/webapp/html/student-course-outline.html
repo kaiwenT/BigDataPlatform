@@ -15,9 +15,44 @@
     <div class="empty j-empty" style="display: none;">
         <span class="f-ib">老师还没有发布任何学习内容，请耐心等待</span>
     </div>
-    <div class="m-learnChapterNormal f-pr">
+    <div class="m-learnChapterNormal f-pr" id="outline">
         //页面内容展示
     </div>
 </div>
 </body>
+<script type="text/javascript">
+$(function(){
+	var courseId = $(".course-image").attr("id");
+	
+	if(courseId == null || courseId == 'undefined'){
+		return;
+	}
+	$.ajax({
+		type : "POST",
+		url : "/course/getCourseById",
+		dataType : "json",
+		data : {
+			courseId : courseId
+		},
+		success : function(msg) {
+			if (msg.status == "OK") {
+				var course = msg.result;
+				
+				if(course.courseOutline != 'undefined' && course.courseOutline != ''){
+					$("#outline").html(course.courseOutline);
+				}else{
+					
+					$(".empty").css("display", "inline");
+					$("#outline").css("display", "none");
+				}
+			} else {
+				alert(msg.result);
+			}
+		},
+		error : function(msg) {
+			error(msg);
+		}
+	})
+});
+</script>
 </html>

@@ -1,66 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>课程介绍</title>
-    <link rel="stylesheet" href="../css/font-awesome-ie7.css">
-    <link rel="stylesheet" href="../css/student-home.css">
-    <script type="application/javascript" src="../js/jquery.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
+<meta charset="UTF-8">
+<title>课程介绍</title>
+<link rel="stylesheet" href="../css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/teacher-courseware.css">
+<script type="application/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+
 </head>
 <body>
+	<div class="m-learnChapterList">
+		<div class="cnt f-f0">
+			<h2>
+				亲爱的<span class="studentName"></span>同学
+			</h2>
+			<h3 class="tnt">
+				欢迎你加入课程《<span class="courseName"></span>》，赶快开启学习之旅吧~
+			</h3>
 
-<div class="cnt f-f0">
-<h2>亲爱的<span class="studentName"></span>同学</h2>
-<h3 class="tnt">欢迎你加入课程《<span class="courseName"></span>》，赶快开启学习之旅吧~</h3>
-
-<h2 style="margin-top: 60px;">课程介绍</h2>
-<h3 class="tnt"><span class="courseIntroduce"></span></h3>
-</div>
+			<div class="j-moduletitle u-learn-moduletitle f-cb"
+				style="margin-top: 60px;">
+				<h2 class="j-moduleName">
+					课程介绍<br>
+				</h2>
+			</div>
+			<h3 class="tnt">
+				<span class="courseIntroduce"></span>
+			</h3>
+		</div>
+	</div>
 </body>
 <script type="text/javascript">
-	function getCurrentUser(){	
+	function getCurrentUser() {
 		$.ajax({
-			type:"GET",
-			url:"/student/getPersonalInfo",
-			dataType:"json",		
-			success : function(msg){
-				if(msg.status == "OK"){
+			type : "GET",
+			url : "/student/getPersonalInfo",
+			dataType : "json",
+			success : function(msg) {
+				if (msg.status == "OK") {
 					var stu = msg.result;
 					$(".studentName").text(stu.studentName);
-				}else{
+				} else {
 					alert(msg.result);
 				}
 			},
-			error : function(msg){
+			error : function(msg) {
 				error(msg);
 			},
 		})
-	}	
-	function getCourseById(courseId){		
+	}
+	function getCourseById(courseId) {
 		$.ajax({
-			type:"POST",
-			url:"/studentcourse/getCourseById",
-			dataType:"json",
-			data:{
+			type : "POST",
+			url : "/studentcourse/getCourseById",
+			dataType : "json",
+			data : {
 				courseId : courseId
 			},
-			success : function(msg){
-				if(msg.status == "OK"){
+			success : function(msg) {
+				if (msg.status == "OK") {
 					var course = msg.result;
 					$(".courseName").text(course.courseName);
 					$(".courseIntroduce").html(course.courseIntroduce);
-				}else{
+				} else {
 					alert(msg.result);
 				}
 			},
-			error : function(msg){
+			error : function(msg) {
 				error(msg);
 			},
 		})
 	}
 	getCurrentUser();
 	var courseId = getCookie('courseId');
-	getCourseById(courseId);;
+	getCourseById(courseId);
+	;
 </script>
 </html>

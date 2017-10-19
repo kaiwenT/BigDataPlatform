@@ -1,11 +1,15 @@
 package com.hust.bigdataplatform.model;
 
+import java.util.Date;
+
 public class ChapterSection {
     private String sectionid;
 
     private String sectionname;
 
     private String chapterId;
+
+    private Date creatTime;
 
     public String getSectionid() {
         return sectionid;
@@ -29,5 +33,13 @@ public class ChapterSection {
 
     public void setChapterId(String chapterId) {
         this.chapterId = chapterId == null ? null : chapterId.trim();
+    }
+
+    public Date getCreatTime() {
+        return creatTime;
+    }
+
+    public void setCreatTime(Date creatTime) {
+        this.creatTime = creatTime;
     }
 }

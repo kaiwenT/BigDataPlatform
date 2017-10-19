@@ -23,6 +23,27 @@
     function submit() {
         var content = CKEDITOR.instances.TextArea1.getData();
         alert(content);
+        var courseId = getCookie("courseId");
+    	$.ajax({
+    		type:"GET",
+    		url:"/teacherCourse/SetCourseOutline",
+    		data:
+    		{	courseId:courseId, 
+    			courseOutline:content
+    		},
+    		datatype:"json",
+    		success:function(msg){
+    			if(msg.status=="OK"){
+    				alert("修改成功！");
+    			}
+    			else{
+    				alert(msg.result);
+    			}	
+    		},
+    		error:function(msg){
+    			alert(msg.result);
+    		}
+    	})
     }
 </script>
 </html>

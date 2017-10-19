@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../css/teacher-courseware.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
     <script src="../ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="../js/tools.js"></script>
 </head>
 <body>
 <div class="m-learnChapterList">
@@ -22,7 +23,27 @@
     CKEDITOR.replace('TextArea1');
     function submit() {
         var content = CKEDITOR.instances.TextArea1.getData();
-        alert(content);
+        var courseId = getCookie("courseId");
+    	$.ajax({
+    		type:"POST",
+    		url:"/teacherCourse/SetCourseIntroduce",
+    		data:
+    		{	courseId:courseId, 
+    			courseIntroduce:content
+    		},
+    		datatype:"json",
+    		success:function(msg){
+    			if(msg.status=="OK"){
+    				alert("修改成功！");
+    			}
+    			else{
+    				alert(msg.result);
+    			}	
+    		},
+    		error:function(msg){
+    			alert(msg.result);
+    		}
+    	})
     }
 </script>
 </html>

@@ -95,10 +95,6 @@ function addTitle(e) {
     $(e).before(content);
 }
 
-//提交章信息（包含节信息）
-function submitLesson(e) {
-
-}
 
 //编辑章节信息
 function editInfo(e) {
@@ -108,11 +104,35 @@ function editInfo(e) {
     $(e).parent().prev("input.name").focus();
 }
 
+//保存章节信息
 function storeInfo(e) {
     $(e).parent().prev("input.name").attr("disabled", "disabled");
     $(e).css("display", "none");
     $(e).prev("div").css("display", "block");
     //上传数据，更新章节信息
+    var courseId = getCookie("courseId");
+    var chapterContent = $("#chapterContent").val();
+    alert(chapterContent);
+    $.ajax({
+    	type:"POST",
+		url:"/teacherCourse/AddChatper",
+		data:
+		{	courseId:courseId, 
+			courseName:chapterContent
+		},
+		datatype:"json",
+		success:function(msg){
+			if(msg.status=="OK"){
+				alert("添加成功！");
+			}
+			else{
+				alert(msg.result);
+			}	
+		},
+		error:function(msg){
+			alert(msg.result);
+		},
+    })
 
 }
 

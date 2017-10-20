@@ -18,6 +18,8 @@ public interface CourseChapterService {
 	 * 根据课程ID查找章
 	 */
 	public List<CourseChapter> selectByCourseID(String CourseId);
+	
+	public CourseChapter selectById(String chapterId, String courseId);
 	/**
 	 * 修改章
 	 */

@@ -48,4 +48,12 @@ public class CourseChapterServiceImpl implements CourseChapterService {
 		return courseChapterDao.update(courseChapter);
 	}
 
+	@Override
+	public CourseChapter selectById(String chapterId, String courseId) {
+		if (chapterId.equals(null) || courseId.equals(null)) {
+			return null;
+		}
+		return courseChapterDao.selectById(courseId, chapterId);
+	}
+
 }

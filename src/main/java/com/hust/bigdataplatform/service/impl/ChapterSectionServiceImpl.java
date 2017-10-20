@@ -49,5 +49,12 @@ public class ChapterSectionServiceImpl implements ChapterSectionService {
 		}
 		return chapterSectionDao.update(chapterSection);
 	}
+	@Override
+	public ChapterSection selectBySectionId(String sectionId) {
+		if (sectionId.equals(null)) {
+			return null;
+		}
+		return chapterSectionDao.selectById(sectionId);
+	}
 
 }

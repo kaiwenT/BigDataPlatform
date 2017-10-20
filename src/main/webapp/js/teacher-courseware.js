@@ -16,6 +16,11 @@ function titleClick(e) {
 
 //添加节信息
 function addContent(e) {
+	var chapterId = $(e).parents(".lessonBox").prev().children("input.name").attr("id");
+	if(chapterId==null||chapterId==""){
+		alert("请先添加章信息！");
+		return false;
+	}
     var content = '<div class="u-learnLesson normal f-cb">' +
         ' <div class="j-icon icon f-pa icon-1"></div>' +
         ' <input class="j-name name f-fl f-thide" value="" placeholder="请输入节名" onclick="stopBubble()">' +
@@ -29,7 +34,7 @@ function addContent(e) {
         '<div class="f-icon lsicon f-fl " title="编辑" style="display: none;" onclick="editInfo(this)">' +
         '<span class="u-icon-edit"></span>' +
         '</div>' +
-        '<div class="f-icon lsicon f-fl" title="保存" onclick="storeInfo(this)">' +
+        '<div class="f-icon lsicon f-fl" title="保存" onclick="storeSectionInfo(this)">' +
         '<span class="u-icon-check"></span>' +
         '</div>' +
         '<div class="f-icon lsicon f-fl " title="删除" onclick="delContent(this)">' +
@@ -42,7 +47,7 @@ function addContent(e) {
         '<span class="u-icon-video2"'+
     'style="font-size: 20px;margin: 0 -10px; top:15px; left:50%;position: relative; "></span>'+
         '</div>'+
-        '<div class="f-pr f-fl u-source" style="border: 0" title="添加视屏">'+
+        '<div class="f-pr f-fl u-source" style="border: 0" title="添加视频">'+
         '<div class="f-pa u-source-add" onclick="addVideo(this)">'+
         '<span class="f-pa u-icon-plus"></span>'+
         '</div>'+
@@ -74,7 +79,7 @@ function addTitle(e) {
         '<div class="f-icon lsicon f-fl " title="编辑" style="display: none;" onclick="editInfo(this)">' +
         '<span class="u-icon-edit"></span>' +
         '</div>' +
-        '<div class="f-icon lsicon f-fl" title="保存" onclick="storeInfo(this)">' +
+        '<div class="f-icon lsicon f-fl" title="保存" onclick="storeChapterInfo(this)">' +
         '<span class="u-icon-check"></span>' +
         '</div>' +
         '<div class="f-icon lsicon f-fl " title="删除" onclick="delTitle(this)">' +
@@ -104,48 +109,155 @@ function editInfo(e) {
     $(e).parent().prev("input.name").focus();
 }
 
-//保存章节信息
-function storeInfo(e) {
+//添加或者是修改章信息
+function storeChapterInfo(e) {
     $(e).parent().prev("input.name").attr("disabled", "disabled");
     $(e).css("display", "none");
     $(e).prev("div").css("display", "block");
+    
     var id = $(e).parent().prev("input.name").attr("id");
-    if(id =="" || id=="undefined")
-    //上传数据，更新章节信息
     var courseId = getCookie("courseId");
     var chapterContent=$(e).parent().prev("input").val();
-    alert(chapterContent);
-    $.ajax({
-    	type:"POST",
-		url:"/teacherCourse/AddChatper",
-		data:
-		{	courseId:courseId, 
-			courseName:chapterContent
-		},
-		datatype:"json",
-		success:function(msg){
-			if(msg.status=="OK"){
-				alert("添加成功！");
-				$(e).parent().prev("input.name").attr("","");
-			}
-			else{
-				alert(msg.result);
-			}	
-		},
-		error:function(msg){
-			alert(msg.result);
-		},
-    })
-
+    if(id==null || id=="") //如果ID不存在，则插入
+	{
+    	$.ajax({
+        	type:"POST",
+    		url:"/teacherCourse/AddChatper",
+    		data:
+    		{	courseId:courseId, 
+    			courseName:chapterContent
+    		},
+    		datatype:"json",
+    		success:function(msg){
+    			if(msg.status=="OK"){
+    				$(e).parent().prev("input.name").attr("id", msg.result.chapterId);
+    				alert("添加成功！");
+    			}
+    			else{
+    				alert(msg.result);
+    			}	
+    		},
+    		error:function(msg){
+    			alert(msg.result);
+    		},
+        })
+	}
+    else{
+    	$.ajax({
+        	type:"POST",
+    		url:"/teacherCourse/UpdateChatper",
+    		data:
+    		{	chapterId:id, 
+    			courseId:courseId, 
+    			chapterName:chapterContent
+    		},
+    		datatype:"json",
+    		success:function(msg){
+    			if(msg.status=="OK"){
+    				alert("修改成功！");
+    			}
+    			else{
+    				alert(msg.result);
+    			}	
+    		},
+    		error:function(msg){
+    			alert(msg.result);
+    		},
+        })
+    	
+    }
 }
 
 //删除章
 function delTitle(e) {
     var status = confirm("是否确定删除该章所有信息？");
     if (status == true) {
-        $(e).parents("div.titleBox").parent("div").remove();
+    	var chapterId = $(e).parent().prev("input.name").attr("id");
+    	var courseId = getCookie("courseId");
+    	$.ajax({
+        	type:"POST",
+    		url:"/teacherCourse/DeleteChapter",
+    		data:
+    		{	chapterId:chapterId, 
+    			courseId:courseId, 
+    		},
+    		datatype:"json",
+    		success:function(msg){
+    			if(msg.status=="OK"){
+    				$(e).parents("div.titleBox").parent("div").remove();
+    				alert("删除成功！");
+    			}
+    			else{
+    				alert(msg.result);
+    			}	
+    		},
+    		error:function(msg){
+    			alert(msg.result);
+    		},
+        })
     }
 }
+
+function storeSectionInfo(e)
+{
+	    $(e).parent().prev("input.name").attr("disabled", "disabled");
+	    $(e).css("display", "none");
+	    $(e).prev("div").css("display", "block");
+	    //需要章id和节的名字
+	    var id = $(e).parent().prev("input.name").attr("id");  //当前节
+	    var chapterId = $(e).parents("div.lessonBox").prev(".titleBox").children("input.name").attr("id");
+	    var sectionName=$(e).parent().prev("input").val();
+	    console.log("section:"+sectionName);
+	    console.log("chapterId:"+chapterId);
+	    if(chapterId==null || chapterId=="") //如果ID不存在，则插入
+		{
+	    	$.ajax({
+	        	type:"POST",
+	    		url:"/teacherCourse/AddSection",
+	    		data:
+	    		{	chapterId:chapterId, 
+	    			sectionName:sectionName,
+	    		},
+	    		datatype:"json",
+	    		success:function(msg){
+	    			if(msg.status=="OK"){
+	    				$(e).parent().prev("input.name").attr("id", msg.result.sectionId);
+	    				alert("添加成功！");
+	    			}
+	    			else{
+	    				alert(msg.result);
+	    			}	
+	    		},
+	    		error:function(msg){
+	    			alert(msg.result);
+	    		},
+	        })
+		}
+	    else{
+	    	$.ajax({
+	        	type:"POST",
+	    		url:"/teacherCourse/UpdateSection",
+	    		data:
+	    		{	sectionId:id, 
+	    			sectionName:sectionName
+	    		},
+	    		datatype:"json",
+	    		success:function(msg){
+	    			if(msg.status=="OK"){
+	    				alert("修改成功！");
+	    			}
+	    			else{
+	    				alert(msg.result);
+	    			}	
+	    		},
+	    		error:function(msg){
+	    			alert(msg.result);
+	    		},
+	        })
+	    	
+	    }
+}
+
 //删除节
 function delContent(e) {
     var status = confirm("是否确定删除该节信息？");

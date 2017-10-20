@@ -54,6 +54,10 @@ public class CourseChapterDao {
 		return courseChapterMapper.selectByExample(example);
 	}
 	
+	public CourseChapter selectById(String courseId, String chapterId)
+	{
+		return courseChapterMapper.selectByPrimaryKey(chapterId, courseId);
+	}
 	public int update(CourseChapter courseChapter)
 	{
 		return courseChapterMapper.updateByPrimaryKeySelective(courseChapter);

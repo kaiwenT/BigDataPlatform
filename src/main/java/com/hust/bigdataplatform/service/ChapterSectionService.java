@@ -21,6 +21,8 @@ public interface ChapterSectionService {
 	 * 根据章ID查找节
 	 */
 	public List<ChapterSection> selectByChapterId(String chapterId);
+	
+	public ChapterSection selectBySectionId(String sectionId);
 	/**
 	 * 修改节
 	 */

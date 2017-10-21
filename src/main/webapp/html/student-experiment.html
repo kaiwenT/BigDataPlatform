@@ -15,75 +15,15 @@
     <div class="empty j-empty" style="display: none;">
         <span class="f-ib">老师还没有发布任何学习内容，请耐心等待</span>
     </div>
+    
     <div class="m-learnChapterNormal f-pr">
-        <div>
-            <div class="titleBox j-titleBox f-cb" id="auto-id-1508033115166">
-                <div class="f-icon cpicon j-down f-fl u-icon-caret-up" style=""></div>
-                <div class="f-icon cpicon j-up f-fl u-icon-caret-down" style="display: none;"></div>
-                <h3 class="j-titleName name f-fl f-thide">实验一</h3>
-                <div class="submitTime f-fl">截止时间：2017年10月01日 23:30</div>
-                <div class="score f-fl">成绩：100</div>
-                <button class="u-btn u-btn-default f-pa" style="top:2px; right:0; height: 36px; font-size: 1.23em">
-                    提交作业
-                </button>
-            </div>
-            <div class="exp-box">
-                <div class="exp-source exp-video f-pr">
-                    <div class="f-pr f-fl source-sign">
-                            <span class="u-icon-video2"
-                                  style="font-size: 20px;margin: -10px -10px; top:50px; left:50%;position: relative; "></span>
-                    </div>
-                    <div class="source-box">
-                        <div class="f-pr f-fl source-video">
-                            <div class="video-play" style="">
-                                <span class="u-icon-video"
-                                      style="font-size: 40px;margin: -20px -20px; top:50%; left:50%;position: absolute; "></span>
-                            </div>
-                        </div>
-                        <div class="f-pr f-fl source-video">
-                            <div class="video-play" style="">
-                                <span class="u-icon-video"
-                                      style="font-size: 40px;margin: -20px -20px; top:50%; left:50%;position: absolute; "></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="exp-source exp-pdf">
-                    <div class="f-pr f-fl source-sign">
-                            <span class="icon-book"
-                                  style="font-size: 20px;margin: -10px -10px; top:50px; left:50%;position: relative; "></span>
-                    </div>
-                    <div class="source-box">
-                        <div class="f-pr f-fl source-pdf">
-                            <div class="pdf-view" style="">
-                                <span class="u-icon-book"
-                                      style="font-size: 40px;margin: -20px -20px; top:50%; left:50%;position: absolute; "></span>
-                            </div>
-                        </div>
-                        <div class="f-pr f-fl source-pdf">
-                            <div class="pdf-view" style="">
-                                <span class="u-icon-book"
-                                      style="font-size: 40px;margin: -20px -20px; top:50%; left:50%;position: absolute; "></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>
 </body>
+<script type="text/javascript" src="../js/tools.js"></script>
+<script type="text/javascript" src="../js/student-experiment.js"></script>
 <script type="text/javascript">
-    $(".titleBox").click(function () {
-        if ($(this).children(".u-icon-caret-up").css("display") == "none") {
-            $(this).children(".u-icon-caret-up").css("display", "block");
-            $(this).children(".u-icon-caret-down").css("display", "none");
-            $(this).next(".exp-box").css("display", "block");
-        } else {
-            $(this).children(".u-icon-caret-up").css("display", "none");
-            $(this).children(".u-icon-caret-down").css("display", "block");
-            $(this).next(".exp-box").css("display", "none");
-        }
-    })
+	showExperiments();
 </script>
 </html>

@@ -106,9 +106,9 @@ function showSections(chapterId){
 				            +'<div class="j-icon icon f-pa icon-2"></div>'
 				            +'<h4 class="j-name name f-fl f-thide">'+section.sectionname+'</h4>'
 				            +'<div class="j-typebox f-cb f-fr">'
-				            +'<div><div class="f-icon lsicon f-fl learned" data-cid="1003495671" title="视频：'+section.sectionname+'" id="auto-id-1508033115800" onclick="baseAjax("'+'student-courseware-details'+'")">'
+				            +'<div><div class="f-icon lsicon f-fl learned" data-cid="1003495671" title="视频：'+section.sectionname+'" id="auto-id-1508033115800" onclick="baseAjax("'+'student-courseware-video'+'")">'
 				            +'<span class="u-icon-video2"></span></div>'
-				            +'<div class="f-icon lsicon f-fl " data-cid="1003495672" title="课件：'+section.sectionname+'" id="auto-id-1508033115802">'
+				            +'<div class="f-icon lsicon f-fl " data-cid="1003495672" title="课件：'+section.sectionname+'" id="auto-id-1508033115802" onclick="baseAjax("'+'student-courseware-pdf'+'")">'
 				            +'<span class="u-icon-text"></span></div>'
 				            +'</div></div></div></div>';						
 						sectionshtml += lessonbox;

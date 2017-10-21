@@ -1,0 +1,33 @@
+.exp-source{
+    min-height: 120px;
+    padding: 10px;
+    border-bottom: 1px dashed #E7E9EF;
+}
+.source-sign{
+    height: 100%;
+    width: 40px;
+}
+.source-box{
+    height: 132px; overflow-y:scroll;
+}
+.source-info{
+    width: 94%;
+    height: 120px;
+    margin-left: 50px;
+}
+.source-video, .source-pdf{
+    width: 120px;
+    height: 120px;
+    border: 1px solid;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.source-video-add{
+    width: 100%;height: 100%;
+    color: #aaa;
+}
+.source-ok{
+    border: solid 1px #83b600;
+}

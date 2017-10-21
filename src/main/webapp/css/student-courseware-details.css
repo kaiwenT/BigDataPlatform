@@ -1,0 +1,127 @@
+.u-learn-moduletitle {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+.m-lessonDetail .titleBar {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.u-learnBCUI {
+    line-height: 24px;
+    width: 640px;
+}
+
+.u-learnBCUI .link {
+    font-size: 14px;
+}
+.u-learnBCUI .u-icon-caret-right2 {
+    line-height: 24px;
+}
+
+.u-learnBCUI .icon {
+    color: #ccc;
+    margin: 0 8px;
+}
+
+.u-learnBCUI .u-select {
+    width: 172px;
+    height: 22px;
+    padding: 0 6px;
+}
+
+.u-select {
+    height: 32px;
+    padding: 0 10px;
+    width: 257px;
+    background-color: white;
+    border: 1px solid #dfdfdf;
+    position: relative;
+}
+
+.u-learnBCUI .u-select .up {
+    background-position: 145px -183px;
+    line-height: 24px;
+    padding-right: 6px;
+    color: #333;
+}
+.u-select .up {
+    cursor: pointer;
+    font-size: 14px;
+    color: #999;
+    line-height: 30px;
+    background: url(http://mc.stu.126.net/res/images/ui/ui_sprite.png?5f7eedc…) 241px -177px no-repeat;
+}
+
+.u-learnBCUI .u-select .down {
+    width: 160px;
+    padding: 10px 5px;
+    top: 100%;
+    left: -1px;
+    z-index: 200;
+}
+
+.u-select .down {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    width: 275px;
+    max-height: 450px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 100;
+    border: 1px solid #d1d2d4;
+}
+
+.u-learnBCUI .u-select .list {
+    width: auto;
+    padding: 0;
+    line-height: 1.8;
+    height: 23px;
+}
+
+.u-learnBCUI .u-select .list:hover {
+    color: #72A400;
+    text-decoration: underline;
+    background: #fff;
+}
+
+.u-select .list {
+    display: block;
+    height: 33px;
+    line-height: 33px;
+    font-size: 14px;
+    color: #333;
+    padding: 0 10px;
+    width: 257px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.m-learnbox .empty {
+    margin: 0;
+    padding: 40px 0;
+    text-align: left;
+}
+
+
+.ux-video-player {
+    position: relative;
+    width: 90%;
+    height: 100%;
+    margin: 0 5%;
+}
+.ux-video-player video{
+    width: 100%;
+    height: 100%;
+}
+
+video::-internal-media-controls-download-button {
+    display:none;
+}
+video::-webkit-media-controls-enclosure {
+     overflow:hidden;
+ }
+video::-webkit-media-controls-panel {
+    width: calc(100% + 30px);
+}

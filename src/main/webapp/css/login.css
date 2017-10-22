@@ -1,12 +1,9 @@
-#g-nav-top{
-    top: 0;
-    left: 0;
-    position: relative;
-    clear: none;
-    width: 100%;
-    height: 80px;
-    background-color: #00c0ef;
-    z-index: 2;
+#g-container{
+    background-image:url(../img/bgi2.jpg);
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size:100% 100%;
 }
 
 #g-background{
@@ -19,7 +16,6 @@
     display: block;
     min-width: 1260px;
     z-index:1;
-    background-color: #2e323e;
     margin: 0px;
     padding: 0px;
 }
@@ -40,7 +36,7 @@
 
 .login-container{
     left: 50%;
-    top: 55%;
+    top: 62%;
     position: relative;
     width: 260px;
     height: 240px;
@@ -139,6 +135,9 @@
 
 #g-nav-bottom{
     width: 100%;
-    height: 84px;
-    background-color: #00c0ef;
+    height: 50px;
+    background-color: rgba(255,255,255,0.5);
+    position: absolute;
+    bottom: 0px;
+    float: left;
 }

@@ -95,20 +95,20 @@ function showSections(chapterId){
 		success : function(msg) {
 			if (msg.status == "OK") {
 				var sections = msg.result;
-				console.log(chapterId + sections.length)
+				
 				if(sections != 'undefined' && sections != '' && sections.length > 0){
-//					$(".m-learnChapterNormal").empty();
+
 					var sectionshtml = '';
 					$.each(sections, function(idx, section){
-						console.log(chapterId+section.sectionname)
+						
 						var lessonbox = '<div class="lessonBox j-lessoBox" id="'+section.sectionid+'">'
 				            +'<div class="u-learnLesson normal f-cb" id="">'
 				            +'<div class="j-icon icon f-pa icon-2"></div>'
 				            +'<h4 class="j-name name f-fl f-thide">'+section.sectionname+'</h4>'
 				            +'<div class="j-typebox f-cb f-fr">'
-				            +'<div><div class="f-icon lsicon f-fl learned" data-cid="1003495671" title="视频：'+section.sectionname+'" id="auto-id-1508033115800" onclick="baseAjax("'+'student-courseware-video'+'")">'
+				            +'<div><div class="f-icon lsicon f-fl learned" data-cid="1003495671" title="视频：'+section.sectionname+'" id="" onclick="setCookie('+"'sectionId'"+','+section.sectionid+');baseAjax('+"'student-courseware-video'"+')">'
 				            +'<span class="u-icon-video2"></span></div>'
-				            +'<div class="f-icon lsicon f-fl " data-cid="1003495672" title="课件：'+section.sectionname+'" id="auto-id-1508033115802" onclick="baseAjax("'+'student-courseware-pdf'+'")">'
+				            +'<div class="f-icon lsicon f-fl " data-cid="1003495672" title="课件：'+section.sectionname+'" id="" onclick="setCookie('+"'sectionId'"+','+section.sectionid+');baseAjax('+"'student-courseware-pdf'"+')">'
 				            +'<span class="u-icon-text"></span></div>'
 				            +'</div></div></div></div>';						
 						sectionshtml += lessonbox;
@@ -117,8 +117,6 @@ function showSections(chapterId){
 					$(".lessonBox").css("display","none");
 				}else{
 					console.log('第'+chapterId+'章没有小节');
-//					$(".empty").css("display", "inline");
-//					$(".m-learnChapterNormal").css("display", "none");
 				}
 			} else {
 				alert(msg.result);

@@ -18,7 +18,18 @@ public interface CourseChapterService {
 	 * 根据课程ID查找章
 	 */
 	public List<CourseChapter> selectByCourseID(String CourseId);
-	
+	/**
+	 * 根据章id查询
+	 * @param chapterId
+	 * @return
+	 */
+	public CourseChapter selectByChapterId(String chapterId);
+	/**
+	 * 查找章
+	 * @param chapterId
+	 * @param courseId
+	 * @return
+	 */
 	public CourseChapter selectById(String chapterId, String courseId);
 	/**
 	 * 修改章

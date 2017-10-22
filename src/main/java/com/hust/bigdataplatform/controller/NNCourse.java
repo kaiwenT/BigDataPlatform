@@ -1,14 +1,16 @@
 package com.hust.bigdataplatform.controller;
 
 import java.util.Date;
-import java.util.List;
+
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hust.bigdataplatform.constant.Constant;
 import com.hust.bigdataplatform.model.ChapterSection;
@@ -18,6 +20,7 @@ import com.hust.bigdataplatform.service.ChapterSectionService;
 import com.hust.bigdataplatform.service.CourseChapterService;
 import com.hust.bigdataplatform.service.CourseService;
 import com.hust.bigdataplatform.util.ResultUtil;
+import com.hust.bigdataplatform.util.UploadUtils;
 
 @Controller
 @RequestMapping("/teacherCourse")
@@ -205,5 +208,59 @@ public class NNCourse {
 			return ResultUtil.errorWithMsg("删除节失败！");
 		}
 		return ResultUtil.success("删除节成功！");
+	}
+	/**
+	 * 上传PDF文件
+	 * @param uploadfile
+	 * @param chapter
+	 * @param sectionId
+	 * @return
+	 */
+	@RequestMapping(value="/UploadPDF")
+	@ResponseBody
+	public Object UploadPDF(@RequestParam(value="formData")MultipartFile uploadfile,
+			@RequestParam(value="chapterId") String chapterId,@RequestParam(value="sectionId") String sectionId,
+			@RequestParam(value="courseId") String courseId)
+	{
+		CourseChapter courseChapter = courseChapterService.selectById(chapterId, courseId);
+		if (courseChapter==null) {
+			return ResultUtil.errorWithMsg("上传失败");
+		}
+		String road = courseChapter.getCoursewarePath()+sectionId ;
+		UploadUtils uploadUtils = new UploadUtils();
+		if (uploadUtils.uploadUtils(uploadfile, road)) {
+			return ResultUtil.success("上传成功！");
+		}
+		return ResultUtil.errorWithMsg("上传失败");
+		
+	}
+	
+	@RequestMapping(value="/UploadVideo")
+	@ResponseBody
+	public Object UploadVideo(@RequestParam(value="formData")MultipartFile uploadfile,
+			@RequestParam(value="chapterId") String chapterId,@RequestParam(value="sectionId") String sectionId,
+			@RequestParam(value="courseId") String courseId)
+	{
+		System.out.println("************************");
+		CourseChapter courseChapter = courseChapterService.selectById(chapterId, courseId);
+		if (courseChapter==null) {
+			return ResultUtil.errorWithMsg("上传失败");
+		}
+		String road = courseChapter.getVideoPath()+sectionId;
+		UploadUtils uploadUtils = new UploadUtils();
+		if (uploadUtils.uploadUtils(uploadfile, road)) {
+			return ResultUtil.success("上传成功！");
+		}
+		return ResultUtil.errorWithMsg("上传失败");
+		
+	}
+	
+	@RequestMapping("/showFiles")
+	@ResponseBody
+	public Object showFiles(@RequestParam(value="chapterId") String chapterId,@RequestParam(value="sectionId") String sectionId,
+			@RequestParam(value="courseId") String courseId)
+	{
+		return courseId;
+		
 	}
 }

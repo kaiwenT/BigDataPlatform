@@ -19,8 +19,8 @@
     </div>
 </div>
 </body>
-<script type="text/javascript">
-    CKEDITOR.replace('TextArea1');
+<script type="text/javascript">       
+    CKEDITOR.replace('TextArea1'); 
     function submit() {
         var content = CKEDITOR.instances.TextArea1.getData();
         var courseId = getCookie("courseId");
@@ -45,5 +45,32 @@
     		}
     	})
     }
+    function showIntroduce()
+    {
+    	  var courseId = getCookie("courseId");
+    	  $.ajax({
+      		type:"POST",
+      		url:"/course/getCourseById",
+      		async:false, 
+      		data:
+      		{	courseId:courseId, 
+      		},
+      		datatype:"json",
+      		success:function(msg){
+      			if(msg.status=="OK"){
+      				var content = msg.result.courseIntroduce;
+      				CKEDITOR.instances.TextArea1.setData(content);
+      			}
+      			else{
+      				alert(msg.result);
+      			}	
+      		},
+      		error:function(msg){
+      			alert(msg.result);
+      		}
+      	})
+    	
+    }
+    showIntroduce();
 </script>
 </html>

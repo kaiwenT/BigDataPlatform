@@ -118,7 +118,7 @@ public class CourseController {
 		if(course == null){
 			return ResultUtil.errorWithMsg("课程未找到");
 		}
-		
+	
 		return ResultUtil.success(course);
 	}
 }

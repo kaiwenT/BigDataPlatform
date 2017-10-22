@@ -56,4 +56,10 @@ public class CourseChapterServiceImpl implements CourseChapterService {
 		return courseChapterDao.selectById(courseId, chapterId);
 	}
 
+	@Override
+	public CourseChapter selectByChapterId(String chapterId) {
+		
+		return courseChapterDao.selectByChapterId(chapterId);
+	}
+
 }

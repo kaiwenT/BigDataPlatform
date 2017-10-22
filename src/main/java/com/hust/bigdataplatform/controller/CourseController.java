@@ -67,10 +67,40 @@ public class CourseController {
 	@ResponseBody
 	public Object getSectionsByChapter(@RequestParam(value = "chapterId", required = true) String chapterId,
 			HttpServletRequest request) {
+		if(chapterId == null || "".equals(chapterId)){
+			return ResultUtil.errorWithMsg("课程节id为空");
+		}
 		List<ChapterSection> sections = chapterSectionService.selectByChapterId(chapterId);
 		return ResultUtil.success(sections);
 	}
 
+	/**
+	 * 根据章id查询所有节
+	 * 
+	 * @param chapterId
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/getChapterBySection")
+	@ResponseBody
+	public Object getChapterBySection(@RequestParam(value = "sectionId", required = true) String sectionId,
+			HttpServletRequest request) {
+		if(sectionId == null || "".equals(sectionId)){
+			return ResultUtil.errorWithMsg("课程节id为空");
+		}
+		ChapterSection chapterSection = chapterSectionService.selectBySectionId(sectionId);
+		String chapterId = chapterSection.getChapterId();
+		String sectionName = chapterSection.getSectionname();
+		if(chapterId == null || "".equals(chapterId)){
+			return ResultUtil.errorWithMsg("课程章id为空");
+		}
+		CourseChapter courseChapter = courseChapterService.selectByChapterId(chapterId);
+		if(courseChapter == null){
+			return ResultUtil.errorWithMsg("课程章为空");
+		}
+		String[] res = {chapterId, courseChapter.getChapterName(), courseChapter.getCoursewarePath(), courseChapter.getVideoPath(), sectionName}; 
+		return ResultUtil.success(res);
+	}
 	/**
 	 * 获取课程
 	 * @param courseId

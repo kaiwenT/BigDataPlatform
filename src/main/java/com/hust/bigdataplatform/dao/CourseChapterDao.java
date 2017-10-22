@@ -63,4 +63,14 @@ public class CourseChapterDao {
 		return courseChapterMapper.updateByPrimaryKeySelective(courseChapter);
 	}
 
+	public CourseChapter selectByChapterId(String chapterId){
+		CourseChapterExample example = new CourseChapterExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andChapterIdEqualTo(chapterId);
+		List<CourseChapter> l = courseChapterMapper.selectByExample(example);
+		if(l.isEmpty()){
+			return null;
+		}
+		return l.get(0);
+	}
 }

@@ -50,7 +50,7 @@ function showstudentCourses(){
 				var cookie_courseId = "'courseId'" ;
 				$.each(courses, function(idx, course){
 					
-					wrapper = '<div class="course-card-wrapper"><div class="box"><a href="course-base.html?href=course-introduce" onclick="setCookie('+cookie_courseId+','+course.courseId+');" target="_blank" class="ga-click">'
+					wrapper = '<div class="course-card-wrapper"><div class="box"><a href="course-base.html?href=course-introduce" onclick="setCookie('+cookie_courseId+','+"'"+course.courseId+"'"+');" target="_blank" class="ga-click">'
 						+'<div class="img"><img class="image" src="../img/course-img.jpg" id="'+course.courseId+'" alt="'+course.courseName+'"></div>'
 						+'<div class="body"><div class="common-info-wrapper common-info-wrapper-fix-height">'
 						+'<div class="title"><div class="text"><span class="text">'+course.courseName+'</span></div></div>'

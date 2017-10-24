@@ -14,7 +14,7 @@ function titleClick(e) {
         $(e).children(".u-icon-caret-down").css("display", "block");
         $(e).next(".lessonBox").css("display", "none");
     }
-}
+} 
 
 //添加章信息
 function addTitle(e) {
@@ -483,6 +483,7 @@ function videoControl(e) {
     } else {
         $(e).parents(".u-learnLesson").next(".video").css("display", "block");
         $(e).parent(".lsicon").addClass("show");
+        ShowVideo(e);
     }
 }
 
@@ -494,7 +495,106 @@ function pdfControl(e) {
     } else {
         $(e).parents(".u-learnLesson").next().next(".pdf").css("display", "block");
         $(e).parent(".lsicon").addClass("show");
+        ShowPDF(e);
     }
+}
+
+function ShowPDF(e)
+{
+	$(e).parents(".u-learnLesson").nextAll("div.pdf").children(".u-source-ok").remove();
+    var courseId = getCookie("courseId");
+    var chapterId = $(e).parents(".lessonBox").prev().children("input.name").attr("id");
+	var sectionId = $(e).parents(".u-learnLesson").children("input.name").attr("id");
+	console.log("courseId:"+courseId);
+	console.log("chapterId:"+chapterId);
+	console.log("sectionId:"+sectionId);
+	$.ajax({
+    	type:"POST",
+		url:"/teacherCourse/showPDF",
+		data:
+		{	courseId:courseId,
+			chapterId:chapterId,
+			sectionId:sectionId
+		},
+		datatype:"json",
+		success:function(msg){
+			if(msg.status=="OK"){
+				var files = msg.result;
+				if(files.length == 0)
+				{
+					return;
+				}
+				$.each(files, function(idx, file){
+					console.log(file);
+					var content = '<div class="f-pr f-fl u-source u-source-ok" title="' + file[0] + '" onmousemove="uSHover(this)"' +
+	                'onmouseleave="uSBlur(this)">' +
+	                '<div class="f-pa u-source-upload" style="display:none;" data-path="'+file[1]+'" onclick="uploadVideo(this)">' +
+	                '<span class="icon-upload-alt"></span>' +
+	                '</div>' +
+	                '<div class="f-pa u-source-close" style="display:none;" onclick="delVideo(this)">' +
+	                '<span class="u-icon-close"></span>' +
+	                '</div>' +
+	                '</div>';
+					 $(e).parents(".u-learnLesson").next().next().children(':last').before(content);
+				});
+			}
+			else{
+				alert(msg.result);
+			}	
+		},
+		error:function(msg){
+			alert(msg.result);
+		},
+    })
+}
+
+function ShowVideo(e)
+{
+	$(e).parents(".u-learnLesson").nextAll("div.video").children(".u-source-ok").remove();
+    var courseId = getCookie("courseId");
+    var chapterId = $(e).parents(".lessonBox").prev().children("input.name").attr("id");
+	var sectionId = $(e).parents(".u-learnLesson").children("input.name").attr("id");
+	console.log("courseId:"+courseId);
+	console.log("chapterId:"+chapterId);
+	console.log("sectionId:"+sectionId);
+	$.ajax({
+    	type:"POST",
+		url:"/teacherCourse/showViedo",
+		data:
+		{	courseId:courseId,
+			chapterId:chapterId,
+			sectionId:sectionId
+		},
+		datatype:"json",
+		success:function(msg){
+			if(msg.status=="OK"){
+				var files = msg.result;
+				if(files.length == 0)
+				{
+					return;
+				}
+				$.each(files, function(idx, file){
+					console.log(file);
+					var content = '<div class="f-pr f-fl u-source u-source-ok" title="' + file[0] + '" onmousemove="uSHover(this)"' +
+	                'onmouseleave="uSBlur(this)">' +
+	                '<div class="f-pa u-source-upload" style="display:none;" data-path="'+file[1]+'" onclick="uploadVideo(this)">' +
+	                '<span class="icon-upload-alt"></span>' +
+	                '</div>' +
+	                '<div class="f-pa u-source-close" style="display:none;" onclick="delVideo(this)">' +
+	                '<span class="u-icon-close"></span>' +
+	                '</div>' +
+	                '</div>';
+					 $(e).parents(".u-learnLesson").next().children(':last').before(content);
+				});
+			}
+			else{
+				alert(msg.result);
+			}	
+		},
+		error:function(msg){
+			alert(msg.result);
+		},
+    })
 }
 
 //在本地添加视频文件准备上传

@@ -19,16 +19,8 @@
                 <div class="f-icon cpicon j-up f-fl u-icon-caret-down" style="display: none;"></div>
                 <input class="j-titleName name f-fl f-thide" disabled="disabled" value="第一章 绪论（总时长：56分26秒，共6讲）"
                        placeholder="请输入章名" style="width: 30%;" onclick="stopBubble()">
+                <input class="j-titleName end-time" id="end-time" style="width: 155px;display: inline-block"  readonly onclick="showTime(this)" value="" placeholder="请选择时间">
                 <div class="j-typebox f-cb f-fr" onclick="stopBubble()">
-                    <div class="f-icon lsicon f-fl " title="实验提交要求管理" onclick="editInfo(this)">
-                        <span class="u-icon-text"></span>
-                    </div>
-                    <div class="f-icon lsicon f-fl " title="实验视频管理" onclick="editInfo(this)">
-                        <span class="u-icon-video2"></span>
-                    </div>
-                    <div class="f-icon lsicon f-fl " title="实验文档管理" onclick="editInfo(this)">
-                        <span class="icon-book"></span>
-                    </div>
                     <div class="f-icon lsicon f-fl " title="编辑" onclick="editInfo(this)">
                         <span class="u-icon-edit"></span>
                     </div>
@@ -42,7 +34,7 @@
             </div>
             <div class="expBox" style="">
                 <div class="exp-source exp-info f-pr" style="">
-                    <textarea class="source-info" placeholder="请输入实验提交要求"></textarea>
+                    <textarea class="source-info" placeholder="请输入实验提交要求" onkeyup="autoSubmitTextarea(this)"></textarea>
                 </div>
             </div>
             <div class="expBox" style="">
@@ -103,5 +95,6 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="../js/jedate.js"></script>
 <script type="text/javascript" src="../js/teacher-experiment.js"></script>
 </html>

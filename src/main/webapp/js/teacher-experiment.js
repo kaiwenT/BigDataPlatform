@@ -1,7 +1,7 @@
 /**
  * Created by Jack on 2017/10/18.
  */
-//标题点击时间 实现展开功能
+//标题点击事件 实现展开功能
 function titleClick(e) {
     if ($(e).children(".u-icon-caret-up").css("display") == "none") {
         $(e).children(".u-icon-caret-up").css("display", "block");
@@ -13,6 +13,17 @@ function titleClick(e) {
         $(e).nextAll(".expBox").css("display", "none");
     }
 }
+//日期选择器
+function showTime(e){
+    jeDate({
+        dateCell:"#"+$(e).attr("id"),
+        format:"YYYY-MM-DD hh:mm:ss",
+        isTime:true,
+        minDate:"2016-01-01 00:00:00",
+        trigger: "click"
+    })
+    stopBubble()
+}
 
 //添加实验信息
 function addTitle(e) {
@@ -22,16 +33,8 @@ function addTitle(e) {
         '<div class="f-icon cpicon j-up f-fl u-icon-caret-down" style="display: none;"></div>'+
         '<input class="j-titleName name f-fl f-thide" value=""'+
     'placeholder="请输入章名" style="width: 30%;" onclick="stopBubble()">'+
+        '<input class="j-titleName" id="end-time" style="width: 155px;display: inline-block"  readonly onclick="showTime(this)" value="" placeholder="请选择时间">'+
         '<div class="j-typebox f-cb f-fr" onclick="stopBubble()">'+
-        '<div class="f-icon lsicon f-fl " title="实验提交要求管理" onclick="editInfo(this)">'+
-        '<span class="u-icon-text"></span>'+
-        '</div>'+
-        '<div class="f-icon lsicon f-fl " title="实验视频管理" onclick="editInfo(this)">'+
-        '<span class="u-icon-video2"></span>'+
-        '</div>'+
-        '<div class="f-icon lsicon f-fl " title="实验文档管理" onclick="editInfo(this)">'+
-        '<span class="icon-book"></span>'+
-        '</div>'+
         '<div class="f-icon lsicon f-fl " title="编辑" style="display: none;"  onclick="editInfo(this)">'+
         '<span class="u-icon-edit"></span>'+
         '</div>'+
@@ -91,14 +94,17 @@ function submitLesson(e) {
 
 //编辑章节信息
 function editInfo(e) {
-    $(e).parent().prev("input.name").removeAttr("disabled");
+    $(e).parent().prevAll("input.name").removeAttr("disabled");
     $(e).css("display", "none");
     $(e).next("div").css("display", "block");
-    $(e).parent().prev("input.name").focus();
+    $(e).parent().prevAll("input.name").focus();
+    $(e).parent().prevAll("input#end-time").attr("onclick","showTime(this)");
 }
 
 function storeInfo(e) {
-    $(e).parent().prev("input.name").attr("disabled", "disabled");
+    $(e).parent().prevAll("input.name").attr("disabled", "disabled");
+    $(e).parent().prevAll("input#end-time").attr("onclick","stopBubble()");
+    $("#jedatebox").css("display","none");
     $(e).css("display", "none");
     $(e).prev("div").css("display", "block");
     //上传数据，更新章节信息
@@ -135,15 +141,17 @@ function uSBlur(e) {
     }
 }
 
-//video上传管理页面展示
-function videoControl(e) {
-
+//监听实验要求，超过10s没有keyup提交实验要求
+var autoSb = null;
+function autoSubmitTextarea(e){
+    if(autoSb != null)
+        clearTimeout(autoSb);
+    autoSb = setTimeout(function(){
+        var date = new Date();
+        console.log(date.getSeconds());
+    },5000);
 }
 
-//pdf上传管理页面展示
-function pdfControl(e) {
-
-}
 
 //在本地添加视频文件准备上传
 function addVideo(e,event) {

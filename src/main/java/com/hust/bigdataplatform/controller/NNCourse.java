@@ -1,13 +1,14 @@
 package com.hust.bigdataplatform.controller;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +20,7 @@ import com.hust.bigdataplatform.model.CourseChapter;
 import com.hust.bigdataplatform.service.ChapterSectionService;
 import com.hust.bigdataplatform.service.CourseChapterService;
 import com.hust.bigdataplatform.service.CourseService;
+import com.hust.bigdataplatform.service.FileService;
 import com.hust.bigdataplatform.util.ResultUtil;
 import com.hust.bigdataplatform.util.UploadUtils;
 
@@ -32,6 +34,8 @@ public class NNCourse {
 	private CourseChapterService courseChapterService;
 	@Autowired
 	private ChapterSectionService chapterSectionService;
+	@Autowired
+	private FileService fileservice;
 	
 	/**
 	 * 设置课程介绍内容
@@ -226,9 +230,17 @@ public class NNCourse {
 		if (courseChapter==null) {
 			return ResultUtil.errorWithMsg("上传失败");
 		}
-		String road = courseChapter.getCoursewarePath()+sectionId ;
+		com.hust.bigdataplatform.model.File f = new com.hust.bigdataplatform.model.File();
+		f.setCreateTime(new Date());
+		f.setFileId(UUID.randomUUID().toString());
+		f.setFileType("pdf");
+		f.setFileName(uploadfile.getOriginalFilename());
+		String road = courseChapter.getCoursewarePath()+"/"+sectionId ;
 		UploadUtils uploadUtils = new UploadUtils();
 		if (uploadUtils.uploadUtils(uploadfile, road)) {
+			//在file表中添加记录
+			fileservice.insert(f);
+			//改变文件的名字
 			return ResultUtil.success("上传成功！");
 		}
 		return ResultUtil.errorWithMsg("上传失败");
@@ -255,12 +267,58 @@ public class NNCourse {
 		
 	}
 	
-	@RequestMapping("/showFiles")
+	@RequestMapping("/showPDF")
 	@ResponseBody
 	public Object showFiles(@RequestParam(value="chapterId") String chapterId,@RequestParam(value="sectionId") String sectionId,
 			@RequestParam(value="courseId") String courseId)
 	{
-		return courseId;
+		CourseChapter course = courseChapterService.selectById(chapterId, courseId);
+		if (course == null) {
+			return ResultUtil.errorWithMsg("查找PDF失败");
+		}
+		String road = course.getCoursewarePath()+"/"+sectionId;
+		File file = new File(road);
+		if (!file.exists()) {
+			return ResultUtil.errorWithMsg("路径不存在！");
+		}
+		File files[] = file.listFiles();
+		List<String[]> files2 = new ArrayList<String[]>();
+		for(int i = 0; i< files.length; i++)
+		{
+			String[] strings= new String[2];
+			strings[0] = files[i].getName();
+			strings[1] = files[i].getPath();
+			files2.add(strings);
+		}
+		System.out.println(files2.size());
+		return ResultUtil.success(files2);
+		
+	}
+	
+	@RequestMapping("/showViedo")
+	@ResponseBody
+	public Object showViedo(@RequestParam(value="chapterId") String chapterId,@RequestParam(value="sectionId") String sectionId,
+			@RequestParam(value="courseId") String courseId)
+	{
+		CourseChapter course = courseChapterService.selectById(chapterId, courseId);
+		if (course == null) {
+			return ResultUtil.errorWithMsg("查找PDF失败");
+		}
+		String road = course.getVideoPath()+sectionId;
+		File file = new File(road);
+		if (!file.exists()) {
+			return ResultUtil.errorWithMsg("路径不存在！");
+		}
+		File files[] = file.listFiles();
+		List<String[]> files2 = new ArrayList<String[]>();
+		for(int i = 0; i< files.length; i++)
+		{
+			String[] strings= new String[2];
+			strings[0] = files[i].getName();
+			strings[1] = files[i].getPath();
+			files2.add(strings);
+		}
+		return ResultUtil.success(files2);
 		
 	}
 }

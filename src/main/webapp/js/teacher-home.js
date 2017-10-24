@@ -60,11 +60,12 @@ function getCourseByTeacherId() {
 				if(courses.length == 0){
 					return;
 				}
+				console.log(courses.length);
 				$(".course_number").text("课程"+courses.length);
 				$(".course-panel-body-wrapper").empty();
 				var cookie_courseId = "'courseId'";
 				$.each(courses, function(idx, course){ 
-					c = '<div class="course-card-wrapper"><div class="box"><a href="teacher-course-base.html?href=teacher-course-introduce" onclick="setCookie('+cookie_courseId+','+course.courseId+');" target="_blank" class="ga-click">'
+					c = '<div class="course-card-wrapper"><div class="box"><a href="teacher-course-base.html?href=teacher-course-introduce" onclick="setCookie('+cookie_courseId+','+"'"+course.courseId+"'"+');" target="_blank" class="ga-click">'
 						+'<div class="img"><img class="image" src="../img/course-img.jpg" id="'+course.courseId+'" alt="'+course.courseName+'"></div>'
 						+'<div class="body">'
 						+'<div class="common-info-wrapper common-info-wrapper-fix-height">'

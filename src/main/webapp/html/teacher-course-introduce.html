@@ -48,6 +48,7 @@
     function showIntroduce()
     {
     	  var courseId = getCookie("courseId");
+    	  console.log("courseId:"+courseId);
     	  $.ajax({
       		type:"POST",
       		url:"/course/getCourseById",

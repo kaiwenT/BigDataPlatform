@@ -313,7 +313,12 @@
     			<artifactId>jsoup</artifactId>
  				<version>1.10.2</version>
 		</dependency>
-		
+		<!--pdf图片生成器-->
+		<dependency>
+			<groupId>org.icepdf</groupId>
+			<artifactId>icepdf-core</artifactId>
+			<version>4.1.4</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>bigdataplatform</finalName>

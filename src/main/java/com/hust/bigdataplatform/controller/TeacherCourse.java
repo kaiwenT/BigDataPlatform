@@ -21,12 +21,15 @@ import com.hust.bigdataplatform.service.ChapterSectionService;
 import com.hust.bigdataplatform.service.CourseChapterService;
 import com.hust.bigdataplatform.service.CourseService;
 import com.hust.bigdataplatform.service.FileService;
+import com.hust.bigdataplatform.service.impl.ChapterSectionServiceImpl;
+import com.hust.bigdataplatform.service.impl.FileServiceImpl;
 import com.hust.bigdataplatform.util.ResultUtil;
 import com.hust.bigdataplatform.util.UploadUtils;
+import com.hust.bigdataplatform.util.fileUtil;
 
 @Controller
 @RequestMapping("/teacherCourse")
-public class NNCourse {
+public class TeacherCourse {
 	
 	@Autowired
 	private CourseService courseService;
@@ -141,6 +144,15 @@ public class NNCourse {
 	public Object DeleteChapter(@RequestParam("chapterId") String chapterId,
 			@RequestParam(value="courseId") String courseId)
 	{
+		//先删除章下的节
+		List<ChapterSection> chapterSections = chapterSectionService.selectByChapterId(chapterId);
+		for (ChapterSection chapterSection : chapterSections) {
+			courseChapterService.deleteSectionfile(chapterSection.getSectionid());
+		}
+		File file= new File(courseChapterService.selectById(chapterId, courseId).getCoursewarePath());
+		file.delete();
+		File file1= new File(courseChapterService.selectById(chapterId, courseId).getVideoPath());
+		file1.delete();
 		int status = courseChapterService.deleteByChapterId(chapterId, courseId);
 		if (status==0) {
 			return ResultUtil.errorWithMsg("删除章失败！");
@@ -207,6 +219,8 @@ public class NNCourse {
 	@ResponseBody
 	public Object DeleteSection(@RequestParam(value="sectionId") String sectionId)
 	{
+		courseChapterService.deleteSectionfile(sectionId);
+	    //删除section表中记录
 		int status = chapterSectionService.deleteSection(sectionId);
 		if (status==0) {
 			return ResultUtil.errorWithMsg("删除节失败！");
@@ -232,8 +246,9 @@ public class NNCourse {
 		}
 		com.hust.bigdataplatform.model.File f = new com.hust.bigdataplatform.model.File();
 		f.setCreateTime(new Date());
-		f.setFileId(UUID.randomUUID().toString());
-		f.setFileType("pdf");
+		String uid = UUID.randomUUID().toString();
+		f.setFileId(uid);
+		f.setFileType("PDF");
 		f.setFileName(uploadfile.getOriginalFilename());
 		String road = courseChapter.getCoursewarePath()+"/"+sectionId ;
 		UploadUtils uploadUtils = new UploadUtils();
@@ -241,7 +256,9 @@ public class NNCourse {
 			//在file表中添加记录
 			fileservice.insert(f);
 			//改变文件的名字
-			return ResultUtil.success("上传成功！");
+			if (fileUtil.updatename(road+"/"+uploadfile.getOriginalFilename(), road+"/"+uid+".pdf")) {
+				return ResultUtil.success("上传成功！");
+			}
 		}
 		return ResultUtil.errorWithMsg("上传失败");
 		
@@ -253,15 +270,26 @@ public class NNCourse {
 			@RequestParam(value="chapterId") String chapterId,@RequestParam(value="sectionId") String sectionId,
 			@RequestParam(value="courseId") String courseId)
 	{
-		System.out.println("************************");
 		CourseChapter courseChapter = courseChapterService.selectById(chapterId, courseId);
 		if (courseChapter==null) {
 			return ResultUtil.errorWithMsg("上传失败");
 		}
-		String road = courseChapter.getVideoPath()+sectionId;
+		
+		com.hust.bigdataplatform.model.File f = new com.hust.bigdataplatform.model.File();
+		f.setCreateTime(new Date());
+		String uid = UUID.randomUUID().toString();
+		f.setFileId(uid);
+		f.setFileType("VIDEO");
+		f.setFileName(uploadfile.getOriginalFilename());
+		
+		String road = courseChapter.getVideoPath()+"/"+sectionId;
 		UploadUtils uploadUtils = new UploadUtils();
 		if (uploadUtils.uploadUtils(uploadfile, road)) {
-			return ResultUtil.success("上传成功！");
+			fileservice.insert(f);
+			//改变文件的名字
+			if (fileUtil.updatename(road+"/"+uploadfile.getOriginalFilename(), road+"/"+uid+".mp4")) {
+				return ResultUtil.success("上传成功！");
+			}
 		}
 		return ResultUtil.errorWithMsg("上传失败");
 		
@@ -269,7 +297,7 @@ public class NNCourse {
 	
 	@RequestMapping("/showPDF")
 	@ResponseBody
-	public Object showFiles(@RequestParam(value="chapterId") String chapterId,@RequestParam(value="sectionId") String sectionId,
+	public Object showPDF(@RequestParam(value="chapterId") String chapterId,@RequestParam(value="sectionId") String sectionId,
 			@RequestParam(value="courseId") String courseId)
 	{
 		CourseChapter course = courseChapterService.selectById(chapterId, courseId);
@@ -279,20 +307,17 @@ public class NNCourse {
 		String road = course.getCoursewarePath()+"/"+sectionId;
 		File file = new File(road);
 		if (!file.exists()) {
-			return ResultUtil.errorWithMsg("路径不存在！");
+			return ResultUtil.errorWithMsg("没有文件！");
 		}
-		File files[] = file.listFiles();
-		List<String[]> files2 = new ArrayList<String[]>();
-		for(int i = 0; i< files.length; i++)
-		{
-			String[] strings= new String[2];
-			strings[0] = files[i].getName();
-			strings[1] = files[i].getPath();
-			files2.add(strings);
+		List<com.hust.bigdataplatform.model.File> files = new ArrayList<com.hust.bigdataplatform.model.File>();
+		List<String> names = fileUtil.getFileName(road);
+		for (String string : names) {
+			files.add(fileservice.selectById(string.substring(0, string.indexOf("."))));
 		}
-		System.out.println(files2.size());
-		return ResultUtil.success(files2);
-		
+		for (com.hust.bigdataplatform.model.File file2 : files) {
+			System.out.println("**********"+file2.getFileName());
+		}
+		return ResultUtil.success(files);
 	}
 	
 	@RequestMapping("/showViedo")
@@ -304,21 +329,57 @@ public class NNCourse {
 		if (course == null) {
 			return ResultUtil.errorWithMsg("查找PDF失败");
 		}
-		String road = course.getVideoPath()+sectionId;
+		String road = course.getVideoPath()+"/"+sectionId;
 		File file = new File(road);
 		if (!file.exists()) {
-			return ResultUtil.errorWithMsg("路径不存在！");
+			return ResultUtil.errorWithMsg("文件不存在！");
 		}
-		File files[] = file.listFiles();
-		List<String[]> files2 = new ArrayList<String[]>();
-		for(int i = 0; i< files.length; i++)
-		{
-			String[] strings= new String[2];
-			strings[0] = files[i].getName();
-			strings[1] = files[i].getPath();
-			files2.add(strings);
+		List<com.hust.bigdataplatform.model.File> files = new ArrayList<com.hust.bigdataplatform.model.File>();
+		List<String> names = fileUtil.getFileName(road);
+		for (String string : names) {
+			files.add(fileservice.selectById(string.substring(0, string.indexOf("."))));
 		}
-		return ResultUtil.success(files2);
-		
+		for (com.hust.bigdataplatform.model.File file2 : files) {
+			System.out.println("8888888"+file2.getFileName());
+		}
+		return ResultUtil.success(files);
 	}
+	@RequestMapping("/DeleteVideo")
+	@ResponseBody
+	public Object DeleteVideo(@RequestParam(value="sectionId") String sectionId,
+			@RequestParam(value="videoId") String videoId, @RequestParam(value="courseId") String courseId)
+	{
+		//删除文件成功后，在删除记录
+		ChapterSection chapterSection = chapterSectionService.selectBySectionId(sectionId);
+		CourseChapter chapter=courseChapterService.selectById(chapterSection.getChapterId(), courseId);
+		String road = chapter.getVideoPath()+"/"+chapterSection.getSectionid()+"/"+videoId+".mp4";
+		File file = new File(road);
+		if (file.isFile()) {
+			file.delete();
+		}
+		if (fileservice.delete(videoId)==1) {
+			return ResultUtil.success("删除成功！");
+		}
+		return ResultUtil.errorWithMsg("删除失败！");
+	}
+	
+	@RequestMapping("/DeletePDF")
+	@ResponseBody
+	public Object DeletePDF(@RequestParam(value="sectionId") String sectionId,
+			@RequestParam(value="pdfId") String pdfId, @RequestParam(value="courseId") String courseId)
+	{
+		//删除文件成功后，在删除记录
+		ChapterSection chapterSection = chapterSectionService.selectBySectionId(sectionId);
+		CourseChapter chapter=courseChapterService.selectById(chapterSection.getChapterId(), courseId);
+		String road = chapter.getCoursewarePath()+"/"+chapterSection.getSectionid()+"/"+pdfId+".pdf";
+		File file = new File(road);
+		if (file.isFile()) {
+			file.delete();
+		}
+		if (fileservice.delete(pdfId)==1) {
+			return ResultUtil.success("删除成功！");
+		}
+		return ResultUtil.errorWithMsg("删除失败！");
+	}
+
 }

@@ -35,5 +35,6 @@ public interface CourseChapterService {
 	 * 修改章
 	 */
 	public int update(CourseChapter courseChapter);
+	void deleteSectionfile(String sectionId);
 	
 }

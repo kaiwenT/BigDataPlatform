@@ -314,11 +314,13 @@
  				<version>1.10.2</version>
 		</dependency>
 		<!--pdf图片生成器-->
+		<!-- https://mvnrepository.com/artifact/org.icepdf.os/icepdf-core -->
 		<dependency>
-			<groupId>org.icepdf</groupId>
-			<artifactId>icepdf-core</artifactId>
-			<version>4.1.4</version>
+		    <groupId>org.icepdf.os</groupId>
+		    <artifactId>icepdf-core</artifactId>
+		    <version>6.1.2</version>
 		</dependency>
+	
 	</dependencies>
 	<build>
 		<finalName>bigdataplatform</finalName>

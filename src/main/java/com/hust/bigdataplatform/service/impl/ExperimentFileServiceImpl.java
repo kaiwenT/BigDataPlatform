@@ -37,20 +37,14 @@ public class ExperimentFileServiceImpl implements ExperimentFileService {
 			return files;
 		}
 		for(ExperimentFile ef : list){
-			File f = fileDao.selectByFileId(ef.getFileId());
-			if(f != null){
+			File f = fileDao.selectByFileId(ef.getFileId());			
+			if(type == null || "".equals(type)){
+				files.add(f);
+			}else if(f != null && type.equals(f.getFileType())){
 				files.add(f);
 			}			
 		}
-		
-		if(type == null  || "".equals(type)){
-			return files;
-		}
-		for(File f : files){
-			if(!type.equals(f.getFileType())){
-				files.remove(f);
-			}
-		}
+				
 		return files;
 	}
 	@Override

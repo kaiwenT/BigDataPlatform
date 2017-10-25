@@ -1,43 +1,46 @@
+//文件存放路径
+var path = 'http://211.69.197.85:8081/bigdataplatform/file/';
 
-//Student-courseware-pdf页面显示课程的章 ,节标题
+//Student-experiment-video页面显示实验的标题、文件标题
 function showTitle(){
 	var fileId = getCookie("fileId");
+	var fileName = getCookie("fileName");
 	
 	if(fileId == null || fileId == 'undefined'){
 		return;
 	}
 	$.ajax({
 		type : "POST",
-		url : "/course/getexpBySection",
+		url : "/experiment/getExperimentByFile",
 		dataType : "json",
 		data : {
 			fileId : fileId
 		},
 		success : function(msg) {
 			if (msg.status == "OK") {
-				var res = msg.result;
-				//res[5] 数组存放 章id，章标题，PDF路径，视频路径，节标题
+				var exp = msg.result;
 				
-				if(res != 'undefined' && res != '' && res.length > 2){
+				
+				if(exp != 'undefined' && exp != ''){
 					$(".u-learn-moduletitle").empty();
 					var bread = '<div class="j-breadcb f-fl"><div class="u-learnBCUI f-cb">'
-							+'<a href="javascript:;" class="f-fl f-fc3 f-f0 link" onclick="baseAjax('+"'student-courseware'"+')">课件</a>'
+							+'<a href="javascript:;" class="f-fl f-fc3 f-f0 link" onclick="baseAjax('+"'student-experiment'"+')">实验</a>'
 							+'<span class="f-icon f-fl icon u-icon-caret-right2"></span>'
 							+'<div class="f-fl j-exp"><div class="u-select">'
-							+'<div class="up j-up f-thide expup" onclick="expupClick(this)" id="'+res[0]+'">'+res[1]+'</div>'
+							+'<div class="up j-up f-thide expup" onclick="expupClick(this)" id="'+exp.experimentId+'">'+exp.experimentName+'</div>'
 							+'<div class="down f-bg j-list expdown" style="display: none;"></div></div></div>'
 							+'<span class="f-icon f-fl icon u-icon-caret-right2"></span>'
 							+'<div class="f-fl j-lesson"><div class="u-select">'
-							+'<div class="up j-up f-thide fileup" onclick="fileupClick(this)" id="'+fileId+'">'+res[4]+'</div>'
+							+'<div class="up j-up f-thide fileup" onclick="fileupClick(this)" id="'+fileId+'">'+fileName+'</div>'
 							+'<div class="down f-bg j-list filedown" style="display: none;"></div></div></div></div></div>';
 					$(".u-learn-moduletitle").append(bread);
 					$(".j-unitctBox").attr("id", fileId);
-					if(res[2] != "" && fileId != ""){
+					if(fileId != ""){
 						$(".unitctBox").empty();
 						$(".unitctBox").append('<div class="ux-video-player" onclick="pp()">'
 		                        +'<video controls preload="metadata" autoplay>'
 		                        +'<source class="video" src="" type="video/mp4" id=""></video></div>');
-						$(".video").attr("src", res[3]+"/"+fileId+".mp4");
+						$(".video").attr("src", path+fileId+".mp4");
 						
 					}
 				}else{
@@ -55,8 +58,8 @@ function showTitle(){
 	})
 }
 
-//
-function showexps(){
+//显示所有实验
+function showExps(){
 var courseId = $(".course-image").attr("id");
 	
 	if(courseId == null || courseId == 'undefined'){
@@ -64,7 +67,7 @@ var courseId = $(".course-image").attr("id");
 	}
 	$.ajax({
 		type : "POST",
-		url : "/course/getexpsByCourse",
+		url : "/experiment/getExperimentsByCourse",
 		dataType : "json",
 		data : {
 			courseId : courseId
@@ -77,8 +80,8 @@ var courseId = $(".course-image").attr("id");
 					$(".expdown").empty();
 					$.each(exps, function(idx, exp){
 						
-						var list = '<div class="f-thide list" onclick="expdownClick(this)" title="'+exp.expName+'"'
-							+'id="'+exp.expId+'">'+exp.expName+'</div>';
+						var list = '<div class="f-thide list" onclick="expdownClick(this)" title="'+exp.experimentName+'"'
+							+'id="'+exp.experimentId+'">'+exp.experimentName+'</div>';
 						$(".expdown").append(list);
 						
 					});
@@ -97,17 +100,18 @@ var courseId = $(".course-image").attr("id");
 	})	
 }
 
-//显示节
-function showSections(expid){
+//显示实验的文件
+function showFiles(expid){
 	if(expid == null || expid == 'undefined'){
 		return;
 	}
 	$.ajax({
 		type : "POST",
-		url : "/course/getSectionsByexp",
+		url : "/experiment/getFilesByExperiment",
 		dataType : "json",
 		data : {
-			expId : expid
+			experimentId : expid,
+			type : "VIDEO"
 		},
 		success : function(msg) {
 			if (msg.status == "OK") {
@@ -137,40 +141,40 @@ function showSections(expid){
 	})	
 }
 
-$('a.media').media({width:986, height:800});
-//章title点击事件
+//实验title点击事件
 function expupClick(e) {
 	if($(".expdown").css("display")=="none"){
-		showexps();
+		showExps();
 	}else{
 		$(".expdown").css("display","none");
 	}    
 }
-//下拉栏章标题点击事件
+//下拉栏实验标题点击事件
 function expdownClick(e){
 	$(".expdown").css("display","none");
 	
 	$(".expup").attr("id", $(e).attr("id"));
 	$(".expup").text($(e).text());
 	$(".fileup").attr("id", "select");
-	$(".fileup").text("请选择节");
+	$(".fileup").text("请选择视频");
 	
 	$(".filedown").css("display", "none");
 }
-//节标题栏点击事件
+//文件标题栏点击事件
 function fileupClick(e){
 	var expid = $(".expup").attr("id");
 	console.log(expid);
 	if($(e).next(".filedown").css("display")=="none"){
-		showSections(expid);
+		showFiles(expid);
 	}else{
 		$(e).next(".filedown").css("display","none");
 	} 
 	
 }
 
-//节下拉列表点击事件
+//文件下拉列表点击事件
 function filedownClick(e){
 	setCookie("fileId", $(e).attr("id"));
+	setCookie("fileName", $(e).attr("title"));
 	showTitle();
 }

@@ -86,3 +86,20 @@
     float: left;
     width: 100%;
 }
+
+.m-learnChapterList{
+    position: relative;
+}
+.u-learn-moduletitle {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+.j-moduleName{
+    float: left;
+}
+.m-learnChapterNormal {
+    position: relative;
+    margin-bottom: 10px;
+
+}

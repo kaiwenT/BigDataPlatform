@@ -412,7 +412,6 @@ function delContent(e) {
     if (status == true) 
     {
     	var sectionId = $(e).parent().prev("input.name").attr("id");
-    	console.log("sectionId:"+sectionId);
     	if(sectionId == null || sectionId=="")
 		{
     		$(e).parents("div.u-learnLesson").next(".video").remove();
@@ -505,9 +504,6 @@ function ShowPDF(e)
     var courseId = getCookie("courseId");
     var chapterId = $(e).parents(".lessonBox").prev().children("input.name").attr("id");
 	var sectionId = $(e).parents(".u-learnLesson").children("input.name").attr("id");
-	console.log("courseId:"+courseId);
-	console.log("chapterId:"+chapterId);
-	console.log("sectionId:"+sectionId);
 	$.ajax({
     	type:"POST",
 		url:"/teacherCourse/showPDF",
@@ -525,13 +521,12 @@ function ShowPDF(e)
 					return;
 				}
 				$.each(files, function(idx, file){
-					console.log(file);
-					var content = '<div class="f-pr f-fl u-source u-source-ok" title="' + file[0] + '" onmousemove="uSHover(this)"' +
+					var content = '<div class="f-pr f-fl u-source u-source-ok" id = "'+file.fileId+'"title="' + file.fileName + '" onmousemove="uSHover(this)"' +
 	                'onmouseleave="uSBlur(this)">' +
-	                '<div class="f-pa u-source-upload" style="display:none;" data-path="'+file[1]+'" onclick="uploadVideo(this)">' +
+	                '<div class="f-pa u-source-upload" style="display:none;" data-path="" onclick="uploadVideo(this)">' +
 	                '<span class="icon-upload-alt"></span>' +
 	                '</div>' +
-	                '<div class="f-pa u-source-close" style="display:none;" onclick="delVideo(this)">' +
+	                '<div class="f-pa u-source-close" style="display:none;" onclick="delPdf(this)">' +
 	                '<span class="u-icon-close"></span>' +
 	                '</div>' +
 	                '</div>';
@@ -554,9 +549,6 @@ function ShowVideo(e)
     var courseId = getCookie("courseId");
     var chapterId = $(e).parents(".lessonBox").prev().children("input.name").attr("id");
 	var sectionId = $(e).parents(".u-learnLesson").children("input.name").attr("id");
-	console.log("courseId:"+courseId);
-	console.log("chapterId:"+chapterId);
-	console.log("sectionId:"+sectionId);
 	$.ajax({
     	type:"POST",
 		url:"/teacherCourse/showViedo",
@@ -574,10 +566,9 @@ function ShowVideo(e)
 					return;
 				}
 				$.each(files, function(idx, file){
-					console.log(file);
-					var content = '<div class="f-pr f-fl u-source u-source-ok" title="' + file[0] + '" onmousemove="uSHover(this)"' +
+					var content = '<div class="f-pr f-fl u-source u-source-ok" id="'+file.fileId+'"title="' + file.fileName + '" onmousemove="uSHover(this)"' +
 	                'onmouseleave="uSBlur(this)">' +
-	                '<div class="f-pa u-source-upload" style="display:none;" data-path="'+file[1]+'" onclick="uploadVideo(this)">' +
+	                '<div class="f-pa u-source-upload" style="display:none;" data-path="" onclick="uploadVideo(this)">' +
 	                '<span class="icon-upload-alt"></span>' +
 	                '</div>' +
 	                '<div class="f-pa u-source-close" style="display:none;" onclick="delVideo(this)">' +
@@ -640,9 +631,6 @@ function uploadVideo1(e,file) {
     var courseId = getCookie("courseId");
     var chapterId = $(e).parents(".lessonBox").prev().children("input.name").attr("id");
     var sectionId = $(e).parents(".u-learnLesson").prev().children("input").attr("id");
-    console.log("courseId:"+courseId);
-    console.log("chapterId:"+chapterId);
-    console.log("sectionId:"+sectionId);
     formData.append("chapterId" , chapterId);
     formData.append("sectionId" , sectionId);
     formData.append("courseId" , courseId);
@@ -741,8 +729,29 @@ function uploadPdf1(e,file) {
 function delVideo(e) {
     var flag = confirm("是否删除该视频？");
     if (flag) {
-        $(e).parent(".u-source").remove();
-        //删除该Video
+    	var courseId = getCookie("courseId");
+        var sectionId = $(e).parents(".u-learnLesson").prev().children("input").attr("id");
+        var videoId = $(e).parents(".u-source-ok").attr("id");
+        $.ajax({
+            type: "POST",
+            url: "/teacherCourse/DeleteVideo",       
+            dataType:"json",
+            data: {
+            	courseId:courseId,
+            	sectionId:sectionId,
+            	videoId:videoId,
+            },
+            success : function(msg) {
+                if (msg.status == "OK") {
+                	$(e).parent(".u-source").remove();
+                } else {
+                	 alert(msg.result);
+                }  
+            },
+            error : function() {
+                alert("删除失败！");
+            }
+        })
     }
 }
 
@@ -750,7 +759,32 @@ function delVideo(e) {
 function delPdf(e) {
     var flag = confirm("是否删除该Pdf？");
     if (flag) {
-        $(e).parent(".u-source").remove();
-        //删除该Pdf
+    	console.log("111111111");
+    	var courseId = getCookie("courseId");
+        var sectionId = $(e).parents(".u-learnLesson").prev().prev().children("input").attr("id");
+        var pdfId = $(e).parents(".u-source-ok").attr("id");
+        console.log(sectionId);
+        console.log(pdfId);
+        $.ajax({
+            type: "POST",
+            url: "/teacherCourse/DeletePDF",       
+            dataType:"json",
+            data: {
+            	courseId:courseId,
+            	sectionId:sectionId,
+            	pdfId:pdfId,
+            },
+            success : function(msg) {
+                if (msg.status == "OK") {
+                	console.log("sss");
+                	$(e).parent(".u-source").remove();
+                } else {
+                	 alert(msg.result);
+                }  
+            },
+            error : function() {
+                alert("删除失败！");
+            }
+        })
     }
 }

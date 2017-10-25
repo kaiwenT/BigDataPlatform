@@ -27,5 +27,6 @@ public interface ChapterSectionService {
 	 * 修改节
 	 */
 	public int Update(ChapterSection chapterSection);
+	
 
 }

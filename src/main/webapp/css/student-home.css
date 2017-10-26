@@ -364,7 +364,35 @@ wrapper .course-panel-foot-wrapper .ux-pager_btn > a{
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 143px;
+    height: 40px;
+}
+.footbox {
+    width: 980px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.ftsmlogo {
+    width: 140px;
+    height: 30px;
+    float: left;
+    background-image:url(../img/hust.png);
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    margin: 10px 0px 0px 30px;
+}
+.ftline {
+    width: 2px;
+    height: 40px;
+    background: white;
+    float: left;
+    margin: 6px 30px 0px 30px;
+}
+.footsb_txt {
+    float: left;
+    line-height: 22px;
+    font-size: 16px;
+    font-family: 微软雅黑, 宋体, san-serif;
+    color: white;
 }
 .m-foot {
     border-top: 1px solid #333;
@@ -376,4 +404,16 @@ wrapper .course-panel-foot-wrapper .ux-pager_btn > a{
     position: absolute;
     width: 100%;
     top: -7.96px;
+}
+.stu-grade{
+    width: 800px; font-size: 20px;
+}
+.stu-grade tr{
+    height: 30px;
+}
+.stu-grade th{
+    font-weight: bold;
+}
+.stu-grade th,.stu-grade td{
+    text-align: center;
 }

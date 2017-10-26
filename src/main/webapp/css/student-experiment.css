@@ -38,3 +38,15 @@
     display: block;
 }
 
+span.content{
+    display: block;
+    height: 20px;
+    font-size: 15px;
+    width: 270px;
+    overflow: hidden;
+    border-bottom: dashed 1px #E7E9EF;
+    color:rgba(0,0,0,0.3);
+}
+span.content-ok{
+    color: #000;
+}

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/student-courseware.css">
     <link rel="stylesheet" href="../css/student-experiment.css">
+    <link rel="stylesheet" href="../css/mask.css">
 </head>
 <body>
 <div class="m-learnChapterList">
@@ -18,6 +19,37 @@
     
     <div class="m-learnChapterNormal f-pr">
         
+    </div>
+</div>
+<div class="m-mask">
+    <div class="m-container require-info" style="width: 400px;height: 230px; margin: -115px -220px;border-radius: 15px;">
+        <div class="f-pr" style="width: 300px;height: 140px; margin-left: -150px;top:35px;left: 50%;border:solid 1px #69B1F8; border-radius: 15px;">
+            <span style="width: 290px;height: 130px;margin: 5px 0 5px 5px;font-size: 15px;display: block;overflow-y: scroll">这是一份实验要求，这是一份实验要求，这是一份实验要求，这是一份实验要求，这是一份实验要求这是一份实验要求，这是一份实验要求</span>
+        </div>
+        <button class="u-btn u-btn-primary" style="position: absolute;bottom:0;left: 50%;margin-left: -40px;" onclick="iKnow()">我知道了</button>
+    </div>
+    <div class="m-container submit-box" style="width:640px;height: 360px; margin: -180px -320px;display: none;">
+        <div class="m-close" onclick="closeBox()">
+            <span class="u-icon-close"></span>
+        </div>
+        <div class="m-content" id="这是一个实验的id">
+            <div style="position: absolute;">
+                <button class="u-btn u-btn-primary" style="position: relative;top:80px; left: 70px; width: 100px;" onclick="openFile(this)">上传实验报告</button>
+                <input type="file" class="submit-exp-report" style="position: absolute;width: 0px;height: 0px;opacity: 0;">
+                <div style="position: relative;left:250px;width: 270px;height: 120px;border: solid 1px;">
+                    <span class="content content-ok">这是一个已经上传好的文件</span>
+                    <span class="content">这是一个正在上传的文件</span>
+                </div>
+            </div>
+            <div style="position: absolute;bottom:0;left:0;">
+                <button class="u-btn u-btn-primary" style="position: absolute;bottom:80px; left: 70px; width: 100px;" onclick="openFile(this)">上传实验结果</button>
+                <input type="file" multiple class="submit-exp-result" style="position: absolute;width: 0px;height: 0px;opacity: 0;">
+                <div style="position: relative;left:250px;bottom:40px;width: 270px;height: 120px;border: solid 1px;">
+
+                </div>
+            </div>
+        </div>
+        <div style="position: absolute; bottom: 2px; right: 3px;"><a style="display: block;" onclick="showHelp()">帮助</a></div>
     </div>
 </div>
 </body>

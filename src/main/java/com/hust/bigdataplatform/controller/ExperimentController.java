@@ -50,6 +50,20 @@ public class ExperimentController {
 		List<Experiment> exps = experimentService.findExperimentByCourseId(courseId);
 		return ResultUtil.success(exps);
 	}
+	
+	@RequestMapping("/getExperimentById")
+	@ResponseBody
+	public Object getExperimentById(@RequestParam(value="experimentId", required=true)String experimentId,
+			HttpServletRequest request){
+		if(experimentId == null || "".equals(experimentId)){
+			return ResultUtil.errorWithMsg("实验id为空");
+		}
+		List<Experiment> exps = experimentService.findExperimentByExpId(experimentId);
+		if(exps == null || exps.isEmpty()){
+			return ResultUtil.errorWithMsg("实验查询失败");
+		}
+		return ResultUtil.success(exps.get(0));
+	}
 	/**
 	 * 获取某个实验所有文件，包括video,pdf
 	 * @param experimentId

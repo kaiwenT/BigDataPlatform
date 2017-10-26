@@ -1,5 +1,6 @@
 package com.hust.bigdataplatform.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,13 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.hust.bigdataplatform.constant.Constant;
 import com.hust.bigdataplatform.model.Student;
 import com.hust.bigdataplatform.service.SessionService;
 import com.hust.bigdataplatform.service.StudentService;
 import com.hust.bigdataplatform.util.ResultUtil;
+import com.hust.bigdataplatform.util.UploadUtils;
+
 
 @Controller
 @RequestMapping("/student")
@@ -87,4 +93,58 @@ public class StudentController {
 		return ResultUtil.success(students);
 	}
 	
+	/**
+	 * 学生上交实验报告
+	 * @param request
+	 * @param experimentId
+	 * @param uploadfile
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/uploadExpReport", method = RequestMethod.POST)
+	public Object uploadExpReport(HttpServletRequest request,
+			@RequestParam(value="experimentId") int experimentId,
+			@RequestParam(value = "uploadfile", required = false) MultipartFile[] uploadfile){
+		String studentId = (String) sessionService.getObject("studentId", request);
+		if(studentId == null){
+			return ResultUtil.errorWithMsg("登录信息过期，请重新登录！");
+		}
+		UploadUtils up = new UploadUtils();
+		String path = Constant.DIRECTORY.EXPERIMENT_REPORT + File.pathSeparatorChar + experimentId + File.pathSeparatorChar + studentId;
+		
+		for(MultipartFile file : uploadfile){
+			if(!up.uploadUtils(file, path)){
+				return ResultUtil.errorWithMsg(file.getName() + "上传失败，请重新上传！");
+			}
+		}
+		
+		return ResultUtil.success("上传实验报告成功！");
+	}
+	/**
+	 * 上传实验数据
+	 * @param request
+	 * @param experimentId
+	 * @param uploadfile
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/uploadExpData", method = RequestMethod.POST)
+	public Object uploadExpData(HttpServletRequest request,
+			@RequestParam(value="experimentId") int experimentId,
+			@RequestParam(value = "uploadfile", required = false) MultipartFile[] uploadfile){
+		String studentId = (String) sessionService.getObject("studentId", request);
+		if(studentId == null){
+			return ResultUtil.errorWithMsg("登录信息过期，请重新登录！");
+		}
+		UploadUtils up = new UploadUtils();
+		String path = Constant.DIRECTORY.EXPERIMENT_DATA_SUBMIT + File.pathSeparatorChar + experimentId + File.pathSeparatorChar + studentId;
+		
+		for(MultipartFile file : uploadfile){
+			if(!up.uploadUtils(file, path)){
+				return ResultUtil.errorWithMsg(file.getName() + "上传失败，请重新上传！");
+			}
+		}
+		
+		return ResultUtil.success("上传实验报告成功！");
+	}	
 }

@@ -24,13 +24,13 @@ function showExperiments(){
 					$(".m-learnChapterNormal").empty();
 					$.each(exps, function(idx, exp){
 						
-						var titlebox = '<div><div class="titleBox j-titleBox f-cb" id="'+exp.experimentId+'" onclick="titleClick(this)">'
+						var titlebox = '<div><div class="titleBox j-titleBox f-cb f-pr" id="'+exp.experimentId+'" onclick="titleClick(this)">'
 							+'<div class="f-icon cpicon j-down f-fl u-icon-caret-up" style=""></div>'
 							+'<div class="f-icon cpicon j-up f-fl u-icon-caret-down" style="display: none;"></div>'
 							+'<h3 class="j-titleName name f-fl f-thide">'+exp.experimentName+'</h3>'
 							+'<div class="submitTime f-fl">截止时间：'+dateFormat(exp.experimentDeadline)+' 23:59</div>'
 							+'<div class="score f-fl">成绩：<span class="expScore" id="'+exp.experimentId+'">100</span></div>'
-							+'<button class="u-btn u-btn-default f-pa" style="top:2px; right:0; height: 36px; font-size: 1.23em">提交作业</button></div>'
+							+'<button class="u-btn u-btn-default f-pa" id="'+exp.experimentId+'" onclick="submitButtonClick(this);" style="top:2px; right:0; height: 36px; font-size: 1.23em">提交作业</button></div>'
 							+'<div class="exp-box" id="'+exp.experimentId+'" style="display:none;"><div class="exp-source exp-video f-pr"><div class="f-pr f-fl source-sign">'
 							+'<span class="u-icon-video2" style="font-size: 20px;margin: -10px -10px; top:50px; left:50%;position: relative; "></span></div>'
 							+'<div class="source-box"></div></div>'
@@ -100,8 +100,6 @@ function showFiles(experimentId){
 	})
 }
 
-
-
 //显示学生实验的分数
 function showExperimentScore(expId){
 	$.ajax({
@@ -166,11 +164,44 @@ function pdfClick(e){
 	baseAjax("student-experiment-pdf");
 }
 
-//我知道了点击时间
+function submitButtonClick(e){
+	var expid = $(e).attr("id");
+	$(".m-mask").css("display", "block");
+	$.ajax({
+		type : "POST",
+		url : "/experiment/getExperimentById",
+		dataType : "json",
+		data : {
+			experimentId : expid
+		},
+		success : function(msg) {
+			if (msg.status == "OK") {
+				var exp = msg.result;
+				if(exp != null || score != "undefined"){
+					$(".require-info").attr("id", exp.experimentId);
+					$(".submit-demand").text(exp.experimentSubmitdemand);
+					$(".require-info").css("display", "block");
+					$(".submit-box").css("display", "none");
+				}				
+			}
+			else{
+				alert(msg.result);
+			}
+		},
+		error : function(msg) {
+			error(msg);
+		}
+	})
+}
+
+//我知道了button点击事件
 function iKnow() {
 	$(".require-info").css("display","none");
 	$(".submit-box").css("display","block");
     $(".submit-box").css("background-color","");
+    
+    var expid = $(".require-info").attr("id");
+    
 }
 
 function showHelp() {
@@ -203,7 +234,7 @@ $(".submit-exp-result").change(function () {
                 var content = '<span class="content">'+file.name+'</span>';
                 $(this).next().append(content);
                 //调用ajax方法发送请求
-             //   uploadResult($(this).next(), file);
+                uploadResult($(this).next().children(":last"), file, "exp-data");
             }
         }
 });
@@ -224,7 +255,11 @@ $(".submit-exp-report").change(function () {
             }
             var content = '<span class="content">'+file.name+'</span>';
             $(this).next().append(content);
-          //  uploadResult($(this).next(), file);
+            uploadResult($(this).next().children(":last"), file, "exp-report");
         }
     }
 });
+
+function uploadResult(e, file, type){
+	
+}

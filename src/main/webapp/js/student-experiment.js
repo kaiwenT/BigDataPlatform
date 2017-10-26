@@ -170,6 +170,12 @@ function pdfClick(e){
 function iKnow() {
 	$(".require-info").css("display","none");
 	$(".submit-box").css("display","block");
+    $(".submit-box").css("background-color","");
+}
+
+function showHelp() {
+    $(".require-info").css("display","block");
+    $(".submit-box").css("background-color","rgba(255,255,255,0.7)");
 }
 
 function closeBox() {

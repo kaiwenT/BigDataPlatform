@@ -1,0 +1,36 @@
+.m-mask{
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 998;
+}
+.m-mask .m-container {
+    position: fixed;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+}
+.require-info{
+    z-index: 999;
+    background-color: #fee;
+}
+.m-close{
+    position: absolute;
+    top:0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0,0,0,0.2);
+}
+.m-close:hover,.m-close:hover>span{
+    background-color: rgb(219,98,88);
+    color: rgb(224,226,225);
+}
+.m-close>span{
+    font-size:14px;
+    margin: 13px;
+    display: block;
+}

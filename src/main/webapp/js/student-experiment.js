@@ -165,3 +165,60 @@ function pdfClick(e){
 	setCookie("fileName", name);
 	baseAjax("student-experiment-pdf");
 }
+
+//我知道了点击时间
+function iKnow() {
+	$(".require-info").css("display","none");
+	$(".submit-box").css("display","block");
+}
+
+function closeBox() {
+    $(".m-mask").css("display","none");
+}
+//打开文件选择器
+function openFile(e){
+    $(e).nextAll("input").click();
+}
+
+//上传实验结果文件
+$(".submit-exp-result").change(function () {
+        fileList = $(this)[0].files;
+        if (fileList.length == 0) {
+            return;
+        } else {
+            for (i = 0; i < fileList.length; i++) {
+                var file = fileList[i];
+                var tempStr = file.name.split(".");
+                var fileType = tempStr[tempStr.length - 1];
+                if (fileType.search(/zip|java|xls|xlsx|txt/i) == -1) {
+                    alert("不是指定格式文件！")
+                    continue;
+                }
+                var content = '<span class="content">'+file.name+'</span>';
+                $(this).next().append(content);
+                //调用ajax方法发送请求
+             //   uploadResult($(this).next(), file);
+            }
+        }
+});
+
+//上传实验报告文件
+$(".submit-exp-report").change(function () {
+    fileList = $(this)[0].files;
+    if (fileList.length == 0) {
+        return;
+    } else {
+        for (i = 0; i < fileList.length; i++) {
+            var file = fileList[i];
+            var tempStr = file.name.split(".");
+            var fileType = tempStr[tempStr.length - 1];
+            if (fileType.search(/pdf/i) == -1) {
+                alert("不是指定格式文件！")
+                continue;
+            }
+            var content = '<span class="content">'+file.name+'</span>';
+            $(this).next().append(content);
+          //  uploadResult($(this).next(), file);
+        }
+    }
+});

@@ -377,3 +377,15 @@ wrapper .course-panel-foot-wrapper .ux-pager_btn > a{
     width: 100%;
     top: -7.96px;
 }
+.stu-grade{
+    width: 800px; font-size: 20px;
+}
+.stu-grade tr{
+    height: 30px;
+}
+.stu-grade th{
+    font-weight: bold;
+}
+.stu-grade th,.stu-grade td{
+    text-align: center;
+}

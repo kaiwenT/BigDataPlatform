@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="../css/teacher-mark-rule.css">
+    <script type="text/javascript" src="../js/student-mark-rule.js"></script>
+    <style>
+    	.t-mark input{
+    		width:20px;
+    		display:inline;
+    		font-size:16px;
+    		text-align:center;
+    	}
+    </style>
 </head>
 <body>
 <div class="m-learnChapterList">
@@ -17,13 +26,13 @@
             <span style="display: block;">实验成绩由实验报告和实验结果组成。</span>
         </div>
         <div class="t-mark">
-            最终成绩&nbsp;&nbsp;=&nbsp;&nbsp;平时成绩&nbsp;<input type="text" disabled class="form-control regular-grade" style="width: 50px;display: inline">%+实验成绩&nbsp;<input type="text" disabled class="form-control exp-grade" style="width: 50px;display: inline">%+最终考试成绩&nbsp;<input type="text" disabled class="form-control final-exam-grade" style="width: 50px;display: inline">%
+            最终成绩&nbsp;&nbsp;=&nbsp;&nbsp;平时成绩&nbsp;<input type="text" disabled class="regular-grade">%+实验成绩&nbsp;<input type="text" disabled class="exp-grade" >%+最终考试成绩&nbsp;<input type="text" disabled class="final-exam-grade">%
         </div>
         <div class="t-mark">
-            平时成绩&nbsp;&nbsp;=&nbsp;&nbsp;考勤&nbsp;<input type="text" disabled class="form-control check-grade" style="width: 50px;display: inline">%+平时作业&nbsp;<input type="text" disabled class="form-control regular-work" style="width: 50px;display: inline">%
+            平时成绩&nbsp;&nbsp;=&nbsp;&nbsp;考勤&nbsp;<input type="text" disabled class="check-grade">%+平时作业&nbsp;<input type="text" disabled class="regular-work" >%
         </div>
         <div class="t-mark">
-            实验成绩&nbsp;&nbsp;=&nbsp;&nbsp;实验报告&nbsp;<input type="text" disabled class="form-control exp-report" style="width: 50px;display: inline">%+实验结果&nbsp;<input type="text" disabled class="form-control exp-result" style="width: 50px;display: inline">%
+            实验成绩&nbsp;&nbsp;=&nbsp;&nbsp;实验报告&nbsp;<input type="text" disabled class="form-control exp-report">%+实验结果&nbsp;<input type="text" disabled class="exp-result" >%
         </div>
     </div>
 </div>

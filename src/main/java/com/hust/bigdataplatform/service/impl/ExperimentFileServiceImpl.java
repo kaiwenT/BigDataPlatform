@@ -68,6 +68,8 @@ public class ExperimentFileServiceImpl implements ExperimentFileService {
 		ExperimentFile record = new ExperimentFile();
 		record.setExperimentId(experimentId);
 		record.setFileId(file.getFileId());
+		System.out.println(experimentId);
+		System.out.println(file.getFileId());
 		return experimentFileDao.insert(record);
 	}
 	@Override

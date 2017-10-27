@@ -26,7 +26,29 @@ public class UploadUtils {
 
 			return false;
 		}
-		
+		/**
+		 * 单文件上传
+		 * @param file 上传的文件
+		 * @param dir 待存放的目录（文件夹）
+		 * @return
+		 */
+		public boolean upload(MultipartFile file,String dir)
+		{
+				
+			//设置上传文件位置
+    		String uploadpath = file.getOriginalFilename();  //获取文件名
+    		System.out.println("hahahah"+uploadpath);  
+            //创建文件夹
+    	    File uploadtargetFile = new File(dir,uploadpath);
+			//判断文件是否存在
+    	    isExists(new File(dir));
+			//保存文件
+			if (saveFile(file, uploadtargetFile)) {	
+				return true;
+			}
+
+			return false;
+		}
 		//判断该路径下文件是否存在,若不存在则新建
 		private boolean isExists(File uploadtargetFile)
 		{

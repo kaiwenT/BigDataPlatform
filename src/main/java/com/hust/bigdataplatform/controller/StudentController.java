@@ -19,6 +19,7 @@ import com.hust.bigdataplatform.service.SessionService;
 import com.hust.bigdataplatform.service.StudentService;
 import com.hust.bigdataplatform.util.ResultUtil;
 import com.hust.bigdataplatform.util.UploadUtils;
+import com.hust.bigdataplatform.util.fileUtil;
 
 
 @Controller
@@ -102,20 +103,18 @@ public class StudentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/uploadExpReport", method = RequestMethod.POST)
-	public Object uploadExpReport(HttpServletRequest request,
-			@RequestParam(value="experimentId") int experimentId,
-			@RequestParam(value = "uploadfile", required = false) MultipartFile[] uploadfile){
+	public Object uploadExpReport(@RequestParam(value="experimentId") String experimentId,
+			@RequestParam(value = "uploadfile", required = true) MultipartFile uploadfile, 
+			HttpServletRequest request){
 		String studentId = (String) sessionService.getObject("studentId", request);
 		if(studentId == null){
 			return ResultUtil.errorWithMsg("登录信息过期，请重新登录！");
 		}
 		UploadUtils up = new UploadUtils();
-		String path = Constant.DIRECTORY.EXPERIMENT_REPORT + File.pathSeparatorChar + experimentId + File.pathSeparatorChar + studentId;
-		
-		for(MultipartFile file : uploadfile){
-			if(!up.uploadUtils(file, path)){
-				return ResultUtil.errorWithMsg(file.getName() + "上传失败，请重新上传！");
-			}
+		String path = Constant.DIRECTORY.REPORT_SUBMIT + File.separator + experimentId + File.separator + studentId;
+		System.out.println(path);
+		if(!up.upload(uploadfile, path)){
+			return ResultUtil.errorWithMsg(uploadfile.getName() + "上传失败，请重新上传！");
 		}
 		
 		return ResultUtil.success("上传实验报告成功！");
@@ -129,20 +128,18 @@ public class StudentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/uploadExpData", method = RequestMethod.POST)
-	public Object uploadExpData(HttpServletRequest request,
-			@RequestParam(value="experimentId") int experimentId,
-			@RequestParam(value = "uploadfile", required = false) MultipartFile[] uploadfile){
+	public Object uploadExpData(@RequestParam(value="experimentId") String experimentId,
+			@RequestParam(value = "uploadfile") MultipartFile uploadfile,
+			HttpServletRequest request){
 		String studentId = (String) sessionService.getObject("studentId", request);
 		if(studentId == null){
 			return ResultUtil.errorWithMsg("登录信息过期，请重新登录！");
 		}
 		UploadUtils up = new UploadUtils();
-		String path = Constant.DIRECTORY.EXPERIMENT_DATA_SUBMIT + File.pathSeparatorChar + experimentId + File.pathSeparatorChar + studentId;
+		String path = Constant.DIRECTORY.EXPERIMENT_DATA_SUBMIT + File.separator + experimentId + File.separator + studentId;
 		
-		for(MultipartFile file : uploadfile){
-			if(!up.uploadUtils(file, path)){
-				return ResultUtil.errorWithMsg(file.getName() + "上传失败，请重新上传！");
-			}
+		if(!up.upload(uploadfile, path)){
+			return ResultUtil.errorWithMsg(uploadfile.getName() + "上传失败，请重新上传！");
 		}
 		
 		return ResultUtil.success("上传实验报告成功！");

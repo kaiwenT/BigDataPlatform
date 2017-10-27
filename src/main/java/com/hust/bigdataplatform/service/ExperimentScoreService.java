@@ -37,4 +37,11 @@ public interface ExperimentScoreService {
 	 * @return
 	 */	
 	public int update(ExperimentScore expScore);
+	/**
+	 * 查找某个学生某个课程所有实验的平均分
+	 * @param studentId
+	 * @param courseId
+	 * @return
+	 */
+	public int findExpAvgScore(String studentId, String courseId);
 }

@@ -44,7 +44,15 @@ public class StudentCourseDao {
 		criteria.andStudentIdEqualTo(studentId);
 		return studentCourseMapper.selectByExample(example);
 	}
-	
+	/**
+	 * 查找学生某门课程成绩
+	 * @param studentId
+	 * @param courseId
+	 * @return
+	 */
+	public StudentCourse findByPrimaryKey(String studentId, String courseId){
+		return studentCourseMapper.selectByPrimaryKey(studentId, courseId);
+	}
 	/**
 	 * 根据学生课程ID（主键）,修改学生课程信息
 	 * @param scourse

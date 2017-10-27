@@ -12,6 +12,7 @@ import com.hust.bigdataplatform.dao.CourseDao;
 import com.hust.bigdataplatform.dao.TeacherCourseDao;
 import com.hust.bigdataplatform.dao.TeacherDao;
 import com.hust.bigdataplatform.model.Course;
+import com.hust.bigdataplatform.model.Teacher;
 import com.hust.bigdataplatform.model.TeacherCourse;
 import com.hust.bigdataplatform.service.TeacherCourseService;
 @Service
@@ -47,5 +48,19 @@ public class TeacherCourseServiceImpl implements TeacherCourseService{
 			}
 			return courses;
 		}	
+	}
+	@Override
+	public Teacher getTeacherByCourseid(String courseid) {
+		if(courseid == null || "".equals(courseid)){
+			return null;
+		}
+		List<TeacherCourse> l = teacherCourseDao.selectByCourseId(courseid);
+		if(l == null || l.isEmpty()){
+			return null;
+		}
+		if(l.get(0).getTeacherId() == null){
+			return null;
+		}
+		return teacherDao.findById(l.get(0).getTeacherId());
 	}
 }

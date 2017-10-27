@@ -90,3 +90,53 @@ function studentLogout(){
 		},
 	})
 }
+
+//课程点击事件
+function courseClick(e){
+	$(".course-panel-body-wrapper").empty();
+	$(".ga-click").removeClass("current");
+	$(e).parent().addClass("current");
+	showstudentCourses();
+}
+//成绩点击事件
+function gradeClick(e){
+	$(".course-panel-body-wrapper").empty();
+	$(".ga-click").removeClass("current");
+	$(e).parent().addClass("current");
+	var content='<table class="stu-grade">'+
+        '<tr>'+
+    '<th>课程名</th>'+
+    '<th>授课老师</th>'+
+    '<th>平时成绩</th>'+
+    '<th>实验成绩</th>'+
+    '<th>考试成绩</th>'+
+    '<th>最终成绩</th>'+
+'</tr>'+
+'</table>';
+	$(".course-panel-body-wrapper").append(content);
+	$.ajax({
+		type:"POST",
+		url:"/studentcourse/selectAllCourseGrade",
+		dataType:"json",		
+		success : function(msg){
+			if(msg.status == "OK"){
+				$(".stu-grade tr:not(:first)").html("");
+				var courses = msg.result;
+				if(courses != null && courses.length > 0){
+					$.each(courses, function(idx, map){
+						var tr = '<tr><td>'+map['courseName']+'</td><td>'+map['teacherName']+'</td>'
+							+'<td>'+map['usualGrade']+'</td><td>'+map['expGrade']+'</td>'
+							+'<td>'+map['examGrade']+'</td><td>'+map['finalGrade']+'</td></tr>';
+						$(".stu-grade").append(tr);
+					});
+				}
+			}else{
+				$(".course-panel-body-wrapper").empty();
+				alert(msg.result);
+			}
+		},
+		error : function(msg){
+			alert("查询成绩失败");
+		},
+	})
+}

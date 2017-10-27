@@ -163,7 +163,7 @@ function pdfClick(e){
 	setCookie("fileName", name);
 	baseAjax("student-experiment-pdf");
 }
-
+//提交作业按钮的点击事件
 function submitButtonClick(e){
 	var expid = $(e).attr("id");
 	$(".m-mask").css("display", "block");
@@ -198,10 +198,7 @@ function submitButtonClick(e){
 function iKnow() {
 	$(".require-info").css("display","none");
 	$(".submit-box").css("display","block");
-    $(".submit-box").css("background-color","");
-    
-    var expid = $(".require-info").attr("id");
-    
+    $(".submit-box").css("background-color","");       
 }
 
 function showHelp() {
@@ -260,6 +257,43 @@ $(".submit-exp-report").change(function () {
     }
 });
 
+/**
+ * 上传文件
+ * @param e 待上传文件的span元素
+ * @param file 待上传的文件
+ * @param type 文件类型 exp-report/exp-data
+ * @returns
+ */
 function uploadResult(e, file, type){
+	var url = "";
+	if(type == "exp-report"){
+		url = "/student/uploadExpReport";
+	}else if(type == "exp-data"){
+		url = "/student/uploadExpData";
+	}
+    var expid = $(".require-info").attr("id");
+    var formData = new FormData();
+    formData.append("uploadfile" , file);
+    formData.append("experimentId" , expid);
+	$.ajax({
+		type : "POST",
+		url : url,
+        dataType:"json",
+		processData : false,//必须false才会自动加上正确的Content-Type
+        contentType : false ,
+        enctype:"multipart/form-data",
+		data : formData,
+		success : function(msg) {
+			if (msg.status == "OK") {
+				$(e).addClass("content-ok");			
+			}
+			else{
+				alert(msg.result);
+			}
+		},
+		error : function(msg) {
+			console.log(msg);
+		}
+	})
 	
 }

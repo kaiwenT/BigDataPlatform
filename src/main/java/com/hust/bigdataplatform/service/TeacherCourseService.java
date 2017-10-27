@@ -3,6 +3,7 @@ package com.hust.bigdataplatform.service;
 import java.util.List;
 
 import com.hust.bigdataplatform.model.Course;
+import com.hust.bigdataplatform.model.Teacher;
 
 public interface TeacherCourseService {
 	
@@ -12,5 +13,11 @@ public interface TeacherCourseService {
 	 * @return
 	 */
 	public List<Course> getCourseByTeacherid(String teacherid);
+	/**
+	 * 查找课程对应的老师
+	 * @param courseid
+	 * @return
+	 */
+	public Teacher getTeacherByCourseid(String courseid);
 
 }

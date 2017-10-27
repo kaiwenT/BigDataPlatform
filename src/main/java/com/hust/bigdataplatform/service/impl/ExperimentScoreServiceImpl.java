@@ -18,7 +18,8 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 
 	@Autowired
 	private ExperimentScoreDao experimentScoreDao;
-
+	@Autowired
+	private ExperimentDao experimentDao;
 	@Override
 	public ExperimentScore selectExpScoreByStu(String studentId, String experimentId) {
 		if(studentId == null || experimentId == null){
@@ -57,5 +58,24 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 			return 0;
 		}
 		return experimentScoreDao.updateByPrimaryKeySelective(expScore);
+	}
+
+	@Override
+	public int findExpAvgScore(String studentId, String courseId) {
+		if(studentId == null || courseId == null){
+			return 0;
+		}
+		List<Experiment> exps = experimentDao.selectByCourseId(courseId);
+		if(exps == null || exps.isEmpty()){
+			return 0;
+		}
+		int score = 0;
+		for(Experiment e : exps){
+			ExperimentScore esc = experimentScoreDao.selectExpScoreByStuId(studentId, e.getExperimentId());
+			if(esc != null){
+				score += esc.getExpFinalscore();
+			}			
+		}
+		return score / exps.size();
 	}
 }

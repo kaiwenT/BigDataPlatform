@@ -45,6 +45,18 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 		}
 		return courses;
 	}
+
+	@Override
+	public List<StudentCourse> findStudentCourseByStuId(String studentId) {
+		
+		return studentCourseDao.findCourseByStudentId(studentId);
+	}
+
+	@Override
+	public StudentCourse findStudentCourseByStuId(String studentId, String courseId) {
+		
+		return studentCourseDao.findByPrimaryKey(studentId, courseId);
+	}
 	
 
 }

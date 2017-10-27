@@ -105,10 +105,8 @@ function addContent(e) {
 function showChapters(){
 	var courseId = getCookie("courseId");
 	if(courseId == null || courseId == 'undefined'){
-		var add='<div class="f-icon lesson-title-plus" style="width: 70px;height: 70px;" onclick="addTitle(this)">'+
-				'<span class="u-icon-plus" style=" font-size: 60px;margin: -30px -30px; position: absolute; top:50%; left:50%"></span>'+
-				'</div>';
-		$(".m-learnChapterNormal").append(add);
+		alert("登录信息已过期，请重新登录！");
+		return;
 	}
 	$.ajax({
 		type : "POST",
@@ -120,7 +118,7 @@ function showChapters(){
 		success : function(msg) {
 			if (msg.status == "OK") {
 				var chapters = msg.result;
-				
+				console.log(chapters);
 				if(chapters != 'undefined' && chapters != '' && chapters.length > 0){
 					$.each(chapters, function(idx, chapter){
 						 var titlebox = '<div>' +
@@ -153,13 +151,18 @@ function showChapters(){
 						$(".m-learnChapterNormal").prepend(titlebox);
 						showSections(chapter.chapterId);
 					});
+					var add='<div class="f-icon lesson-title-plus" style="width: 70px;height: 70px;" onclick="addTitle(this)">'+
+					'<span class="u-icon-plus" style=" font-size: 60px;margin: -30px -30px; position: absolute; top:50%; left:50%"></span>'+
+					'</div>';
+					$(".m-learnChapterNormal").append(add);
 					 $(".titleBox").children(".u-icon-caret-up").css("display","none");
 			         $(".titleBox").children(".u-icon-caret-down").css("display","block");
 					
 				}else{
-					
-					$(".empty").css("display", "inline");
-					$(".m-learnChapterNormal").css("display", "none");
+					var add='<div class="f-icon lesson-title-plus" style="width: 70px;height: 70px;" onclick="addTitle(this)">'+
+					'<span class="u-icon-plus" style=" font-size: 60px;margin: -30px -30px; position: absolute; top:50%; left:50%"></span>'+
+					'</div>';
+					$(".m-learnChapterNormal").append(add);
 				}
 			} else {
 				alert(msg.result);

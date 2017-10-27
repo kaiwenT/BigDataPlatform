@@ -24,11 +24,167 @@ function showTime(e){
     })
     stopBubble()
 }
+//显示所有实验中的文件
+function showFiles(experimentId)
+{
+	$.ajax({
+		type : "POST",
+		url : "/experiment/getFilesByExperiment",
+		dataType : "json",
+		data : {
+			experimentId : experimentId,
+			type : ""
+		},
+		success : function(msg) {
+			if (msg.status == "OK") {
+				var files = msg.result;
+				console.log(files);
+				$(".source-box").children(".u-source-ok").remove();
+				if(files != 'undefined' && files != '' && files.length > 0){
+					$.each(files, function(idx, file){
+						var box = '';
+						if(file.fileType == "VIDEO"){
+							var content = '<div class="f-pr f-fl source-video source-ok" title="' + file.fileName + '" id="'+file.fileId+'" onmousemove="uSHover(this)"' +
+		                    'onmouseleave="uSBlur(this)">' +
+		                    '<div class="f-pa u-source-close" onclick="delVideo(this)">' +
+		                    '<span class="u-icon-close"></span>' +
+		                    '</div>' +
+		                    '</div>';
+							$("div#"+experimentId).find(".source-video-add").parent().before(content);
+						}
+						if(file.fileType == "PDF"){
+							console.log("111");
+							var content = '<div class="f-pr f-fl source-pdf source-ok" title="' + file.fileName + '" id="'+file.fileId+'" onmousemove="uSHover(this)"' +
+		                    'onmouseleave="uSBlur(this)">' +
+		                    '<div class="f-pa u-source-close" onclick="delPdf(this)">' +
+		                    '<span class="u-icon-close"></span>' +
+		                    '</div>' +
+		                    '</div>';
+							$("div#"+experimentId).find(".source-pdf-add").parent().before(content);
+						}
+						
+					});
+				}
+			}else{
+				$(".exp-box").empty();
+			}
+		},
+		error : function(msg) {
+			error(msg);
+		}
+	})
+}
+//显示所有实验
+function showExperiment()
+{
+	var courseId = getCookie("courseId");
+	if(courseId == null || courseId == 'undefined'){
+		alert("登录信息已过期，请重新登录！");
+	}
+	$.ajax({
+		type : "POST",
+		url : "/experiment/getExperimentsByCourse",
+		dataType : "json",
+		data : {
+			courseId : courseId
+		},
+		success : function(msg) {
+			if (msg.status == "OK") {
+				var exps = msg.result;
+				if(exps != 'undefined' && exps != '' && exps.length > 0){
+					$.each(exps, function(idx, exp){
+						var submit=exp.experimentSubmitdemand;
+						 var content = '<div>'+
+					        '<div class="titleBox j-titleBox f-cb" id="'+exp.experimentId+'" onclick="titleClick(this)">'+
+					        '<div class="f-icon cpicon j-down f-fl u-icon-caret-up" style="display: none;"></div>'+
+					        '<div class="f-icon cpicon j-up f-fl u-icon-caret-down" style=""></div>'+
+					        '<input class="j-titleName name f-fl f-thide" value="'+exp.experimentName+'"'+
+					    'placeholder="请输入章名" style="width: 30%;" onclick="stopBubble()">'+
+					        '<input class="j-titleName" id="'+exp.experimentId+'" style="width: 155px;display: inline-block"  readonly onclick="showTime(this)" value="'+new Date(exp.experimentDeadline.time).format('yyyy-MM-dd hh:mm:ss')+'" placeholder="请选择时间">'+
+					        '<div class="j-typebox f-cb f-fr" onclick="stopBubble()">'+
+					        '<div class="f-icon lsicon f-fl " title="编辑" onclick="editInfo(this)">'+
+					        '<span class="u-icon-edit"></span>'+
+					        '</div>'+
+					        '<div class="f-icon lsicon f-fl" title="保存" style="display: none;" onclick="storeInfo(this)">'+
+					        '<span class="u-icon-check"></span>'+
+					        '</div>'+
+					        '<div class="f-icon lsicon f-fl " title="删除" onclick="delTitle(this)">'+
+					        '<span class="u-icon-close"></span>'+
+					        '</div>'+
+					        '</div>'+
+					        '</div>'+
+					        '<div class="expBox" id="'+exp.experimentId+'" style="">'+
+					        '<div class="exp-source exp-info f-pr" style="">'+
+					        '<textarea class="source-info" onchange="autoSubmitTextarea(this)" placeholder="请输入实验提交要求">'+submit+'</textarea>'+
+					        '</div>'+
+					        '</div>'+
+					        '<div class="expBox" id="'+exp.experimentId+'" style="">'+
+					        '<div class="exp-source exp-video f-pr" style="">'+
+					        '<div class="f-pr f-fl source-sign">'+
+					        '<span class="u-icon-video2"'+
+					    'style="font-size: 20px;margin: -10px -10px; top:50px; left:50%;position: relative; "></span>'+
+					        '</div>'+
+					        '<div class="source-box">  '+
+					        '<div class="f-pr f-fl source-video" style="border: 1px" title="添加实验视屏">'+
+					        '<div class="f-pa source-video-add" onclick="addVideo(this)">'+
+					        '<span class="f-pa u-icon-plus" style="font-size: 40px;margin: -20px -20px; top:50%; left:50%;"></span>'+
+					        '</div>'+
+					        '<input type="file" multiple="multiple" style="width: 0px;height: 0px;display: none">'+
+					        '</div>'+
+					        '</div>'+
+					        '</div>'+
+					        '</div>'+
+					        '<div class="expBox" id="'+exp.experimentId+'" style="">'+
+					        '<div class="exp-source exp-pdf f-pr" style="">'+
+					        '<div class="f-pr f-fl source-sign">'+
+					        '<span class="icon-book"'+
+					    'style="font-size: 20px;margin: -10px -10px; top:50px; left:50%;position: relative; "></span>'+
+					        '</div>'+
+					        '<div class="source-box">  '+
+					        '<div class="f-pr f-fl source-pdf" style="border: 1px" title="添加实验文档">'+
+					        '<div class="f-pa source-pdf-add" onclick="addPdf(this)">'+
+					        '<span class="f-pa u-icon-plus" style="font-size: 40px;margin: -20px -20px; top:50%; left:50%;"></span>'+
+					        '</div>'+
+					        '<input type="file" multiple="multiple" style="width: 0px;height: 0px;display: none">'+
+					        '</div>'+
+					        '</div>'+
+					        '</div>'+
+					        '</div>'+
+					        '</div>';
+						$(".m-learnChapterNormal").prepend(content);
+						showFiles(exp.experimentId);
+					});
+					var add='<div class="f-icon lesson-title-plus" style="width: 70px;height: 70px;" onclick="addTitle(this)">'+
+					'<span class="u-icon-plus" style=" font-size: 60px;margin: -30px -30px; position: absolute; top:50%; left:50%"></span>'+
+					'</div>';
+					$(".m-learnChapterNormal").append(add);
+					 $(".titleBox").children(".u-icon-caret-up").css("display","block");
+			         $(".titleBox").children(".u-icon-caret-down").css("display","none");
+					
+				}else{
+					var add='<div class="f-icon lesson-title-plus" style="width: 70px;height: 70px;" onclick="addTitle(this)">'+
+					'<span class="u-icon-plus" style=" font-size: 60px;margin: -30px -30px; position: absolute; top:50%; left:50%"></span>'+
+					'</div>';
+					$(".m-learnChapterNormal").append(add);
+				}
+			} else {
+				alert(msg.result);
+			}
+		},
+		error : function(msg) {
+			error(msg);
+		}
+	})
+}
 
 //添加实验信息
 function addTitle(e) {
+	if($("#end-time").length > 0){
+		alert("请先完成上一个实验的内容！");
+		return;
+	}
     var content = '<div>'+
-        '<div class="titleBox j-titleBox f-cb" onclick="titleClick(this)">'+
+        '<div class="titleBox j-titleBox f-cb" id="" onclick="titleClick(this)">'+
         '<div class="f-icon cpicon j-down f-fl u-icon-caret-up" style=""></div>'+
         '<div class="f-icon cpicon j-up f-fl u-icon-caret-down" style="display: none;"></div>'+
         '<input class="j-titleName name f-fl f-thide" value=""'+
@@ -48,7 +204,7 @@ function addTitle(e) {
         '</div>'+
         '<div class="expBox" style="">'+
         '<div class="exp-source exp-info f-pr" style="">'+
-        '<textarea class="source-info" placeholder="请输入实验提交要求"></textarea>'+
+        '<textarea class="source-info" onchange="autoSubmitTextarea(this)" placeholder="请输入实验提交要求"></textarea>'+
         '</div>'+
         '</div>'+
         '<div class="expBox" style="">'+
@@ -58,7 +214,7 @@ function addTitle(e) {
     'style="font-size: 20px;margin: -10px -10px; top:50px; left:50%;position: relative; "></span>'+
         '</div>'+
         '<div class="source-box">  '+
-        '<div class="f-pr f-fl source-video" style="border: 1px" title="添加实验视屏">'+
+        '<div class="f-pr f-fl source-video addvideo" style="border: 1px" title="添加实验视屏">'+
         '<div class="f-pa source-video-add" onclick="addVideo(this)">'+
         '<span class="f-pa u-icon-plus" style="font-size: 40px;margin: -20px -20px; top:50%; left:50%;"></span>'+
         '</div>'+
@@ -74,8 +230,8 @@ function addTitle(e) {
     'style="font-size: 20px;margin: -10px -10px; top:50px; left:50%;position: relative; "></span>'+
         '</div>'+
         '<div class="source-box">  '+
-        '<div class="f-pr f-fl source-pdf" style="border: 1px" title="添加实验文档">'+
-        '<div class="f-pa source-video-add" onclick="addPdf(this)">'+
+        '<div class="f-pr f-fl source-pdf addpdf" style="border: 1px" title="添加实验文档">'+
+        '<div class="f-pa source-pdf-add" onclick="addPdf(this)">'+
         '<span class="f-pa u-icon-plus" style="font-size: 40px;margin: -20px -20px; top:50%; left:50%;"></span>'+
         '</div>'+
         '<input type="file" multiple="multiple" style="width: 0px;height: 0px;display: none">'+
@@ -87,10 +243,6 @@ function addTitle(e) {
     $(e).before(content);
 }
 
-//提交章信息（包含节信息）
-function submitLesson(e) {
-
-}
 
 //编辑章节信息
 function editInfo(e) {
@@ -100,18 +252,74 @@ function editInfo(e) {
     $(e).parent().prevAll("input.name").focus();
     $(e).parent().prevAll("input#end-time").attr("onclick","showTime(this)");
 }
-
+//增加实验
 function storeInfo(e) {
     $(e).parent().prevAll("input.name").attr("disabled", "disabled");
     $(e).parent().prevAll("input#end-time").attr("onclick","stopBubble()");
     $("#jedatebox").css("display","none");
     $(e).css("display", "none");
     $(e).prev("div").css("display", "block");
-    //上传数据，更新章节信息
+    //上传数据，更新实验信息
+    var experimentId = $(e).parents(".titleBox").attr("id");
+    var courseId = getCookie("courseId");
+    var exptitle=$(e).parent().prev().prev("input").val();
+    var expdeadline=$(e).parent().prev("input").val();
+    if(experimentId==null || experimentId=="") //如果ID不存在，则插入
+	{
+    	$.ajax({
+        	type:"POST",
+    		url:"/experiment/AddExperiment",
+    		data:
+    		{	courseId:courseId, 
+    			exptitle:exptitle,
+    			expdeadline:expdeadline
+    		},
+    		datatype:"json",
+    		success:function(msg){
+    			if(msg.status=="OK"){
+    				console.log("11");
+    				$(e).parent().prev("input.name").attr("id", msg.result.experimentId);
+    				alert("添加成功！");
+    			}
+    			else{
+    				console.log("22");
+    				alert(msg.result);
+    			}	
+    		},
+    		error:function(msg){
+    			alert(msg.result);
+    		},
+        })
+	}
+    else{
+    	$.ajax({
+        	type:"POST",
+    		url:"/experiment/UpdateExperiment",
+    		data:
+    		{	experimentId:experimentId, 
+    			courseId:courseId, 
+    			exptitle:exptitle,
+    			expdeadline:expdeadline
+    		},
+    		datatype:"json",
+    		success:function(msg){
+    			if(msg.status=="OK"){
+    				alert("修改成功！");
+    			}
+    			else{
+    				alert(msg.result);
+    			}	
+    		},
+    		error:function(msg){
+    			alert(msg.result);
+    		},
+        })
+    	
+    }
 
 }
 
-//删除章
+//删除实验
 function delTitle(e) {
     var status = confirm("是否确定删除该章所有信息？");
     if (status == true) {
@@ -146,10 +354,36 @@ var autoSb = null;
 function autoSubmitTextarea(e){
     if(autoSb != null)
         clearTimeout(autoSb);
-    autoSb = setTimeout(function(){
+        autoSb = setTimeout(function(){
+    	alert("111");
+    	var experimentId = $(e).parents(".titleBox").attr("id");
+    	var submitDemand = $(e).val();
+    	console.log("experimentId:"+experimentId);
+    	console.log("submitDemand:"+submitDemand);
+//    	$.ajax({
+//        	type:"POST",
+//    		url:"/experiment/UpdateExpSubmitDemand",
+//    		data:
+//    		{	experimentId:experimentId, 
+//    			submitDemand:submitDemand,
+//    		},
+//    		datatype:"json",
+//    		success:function(msg){
+//    			console.log("11");
+//    			if(msg.status=="OK"){
+//    				alert(msg.result);
+//    			}
+//    			else{
+//    				alert(msg.result);
+//    			}	
+//    		},
+//    		error:function(msg){
+//    			alert(msg.result);
+//    		},
+//        })
         var date = new Date();
         console.log(date.getSeconds());
-    },5000);
+       },5000);
 }
 
 
@@ -243,7 +477,7 @@ function addPdf(e,event) {
                     '</div>' +
                     '</div>';
                 $(e).parents(".source-pdf").before(content);
-                uploadVideo1($(e).parents(".u-source").prev(".u-source"),file);
+                uploadPdf1($(e).parents(".source-pdf").prev(".source-pdf"),file);
             }
         }
     });
@@ -252,19 +486,27 @@ function addPdf(e,event) {
 //视频异步上传
 function uploadPdf1(e,file) {
     var formData = new FormData();
-    formData.append("file" , file);
+    formData.append("formData" , file);
+    var experimentId = e.parents(".expBox").attr("id");
+    var type="PDF";
+    formData.append("experimentId" , experimentId);
+    formData.append("type" , type);
     $.ajax({
         type: "POST",
-        url: "#",
-        data: formData ,　　//这里上传的数据使用了formData 对象
+        url: "/experiment/UploadFile",
+        dataType:"json",
+        data: formData,　　//这里上传的数据使用了formData 对象
         processData : false,//必须false才会自动加上正确的Content-Type
         contentType : false ,
+        enctype:"multipart/form-data",
         success : function(msg) {
             if (msg.status == "OK") {
                 e.addClass("source-ok");
                 e.children(".u-source-upload").css("display","none");
+                e.children(".u-source-close").css("display","block");
+                alert(msg.result);
             } else {
-
+            	 alert(msg.result);
             }
         },
         error : function() {

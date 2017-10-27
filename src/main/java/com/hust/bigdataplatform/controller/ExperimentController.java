@@ -1,6 +1,8 @@
 package com.hust.bigdataplatform.controller;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,16 +11,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.hust.bigdataplatform.constant.Constant;
+import com.hust.bigdataplatform.model.CourseChapter;
 import com.hust.bigdataplatform.model.Experiment;
+import com.hust.bigdataplatform.model.ExperimentFile;
 import com.hust.bigdataplatform.model.ExperimentScore;
 import com.hust.bigdataplatform.model.File;
 import com.hust.bigdataplatform.service.CourseService;
 import com.hust.bigdataplatform.service.ExperimentFileService;
 import com.hust.bigdataplatform.service.ExperimentScoreService;
 import com.hust.bigdataplatform.service.ExperimentService;
+import com.hust.bigdataplatform.service.FileService;
 import com.hust.bigdataplatform.service.SessionService;
+import com.hust.bigdataplatform.util.DateConverter;
 import com.hust.bigdataplatform.util.ResultUtil;
+import com.hust.bigdataplatform.util.UploadUtils;
+import com.hust.bigdataplatform.util.fileUtil;
 
 @Controller
 @RequestMapping("/experiment")
@@ -34,6 +44,8 @@ public class ExperimentController {
 	private CourseService courseService;
 	@Autowired
 	private SessionService sessionService;
+	@Autowired
+	private FileService fileservice;
 	/**
 	 * 获取某个课程的所有的实验
 	 * @param courseId
@@ -123,5 +135,126 @@ public class ExperimentController {
 			return ResultUtil.success(0);
 		}
 		return ResultUtil.success(escore.getExpFinalscore());
+	}
+	
+	@RequestMapping("/AddExperiment")
+	@ResponseBody
+	public Object AddExperiment(@RequestParam(value="courseId") String courseId,
+			@RequestParam(value="exptitle") String exptitle,
+			@RequestParam(value="expdeadline") String deadline)
+	{
+		if (courseId==null) {
+			return ResultUtil.errorWithMsg("课程id为空");
+		}
+		if (exptitle==null) {
+			return ResultUtil.errorWithMsg("实验名称为空！");
+		}
+		if (deadline==null) {
+			return ResultUtil.errorWithMsg("实验截止时间为空！");
+		}
+		Experiment experiment = new Experiment();
+		String uid = UUID.randomUUID().toString();
+		experiment.setExperimentId(uid);
+		experiment.setCourseId(courseId);
+		experiment.setExperimentName(exptitle);
+		experiment.setExperimentSubmitdemand(" ");
+		experiment.setExperimentCreatetime(new Date());
+		experiment.setExperimentDeadline(new DateConverter().convert(deadline));
+		experiment.setExperimentManualpath(Constant.DIRECTORY.EXPERIMENT_REPORT+courseId+"/"+uid);
+		experiment.setExperimentVideopath(Constant.DIRECTORY.EXPERIMENT_VIDEO+courseId+"/"+uid);
+		experiment.setExperimentReportpath(Constant.DIRECTORY.REPORT_SUBMIT+courseId+"/"+uid);
+		experiment.setExperimentResultspath(Constant.DIRECTORY.EXPERIMENT_DATA_SUBMIT+courseId+"/"+uid);
+		int status = experimentService.addExperiment(experiment);
+		if (status==0) {
+			return ResultUtil.errorWithMsg("添加实验失败！");
+		}
+		return ResultUtil.success(experiment);
+	}
+	
+	@RequestMapping("/UpdateExperiment")
+	@ResponseBody
+	public Object UpdateExperiment(@RequestParam(value="courseId") String courseId,
+			@RequestParam(value="exptitle") String exptitle,
+			@RequestParam(value="expdeadline") String deadline,
+			@RequestParam(value="experimentId") String experimentId)
+	{
+		if (courseId==null) {
+			return ResultUtil.errorWithMsg("课程id为空");
+		}
+		if (exptitle==null) {
+			return ResultUtil.errorWithMsg("实验名称为空！");
+		}
+		if (deadline==null) {
+			return ResultUtil.errorWithMsg("实验截止时间为空！");
+		}
+		List<Experiment> experiment = experimentService.findExperimentByExpId(experimentId);
+		if (experiment==null) {
+			return ResultUtil.errorWithMsg("此实验不存在！");
+		}
+		experiment.get(0).setExperimentDeadline(new DateConverter().convert(deadline));
+		experiment.get(0).setExperimentName(exptitle);
+		int status = experimentService.updateExperiment(experiment.get(0));
+		if (status==0) {
+			return ResultUtil.errorWithMsg("修改实验内容失败！");
+		}
+		return ResultUtil.errorWithMsg("修改实验内容失成功！");
+	}
+	
+	@RequestMapping("/UpdateExpSubmitDemand")
+	@ResponseBody
+	public Object AddExperiment(@RequestParam(value="experimentId") String experimentId,
+			@RequestParam(value="submitDemand") String submitDemand)
+	{
+		List<Experiment> experiment = experimentService.findExperimentByExpId(experimentId);
+		if (experiment==null) {
+			return ResultUtil.errorWithMsg("没找到该实验！");
+		}
+		experiment.get(0).setExperimentSubmitdemand(submitDemand);
+		int status = experimentService.updateExperiment(experiment.get(0));
+		if (status==0) {
+			return ResultUtil.errorWithMsg("修改实验 提交要求失败！");
+		}
+		return ResultUtil.errorWithMsg("修改实验 提交要求失成功！");
+	}
+	
+	@RequestMapping(value="/UploadFile")
+	@ResponseBody
+	public Object UploadFile(@RequestParam(value="formData")MultipartFile uploadfile,
+			@RequestParam(value="experimentId") String experimentId,
+			@RequestParam(value="type") String type)
+	{
+		List<Experiment> experiment = experimentService.findExperimentByExpId(experimentId);
+		if (experiment==null) {
+			return ResultUtil.errorWithMsg("上传失败");
+		}	
+		com.hust.bigdataplatform.model.File f = new com.hust.bigdataplatform.model.File();
+		f.setCreateTime(new Date());
+		String uid = UUID.randomUUID().toString();
+		f.setFileId(uid);
+		f.setFileType(type);
+		f.setFileName(uploadfile.getOriginalFilename());
+		
+		ExperimentFile experimentFile = new ExperimentFile();
+		experimentFile.setExperimentId(experimentId);
+		experimentFile.setFileId(uid);
+		
+		String road = "";
+		if (type.equals("PDF")) {
+			road=experiment.get(0).getExperimentManualpath();
+			System.out.println("road  "+road);
+		}
+		else{
+			road=experiment.get(0).getExperimentVideopath();
+		}
+		UploadUtils uploadUtils = new UploadUtils();
+		if (uploadUtils.uploadUtils(uploadfile, road)) {
+			fileservice.insert(f);
+			experimentFileService.add(experimentId, f);
+			//改变文件的名字
+			if (fileUtil.updatename(road+"/"+uploadfile.getOriginalFilename(), road+"/"+uid+".mp4")) {
+				return ResultUtil.success("上传成功！");
+			}
+		}
+		return ResultUtil.errorWithMsg("上传失败");
 	}
 }

@@ -1,6 +1,8 @@
 /**
  * 课程页面有关的js方法
  */
+//文件存放路径
+var path = 'http://211.69.197.95:8081/bigdataplatform/';
 
 //course-base页面左侧显示课程封面图片
 function showCoursePhoto(){
@@ -18,8 +20,10 @@ function showCoursePhoto(){
 		success : function(msg) {
 			if (msg.status == "OK") {
 				var course = msg.result;
-				if(course.coursePicturepath != 'undefined' && course.coursePicturepath != ''){
-					$(".course-image").attr("src", course.coursePicturepath);
+				if(course.courseId != 'undefined' && course.courseId != ''){
+					$(".course-image").attr("src", path + 'coursePhoto/'+course.courseId+'.jpg');
+				}else{
+					$(".course-image").attr("src", '../img/course-img.jpg');
 				}
 				if(course.courseName != 'undefined' && course.courseName != ''){
 					$(".course-image").attr("alt", course.courseName);

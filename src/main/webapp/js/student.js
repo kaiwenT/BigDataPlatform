@@ -1,6 +1,9 @@
 /**
  * 学生首页有关的js方法
  */
+//文件存放路径
+var path = 'http://211.69.197.95:8081/bigdataplatform/';
+
 //学生首页个人信息展示
 function showstudentInfo(){	
 	
@@ -16,8 +19,8 @@ function showstudentInfo(){
 				$("#stu-name").text(stu.studentName);
 				$("#f-name").text(stu.studentFaculty);
 				
-				if(stu.studentPicturepath != 'undefined' && stu.studentPicturepath != '')
-					$(".user-head-img").attr("src",stu.studentPicturepath);
+				if(stu.studentId != 'undefined' && stu.studentId != '')
+					$(".user-head-img").attr("src",path+"studentPhoto/"+stu.studentId+".jpg");
 			}else{
 				alert(msg.result);
 			}
@@ -58,8 +61,8 @@ function showstudentCourses(){
 						+'<div class="personal-info"><div class="course-status">'+dateFormat(course.courseBegintime)+'开始</div></div>'
 						+'</div></a></div></div>';
 					$(".course-panel-body-wrapper").append(wrapper);
-					if(course.coursePicturepath != 'undefined' && course.coursePicturepath != '')
-						$("#"+course.courseId).attr("src",course.coursePicturepath);				
+					if(course.courseId != 'undefined' && course.courseId != '')
+						$("#"+course.courseId).attr("src",path + 'coursePhoto/'+course.courseId+'.jpg');				
 				});
 			}else{
 				$(".course-panel-body-wrapper").empty();

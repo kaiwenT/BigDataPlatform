@@ -1,5 +1,5 @@
 //文件存放路径
-var path = 'http://211.69.197.85:8081/bigdataplatform/file/';
+var path = 'http://211.69.197.95:8081/bigdataplatform/file/';
 
 //Student-experiment-video页面显示实验的标题、文件标题
 function showTitle(){

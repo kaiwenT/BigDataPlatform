@@ -16,6 +16,8 @@ import com.hust.bigdataplatform.model.File;
 import com.hust.bigdataplatform.model.ExperimentFileExample.Criteria;
 import com.hust.bigdataplatform.service.ExperimentFileService;
 import com.hust.bigdataplatform.service.ExperimentService;
+import com.hust.bigdataplatform.service.FileService;
+import com.hust.bigdataplatform.util.ResultUtil;
 @Service
 public class ExperimentFileServiceImpl implements ExperimentFileService {
 
@@ -25,6 +27,8 @@ public class ExperimentFileServiceImpl implements ExperimentFileService {
 	private ExperimentFileDao experimentFileDao;
 	@Autowired
 	private FileDao fileDao;
+	@Autowired
+	private FileService fileservice;
 	
 	@Override
 	public List<File> findFileByExperiment(String experimentId, String type) {

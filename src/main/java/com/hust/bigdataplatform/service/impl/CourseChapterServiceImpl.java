@@ -75,7 +75,6 @@ public class CourseChapterServiceImpl implements CourseChapterService {
 	@Override
 	public void deleteSectionfile(String sectionId) {
 		ChapterSection chapterSection = chapterSectionService.selectBySectionId(sectionId);
-		System.out.println("((((((((("+chapterSection.getSectionid());
 	    String road = Constant.DIRECTORY.COURSEWARE+chapterSection.getChapterId()+"/"+chapterSection.getSectionid();
 	    //删除file中的记录
 	    List<String> list = fileUtil.getFileName(road);

@@ -38,7 +38,6 @@ function showFiles(experimentId)
 		success : function(msg) {
 			if (msg.status == "OK") {
 				var files = msg.result;
-				console.log(files);
 				$(".source-box").children(".u-source-ok").remove();
 				if(files != 'undefined' && files != '' && files.length > 0){
 					$.each(files, function(idx, file){
@@ -53,7 +52,6 @@ function showFiles(experimentId)
 							$("div#"+experimentId).find(".source-video-add").parent().before(content);
 						}
 						if(file.fileType == "PDF"){
-							console.log("111");
 							var content = '<div class="f-pr f-fl source-pdf source-ok" title="' + file.fileName + '" id="'+file.fileId+'" onmousemove="uSHover(this)"' +
 		                    'onmouseleave="uSBlur(this)">' +
 		                    '<div class="f-pa u-source-close" onclick="delPdf(this)">' +
@@ -91,6 +89,7 @@ function showExperiment()
 		success : function(msg) {
 			if (msg.status == "OK") {
 				var exps = msg.result;
+				console.log(exps);
 				if(exps != 'undefined' && exps != '' && exps.length > 0){
 					$.each(exps, function(idx, exp){
 						var submit=exp.experimentSubmitdemand;
@@ -277,12 +276,11 @@ function storeInfo(e) {
     		datatype:"json",
     		success:function(msg){
     			if(msg.status=="OK"){
-    				console.log("11");
     				$(e).parent().prev("input.name").attr("id", msg.result.experimentId);
-    				alert("添加成功！");
+    				$(".m-learnChapterNormal").empty();
+    				 showExperiment();
     			}
     			else{
-    				console.log("22");
     				alert(msg.result);
     			}	
     		},
@@ -323,7 +321,29 @@ function storeInfo(e) {
 function delTitle(e) {
     var status = confirm("是否确定删除该章所有信息？");
     if (status == true) {
-        $(e).parents("div.titleBox").parent("div").remove();
+      
+        var courseId = getCookie("courseId");
+        var experimentId = $(e).parents(".titleBox").attr("id");
+        $.ajax({
+            type: "POST",
+            url: "/experiment/DeleteExperiment",       
+            dataType:"json",
+            data: {
+            	experimentId:experimentId,
+            	courseId:courseId,
+            },
+            success : function(msg) {
+                if (msg.status == "OK") {
+                	 $(e).parents("div.titleBox").parent("div").remove();
+                	 alert(msg.result);
+                } else {
+                	 alert(msg.result);
+                }  
+            },
+            error : function() {
+                alert("删除失败！");
+            }
+        })
     }
 }
 
@@ -355,35 +375,31 @@ function autoSubmitTextarea(e){
     if(autoSb != null)
         clearTimeout(autoSb);
         autoSb = setTimeout(function(){
-    	alert("111");
-    	var experimentId = $(e).parents(".titleBox").attr("id");
+    	var experimentId = $(e).parents(".expBox").attr("id");
     	var submitDemand = $(e).val();
-    	console.log("experimentId:"+experimentId);
-    	console.log("submitDemand:"+submitDemand);
-//    	$.ajax({
-//        	type:"POST",
-//    		url:"/experiment/UpdateExpSubmitDemand",
-//    		data:
-//    		{	experimentId:experimentId, 
-//    			submitDemand:submitDemand,
-//    		},
-//    		datatype:"json",
-//    		success:function(msg){
-//    			console.log("11");
-//    			if(msg.status=="OK"){
-//    				alert(msg.result);
-//    			}
-//    			else{
-//    				alert(msg.result);
-//    			}	
-//    		},
-//    		error:function(msg){
-//    			alert(msg.result);
-//    		},
-//        })
+    	$.ajax({
+        	type:"POST",
+    		url:"/experiment/UpdateExpSubmitDemand",
+    		data:
+    		{	experimentId:experimentId, 
+    			submitDemand:submitDemand,
+    		},
+    		datatype:"json",
+    		success:function(msg){
+    			if(msg.status=="OK"){
+    				$(".m-learnChapterNormal").empty();
+   				 	showExperiment();
+    			}
+    			else{
+    				alert(msg.result);
+    			}	
+    		},
+    		error:function(msg){
+    			alert(msg.result);
+    		},
+        })
         var date = new Date();
-        console.log(date.getSeconds());
-       },5000);
+       },1000);
 }
 
 
@@ -418,7 +434,7 @@ function addVideo(e,event) {
                     '</div>' +
                     '</div>';
                 $(e).parents(".source-video").before(content);
-                uploadVideo1($(e).parents(".u-source").prev(".u-source"),file);
+                uploadVideo1($(e).parents(".source-video").prev(".source-video"),file);
             }
         }
     });
@@ -426,20 +442,28 @@ function addVideo(e,event) {
 
 //视频异步上传
 function uploadVideo1(e,file) {
-    var formData = new FormData();
-    formData.append("file" , file);
+	var formData = new FormData();
+    formData.append("formData" , file);
+    var experimentId = e.parents(".expBox").attr("id");
+    var type="VIDEO";
+    formData.append("experimentId" , experimentId);
+    formData.append("type" , type);
     $.ajax({
         type: "POST",
-        url: "#",
-        data: formData ,　　//这里上传的数据使用了formData 对象
+        url: "/experiment/UploadFile",
+        dataType:"json",
+        data: formData,　　//这里上传的数据使用了formData 对象
         processData : false,//必须false才会自动加上正确的Content-Type
         contentType : false ,
+        enctype:"multipart/form-data",
         success : function(msg) {
             if (msg.status == "OK") {
                 e.addClass("source-ok");
                 e.children(".u-source-upload").css("display","none");
+                e.children(".u-source-close").css("display","block");
+                alert(msg.result);
             } else {
-
+            	 alert(msg.result);
             }
         },
         error : function() {
@@ -520,8 +544,28 @@ function uploadPdf1(e,file) {
 function delVideo(e) {
     var flag = confirm("是否删除该视频？");
     if (flag) {
-        $(e).parent(".u-source").remove();
-        //删除该Video
+    	 var experimentId = $(e).parents(".expBox").attr("id");
+         var fileId = $(e).parents(".source-video").attr("id");
+         $.ajax({
+             type: "POST",
+             url: "/experiment/DeleteFile",       
+             dataType:"json",
+             data: {
+             	experimentId:experimentId,
+             	fileId:fileId,
+             },
+             success : function(msg) {
+                 if (msg.status == "OK") {
+                 	$(e).parent(".source-video").remove();
+                 	 alert(msg.result);
+                 } else {
+                 	 alert(msg.result);
+                 }  
+             },
+             error : function() {
+                 alert("删除失败！");
+             }
+         })
     }
 }
 
@@ -529,7 +573,27 @@ function delVideo(e) {
 function delPdf(e) {
     var flag = confirm("是否删除该Pdf？");
     if (flag) {
-        $(e).parent(".u-source").remove();
-        //删除该Pdf
+        var experimentId = $(e).parents(".expBox").attr("id");
+        var fileId = $(e).parents(".source-pdf").attr("id");
+        $.ajax({
+            type: "POST",
+            url: "/experiment/DeleteFile",       
+            dataType:"json",
+            data: {
+            	experimentId:experimentId,
+            	fileId:fileId,
+            },
+            success : function(msg) {
+                if (msg.status == "OK") {
+                	$(e).parent(".source-pdf").remove();
+                	alert(msg.result);
+                } else {
+                	 alert(msg.result);
+                }  
+            },
+            error : function() {
+                alert("删除失败！");
+            }
+        })
     }
 }

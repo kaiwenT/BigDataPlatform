@@ -762,12 +762,9 @@ function delVideo(e) {
 function delPdf(e) {
     var flag = confirm("是否删除该Pdf？");
     if (flag) {
-    	console.log("111111111");
     	var courseId = getCookie("courseId");
         var sectionId = $(e).parents(".u-learnLesson").prev().prev().children("input").attr("id");
         var pdfId = $(e).parents(".u-source-ok").attr("id");
-        console.log(sectionId);
-        console.log(pdfId);
         $.ajax({
             type: "POST",
             url: "/teacherCourse/DeletePDF",       

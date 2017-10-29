@@ -398,10 +398,11 @@ public class TeacherCourseController {
 		String road = chapter.getCoursewarePath()+"/"+chapterSection.getSectionid()+"/"+pdfId+".pdf";
 		File file = new File(road);
 		if (file.isFile()) {
-			file.delete();
-		}
-		if (fileservice.delete(pdfId)==1) {
-			return ResultUtil.success("删除成功！");
+			if (file.delete()) {
+				if (fileservice.delete(pdfId)==1) {
+					return ResultUtil.success("删除成功！");
+				}
+			}
 		}
 		return ResultUtil.errorWithMsg("删除失败！");
 	}

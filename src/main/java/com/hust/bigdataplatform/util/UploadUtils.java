@@ -14,7 +14,6 @@ public class UploadUtils {
 				
 			//设置上传文件位置
     		String uploadpath = file.getOriginalFilename();  //获取文件名
-    		System.out.println("hahahah"+uploadpath);  
             //创建文件夹
     	    File uploadtargetFile = new File(road,uploadpath);
 			//判断文件是否存在
@@ -37,7 +36,6 @@ public class UploadUtils {
 				
 			//设置上传文件位置
     		String uploadpath = file.getOriginalFilename();  //获取文件名
-    		System.out.println("hahahah"+uploadpath);  
             //创建文件夹
     	    File uploadtargetFile = new File(dir,uploadpath);
 			//判断文件是否存在

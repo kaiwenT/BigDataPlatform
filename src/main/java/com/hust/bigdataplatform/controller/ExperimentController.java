@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Null;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -143,13 +144,13 @@ public class ExperimentController {
 			@RequestParam(value="exptitle") String exptitle,
 			@RequestParam(value="expdeadline") String deadline)
 	{
-		if (courseId==null) {
+		if (courseId=="") {
 			return ResultUtil.errorWithMsg("课程id为空");
 		}
-		if (exptitle==null) {
+		if (exptitle=="") {
 			return ResultUtil.errorWithMsg("实验名称为空！");
 		}
-		if (deadline==null) {
+		if (deadline=="") {
 			return ResultUtil.errorWithMsg("实验截止时间为空！");
 		}
 		Experiment experiment = new Experiment();
@@ -160,10 +161,12 @@ public class ExperimentController {
 		experiment.setExperimentSubmitdemand(" ");
 		experiment.setExperimentCreatetime(new Date());
 		experiment.setExperimentDeadline(new DateConverter().convert(deadline));
-		experiment.setExperimentManualpath(Constant.DIRECTORY.EXPERIMENT_REPORT+courseId+"/"+uid);
-		experiment.setExperimentVideopath(Constant.DIRECTORY.EXPERIMENT_VIDEO+courseId+"/"+uid);
-		experiment.setExperimentReportpath(Constant.DIRECTORY.REPORT_SUBMIT+courseId+"/"+uid);
-		experiment.setExperimentResultspath(Constant.DIRECTORY.EXPERIMENT_DATA_SUBMIT+courseId+"/"+uid);
+		experiment.setExperimentManualpath(Constant.DIRECTORY.EXPERIMENT_REPORT+uid);
+		System.out.println("实验手册："+Constant.DIRECTORY.EXPERIMENT_REPORT);
+		experiment.setExperimentVideopath(Constant.DIRECTORY.EXPERIMENT_VIDEO+uid);
+		System.out.println("实验视频："+Constant.DIRECTORY.EXPERIMENT_VIDEO);
+		experiment.setExperimentReportpath(Constant.DIRECTORY.REPORT_SUBMIT+uid);
+		experiment.setExperimentResultspath(Constant.DIRECTORY.EXPERIMENT_DATA_SUBMIT+uid);
 		int status = experimentService.addExperiment(experiment);
 		if (status==0) {
 			return ResultUtil.errorWithMsg("添加实验失败！");
@@ -178,13 +181,13 @@ public class ExperimentController {
 			@RequestParam(value="expdeadline") String deadline,
 			@RequestParam(value="experimentId") String experimentId)
 	{
-		if (courseId==null) {
+		if (courseId=="") {
 			return ResultUtil.errorWithMsg("课程id为空");
 		}
-		if (exptitle==null) {
+		if (exptitle=="") {
 			return ResultUtil.errorWithMsg("实验名称为空！");
 		}
-		if (deadline==null) {
+		if (deadline=="") {
 			return ResultUtil.errorWithMsg("实验截止时间为空！");
 		}
 		List<Experiment> experiment = experimentService.findExperimentByExpId(experimentId);
@@ -202,7 +205,7 @@ public class ExperimentController {
 	
 	@RequestMapping("/UpdateExpSubmitDemand")
 	@ResponseBody
-	public Object AddExperiment(@RequestParam(value="experimentId") String experimentId,
+	public Object UpdateExpSubmitDemand(@RequestParam(value="experimentId") String experimentId,
 			@RequestParam(value="submitDemand") String submitDemand)
 	{
 		List<Experiment> experiment = experimentService.findExperimentByExpId(experimentId);
@@ -214,7 +217,7 @@ public class ExperimentController {
 		if (status==0) {
 			return ResultUtil.errorWithMsg("修改实验 提交要求失败！");
 		}
-		return ResultUtil.errorWithMsg("修改实验 提交要求失成功！");
+		return ResultUtil.success("修改实验 提交要求失成功!");
 	}
 	
 	@RequestMapping(value="/UploadFile")
@@ -224,7 +227,7 @@ public class ExperimentController {
 			@RequestParam(value="type") String type)
 	{
 		List<Experiment> experiment = experimentService.findExperimentByExpId(experimentId);
-		if (experiment==null) {
+		if (experiment.get(0)==null) {
 			return ResultUtil.errorWithMsg("上传失败");
 		}	
 		com.hust.bigdataplatform.model.File f = new com.hust.bigdataplatform.model.File();
@@ -241,7 +244,6 @@ public class ExperimentController {
 		String road = "";
 		if (type.equals("PDF")) {
 			road=experiment.get(0).getExperimentManualpath();
-			System.out.println("road  "+road);
 		}
 		else{
 			road=experiment.get(0).getExperimentVideopath();
@@ -251,10 +253,72 @@ public class ExperimentController {
 			fileservice.insert(f);
 			experimentFileService.add(experimentId, f);
 			//改变文件的名字
-			if (fileUtil.updatename(road+"/"+uploadfile.getOriginalFilename(), road+"/"+uid+".mp4")) {
-				return ResultUtil.success("上传成功！");
+			if (type.equals("PDF")) {
+				if (fileUtil.updatename(road+"/"+uploadfile.getOriginalFilename(), road+"/"+uid+".pdf")) {
+					return ResultUtil.success("上传成功！");
+				}
+			}
+			else {
+				if (fileUtil.updatename(road+"/"+uploadfile.getOriginalFilename(), road+"/"+uid+".mp4")) {
+					return ResultUtil.success("上传成功！");
+				}
 			}
 		}
 		return ResultUtil.errorWithMsg("上传失败");
+	}
+	
+	@RequestMapping(value="/DeleteFile")
+	@ResponseBody
+	public Object DeleteFile(@RequestParam(value="experimentId") String experimentId,
+			@RequestParam(value="fileId") String fileId)
+	{
+		//先删除文件，然后在file中删除记录
+		List<Experiment> experiment = experimentService.findExperimentByExpId(experimentId);
+		if (experiment.get(0)==null) {
+			return ResultUtil.errorWithMsg("删除失败！");
+		}
+		File file = fileservice.selectById(fileId);
+		if (file==null) {
+			return ResultUtil.errorWithMsg("删除失败！");
+		}
+		String road="";
+		if (file.getFileType().equals("PDF")) {
+			 road = Constant.DIRECTORY.EXPERIMENT_REPORT+experimentId+"/"+fileId+".pdf";
+		}
+		else{
+			 road = Constant.DIRECTORY.EXPERIMENT_VIDEO+experimentId+"/"+fileId+".mp4";
+		}
+		java.io.File test = new java.io.File(road);
+		if (test.isFile()) {
+			if (test.delete()) {
+				if (fileservice.delete(file.getFileId())==1) {
+					return ResultUtil.success("删除成功！");
+				}
+			}
+		}
+		return ResultUtil.errorWithMsg("删除失败！");
+	}
+	
+	@RequestMapping(value="/DeleteExperiment")
+	@ResponseBody
+	public Object DeleteExperiment(@RequestParam(value="experimentId") String experimentId,
+			@RequestParam(value="courseId") String courseId)
+	{
+		List<File> experimentFile = experimentFileService.findFileByExperiment(experimentId, "");
+		if (experimentFile==null) {
+			return ResultUtil.errorWithMsg("删除失败！");
+		}
+		if (experimentFile.size()!=0) {
+			//删除目录
+			String road1 = Constant.DIRECTORY.EXPERIMENT_REPORT+experimentId;
+			String road2 = Constant.DIRECTORY.EXPERIMENT_VIDEO+experimentId;
+			fileUtil.deleteSection(road1);
+			fileUtil.deleteSection(road2);
+				
+		}
+		if (experimentService.deleteExperiment(experimentId, courseId)==0) {
+			return ResultUtil.errorWithMsg("删除失败！");
+		}
+		return ResultUtil.success("删除成功！");
 	}
 }

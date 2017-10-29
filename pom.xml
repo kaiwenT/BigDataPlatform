@@ -314,13 +314,17 @@
  				<version>1.10.2</version>
 		</dependency>
 		<!--pdf图片生成器-->
-		<!-- https://mvnrepository.com/artifact/org.icepdf.os/icepdf-core -->
 		<dependency>
 		    <groupId>org.icepdf.os</groupId>
 		    <artifactId>icepdf-core</artifactId>
 		    <version>6.1.2</version>
 		</dependency>
-		
+		<!-- 中文分词工具ansj -->
+		<dependency>
+			<groupId>org.ansj</groupId>
+			<artifactId>ansj_seg</artifactId>
+			<version>5.1.1</version>
+		</dependency>
 		
 	
 	</dependencies>

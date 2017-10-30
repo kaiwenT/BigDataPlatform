@@ -18,7 +18,7 @@ import com.hust.bigdataplatform.service.CourseChapterService;
 import com.hust.bigdataplatform.service.CourseScaleService;
 import com.hust.bigdataplatform.service.CourseService;
 import com.hust.bigdataplatform.util.ResultUtil;
-
+  
 @Controller
 @RequestMapping("/course")
 public class CourseController {

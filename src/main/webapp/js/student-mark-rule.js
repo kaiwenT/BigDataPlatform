@@ -1,4 +1,4 @@
-//student-mark-rule.html 课程评分标准页面显示
+  //student-mark-rule.html 课程评分标准页面显示
 function showCourseScale() {
 	var courseId = $(".course-image").attr("id");
 	if (courseId == null || courseId == 'undefined') {

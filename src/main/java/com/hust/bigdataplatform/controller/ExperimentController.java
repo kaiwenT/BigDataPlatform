@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.hust.automaticrating.utils.AutoRating;
 import com.hust.bigdataplatform.constant.Constant;
 import com.hust.bigdataplatform.model.CourseChapter;
 import com.hust.bigdataplatform.model.Experiment;
@@ -165,6 +166,8 @@ public class ExperimentController {
 		if (status==0) {
 			return ResultUtil.errorWithMsg("添加实验失败！");
 		}
+		//添加一个实验记录时启动自动评分线程
+		AutoRating.rating(experiment, "", experimentScoreService);
 		return ResultUtil.success(experiment);
 	}
 	
@@ -182,13 +185,17 @@ public class ExperimentController {
 		if (experiment==null) {
 			return ResultUtil.errorWithMsg("此实验不存在！");
 		}
+		String oldName = experiment.get(0).getExperimentName();
 		experiment.get(0).setExperimentDeadline(new DateConverter().convert(deadline));
 		experiment.get(0).setExperimentName(exptitle);
 		int status = experimentService.updateExperiment(experiment.get(0));
 		if (status==0) {
 			return ResultUtil.errorWithMsg("修改实验内容失败！");
 		}
-		return ResultUtil.success("修改实验内容失成功！");
+
+		//更新实验信息时启动自动评分线程
+		AutoRating.rating(experiment.get(0), oldName, experimentScoreService);
+		return ResultUtil.errorWithMsg("修改实验内容失成功！");
 	}
 	
 	@RequestMapping("/UpdateExpSubmitDemand")

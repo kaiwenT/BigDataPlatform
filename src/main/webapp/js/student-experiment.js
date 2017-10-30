@@ -37,7 +37,7 @@ function showExperiments(){
 							+'<div class="exp-source exp-pdf"><div class="f-pr f-fl source-sign">'
 							+'<span class="icon-book" style="font-size: 20px;margin: -10px -10px; top:50px; left:50%;position: relative; "></span></div>'
 							+'<div class="source-box"></div></div></div></div>';
-						$(".m-learnChapterNormal").append(titlebox);
+						$(".m-learnChapterNormal").prepend(titlebox);
 						showExperimentScore(exp.experimentId);
 						showFiles(exp.experimentId);
 					});

@@ -49,6 +49,7 @@ public class CourseChapterDao {
 	public List<CourseChapter> selectByCourseId(String courseId)
 	{
 		CourseChapterExample example = new CourseChapterExample();
+		example.setOrderByClause("creat_time desc");
 		Criteria criteria = example.createCriteria();
 		criteria.andCourseIdEqualTo(courseId);
 		return courseChapterMapper.selectByExample(example);

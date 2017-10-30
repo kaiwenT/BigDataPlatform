@@ -35,6 +35,7 @@ public class ChapterSectionDao {
 	public List<ChapterSection> selectByChapterId(String chapterId)
 	{
 		ChapterSectionExample example = new ChapterSectionExample();
+		example.setOrderByClause("creat_time desc");
 		Criteria criteria = example.createCriteria();
 		criteria.andChapterIdEqualTo(chapterId);
 		return chapterSectionMapper.selectByExample(example);

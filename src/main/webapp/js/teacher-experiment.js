@@ -97,9 +97,9 @@ function showExperiment()
 					        '<div class="titleBox j-titleBox f-cb" id="'+exp.experimentId+'" onclick="titleClick(this)">'+
 					        '<div class="f-icon cpicon j-down f-fl u-icon-caret-up" style="display: none;"></div>'+
 					        '<div class="f-icon cpicon j-up f-fl u-icon-caret-down" style=""></div>'+
-					        '<input class="j-titleName name f-fl f-thide" value="'+exp.experimentName+'"'+
+					        '<input class="j-titleName name f-fl f-thide" disabled value="'+exp.experimentName+'"'+
 					    'placeholder="请输入章名" style="width: 30%;" onclick="stopBubble()">'+
-					        '<input class="j-titleName" id="'+exp.experimentId+'" style="width: 155px;display: inline-block"  readonly onclick="showTime(this)" value="'+new Date(exp.experimentDeadline.time).format('yyyy-MM-dd hh:mm:ss')+'" placeholder="请选择时间">'+
+					        '<input class="j-titleName" id="end-time'+exp.experimentId+'" style="width: 155px;display: inline-block"  readonly onclick="stopBubble()" value="'+new Date(exp.experimentDeadline.time).format('yyyy-MM-dd hh:mm:ss')+'" placeholder="请选择时间">'+
 					        '<div class="j-typebox f-cb f-fr" onclick="stopBubble()">'+
 					        '<div class="f-icon lsicon f-fl " title="编辑" onclick="editInfo(this)">'+
 					        '<span class="u-icon-edit"></span>'+
@@ -249,20 +249,20 @@ function editInfo(e) {
     $(e).css("display", "none");
     $(e).next("div").css("display", "block");
     $(e).parent().prevAll("input.name").focus();
-    $(e).parent().prevAll("input#end-time").attr("onclick","showTime(this)");
+    $(e).parent().prevAll("input.name").next().attr("onclick","showTime(this)");
 }
 //增加实验
 function storeInfo(e) {
-    $(e).parent().prevAll("input.name").attr("disabled", "disabled");
-    $(e).parent().prevAll("input#end-time").attr("onclick","stopBubble()");
-    $("#jedatebox").css("display","none");
-    $(e).css("display", "none");
-    $(e).prev("div").css("display", "block");
     //上传数据，更新实验信息
     var experimentId = $(e).parents(".titleBox").attr("id");
     var courseId = getCookie("courseId");
     var exptitle=$(e).parent().prev().prev("input").val();
     var expdeadline=$(e).parent().prev("input").val();
+    if(exptitle==""||expdeadline=="")
+	{
+    	alert("实验名称或截至时间为空！");
+    	return;
+	}
     if(experimentId==null || experimentId=="") //如果ID不存在，则插入
 	{
     	$.ajax({
@@ -276,7 +276,12 @@ function storeInfo(e) {
     		datatype:"json",
     		success:function(msg){
     			if(msg.status=="OK"){
+    				$(e).parent().prevAll("input.name").attr("disabled", "disabled");
+    				$(e).parent().prevAll("input.name").next().attr("onclick","stopBubble()");
     				$(e).parent().prev("input.name").attr("id", msg.result.experimentId);
+    			    $("#jedatebox").css("display","none");
+    				$(e).css("display", "none");
+    				$(e).prev("div").css("display", "block");		
     				$(".m-learnChapterNormal").empty();
     				 showExperiment();
     			}
@@ -302,6 +307,11 @@ function storeInfo(e) {
     		datatype:"json",
     		success:function(msg){
     			if(msg.status=="OK"){
+    				$(e).parent().prevAll("input.name").attr("disabled", "disabled");
+    				$(e).parent().prevAll("input#end-time").attr("onclick","stopBubble()");
+    				$("#jedatebox").css("display","none");
+      				$(e).css("display", "none");
+      				$(e).prev("div").css("display", "block");
     				alert("修改成功！");
     			}
     			else{

@@ -18,7 +18,7 @@ import com.hust.bigdataplatform.service.CourseChapterService;
 import com.hust.bigdataplatform.service.CourseScaleService;
 import com.hust.bigdataplatform.service.CourseService;
 import com.hust.bigdataplatform.util.ResultUtil;
-
+  
 @Controller
 @RequestMapping("/course")
 public class CourseController {
@@ -134,4 +134,34 @@ public class CourseController {
 	
 		return ResultUtil.success(scale);
 	}
+	
+	@RequestMapping("/updateCourseScale")
+	@ResponseBody
+	public Object updateCourseScale(@RequestParam(value = "courseId", required = true) String courseId,
+			@RequestParam(value = "regular_grade", required = true) String regular_grade,
+			@RequestParam(value = "exp_grade", required = true) String exp_grade,
+			@RequestParam(value = "regular_work", required = true) String regular_work,
+			@RequestParam(value = "exp_report", required = true) String exp_report) {
+		if (courseId=="" || regular_grade == "" || exp_grade==""|| regular_work==""|| exp_report=="") {
+			return ResultUtil.errorWithMsg("各类成绩比例未填写完整！");
+		}
+		CourseScale courseScale = new CourseScale();
+		courseScale.setCourseId(courseId);
+		courseScale.setAttendanceRate(Float.parseFloat(regular_grade)/100);
+		courseScale.setExperimentRate(Float.parseFloat(exp_grade)/100);
+		courseScale.setExerciseRate(Float.parseFloat(regular_work)/100);
+		courseScale.setExpReportRate(Float.parseFloat(exp_report)/100);
+		if (courseScaleService.findByCourseId(courseId)==null) {
+			if (courseScaleService.add(courseScale)==1) {
+				return ResultUtil.success("填写成功！");
+			}
+		}
+		else {
+			if (courseScaleService.update(courseScale)==1) {
+				return ResultUtil.success("修改成功！");
+			}
+		}
+		return ResultUtil.errorWithMsg("失败！");
+	}
+	
 }

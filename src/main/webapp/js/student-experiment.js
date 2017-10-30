@@ -1,7 +1,7 @@
 /**
  * 学生实验页面有关的js方法
  */
-
+  
 //student-experiment页面显示课程的实验
 function showExperiments(){
 	var courseId = $(".course-image").attr("id");

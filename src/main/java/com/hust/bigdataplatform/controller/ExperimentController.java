@@ -167,7 +167,7 @@ public class ExperimentController {
 			return ResultUtil.errorWithMsg("添加实验失败！");
 		}
 		//添加一个实验记录时启动自动评分线程
-		AutoRating.rating(experiment, "", experimentScoreService);
+		AutoRating.rating(experiment, "");
 		return ResultUtil.success(experiment);
 	}
 	
@@ -194,8 +194,8 @@ public class ExperimentController {
 		}
 
 		//更新实验信息时启动自动评分线程
-		AutoRating.rating(experiment.get(0), oldName, experimentScoreService);
-		return ResultUtil.errorWithMsg("修改实验内容失成功！");
+		AutoRating.rating(experiment.get(0), oldName);
+		return ResultUtil.errorWithMsg("修改实验内容成功！");
 	}
 	
 	@RequestMapping("/UpdateExpSubmitDemand")

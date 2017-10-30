@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.hust.algorithm.canopy.Canopy;
-import com.hust.algorithm.kmeans.KMeans;
+import com.hust.algorithms.Canopy;
+import com.hust.algorithms.KMeans;
 import com.hust.automaticrating.utils.zipUtils;
 import com.hust.bigdataplatform.constant.Constant;
 import com.hust.convertor.TFIDFConvertor;
@@ -66,69 +66,45 @@ public class GetScoreOfClustering {
 		File demoZip = new File(basePath + File.separator + "bigdata.zip");
 		File canopyresultZip = new File(basePath + File.separator + "canopyresult.zip");
 		File kmeansresultZip = new File(basePath + File.separator + "kmeansresult.zip");
+		
+		List<String> dataList = null;
 		//原始数据文件是否上传
-		if(dataExcel.exists()){
-			List<String> dataList = ExcelReader.read(basePath + File.separator + "原始数据.xls",0);
-			System.out.println(dataList.size());
-//			ClusterUtil.showDatalist(dataList);
-			//分词
-			AnsjSegmentation ansj = new AnsjSegmentation();
-			ansj.setWordList(dataList);
-			ansj.segment();
-			
-			//得到分词后的List集合
-			List<String[]> seglist = ansj.getSegList(); 
-//			ClusterUtil.showSeglist(seglist);
-			
-			//向量转换
-			TFIDFConvertor convertor = new TFIDFConvertor(seglist);
-			List<double[]> vectors = convertor.getVector();
-			
-			canopy = new Canopy();
-			canopy.setVectors(vectors);
-			//进行Canopy聚类
-			canopy.cluster();
-			
-			//初始化KMeans聚类参数 （K值--Canopy聚类的个数，向量集合，迭代次数）
-			kmeans = new KMeans(10, vectors, 20);
-			//进行KMeans聚类
-			kmeans.cluster();
-			//计算参考DB值
-			stdDB = calculateDB(ClusterUtil.getClusters(kmeans.getResultIndex(), dataList));
-			System.out.println("stdDB: "+stdDB);
-		}else if(dataExcel1.exists()){
-			List<String> dataList = ExcelReader.read(basePath + File.separator + "原始数据.xlsx",0);
-			System.out.println(dataList.size());
-//			ClusterUtil.showDatalist(dataList);
-			//分词
-			AnsjSegmentation ansj = new AnsjSegmentation();
-			ansj.setWordList(dataList);
-			ansj.segment();
-			
-			//得到分词后的List集合
-			List<String[]> seglist = ansj.getSegList(); 
-//			ClusterUtil.showSeglist(seglist);
-			
-			//向量转换
-			TFIDFConvertor convertor = new TFIDFConvertor(seglist);
-			List<double[]> vectors = convertor.getVector();
-			
-			canopy = new Canopy();
-			canopy.setVectors(vectors);
-			//进行Canopy聚类
-			canopy.cluster();
-			
-			//初始化KMeans聚类参数 （K值--Canopy聚类的个数，向量集合，迭代次数）
-			kmeans = new KMeans(K, vectors, N);
-			//进行KMeans聚类
-			kmeans.cluster();
-			//计算参考DB值
-			stdDB = calculateDB(ClusterUtil.getClusters(kmeans.getResultIndex(), dataList));
-			System.out.println("stdDB: "+stdDB);
-		}else{
+		if(!dataExcel.exists() && !dataExcel1.exists()){
 			basicScore--;
 			System.out.println("缺少原始数据文件，扣1分");
-		}
+		}else if(dataExcel1.exists()){
+			dataList = ExcelReader.read(basePath + File.separator + "原始数据.xlsx",0);
+		}else{
+			dataList = ExcelReader.read(basePath + File.separator + "原始数据.xls",0);
+		}		
+		System.out.println(dataList.size());
+//		ClusterUtil.showDatalist(dataList);
+		//分词
+		AnsjSegmentation ansj = new AnsjSegmentation();
+		ansj.setWordList(dataList);
+		ansj.segment();
+		
+		//得到分词后的List集合
+		List<String[]> seglist = ansj.getSegList(); 
+//		ClusterUtil.showSeglist(seglist);
+		
+		//向量转换
+		TFIDFConvertor convertor = new TFIDFConvertor(seglist);
+		List<double[]> vectors = convertor.getVector();
+		
+		canopy = new Canopy();
+		canopy.setVectors(vectors);
+		//进行Canopy聚类
+		canopy.cluster();
+		
+		//初始化KMeans聚类参数 （K值--Canopy聚类的个数，向量集合，迭代次数）
+		kmeans = new KMeans(10, vectors, 20);
+		//进行KMeans聚类
+		kmeans.cluster();
+		//计算参考DB值
+		stdDB = calculateDB(ClusterUtil.getClusters(kmeans.getResultIndex(), dataList));
+		System.out.println("stdDB: "+stdDB);
+		
 		if(!demoZip.exists()){
 			basicScore--;
 			System.out.println("缺少源代码文件，扣1分");

@@ -3,8 +3,8 @@ package com.hust.automaticrating.utils;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import com.hust.automaticrating.Rating;
 import com.hust.bigdataplatform.model.ExperimentScore;
 import com.hust.bigdataplatform.service.ExperimentScoreService;
@@ -13,13 +13,15 @@ public class AutoCheckThread implements Runnable{
 	
 	private Date deadline;	//作业截至日期
 	private Rating rate;	//自动评分类对象
-	private ExperimentScoreService experimentScoreService ; //更新数据库里面experiment_score表的serveice对象（从controller层获取避免为空）
+	
+	ApplicationContext applicationContext = new FileSystemXmlApplicationContext("classpath:spring-config.xml");  
+	private ExperimentScoreService experimentScoreService ; //更新数据库里面experiment_score表的serveice对象
 	//初始化对象
-	public AutoCheckThread(Rating rate,Date deadline,ExperimentScoreService experimentScoreService) {
+	public AutoCheckThread(Rating rate,Date deadline) {
 		// TODO Auto-generated constructor stub
 		this.rate = rate;
 		this.deadline = deadline;
-		this.experimentScoreService = experimentScoreService;		
+		this.experimentScoreService = applicationContext.getBean(ExperimentScoreService.class);
 	}
 	@Override
 	public void run() {
@@ -44,7 +46,7 @@ public class AutoCheckThread implements Runnable{
 			try {
 				experimentScoreService.update(result);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				System.out.println("评分失败！");
 				e.printStackTrace();
 			}
 		}

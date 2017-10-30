@@ -44,6 +44,10 @@ public class AutoCheckThread implements Runnable{
 		List<ExperimentScore> results = rate.getExperimentScores();
 		for (ExperimentScore result : results) {
 			try {
+				if(experimentScoreService.selectExpScoreByStu(result.getStudentId(), result.getExperimentId()) == null){
+					experimentScoreService.insert(result);
+					continue;
+				}
 				experimentScoreService.update(result);
 			} catch (Exception e) {
 				System.out.println("评分失败！");

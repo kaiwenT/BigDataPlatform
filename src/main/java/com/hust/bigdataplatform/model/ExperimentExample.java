@@ -784,66 +784,6 @@ public class ExperimentExample {
             addCriterion("experiment_videoPath not between", value1, value2, "experimentVideopath");
             return (Criteria) this;
         }
-
-        public Criteria andExperimentScaleIsNull() {
-            addCriterion("experiment_scale is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentScaleIsNotNull() {
-            addCriterion("experiment_scale is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentScaleEqualTo(Float value) {
-            addCriterion("experiment_scale =", value, "experimentScale");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentScaleNotEqualTo(Float value) {
-            addCriterion("experiment_scale <>", value, "experimentScale");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentScaleGreaterThan(Float value) {
-            addCriterion("experiment_scale >", value, "experimentScale");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentScaleGreaterThanOrEqualTo(Float value) {
-            addCriterion("experiment_scale >=", value, "experimentScale");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentScaleLessThan(Float value) {
-            addCriterion("experiment_scale <", value, "experimentScale");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentScaleLessThanOrEqualTo(Float value) {
-            addCriterion("experiment_scale <=", value, "experimentScale");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentScaleIn(List<Float> values) {
-            addCriterion("experiment_scale in", values, "experimentScale");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentScaleNotIn(List<Float> values) {
-            addCriterion("experiment_scale not in", values, "experimentScale");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentScaleBetween(Float value1, Float value2) {
-            addCriterion("experiment_scale between", value1, value2, "experimentScale");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentScaleNotBetween(Float value1, Float value2) {
-            addCriterion("experiment_scale not between", value1, value2, "experimentScale");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -869,6 +809,9 @@ public class ExperimentExample {
         private boolean listValue;
 
         private String typeHandler;
+		public Criterion(){
+        	super();
+        }
 
         public String getCondition() {
             return condition;
@@ -901,9 +844,7 @@ public class ExperimentExample {
         public String getTypeHandler() {
             return typeHandler;
         }
-        public Criterion(){
-        	super();
-        }
+
         protected Criterion(String condition) {
             super();
             this.condition = condition;

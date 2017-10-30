@@ -19,8 +19,6 @@ public class Course {
 
     private String coursePicturepath;
 
-    private Float courseUsualgradesscale;
-
     public String getCourseId() {
         return courseId;
     }
@@ -83,13 +81,5 @@ public class Course {
 
     public void setCoursePicturepath(String coursePicturepath) {
         this.coursePicturepath = coursePicturepath == null ? null : coursePicturepath.trim();
-    }
-
-    public Float getCourseUsualgradesscale() {
-        return courseUsualgradesscale;
-    }
-
-    public void setCourseUsualgradesscale(Float courseUsualgradesscale) {
-        this.courseUsualgradesscale = courseUsualgradesscale;
     }
 }

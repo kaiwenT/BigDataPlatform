@@ -81,7 +81,7 @@ public class StudentCourseController {
 		}
 		List<StudentCourse> stucourses = studentCourseService.findStudentCourseByStuId(studentId);
 		if (null == stucourses) {
-			return ResultUtil.errorWithMsg("学生没有选课");
+		 	return ResultUtil.errorWithMsg("学生没有选课");
 		}
 		List<Map<String, String>> res = new ArrayList<Map<String, String>>();
 		for(StudentCourse scourse : stucourses){
@@ -100,7 +100,7 @@ public class StudentCourseController {
 			map.put("courseName", course.getCourseName());
 			map.put("teacherName", t.getTeacherName());			
 			map.put("usualGrade", String.valueOf(scourse.getAttendancerate()));
-			map.put("finalGrade", String.valueOf(scourse.getFinalresult()));
+		//	map.put("finalGrade", String.valueOf(scourse.getFinalresult()));
 			//考试成绩，建表后从数据库获取，暂定100分
 			map.put("examGrade", "100");
 			int expScore = experimentScoreService.findExpAvgScore(studentId, scourse.getCourseId());

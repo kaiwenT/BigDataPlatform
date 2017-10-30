@@ -22,6 +22,7 @@ $("select.grade-show-type").change(function () {
 //平时成绩加载
 function regularGradeShow() {
     $(".grade-body").empty();
+    $(".grade-body").css("overflow","hidden");
 //ajax
     //根据查询到的平时作业数量生成
     var regularWork = '<th>平时作业1</th>'+
@@ -45,11 +46,12 @@ function regularGradeShow() {
 //实验成绩加载
 function expGradeShow() {
     $(".grade-body").empty();
+    $(".grade-body").css("overflow-x","scroll");
     //ajax
     //根据查询到的平时作业数量生成
-    var regularWork = '<th>实验成绩1</th>'+
-        '<th>实验成绩2</th>'+
-        '<th>实验成绩3</th>';
+    var regularWork = '<th>实验报告</th>'+
+        '<th>实验结果</th>'+
+        '<th>实验成绩</th>';
     //由查询到的内容生成  <tr><td><td></tr>
     var studentGrade='';
     //最后的表格
@@ -67,6 +69,7 @@ function expGradeShow() {
 //总成绩加载
 function totalGradeShow() {
     $(".grade-body").empty();
+    $(".grade-body").css("overflow","hidden");
     //ajax
     //由查询到的内容生成  <tr><td><td></tr>
     var studentGrade='';
@@ -83,4 +86,17 @@ function totalGradeShow() {
         studentGrade+
         '</table>';
     $(".grade-body").append(content);
+}
+
+function closeBox() {
+    $(".m-mask").css("display","none");
+}
+//提交平时考勤成绩
+$(".submit-exp-result").onchange(function () {
+    //获取文件
+    var file = $(".submit-exp-result")[0].files[0];
+})
+
+function importFile() {
+    $(".m-mask").css("display","block");
 }

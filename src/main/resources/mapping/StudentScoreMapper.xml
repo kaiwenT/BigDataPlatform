@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hust.bigdataplatform.dao.mapper.StudentCourseMapper">
-  <resultMap id="BaseResultMap" type="com.hust.bigdataplatform.model.StudentCourse">
+<mapper namespace="com.hust.bigdataplatform.dao.mapper.StudentScoreMapper">
+  <resultMap id="BaseResultMap" type="com.hust.bigdataplatform.model.StudentScore">
     <id column="student_id" jdbcType="VARCHAR" property="studentId" />
     <id column="course_id" jdbcType="VARCHAR" property="courseId" />
-    <result column="student_groupId" jdbcType="VARCHAR" property="studentGroupid" />
-    <result column="attendanceRate" jdbcType="INTEGER" property="attendancerate" />
+    <result column="usualGrades" jdbcType="INTEGER" property="usualgrades" />
+    <result column="exp_finalScore" jdbcType="INTEGER" property="expFinalscore" />
+    <result column="test_results" jdbcType="INTEGER" property="testResults" />
+    <result column="finalScore" jdbcType="INTEGER" property="finalscore" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    student_id, course_id, student_groupId, attendanceRate
+    student_id, course_id, usualGrades, exp_finalScore, test_results, finalScore
   </sql>
-  <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.StudentCourseExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.StudentScoreExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from student_course
+    from student_score
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,29 +87,31 @@
   <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from student_course
+    from student_score
     where student_id = #{studentId,jdbcType=VARCHAR}
       and course_id = #{courseId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="map">
-    delete from student_course
+    delete from student_score
     where student_id = #{studentId,jdbcType=VARCHAR}
       and course_id = #{courseId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.hust.bigdataplatform.model.StudentCourseExample">
-    delete from student_course
+  <delete id="deleteByExample" parameterType="com.hust.bigdataplatform.model.StudentScoreExample">
+    delete from student_score
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.hust.bigdataplatform.model.StudentCourse">
-    insert into student_course (student_id, course_id, student_groupId, 
-      attendanceRate)
-    values (#{studentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{studentGroupid,jdbcType=VARCHAR}, 
-      #{attendancerate,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.hust.bigdataplatform.model.StudentScore">
+    insert into student_score (student_id, course_id, usualGrades, 
+      exp_finalScore, test_results, finalScore
+      )
+    values (#{studentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{usualgrades,jdbcType=INTEGER}, 
+      #{expFinalscore,jdbcType=INTEGER}, #{testResults,jdbcType=INTEGER}, #{finalscore,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.StudentCourse">
-    insert into student_course
+  <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.StudentScore">
+    insert into student_score
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="studentId != null">
         student_id,
@@ -115,11 +119,17 @@
       <if test="courseId != null">
         course_id,
       </if>
-      <if test="studentGroupid != null">
-        student_groupId,
+      <if test="usualgrades != null">
+        usualGrades,
       </if>
-      <if test="attendancerate != null">
-        attendanceRate,
+      <if test="expFinalscore != null">
+        exp_finalScore,
+      </if>
+      <if test="testResults != null">
+        test_results,
+      </if>
+      <if test="finalscore != null">
+        finalScore,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -129,22 +139,28 @@
       <if test="courseId != null">
         #{courseId,jdbcType=VARCHAR},
       </if>
-      <if test="studentGroupid != null">
-        #{studentGroupid,jdbcType=VARCHAR},
+      <if test="usualgrades != null">
+        #{usualgrades,jdbcType=INTEGER},
       </if>
-      <if test="attendancerate != null">
-        #{attendancerate,jdbcType=INTEGER},
+      <if test="expFinalscore != null">
+        #{expFinalscore,jdbcType=INTEGER},
+      </if>
+      <if test="testResults != null">
+        #{testResults,jdbcType=INTEGER},
+      </if>
+      <if test="finalscore != null">
+        #{finalscore,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.hust.bigdataplatform.model.StudentCourseExample" resultType="java.lang.Long">
-    select count(*) from student_course
+  <select id="countByExample" parameterType="com.hust.bigdataplatform.model.StudentScoreExample" resultType="java.lang.Long">
+    select count(*) from student_score
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update student_course
+    update student_score
     <set>
       <if test="record.studentId != null">
         student_id = #{record.studentId,jdbcType=VARCHAR},
@@ -152,11 +168,17 @@
       <if test="record.courseId != null">
         course_id = #{record.courseId,jdbcType=VARCHAR},
       </if>
-      <if test="record.studentGroupid != null">
-        student_groupId = #{record.studentGroupid,jdbcType=VARCHAR},
+      <if test="record.usualgrades != null">
+        usualGrades = #{record.usualgrades,jdbcType=INTEGER},
       </if>
-      <if test="record.attendancerate != null">
-        attendanceRate = #{record.attendancerate,jdbcType=INTEGER},
+      <if test="record.expFinalscore != null">
+        exp_finalScore = #{record.expFinalscore,jdbcType=INTEGER},
+      </if>
+      <if test="record.testResults != null">
+        test_results = #{record.testResults,jdbcType=INTEGER},
+      </if>
+      <if test="record.finalscore != null">
+        finalScore = #{record.finalscore,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -164,32 +186,42 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update student_course
+    update student_score
     set student_id = #{record.studentId,jdbcType=VARCHAR},
       course_id = #{record.courseId,jdbcType=VARCHAR},
-      student_groupId = #{record.studentGroupid,jdbcType=VARCHAR},
-      attendanceRate = #{record.attendancerate,jdbcType=INTEGER}
+      usualGrades = #{record.usualgrades,jdbcType=INTEGER},
+      exp_finalScore = #{record.expFinalscore,jdbcType=INTEGER},
+      test_results = #{record.testResults,jdbcType=INTEGER},
+      finalScore = #{record.finalscore,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hust.bigdataplatform.model.StudentCourse">
-    update student_course
+  <update id="updateByPrimaryKeySelective" parameterType="com.hust.bigdataplatform.model.StudentScore">
+    update student_score
     <set>
-      <if test="studentGroupid != null">
-        student_groupId = #{studentGroupid,jdbcType=VARCHAR},
+      <if test="usualgrades != null">
+        usualGrades = #{usualgrades,jdbcType=INTEGER},
       </if>
-      <if test="attendancerate != null">
-        attendanceRate = #{attendancerate,jdbcType=INTEGER},
+      <if test="expFinalscore != null">
+        exp_finalScore = #{expFinalscore,jdbcType=INTEGER},
+      </if>
+      <if test="testResults != null">
+        test_results = #{testResults,jdbcType=INTEGER},
+      </if>
+      <if test="finalscore != null">
+        finalScore = #{finalscore,jdbcType=INTEGER},
       </if>
     </set>
     where student_id = #{studentId,jdbcType=VARCHAR}
       and course_id = #{courseId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hust.bigdataplatform.model.StudentCourse">
-    update student_course
-    set student_groupId = #{studentGroupid,jdbcType=VARCHAR},
-      attendanceRate = #{attendancerate,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.hust.bigdataplatform.model.StudentScore">
+    update student_score
+    set usualGrades = #{usualgrades,jdbcType=INTEGER},
+      exp_finalScore = #{expFinalscore,jdbcType=INTEGER},
+      test_results = #{testResults,jdbcType=INTEGER},
+      finalScore = #{finalscore,jdbcType=INTEGER}
     where student_id = #{studentId,jdbcType=VARCHAR}
       and course_id = #{courseId,jdbcType=VARCHAR}
   </update>

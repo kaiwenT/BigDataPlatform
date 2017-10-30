@@ -644,66 +644,6 @@ public class CourseExample {
             addCriterion("course_picturePath not between", value1, value2, "coursePicturepath");
             return (Criteria) this;
         }
-
-        public Criteria andCourseUsualgradesscaleIsNull() {
-            addCriterion("course_UsualGradesScale is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleIsNotNull() {
-            addCriterion("course_UsualGradesScale is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleEqualTo(Float value) {
-            addCriterion("course_UsualGradesScale =", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleNotEqualTo(Float value) {
-            addCriterion("course_UsualGradesScale <>", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleGreaterThan(Float value) {
-            addCriterion("course_UsualGradesScale >", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleGreaterThanOrEqualTo(Float value) {
-            addCriterion("course_UsualGradesScale >=", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleLessThan(Float value) {
-            addCriterion("course_UsualGradesScale <", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleLessThanOrEqualTo(Float value) {
-            addCriterion("course_UsualGradesScale <=", value, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleIn(List<Float> values) {
-            addCriterion("course_UsualGradesScale in", values, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleNotIn(List<Float> values) {
-            addCriterion("course_UsualGradesScale not in", values, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleBetween(Float value1, Float value2) {
-            addCriterion("course_UsualGradesScale between", value1, value2, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
-
-        public Criteria andCourseUsualgradesscaleNotBetween(Float value1, Float value2) {
-            addCriterion("course_UsualGradesScale not between", value1, value2, "courseUsualgradesscale");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -729,6 +669,10 @@ public class CourseExample {
         private boolean listValue;
 
         private String typeHandler;
+		
+		public Criterion(){
+        	super();
+        }
 
         public String getCondition() {
             return condition;
@@ -761,9 +705,7 @@ public class CourseExample {
         public String getTypeHandler() {
             return typeHandler;
         }
-        public Criterion(){
-        	super();
-        }
+
         protected Criterion(String condition) {
             super();
             this.condition = condition;

@@ -9,8 +9,6 @@ public class StudentCourse {
 
     private Integer attendancerate;
 
-    private Integer finalresult;
-
     public String getStudentId() {
         return studentId;
     }
@@ -41,13 +39,5 @@ public class StudentCourse {
 
     public void setAttendancerate(Integer attendancerate) {
         this.attendancerate = attendancerate;
-    }
-
-    public Integer getFinalresult() {
-        return finalresult;
-    }
-
-    public void setFinalresult(Integer finalresult) {
-        this.finalresult = finalresult;
     }
 }

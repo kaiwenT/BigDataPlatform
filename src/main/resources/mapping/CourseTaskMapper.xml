@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hust.bigdataplatform.dao.mapper.StudentCourseMapper">
-  <resultMap id="BaseResultMap" type="com.hust.bigdataplatform.model.StudentCourse">
-    <id column="student_id" jdbcType="VARCHAR" property="studentId" />
+<mapper namespace="com.hust.bigdataplatform.dao.mapper.CourseTaskMapper">
+  <resultMap id="BaseResultMap" type="com.hust.bigdataplatform.model.CourseTask">
     <id column="course_id" jdbcType="VARCHAR" property="courseId" />
-    <result column="student_groupId" jdbcType="VARCHAR" property="studentGroupid" />
-    <result column="attendanceRate" jdbcType="INTEGER" property="attendancerate" />
+    <id column="task_id" jdbcType="VARCHAR" property="taskId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    student_id, course_id, student_groupId, attendanceRate
+    course_id, task_id
   </sql>
-  <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.StudentCourseExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.CourseTaskExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from student_course
+    from course_task
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -82,81 +80,54 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
-    select 'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from student_course
-    where student_id = #{studentId,jdbcType=VARCHAR}
-      and course_id = #{courseId,jdbcType=VARCHAR}
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="map">
-    delete from student_course
-    where student_id = #{studentId,jdbcType=VARCHAR}
-      and course_id = #{courseId,jdbcType=VARCHAR}
+    delete from course_task
+    where course_id = #{courseId,jdbcType=VARCHAR}
+      and task_id = #{taskId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.hust.bigdataplatform.model.StudentCourseExample">
-    delete from student_course
+  <delete id="deleteByExample" parameterType="com.hust.bigdataplatform.model.CourseTaskExample">
+    delete from course_task
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.hust.bigdataplatform.model.StudentCourse">
-    insert into student_course (student_id, course_id, student_groupId, 
-      attendanceRate)
-    values (#{studentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{studentGroupid,jdbcType=VARCHAR}, 
-      #{attendancerate,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.hust.bigdataplatform.model.CourseTask">
+    insert into course_task (course_id, task_id)
+    values (#{courseId,jdbcType=VARCHAR}, #{taskId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.StudentCourse">
-    insert into student_course
+  <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.CourseTask">
+    insert into course_task
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="studentId != null">
-        student_id,
-      </if>
       <if test="courseId != null">
         course_id,
       </if>
-      <if test="studentGroupid != null">
-        student_groupId,
-      </if>
-      <if test="attendancerate != null">
-        attendanceRate,
+      <if test="taskId != null">
+        task_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="studentId != null">
-        #{studentId,jdbcType=VARCHAR},
-      </if>
       <if test="courseId != null">
         #{courseId,jdbcType=VARCHAR},
       </if>
-      <if test="studentGroupid != null">
-        #{studentGroupid,jdbcType=VARCHAR},
-      </if>
-      <if test="attendancerate != null">
-        #{attendancerate,jdbcType=INTEGER},
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.hust.bigdataplatform.model.StudentCourseExample" resultType="java.lang.Long">
-    select count(*) from student_course
+  <select id="countByExample" parameterType="com.hust.bigdataplatform.model.CourseTaskExample" resultType="java.lang.Long">
+    select count(*) from course_task
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update student_course
+    update course_task
     <set>
-      <if test="record.studentId != null">
-        student_id = #{record.studentId,jdbcType=VARCHAR},
-      </if>
       <if test="record.courseId != null">
         course_id = #{record.courseId,jdbcType=VARCHAR},
       </if>
-      <if test="record.studentGroupid != null">
-        student_groupId = #{record.studentGroupid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.attendancerate != null">
-        attendanceRate = #{record.attendancerate,jdbcType=INTEGER},
+      <if test="record.taskId != null">
+        task_id = #{record.taskId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -164,33 +135,11 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update student_course
-    set student_id = #{record.studentId,jdbcType=VARCHAR},
-      course_id = #{record.courseId,jdbcType=VARCHAR},
-      student_groupId = #{record.studentGroupid,jdbcType=VARCHAR},
-      attendanceRate = #{record.attendancerate,jdbcType=INTEGER}
+    update course_task
+    set course_id = #{record.courseId,jdbcType=VARCHAR},
+      task_id = #{record.taskId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hust.bigdataplatform.model.StudentCourse">
-    update student_course
-    <set>
-      <if test="studentGroupid != null">
-        student_groupId = #{studentGroupid,jdbcType=VARCHAR},
-      </if>
-      <if test="attendancerate != null">
-        attendanceRate = #{attendancerate,jdbcType=INTEGER},
-      </if>
-    </set>
-    where student_id = #{studentId,jdbcType=VARCHAR}
-      and course_id = #{courseId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.hust.bigdataplatform.model.StudentCourse">
-    update student_course
-    set student_groupId = #{studentGroupid,jdbcType=VARCHAR},
-      attendanceRate = #{attendancerate,jdbcType=INTEGER}
-    where student_id = #{studentId,jdbcType=VARCHAR}
-      and course_id = #{courseId,jdbcType=VARCHAR}
   </update>
 </mapper>

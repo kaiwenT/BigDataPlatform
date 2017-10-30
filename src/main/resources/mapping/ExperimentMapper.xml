@@ -12,7 +12,6 @@
     <result column="experiment_resultsPath" jdbcType="VARCHAR" property="experimentResultspath" />
     <result column="experiment_reportPath" jdbcType="VARCHAR" property="experimentReportpath" />
     <result column="experiment_videoPath" jdbcType="VARCHAR" property="experimentVideopath" />
-    <result column="experiment_scale" jdbcType="REAL" property="experimentScale" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +74,7 @@
   <sql id="Base_Column_List">
     experiment_id, course_id, experiment_name, experiment_createTime, experiment_deadline, 
     experiment_submitDemand, experiment_manualPath, experiment_resultsPath, experiment_reportPath, 
-    experiment_videoPath, experiment_scale
+    experiment_videoPath
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.ExperimentExample" resultMap="BaseResultMap">
     select
@@ -114,12 +113,12 @@
       experiment_createTime, experiment_deadline, 
       experiment_submitDemand, experiment_manualPath, 
       experiment_resultsPath, experiment_reportPath, 
-      experiment_videoPath, experiment_scale)
+      experiment_videoPath)
     values (#{experimentId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{experimentName,jdbcType=VARCHAR}, 
       #{experimentCreatetime,jdbcType=TIMESTAMP}, #{experimentDeadline,jdbcType=TIMESTAMP}, 
       #{experimentSubmitdemand,jdbcType=VARCHAR}, #{experimentManualpath,jdbcType=VARCHAR}, 
       #{experimentResultspath,jdbcType=VARCHAR}, #{experimentReportpath,jdbcType=VARCHAR}, 
-      #{experimentVideopath,jdbcType=VARCHAR}, #{experimentScale,jdbcType=REAL})
+      #{experimentVideopath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.Experiment">
     insert into experiment
@@ -154,9 +153,6 @@
       <if test="experimentVideopath != null">
         experiment_videoPath,
       </if>
-      <if test="experimentScale != null">
-        experiment_scale,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="experimentId != null">
@@ -188,9 +184,6 @@
       </if>
       <if test="experimentVideopath != null">
         #{experimentVideopath,jdbcType=VARCHAR},
-      </if>
-      <if test="experimentScale != null">
-        #{experimentScale,jdbcType=REAL},
       </if>
     </trim>
   </insert>
@@ -233,9 +226,6 @@
       <if test="record.experimentVideopath != null">
         experiment_videoPath = #{record.experimentVideopath,jdbcType=VARCHAR},
       </if>
-      <if test="record.experimentScale != null">
-        experiment_scale = #{record.experimentScale,jdbcType=REAL},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -252,8 +242,7 @@
       experiment_manualPath = #{record.experimentManualpath,jdbcType=VARCHAR},
       experiment_resultsPath = #{record.experimentResultspath,jdbcType=VARCHAR},
       experiment_reportPath = #{record.experimentReportpath,jdbcType=VARCHAR},
-      experiment_videoPath = #{record.experimentVideopath,jdbcType=VARCHAR},
-      experiment_scale = #{record.experimentScale,jdbcType=REAL}
+      experiment_videoPath = #{record.experimentVideopath,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -285,9 +274,6 @@
       <if test="experimentVideopath != null">
         experiment_videoPath = #{experimentVideopath,jdbcType=VARCHAR},
       </if>
-      <if test="experimentScale != null">
-        experiment_scale = #{experimentScale,jdbcType=REAL},
-      </if>
     </set>
     where experiment_id = #{experimentId,jdbcType=VARCHAR}
       and course_id = #{courseId,jdbcType=VARCHAR}
@@ -301,8 +287,7 @@
       experiment_manualPath = #{experimentManualpath,jdbcType=VARCHAR},
       experiment_resultsPath = #{experimentResultspath,jdbcType=VARCHAR},
       experiment_reportPath = #{experimentReportpath,jdbcType=VARCHAR},
-      experiment_videoPath = #{experimentVideopath,jdbcType=VARCHAR},
-      experiment_scale = #{experimentScale,jdbcType=REAL}
+      experiment_videoPath = #{experimentVideopath,jdbcType=VARCHAR}
     where experiment_id = #{experimentId,jdbcType=VARCHAR}
       and course_id = #{courseId,jdbcType=VARCHAR}
   </update>

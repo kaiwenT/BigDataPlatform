@@ -10,7 +10,6 @@
     <result column="course_beginTime" jdbcType="TIMESTAMP" property="courseBegintime" />
     <result column="course_credit" jdbcType="INTEGER" property="courseCredit" />
     <result column="course_picturePath" jdbcType="VARCHAR" property="coursePicturepath" />
-    <result column="course_UsualGradesScale" jdbcType="REAL" property="courseUsualgradesscale" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +71,7 @@
   </sql>
   <sql id="Base_Column_List">
     course_id, course_name, course_introduce, course_outline, course_demand, course_beginTime, 
-    course_credit, course_picturePath, course_UsualGradesScale
+    course_credit, course_picturePath
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.CourseExample" resultMap="BaseResultMap">
     select
@@ -107,12 +106,10 @@
   <insert id="insert" parameterType="com.hust.bigdataplatform.model.Course">
     insert into course (course_id, course_name, course_introduce, 
       course_outline, course_demand, course_beginTime, 
-      course_credit, course_picturePath, course_UsualGradesScale
-      )
+      course_credit, course_picturePath)
     values (#{courseId,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, #{courseIntroduce,jdbcType=VARCHAR}, 
       #{courseOutline,jdbcType=VARCHAR}, #{courseDemand,jdbcType=VARCHAR}, #{courseBegintime,jdbcType=TIMESTAMP}, 
-      #{courseCredit,jdbcType=INTEGER}, #{coursePicturepath,jdbcType=VARCHAR}, #{courseUsualgradesscale,jdbcType=REAL}
-      )
+      #{courseCredit,jdbcType=INTEGER}, #{coursePicturepath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.Course">
     insert into course
@@ -141,9 +138,6 @@
       <if test="coursePicturepath != null">
         course_picturePath,
       </if>
-      <if test="courseUsualgradesscale != null">
-        course_UsualGradesScale,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="courseId != null">
@@ -169,9 +163,6 @@
       </if>
       <if test="coursePicturepath != null">
         #{coursePicturepath,jdbcType=VARCHAR},
-      </if>
-      <if test="courseUsualgradesscale != null">
-        #{courseUsualgradesscale,jdbcType=REAL},
       </if>
     </trim>
   </insert>
@@ -208,9 +199,6 @@
       <if test="record.coursePicturepath != null">
         course_picturePath = #{record.coursePicturepath,jdbcType=VARCHAR},
       </if>
-      <if test="record.courseUsualgradesscale != null">
-        course_UsualGradesScale = #{record.courseUsualgradesscale,jdbcType=REAL},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -225,8 +213,7 @@
       course_demand = #{record.courseDemand,jdbcType=VARCHAR},
       course_beginTime = #{record.courseBegintime,jdbcType=TIMESTAMP},
       course_credit = #{record.courseCredit,jdbcType=INTEGER},
-      course_picturePath = #{record.coursePicturepath,jdbcType=VARCHAR},
-      course_UsualGradesScale = #{record.courseUsualgradesscale,jdbcType=REAL}
+      course_picturePath = #{record.coursePicturepath,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -255,9 +242,6 @@
       <if test="coursePicturepath != null">
         course_picturePath = #{coursePicturepath,jdbcType=VARCHAR},
       </if>
-      <if test="courseUsualgradesscale != null">
-        course_UsualGradesScale = #{courseUsualgradesscale,jdbcType=REAL},
-      </if>
     </set>
     where course_id = #{courseId,jdbcType=VARCHAR}
   </update>
@@ -269,8 +253,7 @@
       course_demand = #{courseDemand,jdbcType=VARCHAR},
       course_beginTime = #{courseBegintime,jdbcType=TIMESTAMP},
       course_credit = #{courseCredit,jdbcType=INTEGER},
-      course_picturePath = #{coursePicturepath,jdbcType=VARCHAR},
-      course_UsualGradesScale = #{courseUsualgradesscale,jdbcType=REAL}
+      course_picturePath = #{coursePicturepath,jdbcType=VARCHAR}
     where course_id = #{courseId,jdbcType=VARCHAR}
   </update>
 </mapper>

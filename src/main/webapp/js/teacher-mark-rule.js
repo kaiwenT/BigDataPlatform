@@ -24,6 +24,7 @@ function submit() {
     var regular_work = 0;
     var exp_report = 0;
     var exp_result = 0;
+    var courseId = getCookie("courseId");
     if ($(".regular-grade").val() != "") {
         regular_grade = parseInt($(".regular-grade").val());
     }
@@ -58,5 +59,59 @@ function submit() {
         return false;
     }
 
-    //ajax提交
+    $.ajax({
+    	type:"POST",
+		url:"/course/updateCourseScale",
+		data:
+		{	courseId:courseId,
+			regular_grade:regular_grade, 
+			regular_work:regular_work,
+			exp_grade:exp_grade,
+			exp_report:exp_report
+		},
+		datatype:"json",
+		success:function(msg){
+			if(msg.status=="OK"){
+				alert(msg.result);
+			}
+			else{
+				alert(msg.result);
+			}	
+		},
+		error:function(msg){
+			alert(msg.result);
+		},
+    })
 }
+
+function showCourseScale() {
+	var courseId = getCookie("courseId");
+	if (courseId == null || courseId == 'undefined') {
+		return;
+	}
+	$.ajax({
+		type : "POST",
+		url : "/course/getCourseScale",
+		dataType : "json",
+		data : {
+			courseId : courseId
+		},
+		success : function(msg) {
+			if(msg.status == 'OK'){
+				var s = msg.result;
+				$(".regular-grade").val(100 * s.attendanceRate);
+				$(".exp-grade").val(100 * s.experimentRate);
+				$(".final-exam-grade").val(100 - 100 * s.attendanceRate - 100 * s.experimentRate);
+				$(".check-grade").val(100 - 100 * s.exerciseRate);
+				$(".regular-work").val(100 * s.exerciseRate);
+				$(".exp-report").val(100 * s.expReportRate);
+				$(".exp-result").val(100 - 100 * s.expReportRate);
+			}
+		},
+		error : function(msg) {
+			error(msg);
+		}
+	})
+}
+
+showCourseScale();

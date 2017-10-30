@@ -147,12 +147,6 @@ public class ExperimentController {
 		if (courseId=="") {
 			return ResultUtil.errorWithMsg("课程id为空");
 		}
-		if (exptitle=="") {
-			return ResultUtil.errorWithMsg("实验名称为空！");
-		}
-		if (deadline=="") {
-			return ResultUtil.errorWithMsg("实验截止时间为空！");
-		}
 		Experiment experiment = new Experiment();
 		String uid = UUID.randomUUID().toString();
 		experiment.setExperimentId(uid);
@@ -184,12 +178,6 @@ public class ExperimentController {
 		if (courseId=="") {
 			return ResultUtil.errorWithMsg("课程id为空");
 		}
-		if (exptitle=="") {
-			return ResultUtil.errorWithMsg("实验名称为空！");
-		}
-		if (deadline=="") {
-			return ResultUtil.errorWithMsg("实验截止时间为空！");
-		}
 		List<Experiment> experiment = experimentService.findExperimentByExpId(experimentId);
 		if (experiment==null) {
 			return ResultUtil.errorWithMsg("此实验不存在！");
@@ -200,7 +188,7 @@ public class ExperimentController {
 		if (status==0) {
 			return ResultUtil.errorWithMsg("修改实验内容失败！");
 		}
-		return ResultUtil.errorWithMsg("修改实验内容失成功！");
+		return ResultUtil.success("修改实验内容失成功！");
 	}
 	
 	@RequestMapping("/UpdateExpSubmitDemand")

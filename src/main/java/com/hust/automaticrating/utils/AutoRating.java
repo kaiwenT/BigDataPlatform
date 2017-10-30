@@ -2,7 +2,6 @@ package com.hust.automaticrating.utils;
 
 import com.hust.automaticrating.Rating;
 import com.hust.bigdataplatform.model.Experiment;
-import com.hust.bigdataplatform.service.ExperimentScoreService;
 /**
  * 自动评分类
  * @author tankai
@@ -13,9 +12,8 @@ public class AutoRating {
 	 * 自动评分方法
 	 * @param exp 更新的实验
 	 * @param oldName 更新的实验之前的名称
-	 * @param experimentScoreService 实验分数Service
 	 */
-	public static void rating(Experiment exp, String oldName, ExperimentScoreService experimentScoreService) {
+	public static void rating(Experiment exp, String oldName) {
 		
 		// 获取评分类对象
 		Rating rate = new Rating(exp.getExperimentName(), exp.getExperimentId());
@@ -45,7 +43,7 @@ public class AutoRating {
 			System.out.println("找不到线程！！！！");
 		}
 		// 以新的作业信息开启新线程
-		new Thread(new AutoCheckThread(rate, exp.getExperimentDeadline(), experimentScoreService),
+		new Thread(new AutoCheckThread(rate, exp.getExperimentDeadline()),
 				exp.getExperimentName()).start();
 	}
 }

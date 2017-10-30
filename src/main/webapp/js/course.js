@@ -64,7 +64,7 @@ function showChapters(){
 							+'<div class="f-icon cpicon j-down f-fl u-icon-caret-up" style=""></div>'
 							+'<div class="f-icon cpicon j-up f-fl u-icon-caret-down" style=""></div>'
 							+'<h3 class="j-titleName name f-fl f-thide">'+chapter.chapterName+'</h3></div></div>';
-						$(".m-learnChapterNormal").append(titlebox);
+						$(".m-learnChapterNormal").prepend(titlebox);
 						showSections(chapter.chapterId);
 					});
 					 $(".titleBox").children(".u-icon-caret-up").css("display","none");
@@ -115,7 +115,7 @@ function showSections(chapterId){
 				            +'<div class="f-icon lsicon f-fl " data-cid="1003495672" title="课件：'+section.sectionname+'" id="" onclick="setCookie('+"'sectionId'"+','+section.sectionid+');baseAjax('+"'student-courseware-pdf'"+')">'
 				            +'<span class="u-icon-text"></span></div>'
 				            +'</div></div></div></div>';						
-						sectionshtml += lessonbox;
+						sectionshtml = lessonbox + sectionshtml;
 					});
 					$(".titleBox#"+chapterId).after(sectionshtml);
 					$(".lessonBox").css("display","none");

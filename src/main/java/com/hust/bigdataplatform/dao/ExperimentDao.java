@@ -66,6 +66,7 @@ public class ExperimentDao {
 	public List<Experiment> selectByCourseId(String CourseId)
 	{
 		ExperimentExample example = new ExperimentExample();
+		example.setOrderByClause("experiment_createTime desc");
 		Criteria criteria = example.createCriteria();
 		criteria.andCourseIdEqualTo(CourseId);
 		List<Experiment> experiments = experimentMapper.selectByExample(example);

@@ -21,7 +21,17 @@ public class StudentScoreDao {
 	 * @return
 	 */
 	public StudentScore findByStuIdAndCourseId(String stuId, String courseId){
-		return null;
+		return studentScoreMapper.selectByPrimaryKey(stuId, courseId);
 		
+	}
+	
+	public int add(StudentScore studentScore)
+	{
+		return studentScoreMapper.insertSelective(studentScore);
+	}
+	
+	public int update(StudentScore studentScore)
+	{
+		return studentScoreMapper.updateByPrimaryKeySelective(studentScore);
 	}
 }

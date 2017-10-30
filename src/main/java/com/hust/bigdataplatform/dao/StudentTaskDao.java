@@ -42,4 +42,9 @@ public class StudentTaskDao {
 		return studentTaskMapper.selectByExample(example);
 		
 	}
+	
+	public int add(StudentTask studentTask)
+	{
+		return studentTaskMapper.insertSelective(studentTask);
+	}
 }

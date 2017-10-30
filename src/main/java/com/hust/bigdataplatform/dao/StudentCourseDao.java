@@ -44,6 +44,13 @@ public class StudentCourseDao {
 		criteria.andStudentIdEqualTo(studentId);
 		return studentCourseMapper.selectByExample(example);
 	}
+	
+	public List<StudentCourse> findStudentByCourseId(String CourseId){
+		StudentCourseExample example = new StudentCourseExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andCourseIdEqualTo(CourseId);
+		return studentCourseMapper.selectByExample(example);
+	}
 	/**
 	 * 查找学生某门课程成绩
 	 * @param studentId

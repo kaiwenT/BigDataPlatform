@@ -30,4 +30,9 @@ public interface StudentCourseService {
 	 * @return
 	 */
 	public StudentCourse findStudentCourseByStuId(String studentId, String courseId);
+	
+	public int getFinalUsualScore(String studentId, String courseId);
+	
+	public List<Student> findBycourseId(String courseId);
+		
 }

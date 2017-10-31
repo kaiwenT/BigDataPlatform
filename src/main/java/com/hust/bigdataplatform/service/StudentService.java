@@ -29,4 +29,6 @@ public interface StudentService {
 	 */
 	public Student selectStudentById(String studentId);
 	
+	public int add(List<Student> student);
+	
 }

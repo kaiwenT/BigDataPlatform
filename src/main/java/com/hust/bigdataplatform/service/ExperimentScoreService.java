@@ -48,4 +48,6 @@ public interface ExperimentScoreService {
 	
 	public List<ExperimentScoreQuery> ShowExpScore( String courseId);
 	
+	public int AddExperimentScore(String courseId, String expId);
+	
 }

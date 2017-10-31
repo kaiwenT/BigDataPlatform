@@ -15,6 +15,7 @@ import com.hust.bigdataplatform.dao.StudentDao;
 import com.hust.bigdataplatform.model.Course;
 import com.hust.bigdataplatform.model.Student;
 import com.hust.bigdataplatform.model.StudentCourse;
+import com.hust.bigdataplatform.model.params.StudentAndGroup;
 import com.hust.bigdataplatform.service.CourseScaleService;
 import com.hust.bigdataplatform.service.StudentCourseService;
 import com.hust.bigdataplatform.service.StudentService;
@@ -92,6 +93,24 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 			}
 		}
 		return students;
+	}
+
+	@Override
+	public int insert(List<StudentAndGroup> StudentAndGroups, String courseId) {
+		if (StudentAndGroups.size()==0||StudentAndGroups==null||courseId=="") {
+			return 0;
+		}
+		for (StudentAndGroup studentAndGroup : StudentAndGroups) {
+			StudentCourse studentCourse = new StudentCourse();
+			studentCourse.setCourseId(courseId);
+			studentCourse.setStudentId(studentAndGroup.getStudentId());
+			studentCourse.setStudentGroupid(studentAndGroup.getGroupId());
+			int s= studentCourseDao.insertSelective(studentCourse);
+			if (s==0) {
+				return 0;
+			}
+		}
+		return 1;
 	}
 	
 	

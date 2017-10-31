@@ -22,6 +22,7 @@ $("select.grade-show-type").change(function () {
 //平时成绩加载
 function regularGradeShow() {
     $(".grade-body").empty();
+    $(".grade-body").css("overflow","hidden");
     var courseId = getCookie("courseId");
     //根据查询到的平时作业数量生成
     $.ajax({
@@ -77,6 +78,7 @@ function regularGradeShow() {
 //实验成绩加载
 function expGradeShow() {
     $(".grade-body").empty();
+    $(".grade-body").css("overflow-x","scroll");
     var courseId = getCookie("courseId");
     $.ajax({
     	type:"POST",
@@ -96,26 +98,27 @@ function expGradeShow() {
 					regularWork +="<th>"+list[0].explist[i].expName+"(报告)</th>";
 					regularWork +="<th>"+list[0].explist[i].expName+"(总)</th>";
 				}
-//				$.each(list,function(idx,map){
-//					console.log(map);
-//					studentGrade +="<td>"+map["studentId"]+"</td>";
-//					studentGrade +="<td>"+map["studentname"]+"</td>";
-//					studentGrade +="<td>"+map["attendenceScore"]+"</td>";
-//					for(var key in map){
-//						if(key != "tasknum" && key != "studentname" && key != "studentId" && key != "attendenceScore" && key != "finalUsualScore")
-//						studentGrade +="<td>"+map[key]+"</td>";
-//					}
-//					studentGrade +="<td>"+map["finalUsualScore"]+"</td>";
-//				})
-//				
+				$.each(list,function(idx,expQuery){
+					console.log(expQuery);
+					studentGrade +="<td>"+expQuery.studentId+"</td>";
+					studentGrade +="<td>"+expQuery.studentName+"</td>";
+					for(i =0; i < num; i++)
+					{
+						studentGrade +="<td>"+expQuery.explist[i].resultsScore+"</td>";
+						studentGrade +="<td>"+expQuery.explist[i].reportScore+"</td>";
+						studentGrade +="<td>"+expQuery.explist[i].finalScore+"</td>";
+						
+					}
+					studentGrade +="<td>"+expQuery.finalScore+"</td>";
+				})
 				var content='<table >'+
 		        '<tr>'+
 		        '<th width="125px;">学号</th>'+
 		        '<th width="90px">姓名</th>'+
 		        regularWork+
 		        '<th>实验成绩（总）</th>'+
-//		    '</tr>'+
-//		        studentGrade+
+  		        '</tr>'+
+		        studentGrade+
 		    '</table>';
 		    $(".grade-body").append(content);
 			}else{
@@ -132,6 +135,7 @@ function expGradeShow() {
 //总成绩加载
 function totalGradeShow() {
     $(".grade-body").empty();
+    $(".grade-body").css("overflow","hidden");
     var courseId = getCookie("courseId");
     //根据查询到的平时作业数量生成
     $.ajax({
@@ -174,3 +178,38 @@ function totalGradeShow() {
 		},
     })
 }
+
+function closeBox() {
+    $(".m-mask").css("display","none");
+}
+//提交平时考勤成绩
+$(".submit-exp-result").change(function () {
+    //获取文件
+    var file = $(".submit-exp-result")[0].files[0];
+})
+
+function importFile() {
+    $(".m-mask").css("display","block");
+}
+
+$(".grade-body").hover(function(event) {	
+	var gdWidth = $(".grade-body").width();
+	var tabWidth = $(".grade-body").find("table").width();
+	var max = tabWidth-gdWidth;
+	$(".grade-body").bind('mousewheel',function(event, delta){
+		var length = $(".grade-body").scrollLeft();
+		console.log("scroll")
+		console.log(length);
+		length -= delta*(70);
+		console.log(delta);
+		console.log(length);
+		console.log("scroll----------")
+		if(length<0){
+			length = 0;
+		}else if(length >max){
+			length = max;
+		}		
+		$(".grade-body").stop().animate({scrollLeft:length},100);
+	});
+})
+

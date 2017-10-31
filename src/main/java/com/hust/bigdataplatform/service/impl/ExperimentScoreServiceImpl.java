@@ -12,6 +12,7 @@ import com.hust.bigdataplatform.model.Experiment;
 import com.hust.bigdataplatform.model.ExperimentScore;
 import com.hust.bigdataplatform.model.ExperimentScoreExample;
 import com.hust.bigdataplatform.model.Student;
+import com.hust.bigdataplatform.model.StudentCourse;
 import com.hust.bigdataplatform.model.ExperimentScoreExample.Criteria;
 import com.hust.bigdataplatform.model.params.ExpScore;
 import com.hust.bigdataplatform.model.params.ExperimentScoreQuery;
@@ -127,5 +128,23 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 			experimentScoreQueries.add(eQuery);
 		}
 		return experimentScoreQueries;
+	}
+	/**
+	 * 当添加实验后，在experimentScore表中插入记录
+	 */
+	@Override
+	public int AddExperimentScore(String courseId, String expId ) {
+		//根据courseid获取studentID
+		List<Student> students = studentCourseService.findBycourseId(courseId);
+		for (Student student : students) {
+			ExperimentScore eScore = new ExperimentScore();
+			eScore.setExperimentId(expId);
+			eScore.setStudentId(student.getStudentId());
+			int s = experimentScoreDao.insert(eScore);
+			if (s==0) {
+				return 0;
+			}
+		}
+		return 1;
 	}
 }

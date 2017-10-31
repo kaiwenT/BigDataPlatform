@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script type="text/javascript" src="../js/teacher-grade-manager.js"></script>
+    <script type="text/javascript" src="../js/jquery.mousewheel.js"></script>
      <script type="text/javascript" src="../js/tools.js"></script>
     <style>
         table{
@@ -12,6 +13,9 @@
         }
         td,th{
             text-align: center;
+            min-width:100px;
+            word-break: keep-all;
+            white-space: nowrap;
         }
         tr{
             height: 30px;
@@ -38,6 +42,43 @@
         </div>
     </div>
 </div>
+<div class="m-mask" style="display: none">
+    <div class="m-container submit-box" style="width:420px;height: 300px; margin: -150px -210px;">
+        <div class="m-close" onclick="closeBox()">
+            <span class="u-icon-close"></span>
+        </div>
+        <div class="m-content">
+            <div style="position: absolute;top:0;left:0;">
+                <br>
+                <span style="font-family: 'microsoft yahei', Verdana, '\u5fae\u8f6f\u96c5\u9ed1', '\5b8b\4f53', Arial;font-size: 18px;">例如:</span><br>
+                <table border="1" style="width: 320px;margin-left: 50px;">
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>考勤成绩</th>
+                    </tr>
+                    <tr>
+                        <td>U123456789</td>
+                        <td>张三</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>U123654987</td>
+                        <td>李四</td>
+                        <td>90</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">···</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="position: absolute;bottom:0;left:0;">
+                <input type="file" class="form-control submit-exp-result" style="position: relative;bottom: 25px;left:65px; ">
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 <script>
     regularGradeShow();

@@ -3,6 +3,7 @@ package com.hust.bigdataplatform.service;
 import java.util.List;
 import java.util.Map;
 
+import com.hust.bigdataplatform.model.Student;
 import com.hust.bigdataplatform.model.StudentScore;
 
 public interface StudentScoreService {
@@ -17,4 +18,5 @@ public interface StudentScoreService {
 	
 	public List<Map<String, String>> ShowStudentFinalScore(String courseId);
 
+	public int insert(List<Student> students, String courseId);
 }

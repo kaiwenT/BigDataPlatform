@@ -100,11 +100,12 @@ public class StudentCourseController {
 			map.put("courseName", course.getCourseName());
 			map.put("teacherName", t.getTeacherName());			
 			map.put("usualGrade", String.valueOf(scourse.getAttendancerate()));
-		//	map.put("finalGrade", String.valueOf(scourse.getFinalresult()));
+			
 			//考试成绩，建表后从数据库获取，暂定100分
 			map.put("examGrade", "100");
 			int expScore = experimentScoreService.findExpAvgScore(studentId, scourse.getCourseId());
 			map.put("expGrade", String.valueOf(expScore));
+			map.put("finalGrade", String.valueOf(0.3 * scourse.getAttendancerate() + 0.4 * expScore + 30));//scourse.getFinalresult()
 			res.add(map);
 		}
 		

@@ -1,6 +1,8 @@
 /**
  * Created by Jack on 2017/10/18.
  */
+  //文件存放路径
+var imgPath = 'http://211.69.197.95:8081/bigdataplatform/file/';
 //标题点击事件 实现展开功能
 function titleClick(e) {
     if ($(e).children(".u-icon-caret-up").css("display") == "none") {
@@ -43,7 +45,7 @@ function showFiles(experimentId)
 					$.each(files, function(idx, file){
 						var box = '';
 						if(file.fileType == "VIDEO"){
-							var content = '<div class="f-pr f-fl source-video source-ok" title="' + file.fileName + '" id="'+file.fileId+'" onmousemove="uSHover(this)"' +
+							var content = '<div class="f-pr f-fl source-video source-ok" title="' + file.fileName + '" style="background-image:url('+imgPath+file.fileId+'.jpg);" id="'+file.fileId+'" onmousemove="uSHover(this)"' +
 		                    'onmouseleave="uSBlur(this)">' +
 		                    '<div class="f-pa u-source-close" onclick="delVideo(this)">' +
 		                    '<span class="u-icon-close"></span>' +
@@ -52,7 +54,7 @@ function showFiles(experimentId)
 							$("div#"+experimentId).find(".source-video-add").parent().before(content);
 						}
 						if(file.fileType == "PDF"){
-							var content = '<div class="f-pr f-fl source-pdf source-ok" title="' + file.fileName + '" id="'+file.fileId+'" onmousemove="uSHover(this)"' +
+							var content = '<div class="f-pr f-fl source-pdf source-ok" title="' + file.fileName + '" style="background-image:url('+imgPath+file.fileId+'.jpg);" id="'+file.fileId+'" onmousemove="uSHover(this)"' +
 		                    'onmouseleave="uSBlur(this)">' +
 		                    '<div class="f-pa u-source-close" onclick="delPdf(this)">' +
 		                    '<span class="u-icon-close"></span>' +
@@ -471,7 +473,8 @@ function uploadVideo1(e,file) {
                 e.addClass("source-ok");
                 e.children(".u-source-upload").css("display","none");
                 e.children(".u-source-close").css("display","block");
-                alert(msg.result);
+                e.css("background-image","url("+imgPath+msg.result+".jgp)");
+                alert("上传成功！");
             } else {
             	 alert(msg.result);
             }
@@ -538,7 +541,8 @@ function uploadPdf1(e,file) {
                 e.addClass("source-ok");
                 e.children(".u-source-upload").css("display","none");
                 e.children(".u-source-close").css("display","block");
-                alert(msg.result);
+                e.css("background-image","url("+imgPath+msg.result+".jpg)");
+                alert("上传成功！");
             } else {
             	 alert(msg.result);
             }

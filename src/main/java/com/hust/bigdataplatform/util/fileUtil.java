@@ -28,6 +28,22 @@ public class fileUtil {
 		return files2;
 	}
 	
+	public static List<String> getFileName(String road, String type){
+		File file = new File(road);
+		File files[] = file.listFiles();
+		List<String> files2 = new ArrayList<String>();
+		if (files==null) {
+			return null;
+		}
+		for(File f : files){
+			String suffix = f.getName().substring(f.getName().lastIndexOf(".") + 1);
+			if(type.equals(suffix)){
+				files2.add(f.getName());
+			}
+			
+		}
+		return files2;
+	}
 	 public static boolean updatename(String file, String newfile) 
      {
 		 File file1 = new File(file);

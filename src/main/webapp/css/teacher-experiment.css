@@ -22,6 +22,10 @@
     margin-left: 10px;
     margin-bottom: 10px;
     cursor: pointer;
+     background-repeat:no-repeat;
+    background-size:100% 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size:100% 100%;
 }
 
 .source-video-add,.source-pdf-add{

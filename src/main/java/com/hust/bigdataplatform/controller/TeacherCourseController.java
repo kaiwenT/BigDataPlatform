@@ -27,6 +27,7 @@ import com.hust.bigdataplatform.service.SessionService;
 import com.hust.bigdataplatform.service.TeacherCourseService;
 import com.hust.bigdataplatform.service.impl.ChapterSectionServiceImpl;
 import com.hust.bigdataplatform.service.impl.FileServiceImpl;
+import com.hust.bigdataplatform.util.ImageUtil;
 import com.hust.bigdataplatform.util.ResultUtil;
 import com.hust.bigdataplatform.util.UploadUtils;
 import com.hust.bigdataplatform.util.fileUtil;
@@ -274,14 +275,27 @@ public class TeacherCourseController {
 		f.setFileId(uid);
 		f.setFileType("PDF");
 		f.setFileName(uploadfile.getOriginalFilename());
-		String road = courseChapter.getCoursewarePath()+"/"+sectionId ;
+//		String road = courseChapter.getCoursewarePath()+"/"+sectionId ;
+		String road = Constant.DIRECTORY.COURSEWARE + courseId + File.separator + chapterId + File.separator + sectionId;
 		UploadUtils uploadUtils = new UploadUtils();
 		if (uploadUtils.uploadUtils(uploadfile, road)) {
 			//在file表中添加记录
 			fileservice.insert(f);
+			
 			//改变文件的名字
 			if (fileUtil.updatename(road+"/"+uploadfile.getOriginalFilename(), road+"/"+uid+".pdf")) {
-				return ResultUtil.success("上传成功！");
+				ImageUtil.generatePDFImage(road+"/"+uid+".pdf", road+"/"+uid+".jpg");
+				File jpg = new File(road+"/"+uid+".jpg");
+				while(!jpg.exists()){
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					System.out.println("缩略图还没生成");
+				}
+				return ResultUtil.success(uid);
 			}
 		}
 		return ResultUtil.errorWithMsg("上传失败");
@@ -306,13 +320,26 @@ public class TeacherCourseController {
 		f.setFileType("VIDEO");
 		f.setFileName(uploadfile.getOriginalFilename());
 		
-		String road = courseChapter.getVideoPath()+"/"+sectionId;
+//		String road = courseChapter.getVideoPath()+"/"+sectionId;
+		String road = Constant.DIRECTORY.COURSE_VIDEO + courseId + File.separator + chapterId + File.separator + sectionId;
 		UploadUtils uploadUtils = new UploadUtils();
 		if (uploadUtils.uploadUtils(uploadfile, road)) {
 			fileservice.insert(f);
 			//改变文件的名字
 			if (fileUtil.updatename(road+"/"+uploadfile.getOriginalFilename(), road+"/"+uid+".mp4")) {
-				return ResultUtil.success("上传成功！");
+				ImageUtil.generateVideoImage(Constant.FFMPEG_PATH, road+"/"+uid+".mp4", road+"/"+uid+".jpg");
+				//返回uid 上传的文件文件名
+				File jpg = new File(road+"/"+uid+".jpg");
+				while(!jpg.exists()){
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					System.out.println("缩略图还未生成");
+				}
+				return ResultUtil.success(uid);
 			}
 		}
 		return ResultUtil.errorWithMsg("上传失败");
@@ -328,13 +355,14 @@ public class TeacherCourseController {
 		if (course == null) {
 			return ResultUtil.errorWithMsg("查找PDF失败");
 		}
-		String road = course.getCoursewarePath()+"/"+sectionId;
+//		String road = course.getCoursewarePath()+"/"+sectionId;
+		String road = Constant.DIRECTORY.COURSEWARE  + courseId + File.separator + chapterId + File.separator + sectionId;
 		File file = new File(road);
 		if (!file.exists()) {
 			return ResultUtil.errorWithMsg("没有文件！");
 		}
 		List<com.hust.bigdataplatform.model.File> files = new ArrayList<com.hust.bigdataplatform.model.File>();
-		List<String> names = fileUtil.getFileName(road);
+		List<String> names = fileUtil.getFileName(road, "pdf");
 		for (String string : names) {
 			files.add(fileservice.selectById(string.substring(0, string.indexOf("."))));
 		}
@@ -351,15 +379,16 @@ public class TeacherCourseController {
 	{
 		CourseChapter course = courseChapterService.selectById(chapterId, courseId);
 		if (course == null) {
-			return ResultUtil.errorWithMsg("查找PDF失败");
+			return ResultUtil.errorWithMsg("查找视频失败");
 		}
-		String road = course.getVideoPath()+"/"+sectionId;
+//		String road = course.getVideoPath()+"/"+sectionId;
+		String road = Constant.DIRECTORY.COURSE_VIDEO + courseId + File.separator + chapterId + File.separator + sectionId;
 		File file = new File(road);
 		if (!file.exists()) {
 			return ResultUtil.errorWithMsg("文件不存在！");
 		}
 		List<com.hust.bigdataplatform.model.File> files = new ArrayList<com.hust.bigdataplatform.model.File>();
-		List<String> names = fileUtil.getFileName(road);
+		List<String> names = fileUtil.getFileName(road, "mp4");
 		for (String string : names) {
 			files.add(fileservice.selectById(string.substring(0, string.indexOf("."))));
 		}
@@ -376,10 +405,16 @@ public class TeacherCourseController {
 		//删除文件成功后，在删除记录
 		ChapterSection chapterSection = chapterSectionService.selectBySectionId(sectionId);
 		CourseChapter chapter=courseChapterService.selectById(chapterSection.getChapterId(), courseId);
-		String road = chapter.getVideoPath()+"/"+chapterSection.getSectionid()+"/"+videoId+".mp4";
+		String road = Constant.DIRECTORY.COURSE_VIDEO + courseId + "/" + chapter.getChapterId() +"/"+chapterSection.getSectionid()+"/"+videoId+".mp4";
 		File file = new File(road);
+		//缩略图
+		String road1 = Constant.DIRECTORY.COURSE_VIDEO + courseId + "/" + chapter.getChapterId() +"/"+chapterSection.getSectionid()+"/"+videoId+".jpg";
+		File file1 = new File(road1);
 		if (file.isFile()) {
 			file.delete();
+		}
+		if (file1.isFile()) {
+			file1.delete();
 		}
 		if (fileservice.delete(videoId)==1) {
 			return ResultUtil.success("删除成功！");
@@ -395,8 +430,14 @@ public class TeacherCourseController {
 		//删除文件成功后，在删除记录
 		ChapterSection chapterSection = chapterSectionService.selectBySectionId(sectionId);
 		CourseChapter chapter=courseChapterService.selectById(chapterSection.getChapterId(), courseId);
-		String road = chapter.getCoursewarePath()+"/"+chapterSection.getSectionid()+"/"+pdfId+".pdf";
+		String road = Constant.DIRECTORY.COURSEWARE + courseId + "/" + chapter.getChapterId() +"/"+chapterSection.getSectionid()+"/"+pdfId+".pdf";
 		File file = new File(road);
+		//缩略图
+		String road1 = Constant.DIRECTORY.COURSE_VIDEO + courseId + "/" + chapter.getChapterId() +"/"+chapterSection.getSectionid()+"/"+pdfId+".jpg";
+		File file1 = new File(road1);		
+		if (file1.isFile()) {
+			file1.delete();
+		}
 		if (file.isFile()) {
 			if (file.delete()) {
 				if (fileservice.delete(pdfId)==1) {

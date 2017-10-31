@@ -28,6 +28,7 @@ import com.hust.bigdataplatform.service.ExperimentService;
 import com.hust.bigdataplatform.service.FileService;
 import com.hust.bigdataplatform.service.SessionService;
 import com.hust.bigdataplatform.util.DateConverter;
+import com.hust.bigdataplatform.util.ImageUtil;
 import com.hust.bigdataplatform.util.ResultUtil;
 import com.hust.bigdataplatform.util.UploadUtils;
 import com.hust.bigdataplatform.util.fileUtil;
@@ -156,10 +157,10 @@ public class ExperimentController {
 		experiment.setExperimentSubmitdemand(" ");
 		experiment.setExperimentCreatetime(new Date());
 		experiment.setExperimentDeadline(new DateConverter().convert(deadline));
-		experiment.setExperimentManualpath(Constant.DIRECTORY.EXPERIMENT_REPORT+uid);
-		System.out.println("实验手册："+Constant.DIRECTORY.EXPERIMENT_REPORT);
-		experiment.setExperimentVideopath(Constant.DIRECTORY.EXPERIMENT_VIDEO+uid);
-		System.out.println("实验视频："+Constant.DIRECTORY.EXPERIMENT_VIDEO);
+//		experiment.setExperimentManualpath(Constant.DIRECTORY.EXPERIMENT_REPORT+uid);
+//		System.out.println("实验手册："+Constant.DIRECTORY.EXPERIMENT_REPORT);
+//		experiment.setExperimentVideopath(Constant.DIRECTORY.EXPERIMENT_VIDEO+uid);
+//		System.out.println("实验视频："+Constant.DIRECTORY.EXPERIMENT_VIDEO);
 		experiment.setExperimentReportpath(Constant.DIRECTORY.REPORT_SUBMIT+uid);
 		experiment.setExperimentResultspath(Constant.DIRECTORY.EXPERIMENT_DATA_SUBMIT+uid);
 		int status = experimentService.addExperiment(experiment);
@@ -236,13 +237,13 @@ public class ExperimentController {
 		experimentFile.setExperimentId(experimentId);
 		experimentFile.setFileId(uid);
 		
-		String road = "";
-		if (type.equals("PDF")) {
-			road=experiment.get(0).getExperimentManualpath();
-		}
-		else{
-			road=experiment.get(0).getExperimentVideopath();
-		}
+		String road = Constant.DIRECTORY.FILE;
+//		if (type.equals("PDF")) {
+//			road=experiment.get(0).getExperimentManualpath();
+//		}
+//		else{
+//			road=experiment.get(0).getExperimentVideopath();
+//		}
 		UploadUtils uploadUtils = new UploadUtils();
 		if (uploadUtils.uploadUtils(uploadfile, road)) {
 			fileservice.insert(f);
@@ -250,12 +251,14 @@ public class ExperimentController {
 			//改变文件的名字
 			if (type.equals("PDF")) {
 				if (fileUtil.updatename(road+"/"+uploadfile.getOriginalFilename(), road+"/"+uid+".pdf")) {
-					return ResultUtil.success("上传成功！");
+					ImageUtil.generatePDFImage(road+"/"+uid+".pdf", road+"/"+uid+".jpg");
+					return ResultUtil.success(uid);
 				}
 			}
 			else {
 				if (fileUtil.updatename(road+"/"+uploadfile.getOriginalFilename(), road+"/"+uid+".mp4")) {
-					return ResultUtil.success("上传成功！");
+					ImageUtil.generateVideoImage(Constant.FFMPEG_PATH, road+"/"+uid+".mp4", road+"/"+uid+".jpg");
+					return ResultUtil.success(uid);
 				}
 			}
 		}
@@ -278,14 +281,17 @@ public class ExperimentController {
 		}
 		String road="";
 		if (file.getFileType().equals("PDF")) {
-			 road = Constant.DIRECTORY.EXPERIMENT_REPORT+experimentId+"/"+fileId+".pdf";
+//			 road = Constant.DIRECTORY.EXPERIMENT_REPORT+experimentId+"/"+fileId+".pdf";
+			road = Constant.DIRECTORY.FILE+fileId+".pdf";
 		}
 		else{
-			 road = Constant.DIRECTORY.EXPERIMENT_VIDEO+experimentId+"/"+fileId+".mp4";
+//			 road = Constant.DIRECTORY.EXPERIMENT_VIDEO+experimentId+"/"+fileId+".mp4";
+			road = Constant.DIRECTORY.FILE+fileId+".mp4";
 		}
 		java.io.File test = new java.io.File(road);
-		if (test.isFile()) {
-			if (test.delete()) {
+		java.io.File pic = new java.io.File(Constant.DIRECTORY.FILE+fileId+".jpg");
+		if (test.isFile() && pic.isFile()) {
+			if (test.delete() && pic.delete()) {
 				if (fileservice.delete(file.getFileId())==1) {
 					return ResultUtil.success("删除成功！");
 				}
@@ -305,10 +311,16 @@ public class ExperimentController {
 		}
 		if (experimentFile.size()!=0) {
 			//删除目录
-			String road1 = Constant.DIRECTORY.EXPERIMENT_REPORT+experimentId;
-			String road2 = Constant.DIRECTORY.EXPERIMENT_VIDEO+experimentId;
-			fileUtil.deleteSection(road1);
-			fileUtil.deleteSection(road2);
+//			String road1 = Constant.DIRECTORY.EXPERIMENT_REPORT+experimentId;
+//			String road2 = Constant.DIRECTORY.EXPERIMENT_VIDEO+experimentId;
+			for(File f : experimentFile){
+				String type = "PDF".equals(f.getFileType()) ? ".pdf" : ".mp4";
+				String road1 = Constant.DIRECTORY.FILE + f.getFileId() + type;
+				String road2 = Constant.DIRECTORY.FILE + f.getFileId() + ".jpg";
+				fileUtil.deleteSection(road1);
+				fileUtil.deleteSection(road2);
+			}
+
 				
 		}
 		if (experimentService.deleteExperiment(experimentId, courseId)==0) {

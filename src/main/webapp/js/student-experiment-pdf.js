@@ -79,7 +79,7 @@ var courseId = $(".course-image").attr("id");
 						
 						var list = '<div class="f-thide list" onclick="expdownClick(this)" title="'+exp.experimentName+'"'
 							+'id="'+exp.experimentId+'">'+exp.experimentName+'</div>';
-						$(".exp-down").append(list);
+						$(".exp-down").prepend(list);
 						
 					});
 					$(".exp-down").css("display","block");

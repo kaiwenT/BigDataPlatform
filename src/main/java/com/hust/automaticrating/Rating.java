@@ -91,7 +91,7 @@ public class Rating {
 			for(Future<ExperimentScore> fs : results){
 				while(!fs.isDone());{
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(5000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -109,6 +109,7 @@ public class Rating {
 				
 			}
 			exec.shutdown();
+			System.out.println("评分线程终止");
 		}
 			break;
 		case "朴素贝叶斯分类":	

@@ -1,7 +1,10 @@
 /**
  * Created by Jack on 2017/10/16.
  */
-
+  //文件存放路径
+var pdfPath = 'http://211.69.197.95:8081/bigdataplatform/courseware/';
+//文件存放路径
+var videoPath = 'http://211.69.197.95:8081/bigdataplatform/courseVideo/';
 
 //标题点击时间 实现展开功能
 function titleClick(e) {
@@ -524,7 +527,7 @@ function ShowPDF(e)
 					return;
 				}
 				$.each(files, function(idx, file){
-					var content = '<div class="f-pr f-fl u-source u-source-ok" id = "'+file.fileId+'"title="' + file.fileName + '" onmousemove="uSHover(this)"' +
+					var content = '<div class="f-pr f-fl u-source u-source-ok" style="background-image:url('+pdfPath+courseId+"/"+chapterId+"/"+sectionId+"/"+file.fileId+'.jpg);" id = "'+file.fileId+'"title="' + file.fileName + '" onmousemove="uSHover(this)"' +
 	                'onmouseleave="uSBlur(this)">' +
 	                '<div class="f-pa u-source-upload" style="display:none;" data-path="" onclick="uploadVideo(this)">' +
 	                '<span class="icon-upload-alt"></span>' +
@@ -569,7 +572,7 @@ function ShowVideo(e)
 					return;
 				}
 				$.each(files, function(idx, file){
-					var content = '<div class="f-pr f-fl u-source u-source-ok" id="'+file.fileId+'"title="' + file.fileName + '" onmousemove="uSHover(this)"' +
+					var content = '<div class="f-pr f-fl u-source u-source-ok" style="background-image:url('+videoPath+courseId+"/"+chapterId+"/"+sectionId+"/"+file.fileId+'.jpg);" id="'+file.fileId+'"title="' + file.fileName + '" onmousemove="uSHover(this)"' +
 	                'onmouseleave="uSBlur(this)">' +
 	                '<div class="f-pa u-source-upload" style="display:none;" data-path="" onclick="uploadVideo(this)">' +
 	                '<span class="icon-upload-alt"></span>' +
@@ -649,7 +652,8 @@ function uploadVideo1(e,file) {
             if (msg.status == "OK") {
                 e.addClass("u-source-ok");
                 e.children(".u-source-upload").css("display","none");
-                alert(msg.result);
+                e.css("background-image","url("+videoPath+courseId+"/"+chapterId+"/"+sectionId+"/"+msg.result+".jpg)");
+                alert("上传成功！");
             } else {
             	 alert(msg.result);
             }
@@ -717,7 +721,8 @@ function uploadPdf1(e,file) {
             if (msg.status == "OK") {
                 e.addClass("u-source-ok");
                 e.children(".u-source-upload").css("display","none");
-                alert(msg.result);
+                e.css("background-image","url("+pdfPath+courseId+"/"+chapterId+"/"+sectionId+msg.result+".jpg)");
+                alert("上传成功！");
             } else {
             	 alert(msg.result);
             }

@@ -1,7 +1,8 @@
 //文件存放路径
-var path = 'http://211.69.197.95:8081/bigdataplatform/courseVideo/';
+var videoPath = 'http://211.69.197.95:8081/bigdataplatform/courseVideo/';
 //Student-courseware-video页面显示课程的章 ,节标题
 function showChapterTitle(){
+	var courseId = $(".course-image").attr("id");
 	var sectionId = getCookie("sectionId");
 	
 	if(sectionId == null || sectionId == 'undefined'){
@@ -33,12 +34,12 @@ function showChapterTitle(){
 							+'<div class="down f-bg j-list sectiondown" style="display: none;"></div></div></div></div></div>';
 					$(".u-learn-moduletitle").prepend(bread);
 					$(".j-unitctBox").attr("id", sectionId);
-					if(res[2] != "" && sectionId != ""){
+					if(res[0] != "undefined" && sectionId != "undefined"){
 						$(".unitctBox").empty();
 						$(".unitctBox").append('<div class="ux-video-player" onclick="pp()">'
 		                        +'<video controls preload="metadata" autoplay>'
 		                        +'<source class="video" src="" type="video/mp4" id=""></video></div>');
-						$(".video").attr("src", res[3]+"/"+sectionId+".mp4");
+						$(".video").attr("src", videoPath+courseId +"/"+res[0]+"/"+sectionId+".mp4");
 						
 					}
 				}else{

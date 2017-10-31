@@ -240,7 +240,7 @@ function showSections(chapterId){
 					        '<input type="file" multiple="multiple" style="width: 0px;height: 0px;display: none">'+
 					        '</div>'+
 					        '</div>';						
-						sectionshtml += lessonbox;
+						sectionshtml = lessonbox + sectionshtml;
 					});
 					$(".titleBox#"+chapterId).next(".lessonBox").children().prepend(sectionshtml);
 					$(".lessonBox").css("display","none");

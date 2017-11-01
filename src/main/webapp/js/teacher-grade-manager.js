@@ -183,10 +183,17 @@ function closeBox() {
     $(".m-mask").css("display","none");
 }
 //提交平时考勤成绩
-$(".submit-exp-result").change(function () {
-    //获取文件
-    var file = $(".submit-exp-result")[0].files[0];
-})
+function submit(e) {
+    var file = e.files[0];
+    var tempStr = file.name.split(".");
+    var fileType = tempStr[tempStr.length-1];
+    if(fileType.search(/xls|xlsx/i)==-1){
+        alert("不是excel文件！")
+        return false;
+    }
+    //ajax  上传文件
+    console.log(file.name);
+}
 
 function importFile() {
     $(".m-mask").css("display","block");

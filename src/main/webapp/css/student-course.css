@@ -2,7 +2,7 @@
     padding-bottom: 0;
 }
 .m-cbg {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     left: 250px;

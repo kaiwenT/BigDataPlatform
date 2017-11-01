@@ -3,32 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../css/teacher-mark-rule.css">
-    <script type="text/javascript" src="../js/teacher-mark-rule.js"></script>
+    <link rel="stylesheet" href="../css/mask.css">
+    <script type="text/javascript" src="../js/teacher-student-manager.js"></script>
+    <style>
+        table{
+            width: 100%; font-size: 20px;
+        }
+        td,th{
+            text-align: center;
+            min-width:100px;
+            word-break: keep-all;
+            white-space: nowrap;
+        }
+        tr{
+            height: 35px;
+        }
+        a:hover{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <div class="m-learnChapterList">
     <div class="j-moduletitle u-learn-moduletitle f-cb" style="">
-        <h2 class="j-moduleName">评分标准管理<br></h2>
+        <h2 class="j-moduleName">学生名单管理<br></h2>
     </div>
     <div class="m-learnChapterNormal f-pr">
-        <div style="border-bottom: dashed 1px #eee;padding-bottom: 5px;">
-            <span style="display: block;">学生的最终成绩由平时成绩、实验成绩和最终考试成绩组成，其中：</span>
-            <span style="display: block;">平时成绩由考勤和平时作业组成；</span>
-            <span style="display: block;">实验成绩由实验报告和实验结果组成。</span>
-            <span style="display: block;">每部分的成绩组成均为100%，若无该部分成绩请设置为0%。</span>
+        <div class="grade-top" style="width: 100%;height: 34px;margin-bottom: 10px;">
+            <button class="u-btn u-btn-primary f-pr f-fl" style="margin: 0 10px;width: 100px;" onclick="importFile()">导入名单</button>
         </div>
-        <div class="t-mark">
-            最终成绩&nbsp;&nbsp;=&nbsp;&nbsp;平时成绩&nbsp;<input type="text" class="form-control regular-grade" style="width: 50px;display: inline">%+实验成绩&nbsp;<input type="text" class="form-control exp-grade" style="width: 50px;display: inline">%+最终考试成绩&nbsp;<input type="text" class="form-control final-exam-grade" style="width: 50px;display: inline">%
+        <div class="grade-body" style="width: 100%">
+            <table>
+                <tr style="height: 45px;">
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>学院</th>
+                    <th>组号</th>
+                    <th>操作</th>
+                </tr>
+                <tr>
+                    <td>U123456789</td>
+                    <td>张三</td>
+                    <td>软件学院</td>
+                    <td>1</td>
+                    <td><a >删除</a></td>
+                </tr>
+                <tr>
+                    <td>U123456789</td>
+                    <td>李四</td>
+                    <td>软件学院</td>
+                    <td>1</td>
+                    <td><a >删除</a></td>
+                </tr>
+            </table>
         </div>
-        <div class="t-mark">
-            平时成绩&nbsp;&nbsp;=&nbsp;&nbsp;考勤&nbsp;<input type="text" class="form-control check-grade" style="width: 50px;display: inline">%+平时作业&nbsp;<input type="text" class="form-control regular-work" style="width: 50px;display: inline">%
-        </div>
-        <div class="t-mark">
-            实验成绩&nbsp;&nbsp;=&nbsp;&nbsp;实验报告&nbsp;<input type="text" class="form-control exp-report" style="width: 50px;display: inline">%+实验结果&nbsp;<input type="text" class="form-control exp-result" style="width: 50px;display: inline">%
-        </div>
-        <button class="u-btn u-btn-primary" onclick="submit()">保存</button>
     </div>
 </div>
+<div class="m-mask" style="display: none">
+    <div class="m-container submit-box" style="width:520px;height: 300px; margin: -150px -210px;">
+        <div class="m-close" onclick="closeBox()">
+            <span class="u-icon-close"></span>
+        </div>
+        <div class="m-content">
+            <div style="position: absolute;top:0;left:0;">
+                <br>
+                <span style="font-family: 'microsoft yahei', Verdana, '\u5fae\u8f6f\u96c5\u9ed1', '\5b8b\4f53', Arial;font-size: 18px;">例如:</span><br>
+                <table border="1" style="width: 320px;margin-left: 50px;">
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>学院</th>
+                        <th>组号</th>
+                    </tr>
+                    <tr>
+                        <td>U123456789</td>
+                        <td>张三</td>
+                        <td>软件学院</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>U123456789</td>
+                        <td>李四</td>
+                        <td>软件学院</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">···</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="position: absolute;bottom:0;left:0;">
+                <input type="file" class="form-control submit-student" style="position: relative;bottom: 25px;left:115px; " onchange="submit(this)">
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
+<script>
+
+</script>
 </html>

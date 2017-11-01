@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/mask.css">
     <script type="text/javascript" src="../js/teacher-grade-manager.js"></script>
     <script type="text/javascript" src="../js/jquery.mousewheel.js"></script>
-     <script type="text/javascript" src="../js/tools.js"></script>
+    <script type="text/javascript" src="../js/tools.js"></script>
     <style>
         table{
             width: 100%; font-size: 20px;
@@ -34,8 +34,8 @@
                 <option value="2">实验成绩</option>
                 <option value="3">总成绩</option>
             </select>
-            <button class="btn btn-primary f-pr f-fl" style="margin: 0 10px;">导入考勤成绩</button>
-            <button class="btn btn-primary f-pr f-fl" style="margin: 0 10px;">导出学生成绩</button>
+            <button class="u-btn u-btn-primary f-pr f-fl" style="margin: 0 10px;width: 120px;" onclick="importFile()">导入考勤成绩</button>
+            <button class="u-btn u-btn-primary f-pr f-fl" style="margin: 0 10px;width: 120px;">导出学生成绩</button>
         </div>
         <div class="grade-body" style="width: 100%">
 
@@ -73,7 +73,7 @@
                 </table>
             </div>
             <div style="position: absolute;bottom:0;left:0;">
-                <input type="file" class="form-control submit-exp-result" style="position: relative;bottom: 25px;left:65px; ">
+                <input type="file" class="form-control submit-exp-result" style="position: relative;bottom: 25px;left:65px; " onchange="submit(this)">
             </div>
         </div>
     </div>

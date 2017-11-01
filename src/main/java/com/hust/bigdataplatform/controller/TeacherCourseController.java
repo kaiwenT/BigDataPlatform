@@ -278,7 +278,7 @@ public class TeacherCourseController {
 //		String road = courseChapter.getCoursewarePath()+"/"+sectionId ;
 		String road = Constant.DIRECTORY.COURSEWARE + courseId + File.separator + chapterId + File.separator + sectionId;
 		UploadUtils uploadUtils = new UploadUtils();
-		if (uploadUtils.uploadUtils(uploadfile, road)) {
+		if (uploadUtils.upload(uploadfile, road)) {
 			//在file表中添加记录
 			fileservice.insert(f);
 			
@@ -323,7 +323,7 @@ public class TeacherCourseController {
 //		String road = courseChapter.getVideoPath()+"/"+sectionId;
 		String road = Constant.DIRECTORY.COURSE_VIDEO + courseId + File.separator + chapterId + File.separator + sectionId;
 		UploadUtils uploadUtils = new UploadUtils();
-		if (uploadUtils.uploadUtils(uploadfile, road)) {
+		if (uploadUtils.upload(uploadfile, road)) {
 			fileservice.insert(f);
 			//改变文件的名字
 			if (fileUtil.updatename(road+"/"+uploadfile.getOriginalFilename(), road+"/"+uid+".mp4")) {

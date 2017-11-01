@@ -168,10 +168,10 @@ public class ExperimentController {
 			return ResultUtil.errorWithMsg("添加实验失败！");
 		}
 		//当添加实验后，在experimentScore表中插入记录
-		int s = experimentScoreService.AddExperimentScore(courseId, uid);
-		if (s==0) {
-			return ResultUtil.errorWithMsg("实验分数表初始化失败！");
-		}
+//		int s = experimentScoreService.AddExperimentScore(courseId, uid);
+//		if (s==0) {
+//			return ResultUtil.errorWithMsg("实验分数表初始化失败！");
+//		}
 		//添加一个实验记录时启动自动评分线程
 		AutoRating.rating(experiment, "");
 		return ResultUtil.success(experiment);
@@ -250,7 +250,7 @@ public class ExperimentController {
 //			road=experiment.get(0).getExperimentVideopath();
 //		}
 		UploadUtils uploadUtils = new UploadUtils();
-		if (uploadUtils.uploadUtils(uploadfile, road)) {
+		if (uploadUtils.upload(uploadfile, road)) {
 			fileservice.insert(f);
 			experimentFileService.add(experimentId, f);
 			//改变文件的名字

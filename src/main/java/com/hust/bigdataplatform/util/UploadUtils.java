@@ -8,23 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class UploadUtils {
 	
-	    //单文件上传
-		public boolean uploadUtils(MultipartFile file,String road)
-		{
-				
-			//设置上传文件位置
-    		String uploadpath = file.getOriginalFilename();  //获取文件名
-            //创建文件夹
-    	    File uploadtargetFile = new File(road,uploadpath);
-			//判断文件是否存在
-    	    isExists(uploadtargetFile);
-			//保存文件
-			if (saveFile(file, uploadtargetFile)) {	
-				return true;
-			}
-
-			return false;
-		}
+	   
 		/**
 		 * 单文件上传
 		 * @param file 上传的文件

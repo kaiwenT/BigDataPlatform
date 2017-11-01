@@ -57,9 +57,12 @@ public class StudentServiceImpl implements StudentService {
 			if (student==null) {
 				return 0;
 			}
-			int status = studentDao.insert(student);
-			if (status==0) {
-				return 0;
+			Student s = studentDao.findStudentById(student.getStudentId());
+			if (s==null) {
+				int status = studentDao.insert(student);
+				if (status==0) {
+					return 0;
+				}
 			}
 		}
 		return 1;

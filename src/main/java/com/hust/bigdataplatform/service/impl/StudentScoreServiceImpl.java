@@ -99,20 +99,25 @@ public class StudentScoreServiceImpl implements StudentScoreService {
 
 	@Override
 	public int insert(List<Student> students, String courseId) {
-		if (students.size()==0||students==null||courseId=="") {
+		if (students.size()==0||students==null) {
 			return 0;
 		}
 		for (Student student : students) {
-			StudentScore studentScore = new StudentScore();
-			studentScore.setCourseId(courseId);
-			studentScore.setStudentId(student.getStudentId());
-			int s= studentScoreDao.add(studentScore);
-			if (s==0) {
-				return 0;
+			if (studentScoreDao.findByStuIdAndCourseId(student.getStudentId(), courseId)==null) {
+				StudentScore studentScore = new StudentScore();
+				studentScore.setCourseId(courseId);
+				studentScore.setStudentId(student.getStudentId());
+				int i = 0;
+				studentScore.setExpFinalscore(i);
+				studentScore.setFinalscore(i);
+				studentScore.setTestResults(i);
+				studentScore.setUsualgrades(i);
+				int s= studentScoreDao.add(studentScore);
+				if (s==0) {
+					return 0;
+				}
 			}
 		}
 		return 1;
 	}
-	
-
 }

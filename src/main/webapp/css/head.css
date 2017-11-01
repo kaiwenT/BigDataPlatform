@@ -74,6 +74,7 @@ li {
 #g-container{
     min-height: 100%;
     position: relative;
+    min-width: 1260px;
 }
 .web-nav-container{
     left:0px;

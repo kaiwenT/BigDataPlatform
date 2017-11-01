@@ -63,7 +63,13 @@ public class StudentTaskServiceImpl implements StudentTaskService {
 				continue;
 			}
 			else {
-				score = score+studentTaskDao.findByStuIdAndTaskId(stuId, courseTask.getTaskId()).getTaskScore();
+				StudentTask studentTask = studentTaskDao.findByStuIdAndTaskId(stuId, courseTask.getTaskId());
+				if (studentTask==null) {
+					score = score;
+				}
+				else {
+					score=score+studentTask.getTaskScore();
+				}
 			}
 		}
 		score = score/courseTasks.size();
@@ -87,8 +93,15 @@ public class StudentTaskServiceImpl implements StudentTaskService {
 			//该课程的作业列表
 			List<CourseTask> courseTasks = courseTaskService.findByCourseId(courseId);
 			for (CourseTask courseTask : courseTasks) {
-				int score = studentTaskDao.findByStuIdAndTaskId(student.getStudentId(), courseTask.getTaskId()).getTaskScore();
-				map.put(courseTask.getTaskId(), String.valueOf(score));  //作业成绩
+				StudentTask studentTask = studentTaskDao.findByStuIdAndTaskId(student.getStudentId(), courseTask.getTaskId());
+				String s;
+				if (studentTask==null) {  //查找的记录不存在，则默认成绩为0；
+					String i = "0";
+					map.put(courseTask.getTaskId(), i);  //作业成绩
+				}
+				else {
+					map.put(courseTask.getTaskId(), String.valueOf(studentTask.getTaskScore()));  //作业成绩
+				}
 			}
 			int attendenceScore = studentCourseService.findStudentCourseByStuId(student.getStudentId(), courseId).getAttendancerate();
 			map.put("attendenceScore", String.valueOf(attendenceScore));  //考勤成绩

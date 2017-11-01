@@ -130,7 +130,9 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 		return experimentScoreQueries;
 	}
 	/**
-	 * 当添加实验后，在experimentScore表中插入记录
+	 * 添加实验成功后，初始化experimentScore表；
+	 * 根据courseId找到List<students>，再根据expId和studentid在
+	 * experimentScore中寻找，若有记录则跳过，若没有记录则添加
 	 */
 	@Override
 	public int AddExperimentScore(String courseId, String expId ) {
@@ -138,13 +140,56 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 		List<Student> students = studentCourseService.findBycourseId(courseId);
 		for (Student student : students) {
 			ExperimentScore eScore = new ExperimentScore();
-			eScore.setExperimentId(expId);
-			eScore.setStudentId(student.getStudentId());
-			int s = experimentScoreDao.insert(eScore);
-			if (s==0) {
-				return 0;
+			if (experimentScoreDao.selectExpScoreByStuId(student.getStudentId(), expId)==null) 
+			{//插入记录
+				eScore.setExperimentId(expId);
+				eScore.setStudentId(student.getStudentId());
+				int s = experimentScoreDao.insert(eScore);
+				if (s==0) {
+					return 0;
+				}
 			}
 		}
 		return 1;
 	}
+	/**
+	 * 添加学生名单成功后，根据courseID 找到list<exp>, 再根据expId和studentid在
+	 * experimentScore中寻找，若有记录则跳过，若没有记录则添加
+	 */
+	@Override
+	public int AddExperimentScore(String courseId, List<Student> students) {
+		if (students.size()==0||students==null) {
+			return 0;
+		}
+		List<Experiment> experiments = experimentService.findExperimentByCourseId(courseId);
+		if (experiments.size()==0 || experiments==null) {
+			return 0;
+		}
+		for (Experiment experiment : experiments) {
+			String expid = experiment.getExperimentId();
+			if (expid!=null&&expid!="") {
+				for (Student student : students) {
+					String stuId = student.getStudentId();
+					if (stuId!=null&&stuId!="") {
+						ExperimentScore eScore = new ExperimentScore();
+						if (experimentScoreDao.selectExpScoreByStuId(stuId, expid)==null) {
+							eScore.setExperimentId(expid);
+							eScore.setStudentId(stuId);
+							int i=0;
+							eScore.setExpFinalscore(i);
+							eScore.setReportscore(i);
+							eScore.setResultsscore(i);
+							int s = experimentScoreDao.insert(eScore);
+							if (s==0) {
+								return 0;
+							}
+						}
+					}
+				}
+				
+			}
+		}
+		return 1;
+	}
+	
 }

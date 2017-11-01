@@ -97,17 +97,22 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 
 	@Override
 	public int insert(List<StudentAndGroup> StudentAndGroups, String courseId) {
-		if (StudentAndGroups.size()==0||StudentAndGroups==null||courseId=="") {
+		if (StudentAndGroups.size()==0||StudentAndGroups==null) {
 			return 0;
 		}
 		for (StudentAndGroup studentAndGroup : StudentAndGroups) {
-			StudentCourse studentCourse = new StudentCourse();
-			studentCourse.setCourseId(courseId);
-			studentCourse.setStudentId(studentAndGroup.getStudentId());
-			studentCourse.setStudentGroupid(studentAndGroup.getGroupId());
-			int s= studentCourseDao.insertSelective(studentCourse);
-			if (s==0) {
-				return 0;
+			StudentCourse sCourse = new StudentCourse();
+			sCourse = studentCourseDao.findByPrimaryKey(studentAndGroup.getStudentId(), courseId);
+			if (sCourse==null) {
+				StudentCourse studentCourse = new StudentCourse();
+				studentCourse.setCourseId(courseId);
+				String string = studentAndGroup.getStudentId();
+				studentCourse.setStudentId(string);
+				studentCourse.setStudentGroupid(studentAndGroup.getGroupId());
+				int s= studentCourseDao.insertSelective(studentCourse);
+				if (s==0) {
+					return 0;
+				}
 			}
 		}
 		return 1;

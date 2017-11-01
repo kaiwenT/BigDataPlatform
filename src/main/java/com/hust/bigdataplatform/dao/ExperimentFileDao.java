@@ -19,7 +19,7 @@ import com.hust.bigdataplatform.model.ExperimentFileExample;
 @Repository
 public class ExperimentFileDao {
 	
-	private static final Logger logger = LoggerFactory.getLogger(Experiment.class);
+	private static final Logger logger = LoggerFactory.getLogger(ExperimentFileDao.class);
 	@Autowired
 	private ExperimentFileMapper experimentFileMapper;
 	

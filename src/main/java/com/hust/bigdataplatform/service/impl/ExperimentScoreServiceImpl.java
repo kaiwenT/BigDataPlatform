@@ -1,5 +1,6 @@
 package com.hust.bigdataplatform.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,14 @@ import com.hust.bigdataplatform.dao.ExperimentScoreDao;
 import com.hust.bigdataplatform.model.Experiment;
 import com.hust.bigdataplatform.model.ExperimentScore;
 import com.hust.bigdataplatform.model.ExperimentScoreExample;
+import com.hust.bigdataplatform.model.Student;
+import com.hust.bigdataplatform.model.StudentCourse;
 import com.hust.bigdataplatform.model.ExperimentScoreExample.Criteria;
+import com.hust.bigdataplatform.model.params.ExpScore;
+import com.hust.bigdataplatform.model.params.ExperimentScoreQuery;
 import com.hust.bigdataplatform.service.ExperimentScoreService;
 import com.hust.bigdataplatform.service.ExperimentService;
+import com.hust.bigdataplatform.service.StudentCourseService;
 @Service
 public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 
@@ -20,6 +26,11 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 	private ExperimentScoreDao experimentScoreDao;
 	@Autowired
 	private ExperimentDao experimentDao;
+	@Autowired
+	private StudentCourseService studentCourseService;
+	@Autowired
+	private ExperimentService experimentService;
+	
 	@Override
 	public ExperimentScore selectExpScoreByStu(String studentId, String experimentId) {
 		if(studentId == null || experimentId == null){
@@ -77,5 +88,63 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 			}			
 		}
 		return score / exps.size();
+	}
+
+	/**
+	 * 显示实验成绩：实验一 （报告、数据、总成绩）、实验二 （报告、数据、总成绩）....实验总成绩
+	 */
+	@Override
+	public List<ExperimentScoreQuery> ShowExpScore(String courseId) {
+		// TODO Auto-generated method stub
+		List<Student> students = studentCourseService.findBycourseId(courseId);
+		List<ExperimentScoreQuery> experimentScoreQueries = new ArrayList<ExperimentScoreQuery>();
+		for (Student student : students) {
+			ExperimentScoreQuery eQuery = new ExperimentScoreQuery();
+			eQuery.setStudentId(student.getStudentId());
+			eQuery.setStudentName(student.getStudentName());
+			List<ExpScore> eList = new ArrayList<ExpScore>();
+			List<Experiment> experiments = experimentService.findExperimentByCourseId(courseId);
+			for (Experiment experiment : experiments) {
+				ExperimentScore experimentScore = experimentScoreDao.selectExpScoreByStuId(student.getStudentId(), experiment.getExperimentId());
+				if (experimentScore==null) {
+					continue;
+				}
+				ExpScore expScore = new ExpScore();
+				expScore.setExpName(experiment.getExperimentName());
+				expScore.setReportScore(String.valueOf(experimentScore.getReportscore()));
+				expScore.setResultsScore(String.valueOf(experimentScore.getResultsscore()));
+				expScore.setFinalScore(String.valueOf(experimentScore.getExpFinalscore()));
+				eList.add(expScore);
+			}
+			eQuery.setExplist(eList);
+			//算出最终的成绩
+			int score = 0;
+			for(ExpScore expScore:eList)
+			{
+				score = score+Integer.parseInt(expScore.getFinalScore());;
+			}
+			score = score/eList.size();
+			eQuery.setFinalScore(String.valueOf(score));
+			experimentScoreQueries.add(eQuery);
+		}
+		return experimentScoreQueries;
+	}
+	/**
+	 * 当添加实验后，在experimentScore表中插入记录
+	 */
+	@Override
+	public int AddExperimentScore(String courseId, String expId ) {
+		//根据courseid获取studentID
+		List<Student> students = studentCourseService.findBycourseId(courseId);
+		for (Student student : students) {
+			ExperimentScore eScore = new ExperimentScore();
+			eScore.setExperimentId(expId);
+			eScore.setStudentId(student.getStudentId());
+			int s = experimentScoreDao.insert(eScore);
+			if (s==0) {
+				return 0;
+			}
+		}
+		return 1;
 	}
 }

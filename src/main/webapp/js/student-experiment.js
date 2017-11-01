@@ -1,7 +1,8 @@
 /**
  * 学生实验页面有关的js方法
  */
-  
+  //文件存放路径
+var imgPath = 'http://211.69.197.95:8081/bigdataplatform/file/';
 //student-experiment页面显示课程的实验
 function showExperiments(){
 	var courseId = $(".course-image").attr("id");
@@ -37,7 +38,7 @@ function showExperiments(){
 							+'<div class="exp-source exp-pdf"><div class="f-pr f-fl source-sign">'
 							+'<span class="icon-book" style="font-size: 20px;margin: -10px -10px; top:50px; left:50%;position: relative; "></span></div>'
 							+'<div class="source-box"></div></div></div></div>';
-						$(".m-learnChapterNormal").append(titlebox);
+						$(".m-learnChapterNormal").prepend(titlebox);
 						showExperimentScore(exp.experimentId);
 						showFiles(exp.experimentId);
 					});
@@ -77,14 +78,14 @@ function showFiles(experimentId){
 					$.each(files, function(idx, file){
 						var box = '';
 						if(file.fileType == "VIDEO"){
-							box = '<div title="'+file.fileName+'" class="f-pr f-fl source-video" id="'+file.fileId+'" onclick="videoClick(this)"><div class="video-play" style="">'
+							box = '<div title="'+file.fileName+'" class="f-pr f-fl source-video" style="background-image:url('+imgPath+file.fileId+'.jpg);" id="'+file.fileId+'" onclick="videoClick(this)"><div class="video-play" style="">'
 								+'<span class="u-icon-video" style="font-size: 40px;margin: -20px -20px; top:50%; left:50%;position: absolute; "></span></div></div>';
-							$("div#"+experimentId).children(".exp-video").children(".source-box").append(box);
+							$("div#"+experimentId).children(".exp-video").children(".source-box").prepend(box);
 						}
 						if(file.fileType == "PDF"){
-							box = '<div title="'+file.fileName+'" class="f-pr f-fl source-pdf" id="'+file.fileId+'" onclick="pdfClick(this)"><div class="pdf-view" style="">'
+							box = '<div title="'+file.fileName+'" class="f-pr f-fl source-pdf" style="background-image:url('+imgPath+file.fileId+'.jpg);" id="'+file.fileId+'" onclick="pdfClick(this)"><div class="pdf-view" style="">'
 								+'<span class="u-icon-book" style="font-size: 40px;margin: -20px -20px; top:50%; left:50%;position: absolute; "></span></div></div>';
-							$("div#"+experimentId).children(".exp-pdf").children(".source-box").append(box);
+							$("div#"+experimentId).children(".exp-pdf").children(".source-box").prepend(box);
 						}
 						
 					});
@@ -112,7 +113,7 @@ function showExperimentScore(expId){
 		success : function(msg) {
 			if (msg.status == "OK") {
 				var score = msg.result;
-				if(score != "" || score != "undefined"){
+				if(score != null && score != "undefined"){
 					$("span#"+expId).text(score);
 				}				
 			}

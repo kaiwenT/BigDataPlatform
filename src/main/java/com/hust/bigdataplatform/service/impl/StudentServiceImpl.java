@@ -48,4 +48,21 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.findStudentById(studentId);
 	}
 
+	@Override
+	public int add(List<Student> students) {
+		if (students.size()==0 || students==null) {
+			return 0;
+		}
+		for (Student student : students) {
+			if (student==null) {
+				return 0;
+			}
+			int status = studentDao.insert(student);
+			if (status==0) {
+				return 0;
+			}
+		}
+		return 1;
+	}
+
 }

@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../css/mask.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <script type="text/javascript" src="../js/teacher-grade-manager.js"></script>
+    <script type="text/javascript" src="../js/jquery.mousewheel.js"></script>
+     <script type="text/javascript" src="../js/tools.js"></script>
     <style>
         table{
             width: 100%; font-size: 20px;
         }
         td,th{
             text-align: center;
+            min-width:100px;
+            word-break: keep-all;
+            white-space: nowrap;
         }
         tr{
             height: 30px;
@@ -29,7 +34,7 @@
                 <option value="2">实验成绩</option>
                 <option value="3">总成绩</option>
             </select>
-            <button class="btn btn-primary f-pr f-fl" style="margin: 0 10px;" onclick="importFile()">导入考勤成绩</button>
+            <button class="btn btn-primary f-pr f-fl" style="margin: 0 10px;">导入考勤成绩</button>
             <button class="btn btn-primary f-pr f-fl" style="margin: 0 10px;">导出学生成绩</button>
         </div>
         <div class="grade-body" style="width: 100%">
@@ -73,8 +78,9 @@
         </div>
     </div>
 </div>
+
 </body>
-<script type="text/javascript">
+<script>
     regularGradeShow();
 </script>
 </html>

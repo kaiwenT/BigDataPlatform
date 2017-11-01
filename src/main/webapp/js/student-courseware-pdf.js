@@ -1,4 +1,5 @@
-
+//文件存放路径
+var path = 'http://211.69.197.95:8081/bigdataplatform/courseware/';
 //Student-courseware-pdf页面显示课程的章 ,节标题
 function showChapterTitle(){
 	var sectionId = getCookie("sectionId");
@@ -30,7 +31,7 @@ function showChapterTitle(){
 							+'<div class="f-fl j-lesson"><div class="u-select">'
 							+'<div class="up j-up f-thide sectionup" onclick="sectionupClick(this)" id="'+sectionId+'">'+res[4]+'</div>'
 							+'<div class="down f-bg j-list sectiondown" style="display: none;"></div></div></div></div></div>';
-					$(".u-learn-moduletitle").append(bread);
+					$(".u-learn-moduletitle").prepend(bread);
 					$(".j-unitctBox").attr("id", sectionId);
 					if(res[2] != "" && sectionId != ""){
 						$(".unitctBox").empty();
@@ -77,7 +78,7 @@ var courseId = $(".course-image").attr("id");
 						
 						var list = '<div class="f-thide list" onclick="chapterdownClick(this)" title="'+chapter.chapterName+'"'
 							+'id="'+chapter.chapterId+'">'+chapter.chapterName+'</div>';
-						$(".chapterdown").append(list);
+						$(".chapterdown").prepend(list);
 						
 					});
 					$(".chapterdown").css("display","block");
@@ -117,7 +118,7 @@ function showSections(chapterid){
 						
 						var list = '<div class="f-thide list" onclick="sectiondownClick(this)" title="'+section.sectionname+'"'
 							+'id="'+section.sectionid+'">'+section.sectionname+'</div>';
-						$(".sectiondown").append(list);
+						$(".sectiondown").prepend(list);
 						
 					});
 					$(".sectiondown").css("display","block");

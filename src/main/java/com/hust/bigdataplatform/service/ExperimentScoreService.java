@@ -3,6 +3,7 @@ package com.hust.bigdataplatform.service;
 import java.util.List;
 
 import com.hust.bigdataplatform.model.ExperimentScore;
+import com.hust.bigdataplatform.model.params.ExperimentScoreQuery;
 
 public interface ExperimentScoreService {
 	/**
@@ -44,4 +45,9 @@ public interface ExperimentScoreService {
 	 * @return
 	 */
 	public int findExpAvgScore(String studentId, String courseId);
+	
+	public List<ExperimentScoreQuery> ShowExpScore( String courseId);
+	
+	public int AddExperimentScore(String courseId, String expId);
+	
 }

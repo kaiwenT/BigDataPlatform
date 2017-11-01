@@ -5,6 +5,7 @@ import java.util.List;
 import com.hust.bigdataplatform.model.Course;
 import com.hust.bigdataplatform.model.Student;
 import com.hust.bigdataplatform.model.StudentCourse;
+import com.hust.bigdataplatform.model.params.StudentAndGroup;
 
 
 public interface StudentCourseService {
@@ -30,4 +31,11 @@ public interface StudentCourseService {
 	 * @return
 	 */
 	public StudentCourse findStudentCourseByStuId(String studentId, String courseId);
+	
+	public int getFinalUsualScore(String studentId, String courseId);
+	
+	public List<Student> findBycourseId(String courseId);
+	
+	public int insert(List<StudentAndGroup> StudentAndGroups, String courseId);
+		
 }

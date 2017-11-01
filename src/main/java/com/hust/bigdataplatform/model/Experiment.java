@@ -23,8 +23,6 @@ public class Experiment {
 
     private String experimentVideopath;
 
-    private Float experimentScale;
-
     public String getExperimentId() {
         return experimentId;
     }
@@ -103,13 +101,5 @@ public class Experiment {
 
     public void setExperimentVideopath(String experimentVideopath) {
         this.experimentVideopath = experimentVideopath == null ? null : experimentVideopath.trim();
-    }
-
-    public Float getExperimentScale() {
-        return experimentScale;
-    }
-
-    public void setExperimentScale(Float experimentScale) {
-        this.experimentScale = experimentScale;
     }
 }

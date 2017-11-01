@@ -373,66 +373,6 @@ public class StudentCourseExample {
             addCriterion("attendanceRate not between", value1, value2, "attendancerate");
             return (Criteria) this;
         }
-
-        public Criteria andFinalresultIsNull() {
-            addCriterion("finalResult is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFinalresultIsNotNull() {
-            addCriterion("finalResult is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFinalresultEqualTo(Integer value) {
-            addCriterion("finalResult =", value, "finalresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFinalresultNotEqualTo(Integer value) {
-            addCriterion("finalResult <>", value, "finalresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFinalresultGreaterThan(Integer value) {
-            addCriterion("finalResult >", value, "finalresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFinalresultGreaterThanOrEqualTo(Integer value) {
-            addCriterion("finalResult >=", value, "finalresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFinalresultLessThan(Integer value) {
-            addCriterion("finalResult <", value, "finalresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFinalresultLessThanOrEqualTo(Integer value) {
-            addCriterion("finalResult <=", value, "finalresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFinalresultIn(List<Integer> values) {
-            addCriterion("finalResult in", values, "finalresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFinalresultNotIn(List<Integer> values) {
-            addCriterion("finalResult not in", values, "finalresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFinalresultBetween(Integer value1, Integer value2) {
-            addCriterion("finalResult between", value1, value2, "finalresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFinalresultNotBetween(Integer value1, Integer value2) {
-            addCriterion("finalResult not between", value1, value2, "finalresult");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -458,6 +398,10 @@ public class StudentCourseExample {
         private boolean listValue;
 
         private String typeHandler;
+		
+		public Criterion(){
+        	super();
+        }
 
         public String getCondition() {
             return condition;
@@ -490,9 +434,7 @@ public class StudentCourseExample {
         public String getTypeHandler() {
             return typeHandler;
         }
-        public Criterion(){
-        	super();
-        }
+
         protected Criterion(String condition) {
             super();
             this.condition = condition;

@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Value;
  *
  */
 public class Constant {
-
+	public static String FFMPEG_PATH = "F:\\工具\\ffmpeg-20171022-72c3d9a-win64-static\\ffmpeg-20171022-72c3d9a-win64-static\\bin\\ffmpeg";
     
 	// 把config.properties中的变量值，赋给当前的变量
 	private void init(){
-		DIRECTORY.init(studentPhoto, teacherPhoto, coursePhoto, courseware, courseVideo, experimentVideo, experimentReport, experimentDataSubmit, reportSubmit);
+		DIRECTORY.init(studentPhoto, teacherPhoto, coursePhoto, courseware, courseVideo, file, experimentDataSubmit, reportSubmit);
 	}
 	// 学生头像存放文件夹
     @Value("${student_photo}")
@@ -32,14 +32,17 @@ public class Constant {
     @Value("${course_video}")
     private String courseVideo;
     
-    //实验视频存放文件夹
-    @Value("${experiment_video}")
-    private String experimentVideo;
-    
-    //实验手册存放文件夹
-    @Value("${experiment_report}")
-    private String experimentReport;
-    
+//    //实验视频存放文件夹
+//    @Value("${experiment_video}")
+//    private String experimentVideo;
+//    
+//    //实验手册存放文件夹
+//    @Value("${experiment_report}")
+//    private String experimentReport;
+  //实验手册及视频文件、缩略图文件存放文件夹
+  @Value("${file}")
+  private String file;
+
     //学生提交实验报告存放文件夹
     @Value("${report_submit}")
     private String reportSubmit;
@@ -76,14 +79,18 @@ public class Constant {
          * 课程视频目录
          */
         public static String COURSE_VIDEO;
+//        /**
+//         * 实验手册目录
+//         */
+//        public static String EXPERIMENT_REPORT;
+//        /**
+//         * 实验视频目录
+//         */
+//        public static String EXPERIMENT_VIDEO;
         /**
-         * 实验手册目录
+         * 存放实验视频、PDF、缩略图等文件的文件夹
          */
-        public static String EXPERIMENT_REPORT;
-        /**
-         * 实验视频目录
-         */
-        public static String EXPERIMENT_VIDEO;
+        public static String FILE;
         /**
          * 学生提交的实验数据存放目录
          */
@@ -93,14 +100,15 @@ public class Constant {
          */
         public static String REPORT_SUBMIT;
         
-        public static void init(String studentPhoto, String teacherPhoto, String coursePhoto, String courseware, String courseVideo, String experimentReport, String experimentVideo, String experimentSubmit, String reportSubmit) {
+        public static void init(String studentPhoto, String teacherPhoto, String coursePhoto, String courseware, String courseVideo, String file, String experimentSubmit, String reportSubmit) {
         	STUDENT_PHOTO = studentPhoto;
         	TEACHER_PHOTO = teacherPhoto;
         	COURSE_PHOTO = coursePhoto;
         	COURSEWARE = courseware;
             COURSE_VIDEO = courseVideo;
-            EXPERIMENT_REPORT = experimentReport;
-            EXPERIMENT_VIDEO = experimentVideo;
+//            EXPERIMENT_REPORT = experimentReport;
+//            EXPERIMENT_VIDEO = experimentVideo;
+            FILE = file;
             EXPERIMENT_DATA_SUBMIT = experimentSubmit;
             REPORT_SUBMIT = reportSubmit;
             
@@ -117,11 +125,14 @@ public class Constant {
             if(!new File(courseVideo).exists()){
             	new File(courseVideo).mkdirs();
             }
-            if(!new File(experimentReport).exists()){
-            	new File(experimentReport).mkdirs();
-            }
-            if(!new File(experimentVideo).exists()){
-            	new File(experimentVideo).mkdirs();
+//            if(!new File(experimentReport).exists()){
+//            	new File(experimentReport).mkdirs();
+//            }
+//            if(!new File(experimentVideo).exists()){
+//            	new File(experimentVideo).mkdirs();
+//            }
+            if(!new File(file).exists()){
+            	new File(file).mkdirs();
             }
             if(!new File(experimentSubmit).exists()){
             	new File(experimentSubmit).mkdirs();

@@ -2,23 +2,20 @@ package com.hust.automaticrating;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import com.hust.bigdataplatform.constant.Constant;
 import com.hust.bigdataplatform.model.ExperimentScore;
-import com.hust.bigdataplatform.service.ExperimentScoreService;
-import com.hust.bigdataplatform.service.ExperimentService;
 /**
  * 使用方法--用作业名去new对象，然后获取该作业的deadline,超过deadline的时间后，手动调用startRating开始评分
  * @author Jack
  *
  */
+
 public class Rating {
 	//存放作业名
 	private String expName;
@@ -28,13 +25,7 @@ public class Rating {
 	private List<String> fileList;
 	
 	private List<ExperimentScore> expScores;
-	//TaskService
-	@Autowired
-	private ExperimentService experimentService;
-	//ExperimentScoreService
-	@Autowired
-	private ExperimentScoreService experimentScoreService;
-	
+
 	public Rating(String expName, String expId){
 		this.expName = expName;		
 		this.expId = expId;
@@ -86,35 +77,39 @@ public class Rating {
 				es.setStudentId(string);
 				es.setResultsscore(score);
 				expScores.add(es);
-				/*try {
-					resultService.updateExperimentScore(rs);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					System.out.println("评分失败！");
-					e.printStackTrace();
-				}*/
 			}
 		}
 			break;
 		case "聚类":	
 		{
-			//实验三自动评分
-			for (String string : fileList) {
-				GetScoreOfClustering task3 = new GetScoreOfClustering(string,expId);
-				int score = task3.getScore();
-				ExperimentScore es = new ExperimentScore();
-				es.setExperimentId(expId);
-				es.setStudentId(string);
-				es.setResultsscore(score);
-				expScores.add(es);
+			//实验三自动评分-----用线程池来并发计算学生的作业分数，每个线程处理一个学生的作业
+			ExecutorService exec = Executors.newCachedThreadPool();  
+	        ArrayList<Future<ExperimentScore>> results = new ArrayList<Future<ExperimentScore>>();
+			for (String stuId : fileList) {
+				results.add(exec.submit(new GetScoreOfClustering(stuId, expId)));				
+			}
+			for(Future<ExperimentScore> fs : results){
+				while(!fs.isDone());{
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				try {
-					experimentScoreService.update(es);
-				} catch (Exception e) {
+					expScores.add(fs.get());
+				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					System.out.println("评分失败！");
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 			}
+			exec.shutdown();
+			System.out.println("评分线程终止");
 		}
 			break;
 		case "朴素贝叶斯分类":	
@@ -128,13 +123,6 @@ public class Rating {
 				es.setStudentId(string);
 				es.setResultsscore(result);
 				expScores.add(es);
-				/*try {
-					resultService.updateExperimentScore(rs);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					System.out.println("评分失败！");
-					e.printStackTrace();
-				}*/
 			}
 		}
 			break;

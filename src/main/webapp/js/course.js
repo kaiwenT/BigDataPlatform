@@ -2,7 +2,7 @@
  * 课程页面有关的js方法
  */
 //文件存放路径
-var path = 'http://211.69.197.95:8081/bigdataplatform/';
+var basePath = 'http://211.69.197.95:8081/bigdataplatform/';
 
 //course-base页面左侧显示课程封面图片
 function showCoursePhoto(){
@@ -21,7 +21,7 @@ function showCoursePhoto(){
 			if (msg.status == "OK") {
 				var course = msg.result;
 				if(course.courseId != 'undefined' && course.courseId != ''){
-					$(".course-image").attr("src", path + 'coursePhoto/'+course.courseId+'.jpg');
+					$(".course-image").attr("src", basePath + 'coursePhoto/'+course.courseId+'.jpg');
 				}else{
 					$(".course-image").attr("src", '../img/course-img.jpg');
 				}

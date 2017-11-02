@@ -1,5 +1,6 @@
 /*教师首页的js代码*/
-
+var teacherPhoto = 'http://211.69.197.95:8081/bigdataplatform/teacherPhoto/';
+var coursePhoto = 'http://211.69.197.95:8081/bigdataplatform/coursePhoto/';
 showTeacherInfo();
 getCourseByTeacherId();
 
@@ -34,6 +35,9 @@ function showTeacherInfo() {
 				var teacher = msg.result;
 				$("#teacher-name").text(teacher.teacherName);
 				$("#telephone").text(teacher.teacherPhone);
+				
+				$(".user-head-img").attr("src",teacherPhoto+teacher.teacherId+".jpg");
+				
 			}
 			else{
 				alert(msg.result);
@@ -76,9 +80,8 @@ function getCourseByTeacherId() {
 						+'</div>'
 						+'</a></div></div>';
 					$(".course-panel-body-wrapper").append(c);
-					if(course.Picturepath!='' && course.Picturepath!='undefine'){
-						$("#"+course.courseId).attr("src",course.coursePicturepath);
-					}
+					$("#"+course.courseId).attr("src",coursePhoto+course.courseId+".jpg");
+					
 					
 				});
 				

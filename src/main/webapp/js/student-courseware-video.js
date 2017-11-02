@@ -2,8 +2,8 @@
 var videoPath = 'http://211.69.197.95:8081/bigdataplatform/courseVideo/';
 //Student-courseware-video页面显示课程的章 ,节标题
 function showChapterTitle(){
-	var courseId = $(".course-image").attr("id");
 	var sectionId = getCookie("sectionId");
+	var fId = getCookie("videoId");
 	
 	if(sectionId == null || sectionId == 'undefined'){
 		return;
@@ -13,34 +13,40 @@ function showChapterTitle(){
 		url : "/course/getChapterBySection",
 		dataType : "json",
 		data : {
-			sectionId : sectionId
+			sectionId : sectionId,
+			fileId : fId,
+			type : "VIDEO"
 		},
 		success : function(msg) {
 			if (msg.status == "OK") {
 				var res = msg.result;
-				//res[5] 数组存放 章id，章标题，PDF路径，视频路径，节标题
 				
-				if(res != 'undefined' && res != '' && res.length > 2){
+				if(res != 'undefined' && res != null){
 					$(".u-learn-moduletitle").empty();
 					var bread = '<div class="j-breadcb f-fl"><div class="u-learnBCUI f-cb">'
 							+'<a href="javascript:;" class="f-fl f-fc3 f-f0 link" onclick="baseAjax('+"'student-courseware'"+')">课件</a>'
 							+'<span class="f-icon f-fl icon u-icon-caret-right2"></span>'
 							+'<div class="f-fl j-chapter"><div class="u-select">'
-							+'<div class="up j-up f-thide chapterup" onclick="chapterupClick(this)" id="'+res[0]+'">'+res[1]+'</div>'
+							+'<div class="up j-up f-thide chapterup" onclick="chapterupClick(this)" id="'+res.chapterId+'">'+res.chapterName+'</div>'
 							+'<div class="down f-bg j-list chapterdown" style="display: none;"></div></div></div>'
 							+'<span class="f-icon f-fl icon u-icon-caret-right2"></span>'
 							+'<div class="f-fl j-lesson"><div class="u-select">'
-							+'<div class="up j-up f-thide sectionup" onclick="sectionupClick(this)" id="'+sectionId+'">'+res[4]+'</div>'
-							+'<div class="down f-bg j-list sectiondown" style="display: none;"></div></div></div></div></div>';
+							+'<div class="up j-up f-thide sectionup" onclick="sectionupClick(this)" id="'+res.sectionId+'">'+res.sectionName+'</div>'
+							+'<div class="down f-bg j-list sectiondown" style="display: none;"></div></div></div>'
+							+'<span class="f-icon f-fl icon u-icon-caret-right2"></span>'
+							+'<div class="f-fl j-lesson"><div class="u-select">'
+							+'<div class="up j-up f-thide fileup" onclick="fileupClick(this)" id="'+res.fileId+'">'+res.fileName+'</div>'
+							+'<div class="down f-bg j-list filedown" style="display: none;"></div></div></div>'
+							+'</div></div>';
 					$(".u-learn-moduletitle").prepend(bread);
-					$(".j-unitctBox").attr("id", sectionId);
-					if(res[0] != "undefined" && sectionId != "undefined"){
+					$(".j-unitctBox").attr("id", res.fileId);
+					if(res.fileId != "undefined" && res.fileId != null){
 						$(".unitctBox").empty();
 						$(".unitctBox").append('<div class="ux-video-player" onclick="pp()">'
 		                        +'<video controls preload="metadata" autoplay>'
 		                        +'<source class="video" src="" type="video/mp4" id=""></video></div>');
-						$(".video").attr("src", videoPath+courseId +"/"+res[0]+"/"+sectionId+".mp4");
-						
+						$(".video").attr("src", videoPath+res.courseId+"/"+res.chapterId+"/"+sectionId+"/"+res.fileId+".mp4");
+						$(".video").attr("id", res.fileId);
 					}
 				}else{
 					
@@ -57,7 +63,7 @@ function showChapterTitle(){
 	})
 }
 
-//
+//显示章
 function showChapters(){
 var courseId = $(".course-image").attr("id");
 	
@@ -138,7 +144,46 @@ function showSections(chapterid){
 		}
 	})	
 }
-
+//显示MP4文件
+function showVideos(sectionid){
+	if(sectionid == null || sectionid == 'undefined'){
+		return;
+	}
+	$.ajax({
+		type : "POST",
+		url : "/course/getFilesBySection",
+		dataType : "json",
+		data : {
+			sectionId : sectionid,
+			type : "VIDEO"
+		},
+		success : function(msg) {
+			if (msg.status == "OK") {
+				var files = msg.result;
+				
+				if(files != 'undefined' && files != null && files.length > 0){
+					$(".filedown").empty();
+					$.each(files, function(idx, file){
+						
+						var list = '<div class="f-thide list" onclick="filedownClick(this)" title="'+file.fileName+'"'
+							+'id="'+file.fileId+'">'+file.fileName+'</div>';
+						$(".filedown").prepend(list);
+						
+					});
+					$(".filedown").css("display","block");
+					
+				}else{
+					$(".filedown").css("display","none");
+				}
+			} else {
+				alert(msg.result);
+			}
+		},
+		error : function(msg) {
+			error(msg);
+		}
+	})	
+}
 $('a.media').media({width:986, height:800});
 //章title点击事件
 function chapterupClick(e) {
@@ -162,7 +207,7 @@ function chapterdownClick(e){
 //节标题栏点击事件
 function sectionupClick(e){
 	var chapterid = $(".chapterup").attr("id");
-	console.log(chapterid);
+	
 	if($(e).next(".sectiondown").css("display")=="none"){
 		showSections(chapterid);
 	}else{
@@ -171,8 +216,35 @@ function sectionupClick(e){
 	
 }
 
+
 //节下拉列表点击事件
 function sectiondownClick(e){
-	setCookie("sectionId", $(e).attr("id"));
+	$(".sectiondown").css("display","none");
+	
+	$(".sectionup").attr("id", $(e).attr("id"));
+	$(".sectionup").text($(e).text());
+	$(".fileup").attr("id", "select");
+	$(".fileup").text("请选择文件");
+	
+	$(".sectiondown").css("display", "none");
+}
+
+//文件标题栏点击事件
+function fileupClick(e){
+	var sectionid = $(".sectionup").attr("id");
+	
+	if($(e).next(".filedown").css("display")=="none"){
+		showVideos(sectionid);
+	}else{
+		$(e).next(".filedown").css("display","none");
+	} 
+	
+}
+
+//文件下拉列表点击事件
+function filedownClick(e){
+	setCookie("videoId", $(e).attr("id"));
+	var sectionid = $(".sectionup").attr("id");
+	setCookie("sectionId",sectionid);
 	showChapterTitle();
 }

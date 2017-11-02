@@ -27,7 +27,12 @@ public class fileUtil {
 		}
 		return files2;
 	}
-	
+	/**
+	 * 得到一个目录下指定类型的所有文件名（不带后缀）
+	 * @param road 目录
+	 * @param type 文件类型
+	 * @return
+	 */
 	public static List<String> getFileName(String road, String type){
 		File file = new File(road);
 		File files[] = file.listFiles();
@@ -37,8 +42,10 @@ public class fileUtil {
 		}
 		for(File f : files){
 			String suffix = f.getName().substring(f.getName().lastIndexOf(".") + 1);
+			String name = f.getName().substring(0, f.getName().lastIndexOf("."));
+			System.out.println(suffix +"---"+name);
 			if(type.equals(suffix)){
-				files2.add(f.getName());
+				files2.add(name);
 			}
 			
 		}

@@ -364,7 +364,10 @@ public class TeacherCourseController {
 		List<com.hust.bigdataplatform.model.File> files = new ArrayList<com.hust.bigdataplatform.model.File>();
 		List<String> names = fileUtil.getFileName(road, "pdf");
 		for (String string : names) {
-			files.add(fileservice.selectById(string.substring(0, string.indexOf("."))));
+			com.hust.bigdataplatform.model.File f = fileservice.selectById(string);
+			if(f != null){
+				files.add(f);
+			}	
 		}
 		for (com.hust.bigdataplatform.model.File file2 : files) {
 			System.out.println("**********"+file2.getFileName());
@@ -390,7 +393,10 @@ public class TeacherCourseController {
 		List<com.hust.bigdataplatform.model.File> files = new ArrayList<com.hust.bigdataplatform.model.File>();
 		List<String> names = fileUtil.getFileName(road, "mp4");
 		for (String string : names) {
-			files.add(fileservice.selectById(string.substring(0, string.indexOf("."))));
+			com.hust.bigdataplatform.model.File f = fileservice.selectById(string);
+			if(f != null){
+				files.add(f);
+			}			
 		}
 		for (com.hust.bigdataplatform.model.File file2 : files) {
 			System.out.println("8888888"+file2.getFileName());

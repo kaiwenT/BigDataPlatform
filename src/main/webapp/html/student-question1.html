@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/student-question.css">
+</head>
+<body>
+<div class="m-learnChapterList">
+    <div class="j-moduletitle u-learn-moduletitle f-cb" style="">
+        <h2 class="j-moduleName">这是一份测试作业题的名字<br></h2>
+    </div>
+    <div class="m-learnChapterNormal f-pr" style="width: 65%">
+        <div class="title">
+        <div class="position f-fl">1</div>
+        <div class="qaDescription">
+            <span style="display: block;margin-left: 38px;">这是一个很长很长很长很长很长很长很长很长很长很长很长的题目<br>
+            这是题目的具体具体具体具体具体内容<br>
+                这是题目的具体具体具体内容<br>
+            </span>
+        </div>
+        </div>
+        <div class="choiceBox">
+            <ul>
+                <li onclick="choice(this)">
+                    <input type="radio" name="qa1" value="a">
+                    <h3>A.</h3>
+                    <label>这是选项A</label>
+                </li>
+                <li onclick="choice(this)">
+                    <input type="radio" name="qa1" value="b">
+                    <h3>B.</h3>
+                    <label>A 这是选项A</label>
+                </li>
+                <li onclick="choice(this)">
+                    <input type="radio" name="qa1" value="c">
+                    <h3>C.</h3>
+                    <label>这是选项A</label>
+                </li>
+                <li onclick="choice(this)">
+                    <input type="radio" name="qa1" value="d">
+                    <h3>D.</h3>
+                    <label>这是选项A</label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function choice(e) {
+        var name = $(e).children("input").attr("name");
+        $("input[name='"+name+"']").removeProp("checked");
+        $(e).children("input").prop("checked","checked");
+    }
+</script>
+</html>

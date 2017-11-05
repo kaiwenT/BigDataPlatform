@@ -20,7 +20,7 @@ function showstudentInfo(){
 				$("#f-name").text(stu.studentFaculty);
 				
 				if(stu.studentId != 'undefined' && stu.studentId != '')
-					$(".user-head-img").attr("src",path+"studentPhoto/"+stu.studentId+".jpg");
+					$(".user-head-img").attr("src",path+"studentPhoto/default.jpg");//"+stu.studentId+"
 			}else{
 				alert(msg.result);
 			}

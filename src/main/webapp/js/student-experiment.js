@@ -29,7 +29,7 @@ function showExperiments(){
 							+'<div class="f-icon cpicon j-down f-fl u-icon-caret-up" style=""></div>'
 							+'<div class="f-icon cpicon j-up f-fl u-icon-caret-down" style="display: none;"></div>'
 							+'<h3 class="j-titleName name f-fl f-thide">'+exp.experimentName+'</h3>'
-							+'<div class="submitTime f-fl">截止时间：'+dateFormat(exp.experimentDeadline)+' 23:59</div>'
+							+'<div class="submitTime f-fl">截止时间：'+dateFormat1(exp.experimentDeadline)+'</div>'
 							+'<div class="score f-fl">成绩：<span class="expScore" id="'+exp.experimentId+'">100</span></div>'
 							+'<button class="u-btn u-btn-default f-pa" id="'+exp.experimentId+'" onclick="submitButtonClick(this);" style="top:2px; right:0; height: 36px; font-size: 1.23em">提交作业</button></div>'
 							+'<div class="exp-box" id="'+exp.experimentId+'" style="display:none;"><div class="exp-source exp-video f-pr"><div class="f-pr f-fl source-sign">'
@@ -39,6 +39,13 @@ function showExperiments(){
 							+'<span class="icon-book" style="font-size: 20px;margin: -10px -10px; top:50px; left:50%;position: relative; "></span></div>'
 							+'<div class="source-box"></div></div></div></div>';
 						$(".m-learnChapterNormal").prepend(titlebox);
+						var d = new Date();
+						
+						if(d.getTime() > new Date(exp.experimentDeadline.time).getTime()){
+							//超过实验提交时间，提交作业按钮变为开始互评
+							$("button#"+exp.experimentId).text("开始互评");
+							$("button#"+exp.experimentId).attr("onclick","mutualEval(this)");
+						}
 						showExperimentScore(exp.experimentId);
 						showFiles(exp.experimentId);
 					});

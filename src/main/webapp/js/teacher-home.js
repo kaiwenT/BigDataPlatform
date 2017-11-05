@@ -36,7 +36,7 @@ function showTeacherInfo() {
 				$("#teacher-name").text(teacher.teacherName);
 				$("#telephone").text(teacher.teacherPhone);
 				
-				$(".user-head-img").attr("src",teacherPhoto+teacher.teacherId+".jpg");
+				$(".user-head-img").attr("src",teacherPhoto+"default.jpg");//teacher.teacherId+
 				
 			}
 			else{

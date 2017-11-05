@@ -7,7 +7,6 @@
     <result column="student_pwd" jdbcType="VARCHAR" property="studentPwd" />
     <result column="student_faculty" jdbcType="VARCHAR" property="studentFaculty" />
     <result column="student_tele" jdbcType="VARCHAR" property="studentTele" />
-    <result column="student_picturePath" jdbcType="VARCHAR" property="studentPicturepath" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    student_id, student_name, student_pwd, student_faculty, student_tele, student_picturePath
+    student_id, student_name, student_pwd, student_faculty, student_tele
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.StudentExample" resultMap="BaseResultMap">
     select
@@ -102,11 +101,9 @@
   </delete>
   <insert id="insert" parameterType="com.hust.bigdataplatform.model.Student">
     insert into student (student_id, student_name, student_pwd, 
-      student_faculty, student_tele, student_picturePath
-      )
+      student_faculty, student_tele)
     values (#{studentId,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, #{studentPwd,jdbcType=VARCHAR}, 
-      #{studentFaculty,jdbcType=VARCHAR}, #{studentTele,jdbcType=VARCHAR}, #{studentPicturepath,jdbcType=VARCHAR}
-      )
+      #{studentFaculty,jdbcType=VARCHAR}, #{studentTele,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.Student">
     insert into student
@@ -126,9 +123,6 @@
       <if test="studentTele != null">
         student_tele,
       </if>
-      <if test="studentPicturepath != null">
-        student_picturePath,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="studentId != null">
@@ -145,9 +139,6 @@
       </if>
       <if test="studentTele != null">
         #{studentTele,jdbcType=VARCHAR},
-      </if>
-      <if test="studentPicturepath != null">
-        #{studentPicturepath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -175,9 +166,6 @@
       <if test="record.studentTele != null">
         student_tele = #{record.studentTele,jdbcType=VARCHAR},
       </if>
-      <if test="record.studentPicturepath != null">
-        student_picturePath = #{record.studentPicturepath,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -189,8 +177,7 @@
       student_name = #{record.studentName,jdbcType=VARCHAR},
       student_pwd = #{record.studentPwd,jdbcType=VARCHAR},
       student_faculty = #{record.studentFaculty,jdbcType=VARCHAR},
-      student_tele = #{record.studentTele,jdbcType=VARCHAR},
-      student_picturePath = #{record.studentPicturepath,jdbcType=VARCHAR}
+      student_tele = #{record.studentTele,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -210,9 +197,6 @@
       <if test="studentTele != null">
         student_tele = #{studentTele,jdbcType=VARCHAR},
       </if>
-      <if test="studentPicturepath != null">
-        student_picturePath = #{studentPicturepath,jdbcType=VARCHAR},
-      </if>
     </set>
     where student_id = #{studentId,jdbcType=VARCHAR}
   </update>
@@ -221,8 +205,7 @@
     set student_name = #{studentName,jdbcType=VARCHAR},
       student_pwd = #{studentPwd,jdbcType=VARCHAR},
       student_faculty = #{studentFaculty,jdbcType=VARCHAR},
-      student_tele = #{studentTele,jdbcType=VARCHAR},
-      student_picturePath = #{studentPicturepath,jdbcType=VARCHAR}
+      student_tele = #{studentTele,jdbcType=VARCHAR}
     where student_id = #{studentId,jdbcType=VARCHAR}
   </update>
 </mapper>

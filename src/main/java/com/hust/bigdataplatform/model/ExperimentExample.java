@@ -505,283 +505,63 @@ public class ExperimentExample {
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathIsNull() {
-            addCriterion("experiment_manualPath is null");
+        public Criteria andExperimentScaleIsNull() {
+            addCriterion("experiment_scale is null");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathIsNotNull() {
-            addCriterion("experiment_manualPath is not null");
+        public Criteria andExperimentScaleIsNotNull() {
+            addCriterion("experiment_scale is not null");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathEqualTo(String value) {
-            addCriterion("experiment_manualPath =", value, "experimentManualpath");
+        public Criteria andExperimentScaleEqualTo(Float value) {
+            addCriterion("experiment_scale =", value, "experimentScale");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathNotEqualTo(String value) {
-            addCriterion("experiment_manualPath <>", value, "experimentManualpath");
+        public Criteria andExperimentScaleNotEqualTo(Float value) {
+            addCriterion("experiment_scale <>", value, "experimentScale");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathGreaterThan(String value) {
-            addCriterion("experiment_manualPath >", value, "experimentManualpath");
+        public Criteria andExperimentScaleGreaterThan(Float value) {
+            addCriterion("experiment_scale >", value, "experimentScale");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathGreaterThanOrEqualTo(String value) {
-            addCriterion("experiment_manualPath >=", value, "experimentManualpath");
+        public Criteria andExperimentScaleGreaterThanOrEqualTo(Float value) {
+            addCriterion("experiment_scale >=", value, "experimentScale");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathLessThan(String value) {
-            addCriterion("experiment_manualPath <", value, "experimentManualpath");
+        public Criteria andExperimentScaleLessThan(Float value) {
+            addCriterion("experiment_scale <", value, "experimentScale");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathLessThanOrEqualTo(String value) {
-            addCriterion("experiment_manualPath <=", value, "experimentManualpath");
+        public Criteria andExperimentScaleLessThanOrEqualTo(Float value) {
+            addCriterion("experiment_scale <=", value, "experimentScale");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathLike(String value) {
-            addCriterion("experiment_manualPath like", value, "experimentManualpath");
+        public Criteria andExperimentScaleIn(List<Float> values) {
+            addCriterion("experiment_scale in", values, "experimentScale");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathNotLike(String value) {
-            addCriterion("experiment_manualPath not like", value, "experimentManualpath");
+        public Criteria andExperimentScaleNotIn(List<Float> values) {
+            addCriterion("experiment_scale not in", values, "experimentScale");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathIn(List<String> values) {
-            addCriterion("experiment_manualPath in", values, "experimentManualpath");
+        public Criteria andExperimentScaleBetween(Float value1, Float value2) {
+            addCriterion("experiment_scale between", value1, value2, "experimentScale");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentManualpathNotIn(List<String> values) {
-            addCriterion("experiment_manualPath not in", values, "experimentManualpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentManualpathBetween(String value1, String value2) {
-            addCriterion("experiment_manualPath between", value1, value2, "experimentManualpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentManualpathNotBetween(String value1, String value2) {
-            addCriterion("experiment_manualPath not between", value1, value2, "experimentManualpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathIsNull() {
-            addCriterion("experiment_resultsPath is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathIsNotNull() {
-            addCriterion("experiment_resultsPath is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathEqualTo(String value) {
-            addCriterion("experiment_resultsPath =", value, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathNotEqualTo(String value) {
-            addCriterion("experiment_resultsPath <>", value, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathGreaterThan(String value) {
-            addCriterion("experiment_resultsPath >", value, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathGreaterThanOrEqualTo(String value) {
-            addCriterion("experiment_resultsPath >=", value, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathLessThan(String value) {
-            addCriterion("experiment_resultsPath <", value, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathLessThanOrEqualTo(String value) {
-            addCriterion("experiment_resultsPath <=", value, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathLike(String value) {
-            addCriterion("experiment_resultsPath like", value, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathNotLike(String value) {
-            addCriterion("experiment_resultsPath not like", value, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathIn(List<String> values) {
-            addCriterion("experiment_resultsPath in", values, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathNotIn(List<String> values) {
-            addCriterion("experiment_resultsPath not in", values, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathBetween(String value1, String value2) {
-            addCriterion("experiment_resultsPath between", value1, value2, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentResultspathNotBetween(String value1, String value2) {
-            addCriterion("experiment_resultsPath not between", value1, value2, "experimentResultspath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathIsNull() {
-            addCriterion("experiment_reportPath is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathIsNotNull() {
-            addCriterion("experiment_reportPath is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathEqualTo(String value) {
-            addCriterion("experiment_reportPath =", value, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathNotEqualTo(String value) {
-            addCriterion("experiment_reportPath <>", value, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathGreaterThan(String value) {
-            addCriterion("experiment_reportPath >", value, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathGreaterThanOrEqualTo(String value) {
-            addCriterion("experiment_reportPath >=", value, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathLessThan(String value) {
-            addCriterion("experiment_reportPath <", value, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathLessThanOrEqualTo(String value) {
-            addCriterion("experiment_reportPath <=", value, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathLike(String value) {
-            addCriterion("experiment_reportPath like", value, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathNotLike(String value) {
-            addCriterion("experiment_reportPath not like", value, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathIn(List<String> values) {
-            addCriterion("experiment_reportPath in", values, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathNotIn(List<String> values) {
-            addCriterion("experiment_reportPath not in", values, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathBetween(String value1, String value2) {
-            addCriterion("experiment_reportPath between", value1, value2, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentReportpathNotBetween(String value1, String value2) {
-            addCriterion("experiment_reportPath not between", value1, value2, "experimentReportpath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathIsNull() {
-            addCriterion("experiment_videoPath is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathIsNotNull() {
-            addCriterion("experiment_videoPath is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathEqualTo(String value) {
-            addCriterion("experiment_videoPath =", value, "experimentVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathNotEqualTo(String value) {
-            addCriterion("experiment_videoPath <>", value, "experimentVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathGreaterThan(String value) {
-            addCriterion("experiment_videoPath >", value, "experimentVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathGreaterThanOrEqualTo(String value) {
-            addCriterion("experiment_videoPath >=", value, "experimentVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathLessThan(String value) {
-            addCriterion("experiment_videoPath <", value, "experimentVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathLessThanOrEqualTo(String value) {
-            addCriterion("experiment_videoPath <=", value, "experimentVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathLike(String value) {
-            addCriterion("experiment_videoPath like", value, "experimentVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathNotLike(String value) {
-            addCriterion("experiment_videoPath not like", value, "experimentVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathIn(List<String> values) {
-            addCriterion("experiment_videoPath in", values, "experimentVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathNotIn(List<String> values) {
-            addCriterion("experiment_videoPath not in", values, "experimentVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathBetween(String value1, String value2) {
-            addCriterion("experiment_videoPath between", value1, value2, "experimentVideopath");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentVideopathNotBetween(String value1, String value2) {
-            addCriterion("experiment_videoPath not between", value1, value2, "experimentVideopath");
+        public Criteria andExperimentScaleNotBetween(Float value1, Float value2) {
+            addCriterion("experiment_scale not between", value1, value2, "experimentScale");
             return (Criteria) this;
         }
     }
@@ -809,9 +589,6 @@ public class ExperimentExample {
         private boolean listValue;
 
         private String typeHandler;
-		public Criterion(){
-        	super();
-        }
 
         public String getCondition() {
             return condition;
@@ -844,7 +621,9 @@ public class ExperimentExample {
         public String getTypeHandler() {
             return typeHandler;
         }
-
+        public Criterion(){
+        	super();
+        }
         protected Criterion(String condition) {
             super();
             this.condition = condition;

@@ -5,8 +5,6 @@
     <id column="chapter_id" jdbcType="VARCHAR" property="chapterId" />
     <id column="course_id" jdbcType="VARCHAR" property="courseId" />
     <result column="chapter_name" jdbcType="VARCHAR" property="chapterName" />
-    <result column="courseware_path" jdbcType="VARCHAR" property="coursewarePath" />
-    <result column="video_path" jdbcType="VARCHAR" property="videoPath" />
     <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    chapter_id, course_id, chapter_name, courseware_path, video_path, creat_time
+    chapter_id, course_id, chapter_name, creat_time
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.CourseChapterExample" resultMap="BaseResultMap">
     select
@@ -104,11 +102,9 @@
   </delete>
   <insert id="insert" parameterType="com.hust.bigdataplatform.model.CourseChapter">
     insert into course_chapter (chapter_id, course_id, chapter_name, 
-      courseware_path, video_path, creat_time
-      )
+      creat_time)
     values (#{chapterId,jdbcType=VARCHAR}, #{courseId,jdbcType=VARCHAR}, #{chapterName,jdbcType=VARCHAR}, 
-      #{coursewarePath,jdbcType=VARCHAR}, #{videoPath,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP}
-      )
+      #{creatTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.CourseChapter">
     insert into course_chapter
@@ -121,12 +117,6 @@
       </if>
       <if test="chapterName != null">
         chapter_name,
-      </if>
-      <if test="coursewarePath != null">
-        courseware_path,
-      </if>
-      <if test="videoPath != null">
-        video_path,
       </if>
       <if test="creatTime != null">
         creat_time,
@@ -141,12 +131,6 @@
       </if>
       <if test="chapterName != null">
         #{chapterName,jdbcType=VARCHAR},
-      </if>
-      <if test="coursewarePath != null">
-        #{coursewarePath,jdbcType=VARCHAR},
-      </if>
-      <if test="videoPath != null">
-        #{videoPath,jdbcType=VARCHAR},
       </if>
       <if test="creatTime != null">
         #{creatTime,jdbcType=TIMESTAMP},
@@ -171,12 +155,6 @@
       <if test="record.chapterName != null">
         chapter_name = #{record.chapterName,jdbcType=VARCHAR},
       </if>
-      <if test="record.coursewarePath != null">
-        courseware_path = #{record.coursewarePath,jdbcType=VARCHAR},
-      </if>
-      <if test="record.videoPath != null">
-        video_path = #{record.videoPath,jdbcType=VARCHAR},
-      </if>
       <if test="record.creatTime != null">
         creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
       </if>
@@ -190,8 +168,6 @@
     set chapter_id = #{record.chapterId,jdbcType=VARCHAR},
       course_id = #{record.courseId,jdbcType=VARCHAR},
       chapter_name = #{record.chapterName,jdbcType=VARCHAR},
-      courseware_path = #{record.coursewarePath,jdbcType=VARCHAR},
-      video_path = #{record.videoPath,jdbcType=VARCHAR},
       creat_time = #{record.creatTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -203,12 +179,6 @@
       <if test="chapterName != null">
         chapter_name = #{chapterName,jdbcType=VARCHAR},
       </if>
-      <if test="coursewarePath != null">
-        courseware_path = #{coursewarePath,jdbcType=VARCHAR},
-      </if>
-      <if test="videoPath != null">
-        video_path = #{videoPath,jdbcType=VARCHAR},
-      </if>
       <if test="creatTime != null">
         creat_time = #{creatTime,jdbcType=TIMESTAMP},
       </if>
@@ -219,8 +189,6 @@
   <update id="updateByPrimaryKey" parameterType="com.hust.bigdataplatform.model.CourseChapter">
     update course_chapter
     set chapter_name = #{chapterName,jdbcType=VARCHAR},
-      courseware_path = #{coursewarePath,jdbcType=VARCHAR},
-      video_path = #{videoPath,jdbcType=VARCHAR},
       creat_time = #{creatTime,jdbcType=TIMESTAMP}
     where chapter_id = #{chapterId,jdbcType=VARCHAR}
       and course_id = #{courseId,jdbcType=VARCHAR}

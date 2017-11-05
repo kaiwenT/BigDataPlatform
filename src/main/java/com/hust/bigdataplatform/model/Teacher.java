@@ -9,8 +9,6 @@ public class Teacher {
 
     private String teacherPhone;
 
-    private String techerPicturepath;
-
     public String getTeacherId() {
         return teacherId;
     }
@@ -41,13 +39,5 @@ public class Teacher {
 
     public void setTeacherPhone(String teacherPhone) {
         this.teacherPhone = teacherPhone == null ? null : teacherPhone.trim();
-    }
-
-    public String getTecherPicturepath() {
-        return techerPicturepath;
-    }
-
-    public void setTecherPicturepath(String techerPicturepath) {
-        this.techerPicturepath = techerPicturepath == null ? null : techerPicturepath.trim();
     }
 }

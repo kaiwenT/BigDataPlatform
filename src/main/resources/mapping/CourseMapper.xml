@@ -9,7 +9,7 @@
     <result column="course_demand" jdbcType="VARCHAR" property="courseDemand" />
     <result column="course_beginTime" jdbcType="TIMESTAMP" property="courseBegintime" />
     <result column="course_credit" jdbcType="INTEGER" property="courseCredit" />
-    <result column="course_picturePath" jdbcType="VARCHAR" property="coursePicturepath" />
+    <result column="course_UsualGradesScale" jdbcType="REAL" property="courseUsualgradesscale" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +71,7 @@
   </sql>
   <sql id="Base_Column_List">
     course_id, course_name, course_introduce, course_outline, course_demand, course_beginTime, 
-    course_credit, course_picturePath
+    course_credit, course_UsualGradesScale
   </sql>
   <select id="selectByExample" parameterType="com.hust.bigdataplatform.model.CourseExample" resultMap="BaseResultMap">
     select
@@ -106,10 +106,10 @@
   <insert id="insert" parameterType="com.hust.bigdataplatform.model.Course">
     insert into course (course_id, course_name, course_introduce, 
       course_outline, course_demand, course_beginTime, 
-      course_credit, course_picturePath)
+      course_credit, course_UsualGradesScale)
     values (#{courseId,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, #{courseIntroduce,jdbcType=VARCHAR}, 
       #{courseOutline,jdbcType=VARCHAR}, #{courseDemand,jdbcType=VARCHAR}, #{courseBegintime,jdbcType=TIMESTAMP}, 
-      #{courseCredit,jdbcType=INTEGER}, #{coursePicturepath,jdbcType=VARCHAR})
+      #{courseCredit,jdbcType=INTEGER}, #{courseUsualgradesscale,jdbcType=REAL})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.bigdataplatform.model.Course">
     insert into course
@@ -135,8 +135,8 @@
       <if test="courseCredit != null">
         course_credit,
       </if>
-      <if test="coursePicturepath != null">
-        course_picturePath,
+      <if test="courseUsualgradesscale != null">
+        course_UsualGradesScale,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -161,8 +161,8 @@
       <if test="courseCredit != null">
         #{courseCredit,jdbcType=INTEGER},
       </if>
-      <if test="coursePicturepath != null">
-        #{coursePicturepath,jdbcType=VARCHAR},
+      <if test="courseUsualgradesscale != null">
+        #{courseUsualgradesscale,jdbcType=REAL},
       </if>
     </trim>
   </insert>
@@ -196,8 +196,8 @@
       <if test="record.courseCredit != null">
         course_credit = #{record.courseCredit,jdbcType=INTEGER},
       </if>
-      <if test="record.coursePicturepath != null">
-        course_picturePath = #{record.coursePicturepath,jdbcType=VARCHAR},
+      <if test="record.courseUsualgradesscale != null">
+        course_UsualGradesScale = #{record.courseUsualgradesscale,jdbcType=REAL},
       </if>
     </set>
     <if test="_parameter != null">
@@ -213,7 +213,7 @@
       course_demand = #{record.courseDemand,jdbcType=VARCHAR},
       course_beginTime = #{record.courseBegintime,jdbcType=TIMESTAMP},
       course_credit = #{record.courseCredit,jdbcType=INTEGER},
-      course_picturePath = #{record.coursePicturepath,jdbcType=VARCHAR}
+      course_UsualGradesScale = #{record.courseUsualgradesscale,jdbcType=REAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -239,8 +239,8 @@
       <if test="courseCredit != null">
         course_credit = #{courseCredit,jdbcType=INTEGER},
       </if>
-      <if test="coursePicturepath != null">
-        course_picturePath = #{coursePicturepath,jdbcType=VARCHAR},
+      <if test="courseUsualgradesscale != null">
+        course_UsualGradesScale = #{courseUsualgradesscale,jdbcType=REAL},
       </if>
     </set>
     where course_id = #{courseId,jdbcType=VARCHAR}
@@ -253,7 +253,7 @@
       course_demand = #{courseDemand,jdbcType=VARCHAR},
       course_beginTime = #{courseBegintime,jdbcType=TIMESTAMP},
       course_credit = #{courseCredit,jdbcType=INTEGER},
-      course_picturePath = #{coursePicturepath,jdbcType=VARCHAR}
+      course_UsualGradesScale = #{courseUsualgradesscale,jdbcType=REAL}
     where course_id = #{courseId,jdbcType=VARCHAR}
   </update>
 </mapper>

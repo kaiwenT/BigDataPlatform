@@ -3,7 +3,7 @@ var cousewarePath = 'http://211.69.197.95:8081/bigdataplatform/courseware/';
 //Student-courseware-pdf页面显示课程的章 ,节标题
 function showChapterTitle(){
 	var sectionId = getCookie("sectionId");
-	var fId = getCookie("fId");
+	var fId = getCookie("pdfId");
 	if(sectionId == null || sectionId == 'undefined'){
 		return;
 	}
@@ -44,6 +44,10 @@ function showChapterTitle(){
 						$(".unitctBox").empty();
 						$(".unitctBox").append("<a class='media'></a>");
 						$(".media").attr("href", cousewarePath+res.courseId+"/"+res.chapterId+"/"+sectionId+"/"+res.fileId+".pdf");
+						$('a.media').media({width:986, height:800});
+					}else{
+						$(".unitctBox").empty();
+						$(".unitctBox").append("<a class='media'></a>");						
 						$('a.media').media({width:986, height:800});
 					}
 				}else{
@@ -240,7 +244,7 @@ function fileupClick(e){
 
 //文件下拉列表点击事件
 function filedownClick(e){
-	setCookie("fId", $(e).attr("id"));
+	setCookie("pdfId", $(e).attr("id"));
 	var sectionid = $(".sectionup").attr("id");
 	setCookie("sectionId",sectionid);
 	showChapterTitle();

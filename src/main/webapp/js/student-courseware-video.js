@@ -40,13 +40,18 @@ function showChapterTitle(){
 							+'</div></div>';
 					$(".u-learn-moduletitle").prepend(bread);
 					$(".j-unitctBox").attr("id", res.fileId);
-					if(res.fileId != "undefined" && res.fileId != null){
+					if(res.fileId != "" && res.fileId != null){
 						$(".unitctBox").empty();
 						$(".unitctBox").append('<div class="ux-video-player" onclick="pp()">'
 		                        +'<video controls preload="metadata" autoplay>'
 		                        +'<source class="video" src="" type="video/mp4" id=""></video></div>');
 						$(".video").attr("src", videoPath+res.courseId+"/"+res.chapterId+"/"+sectionId+"/"+res.fileId+".mp4");
 						$(".video").attr("id", res.fileId);
+					}else{
+						$(".unitctBox").empty();
+						$(".unitctBox").append('<div class="ux-video-player" onclick="pp()">'
+		                        +'<video controls preload="metadata" autoplay>'
+		                        +'<source class="video" src="" type="video/mp4" id=""></video></div>');
 					}
 				}else{
 					

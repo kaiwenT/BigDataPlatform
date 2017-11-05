@@ -388,7 +388,7 @@ function autoSubmitTextarea(e){
         clearTimeout(autoSb);
         autoSb = setTimeout(function(){
     	var experimentId = $(e).parents(".expBox").attr("id");
-    	var submitDemand = $(e).val();
+    	var submitDemand = $(e).val().replace(/\n|\r\n/g,"<br>");
     	$.ajax({
         	type:"POST",
     		url:"/experiment/UpdateExpSubmitDemand",

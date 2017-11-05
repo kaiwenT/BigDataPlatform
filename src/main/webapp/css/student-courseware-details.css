@@ -8,12 +8,13 @@
     margin-bottom: 0;
 }
 .u-learnBCUI {
-    line-height: 24px;
-    width: 640px;
+    line-height: 40px;
+    width: 987px;
+    font-size: 16px;
 }
 
 .u-learnBCUI .link {
-    font-size: 14px;
+    font-size: 16px;
 }
 .u-learnBCUI .u-icon-caret-right2 {
     line-height: 24px;
@@ -21,12 +22,12 @@
 
 .u-learnBCUI .icon {
     color: #ccc;
-    margin: 0 8px;
+    margin: 8px 8px;
 }
 
 .u-learnBCUI .u-select {
     width: 172px;
-    height: 22px;
+    height: 32px;
     padding: 0 6px;
 }
 
@@ -37,12 +38,14 @@
     background-color: white;
     border: 1px solid #dfdfdf;
     position: relative;
+    margin:4px 0;
 }
 
 .u-learnBCUI .u-select .up {
-    background-position: 145px -183px;
+    background-position: 145px -179px;
     line-height: 24px;
     padding-right: 6px;
+    padding-top: 4px;
     color: #333;
 }
 .u-select .up {

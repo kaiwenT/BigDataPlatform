@@ -180,7 +180,7 @@ function submitButtonClick(e){
 				var exp = msg.result;
 				if(exp != null || score != "undefined"){
 					$(".require-info").attr("id", exp.experimentId);
-					$(".submit-demand").text(exp.experimentSubmitdemand);
+					$(".submit-demand").html(exp.experimentSubmitdemand);
 					$(".require-info").css("display", "block");
 					$(".submit-box").css("display", "none");
 				}				

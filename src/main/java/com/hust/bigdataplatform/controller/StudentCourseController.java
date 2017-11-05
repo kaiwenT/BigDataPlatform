@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hust.bigdataplatform.model.Course;
 import com.hust.bigdataplatform.model.Student;
 import com.hust.bigdataplatform.model.StudentCourse;
+import com.hust.bigdataplatform.model.StudentScore;
 import com.hust.bigdataplatform.model.Teacher;
 import com.hust.bigdataplatform.service.CourseService;
 import com.hust.bigdataplatform.service.ExperimentScoreService;
 import com.hust.bigdataplatform.service.SessionService;
 import com.hust.bigdataplatform.service.StudentCourseService;
+import com.hust.bigdataplatform.service.StudentScoreService;
 import com.hust.bigdataplatform.service.StudentService;
 import com.hust.bigdataplatform.service.TeacherCourseService;
 import com.hust.bigdataplatform.service.TeacherService;
@@ -46,7 +48,8 @@ public class StudentCourseController {
 	private ExperimentScoreService experimentScoreService;
 	@Autowired
 	private SessionService sessionService;	
-	
+	@Autowired
+	private StudentScoreService studentScoreService;
 	/**
 	 * 查找登录学生所选课程
 	 * @param request
@@ -97,15 +100,23 @@ public class StudentCourseController {
 			if(course == null){
 				continue;
 			}
+			
+			StudentScore sc = studentScoreService.findByStuIdAndCourseId(studentId, scourse.getCourseId());
+			
 			map.put("courseName", course.getCourseName());
 			map.put("teacherName", t.getTeacherName());			
-			map.put("usualGrade", String.valueOf(scourse.getAttendancerate()));
+			if(sc != null){
+				map.put("usualGrade", String.valueOf(sc.getUsualgrades()));
+				map.put("examGrade", String.valueOf(sc.getTestResults()));
+				map.put("expGrade", String.valueOf(sc.getExpFinalscore()));
+				map.put("finalGrade", String.valueOf(sc.getFinalscore()));//scourse.getFinalresult()
+			}else{
+				map.put("usualGrade", "-");
+				map.put("examGrade", "-");
+				map.put("expGrade", "-");
+				map.put("finalGrade", "-");//scourse.getFinalresult()
+			}
 			
-			//考试成绩，建表后从数据库获取，暂定100分
-			map.put("examGrade", "100");
-			int expScore = experimentScoreService.findExpAvgScore(studentId, scourse.getCourseId());
-			map.put("expGrade", String.valueOf(expScore));
-			map.put("finalGrade", String.valueOf(0.3 * scourse.getAttendancerate() + 0.4 * expScore + 30));//scourse.getFinalresult()
 			res.add(map);
 		}
 		

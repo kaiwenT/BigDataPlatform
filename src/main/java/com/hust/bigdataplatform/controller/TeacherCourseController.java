@@ -120,9 +120,9 @@ public class TeacherCourseController {
 		courseChapter.setChapterName(courseName);
 		courseChapter.setCourseId(courseId);
 		String coursewarePath = Constant.DIRECTORY.COURSEWARE+chapterId;
-		courseChapter.setCoursewarePath(coursewarePath);
+		
 		String videoPath = Constant.DIRECTORY.COURSE_VIDEO+chapterId;
-		courseChapter.setVideoPath(videoPath);
+		
 		courseChapter.setCreatTime(new Date()); //到此courseChapter封装完毕
 		int status = courseChapterService.insertChapter(courseChapter);
 		if (status==2) {
@@ -174,9 +174,9 @@ public class TeacherCourseController {
 		for (ChapterSection chapterSection : chapterSections) {
 			courseChapterService.deleteSectionfile(chapterSection.getSectionid());
 		}
-		File file= new File(courseChapterService.selectById(chapterId, courseId).getCoursewarePath());
+		File file= new File(Constant.DIRECTORY.COURSEWARE + courseId + File.separator + chapterId);
 		file.delete();
-		File file1= new File(courseChapterService.selectById(chapterId, courseId).getVideoPath());
+		File file1= new File(Constant.DIRECTORY.COURSE_VIDEO + courseId + File.separator + chapterId);
 		file1.delete();
 		int status = courseChapterService.deleteByChapterId(chapterId, courseId);
 		if (status==0) {

@@ -11,8 +11,6 @@ public class Student {
 
     private String studentTele;
 
-    private String studentPicturepath;
-
     public String getStudentId() {
         return studentId;
     }
@@ -51,13 +49,5 @@ public class Student {
 
     public void setStudentTele(String studentTele) {
         this.studentTele = studentTele == null ? null : studentTele.trim();
-    }
-
-    public String getStudentPicturepath() {
-        return studentPicturepath;
-    }
-
-    public void setStudentPicturepath(String studentPicturepath) {
-        this.studentPicturepath = studentPicturepath == null ? null : studentPicturepath.trim();
     }
 }

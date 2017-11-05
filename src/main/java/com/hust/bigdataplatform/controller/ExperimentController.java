@@ -157,12 +157,6 @@ public class ExperimentController {
 		experiment.setExperimentSubmitdemand(" ");
 		experiment.setExperimentCreatetime(new Date());
 		experiment.setExperimentDeadline(new DateConverter().convert(deadline));
-//		experiment.setExperimentManualpath(Constant.DIRECTORY.EXPERIMENT_REPORT+uid);
-//		System.out.println("实验手册："+Constant.DIRECTORY.EXPERIMENT_REPORT);
-//		experiment.setExperimentVideopath(Constant.DIRECTORY.EXPERIMENT_VIDEO+uid);
-//		System.out.println("实验视频："+Constant.DIRECTORY.EXPERIMENT_VIDEO);
-		experiment.setExperimentReportpath(Constant.DIRECTORY.REPORT_SUBMIT+uid);
-		experiment.setExperimentResultspath(Constant.DIRECTORY.EXPERIMENT_DATA_SUBMIT+uid);
 		int status = experimentService.addExperiment(experiment);
 		if (status==0) {
 			return ResultUtil.errorWithMsg("添加实验失败！");

@@ -9,10 +9,6 @@ public class CourseChapter {
 
     private String chapterName;
 
-    private String coursewarePath;
-
-    private String videoPath;
-
     private Date creatTime;
 
     public String getChapterId() {
@@ -37,22 +33,6 @@ public class CourseChapter {
 
     public void setChapterName(String chapterName) {
         this.chapterName = chapterName == null ? null : chapterName.trim();
-    }
-
-    public String getCoursewarePath() {
-        return coursewarePath;
-    }
-
-    public void setCoursewarePath(String coursewarePath) {
-        this.coursewarePath = coursewarePath == null ? null : coursewarePath.trim();
-    }
-
-    public String getVideoPath() {
-        return videoPath;
-    }
-
-    public void setVideoPath(String videoPath) {
-        this.videoPath = videoPath == null ? null : videoPath.trim();
     }
 
     public Date getCreatTime() {

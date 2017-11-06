@@ -178,6 +178,41 @@ function totalGradeShow() {
 		},
     })
 }
+//发布成绩
+function publish(){
+    var courseId = getCookie("courseId");
+    //根据查询到的平时作业数量生成
+    $.ajax({
+    	type:"POST",
+		url:"/StudentScore/CalculateScore",
+		data:
+		{	courseId:courseId, 
+		},
+		datatype:"json",
+		success:function(msg){
+			if(msg.status=="OK"){
+				alert(msg.result);
+			}else{
+				alert(msg.result);
+			}
+    	},
+		error:function(msg){
+			alert(msg.result);
+		},
+    })
+}
+
+//平时成绩下载
+function download(){
+	$(function() {
+		var courseId = getCookie("courseId");
+		var form = $('<form method="POST" action="/StudentScore/DownloadScore">');
+		form.append($('<input type="hidden" name="courseId" value="' + courseId + '"/>'));
+		$('body').append(form);
+		form.submit(); // 自动提交
+	});
+}
+
 
 function closeBox() {
     $(".m-mask").css("display","none");

@@ -14,9 +14,12 @@ public interface StudentScoreService {
 	
 	public int update(StudentScore studentScore);
 	
-	public int addByStuIdAndCourseId(String stuId, String courseId);
+	public int UpdateByStuIdAndCourseId(String stuId, String courseId);
 	
 	public List<Map<String, String>> ShowStudentFinalScore(String courseId);
 
 	public int insert(List<Student> students, String courseId);
+	
+	public List<List<String>> GetAllScore(String courseId);
+	
 }

@@ -174,6 +174,8 @@ public class TeacherController {
 		}
 		return ResultUtil.success("上传成功");
 	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value="/ShowStudent",method = RequestMethod.POST)
 	public Object ShowStudent( @RequestParam(value="courseId")String courseId) 
@@ -232,6 +234,7 @@ public class TeacherController {
 			if (studentCourseService.update(studentCourse)==0) {
 				return ResultUtil.errorWithMsg("上传失败！");
 			}
+			
 		}
 		return ResultUtil.success("上传成功");
 	}

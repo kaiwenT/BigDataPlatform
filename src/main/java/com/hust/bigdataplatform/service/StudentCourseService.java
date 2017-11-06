@@ -30,6 +30,8 @@ public interface StudentCourseService {
 	 * @param courseId
 	 * @return
 	 */
+	public int update(StudentCourse studentCourse);
+	
 	public StudentCourse findStudentCourseByStuId(String studentId, String courseId);
 	
 	public int getFinalUsualScore(String studentId, String courseId);

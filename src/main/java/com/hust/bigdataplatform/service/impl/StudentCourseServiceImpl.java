@@ -108,7 +108,10 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 				studentCourse.setCourseId(courseId);
 				String string = studentAndGroup.getStudentId();
 				studentCourse.setStudentId(string);
-				studentCourse.setStudentGroupid(studentAndGroup.getGroupId());
+				String groupId = studentAndGroup.getGroupId();
+				studentCourse.setStudentGroupid(groupId.substring(0, groupId.indexOf(".")));
+				int i = 0;
+				studentCourse.setAttendancerate(i);
 				int s= studentCourseDao.insertSelective(studentCourse);
 				if (s==0) {
 					return 0;
@@ -116,6 +119,14 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 			}
 		}
 		return 1;
+	}
+
+	@Override
+	public int update(StudentCourse studentCourse) {
+		if (studentCourse==null) {
+			return 0;
+		}
+		return studentCourseDao.updateByCourseId(studentCourse);
 	}
 	
 	

@@ -39,19 +39,19 @@ function regularGradeShow() {
 				var list = msg.result;
 				//转化为int
 				var num = parseInt(list[0]["tasknum"]);
-				console.log("num:"+num);
 				for(i =0; i <num;i++){
 					regularWork +="<th>平时作业"+(i+1)+"</th>";
 				}
+				console.log(list);
 				$.each(list,function(idx,map){
-					studentGrade +="<td>"+map["studentId"]+"</td>";
+					studentGrade +="<tr><td>"+map["studentId"]+"</td>";
 					studentGrade +="<td>"+map["studentname"]+"</td>";
 					studentGrade +="<td>"+map["attendenceScore"]+"</td>";
 					for(var key in map){
 						if(key != "tasknum" && key != "studentname" && key != "studentId" && key != "attendenceScore" && key != "finalUsualScore")
 						studentGrade +="<td>"+map[key]+"</td>";
 					}
-					studentGrade +="<td>"+map["finalUsualScore"]+"</td>";
+					studentGrade +="<td>"+map["finalUsualScore"]+"</td></tr>";
 				})
 				
 				var content='<table >'+
@@ -100,7 +100,7 @@ function expGradeShow() {
 				}
 				$.each(list,function(idx,expQuery){
 					console.log(expQuery);
-					studentGrade +="<td>"+expQuery.studentId+"</td>";
+					studentGrade +="<tr><td>"+expQuery.studentId+"</td>";
 					studentGrade +="<td>"+expQuery.studentName+"</td>";
 					for(i =0; i < num; i++)
 					{
@@ -109,7 +109,7 @@ function expGradeShow() {
 						studentGrade +="<td>"+expQuery.explist[i].finalScore+"</td>";
 						
 					}
-					studentGrade +="<td>"+expQuery.finalScore+"</td>";
+					studentGrade +="<td>"+expQuery.finalScore+"</td></tr>";
 				})
 				var content='<table >'+
 		        '<tr>'+
@@ -150,12 +150,12 @@ function totalGradeShow() {
 				var studentGrade="";
 				var list = msg.result;
 				$.each(list,function(idx,map){
-					studentGrade +="<td>"+map["studentId"]+"</td>";
+					studentGrade +="<tr><td>"+map["studentId"]+"</td>";
 					studentGrade +="<td>"+map["studentname"]+"</td>";
 					studentGrade +="<td>"+map["usualGrades"]+"</td>";
 					studentGrade +="<td>"+map["exp_finalScore"]+"</td>";
 					studentGrade +="<td>"+map["test_results"]+"</td>";
-					studentGrade +="<td>"+map["finalScore"]+"</td>";
+					studentGrade +="<td>"+map["finalScore"]+"</td></tr>";
 				})
 				var content='<table >'+
 		        '<tr>'+
@@ -191,9 +191,33 @@ function submit(e) {
         alert("不是excel文件！")
         return false;
     }
-    //ajax  上传文件
+    var formData = new FormData();
+    formData.append("formData" , file);
+	var courseId = getCookie("courseId");
+    formData.append("courseId" , courseId);
+    $.ajax({
+        type: "POST",
+        url: "/teacher/importUsualScore",       
+        dataType:"json",
+        processData : false,//必须false才会自动加上正确的Content-Type
+        contentType : false ,
+        enctype:"multipart/form-data",
+        data: formData,
+        success : function(msg) {
+            if (msg.status == "OK") {
+            	$(".m-mask").css("display","none");
+                alert("上传成功！");
+            } else {
+            	 alert(msg.result);
+            }
+        },
+        error : function() {
+            alert("上传文件失败请重新上传！");
+        }
+    })
     console.log(file.name);
 }
+
 
 function importFile() {
     $(".m-mask").css("display","block");

@@ -24,6 +24,7 @@ import com.hust.bigdataplatform.service.CourseChapterService;
 import com.hust.bigdataplatform.service.CourseService;
 import com.hust.bigdataplatform.service.FileService;
 import com.hust.bigdataplatform.service.SessionService;
+import com.hust.bigdataplatform.service.StudentTaskService;
 import com.hust.bigdataplatform.service.TeacherCourseService;
 import com.hust.bigdataplatform.service.impl.ChapterSectionServiceImpl;
 import com.hust.bigdataplatform.service.impl.FileServiceImpl;
@@ -36,6 +37,8 @@ import com.hust.bigdataplatform.util.fileUtil;
 @RequestMapping("/teacherCourse")
 public class TeacherCourseController {
 	
+	@Autowired
+	private StudentTaskService studentTaskService;
 	@Autowired
 	private CourseService courseService;
 	@Autowired
@@ -130,6 +133,11 @@ public class TeacherCourseController {
 		}
 		if (status==0) {
 			return ResultUtil.errorWithMsg("添加章失败！");
+		}
+		//如果添加章节成功，初始化studentTask表，参数为chapterId
+		int s=studentTaskService.addForStudentTask(courseId, chapterId);
+		if (s==0) {
+			System.out.println("初始化学生作业表失败");
 		}
 		return ResultUtil.success(courseChapter);
 	}

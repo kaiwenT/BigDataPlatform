@@ -328,10 +328,11 @@ public class StudentTaskExample {
         private boolean listValue;
 
         private String typeHandler;
-		
-		public Criterion(){
+        
+    	public Criterion(){
         	super();
         }
+
 
         public String getCondition() {
             return condition;

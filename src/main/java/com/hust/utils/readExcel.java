@@ -263,10 +263,13 @@ public class readExcel {
 			    	for (int j = 0; j < rowSize; j++)
 			    	{//遍历行
 			    		Row row = sheet.getRow(j);
+			    		if (row == null) {//略过空行
+							continue;
+						}
 			    		int cellSize = row.getLastCellNum();//行中有多少个单元格，也就是有多少列
 			    		if (j == 0)
 			    		{//第一行是标题行
-			    			for (int k = 0; k < 4; k++) 
+			    			for (int k = 0; k < cellSize; k++) 
 			    			{
 				    			Cell cell = row.getCell(k);
 				    			titles.add(cell.toString());

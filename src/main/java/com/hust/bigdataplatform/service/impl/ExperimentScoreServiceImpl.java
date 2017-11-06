@@ -144,6 +144,10 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 			{//插入记录
 				eScore.setExperimentId(expId);
 				eScore.setStudentId(student.getStudentId());
+				int i = 0;
+				eScore.setExpFinalscore(i);
+				eScore.setReportscore(i);
+				eScore.setResultsscore(i);
 				int s = experimentScoreDao.insert(eScore);
 				if (s==0) {
 					return 0;

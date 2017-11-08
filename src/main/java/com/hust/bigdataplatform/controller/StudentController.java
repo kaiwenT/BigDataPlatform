@@ -111,11 +111,12 @@ public class StudentController {
 			return ResultUtil.errorWithMsg("登录信息过期，请重新登录！");
 		}
 		UploadUtils up = new UploadUtils();
-		String path = Constant.DIRECTORY.REPORT_SUBMIT + File.separator + experimentId + File.separator + studentId;
+		String path = Constant.DIRECTORY.REPORT_SUBMIT + experimentId + File.separator;
 		System.out.println(path);
 		if(!up.upload(uploadfile, path)){
 			return ResultUtil.errorWithMsg(uploadfile.getName() + "上传失败，请重新上传！");
 		}
+		fileUtil.updatename(path+uploadfile.getOriginalFilename(), path + studentId+".pdf");
 		
 		return ResultUtil.success("上传实验报告成功！");
 	}
@@ -136,7 +137,7 @@ public class StudentController {
 			return ResultUtil.errorWithMsg("登录信息过期，请重新登录！");
 		}
 		UploadUtils up = new UploadUtils();
-		String path = Constant.DIRECTORY.EXPERIMENT_DATA_SUBMIT + File.separator + experimentId + File.separator + studentId;
+		String path = Constant.DIRECTORY.EXPERIMENT_DATA_SUBMIT + experimentId + File.separator + studentId;
 		
 		if(!up.upload(uploadfile, path)){
 			return ResultUtil.errorWithMsg(uploadfile.getName() + "上传失败，请重新上传！");

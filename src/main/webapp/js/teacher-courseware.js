@@ -2,9 +2,9 @@
  * Created by Jack on 2017/10/16.
  */
   //文件存放路径
-var pdfPath = 'http://211.69.197.95:8081/bigdataplatform/courseware/';
+var pdfPath = ip+'courseware/';
 //文件存放路径
-var videoPath = 'http://211.69.197.95:8081/bigdataplatform/courseVideo/';
+var videoPath = ip+'courseVideo/';
 
 //标题点击时间 实现展开功能
 function titleClick(e) {

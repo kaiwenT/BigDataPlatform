@@ -82,6 +82,10 @@ public class ExpEvaluateDao {
 		return expEvaluateMapper.selectByExample(example);
 	}
 	
+	public ExpEvaluate selectByPrimaryKey(String expId, String studentId, String evaluator)
+	{
+		return expEvaluateMapper.selectByPrimaryKey(expId, studentId, evaluator);
+	}
 	
 	/**
 	 * 更新记录

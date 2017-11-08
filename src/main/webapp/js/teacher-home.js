@@ -1,6 +1,6 @@
 /*教师首页的js代码*/
-var teacherPhoto = 'http://211.69.197.95:8081/bigdataplatform/teacherPhoto/';
-var coursePhoto = 'http://211.69.197.95:8081/bigdataplatform/coursePhoto/';
+var teacherPhoto = ip+'teacherPhoto/';
+var coursePhoto = ip+'coursePhoto/';
 showTeacherInfo();
 getCourseByTeacherId();
 

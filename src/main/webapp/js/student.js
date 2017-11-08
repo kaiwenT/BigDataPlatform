@@ -2,7 +2,7 @@
  * 学生首页有关的js方法
  */
 //文件存放路径
-var path = 'http://211.69.197.95:8081/bigdataplatform/';
+var path = ip+'';
 
 //学生首页个人信息展示
 function showstudentInfo(){	

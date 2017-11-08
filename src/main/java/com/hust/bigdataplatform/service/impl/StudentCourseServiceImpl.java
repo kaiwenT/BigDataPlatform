@@ -1,7 +1,7 @@
 package com.hust.bigdataplatform.service.impl;
 
 import java.util.ArrayList;
-
+import java.util.LinkedList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -127,6 +127,20 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 			return 0;
 		}
 		return studentCourseDao.updateByCourseId(studentCourse);
+	}
+
+	@Override
+	public List<String> findGroupIdList(String courseId) {
+		// TODO Auto-generated method stub
+		List<String> l = new ArrayList<String>();
+		List<StudentCourse> scourses = studentCourseDao.findStudentByCourseId(courseId);
+		for(StudentCourse sc : scourses){
+			String gid = sc.getStudentGroupid();
+			if(!l.contains(gid)){
+				l.add(gid);
+			}
+		}
+		return l;
 	}
 	
 	

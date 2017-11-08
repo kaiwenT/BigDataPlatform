@@ -2,7 +2,7 @@
  * 学生实验页面有关的js方法
  */
   //文件存放路径
-var imgPath = 'http://211.69.197.95:8081/bigdataplatform/file/';
+var imgPath = ip+'file/';
 //student-experiment页面显示课程的实验
 function showExperiments(){
 	var courseId = $(".course-image").attr("id");
@@ -200,6 +200,12 @@ function submitButtonClick(e){
 			error(msg);
 		}
 	})
+}
+//开始互评按钮点击事件
+function mutualEval(e){
+	var expid = $(e).attr("id");
+	setCookie("expId", expid);
+	baseAjax("student-mutual-eva");
 }
 
 //我知道了button点击事件

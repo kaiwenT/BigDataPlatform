@@ -2,7 +2,7 @@
  * Created by Jack on 2017/10/18.
  */
   //文件存放路径
-var imgPath = 'http://211.69.197.95:8081/bigdataplatform/file/';
+var imgPath = ip+'file/';
 //标题点击事件 实现展开功能
 function titleClick(e) {
     if ($(e).children(".u-icon-caret-up").css("display") == "none") {

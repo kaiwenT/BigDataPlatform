@@ -1,5 +1,5 @@
 //文件存放路径
-var cousewarePath = 'http://211.69.197.95:8081/bigdataplatform/courseware/';
+var cousewarePath = ip+'courseware/';
 //Student-courseware-pdf页面显示课程的章 ,节标题
 function showChapterTitle(){
 	var sectionId = getCookie("sectionId");

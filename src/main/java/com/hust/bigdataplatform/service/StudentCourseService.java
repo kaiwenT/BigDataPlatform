@@ -39,5 +39,7 @@ public interface StudentCourseService {
 	public List<Student> findBycourseId(String courseId);
 	
 	public int insert(List<StudentAndGroup> StudentAndGroups, String courseId);
+
+	public List findGroupIdList(String courseId);
 		
 }

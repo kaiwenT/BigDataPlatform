@@ -1,5 +1,5 @@
 //文件存放路径
-var videoPath = 'http://211.69.197.95:8081/bigdataplatform/courseVideo/';
+var videoPath = ip+'courseVideo/';
 //Student-courseware-video页面显示课程的章 ,节标题
 function showChapterTitle(){
 	var sectionId = getCookie("sectionId");

@@ -2,7 +2,7 @@
  * 课程页面有关的js方法
  */
 //文件存放路径
-var basePath = 'http://211.69.197.95:8081/bigdataplatform/';
+var basePath = ip+'';
 
 //course-base页面左侧显示课程封面图片
 function showCoursePhoto(){

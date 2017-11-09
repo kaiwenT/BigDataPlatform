@@ -79,8 +79,8 @@ function showFiles(experimentId){
 		success : function(msg) {
 			if (msg.status == "OK") {
 				var files = msg.result;
-				$(".source-box").empty();
-				if(files != 'undefined' && files != '' && files.length > 0){
+//				$(".source-box").empty();
+				if(files != 'undefined' && files != null && files.length > 0){
 					
 					$.each(files, function(idx, file){
 						var box = '';

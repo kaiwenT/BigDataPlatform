@@ -110,9 +110,9 @@ function showSections(chapterId){
 				            +'<div class="j-icon icon f-pa icon-2"></div>'
 				            +'<h4 class="j-name name f-fl f-thide">'+section.sectionname+'</h4>'
 				            +'<div class="j-typebox f-cb f-fr">'
-				            +'<div><div class="f-icon lsicon f-fl learned" data-cid="1003495671" title="视频：'+section.sectionname+'" id="" onclick="setCookie('+"'sectionId'"+','+section.sectionid+');baseAjax('+"'student-courseware-video'"+')">'
+				            +'<div><div class="f-icon lsicon f-fl learned" data-cid="1003495671" title="视频：'+section.sectionname+'" id="'+section.sectionid+'" onclick="setCookie('+"'sectionId'"+','+"'"+section.sectionid+"'"+');baseAjax('+"'student-courseware-video'"+')">'
 				            +'<span class="u-icon-video2"></span></div>'
-				            +'<div class="f-icon lsicon f-fl " data-cid="1003495672" title="课件：'+section.sectionname+'" id="" onclick="setCookie('+"'sectionId'"+','+section.sectionid+');baseAjax('+"'student-courseware-pdf'"+')">'
+				            +'<div class="f-icon lsicon f-fl " data-cid="1003495672" title="课件：'+section.sectionname+'" id="" onclick="setCookie('+"'sectionId'"+','+"'"+section.sectionid+"'"+');baseAjax('+"'student-courseware-pdf'"+')">'
 				            +'<span class="u-icon-text"></span></div>'
 				            +'</div></div></div></div>';						
 						sectionshtml = lessonbox + sectionshtml;

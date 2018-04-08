@@ -72,8 +72,14 @@ public class StudentCourseServiceImpl implements StudentCourseService {
 		if (studentId==null||studentId.equals("")) {
 			return 0;
 		}
-		//平时成绩作业占比
-		float exercise_rate = courseScaleService.findByCourseId(courseId).getExerciseRate();
+		float exercise_rate;
+		//平时成绩作业占比,若没有设置即数据库中没有记录，返回为0
+		if (courseScaleService.findByCourseId(courseId)==null) {
+			return 0;
+		}
+		else {
+			exercise_rate = courseScaleService.findByCourseId(courseId).getExerciseRate();
+		}
 		int attendancescore = studentCourseDao.findByPrimaryKey(studentId, courseId).getAttendancerate();
 		int score = (int) (attendancescore*(1-exercise_rate)+(studentTaskService.getAvgTaskScore(studentId, courseId))*exercise_rate);
 		return score;

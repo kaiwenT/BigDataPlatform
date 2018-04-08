@@ -104,28 +104,30 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 			eQuery.setStudentName(student.getStudentName());
 			List<ExpScore> eList = new ArrayList<ExpScore>();
 			List<Experiment> experiments = experimentService.findExperimentByCourseId(courseId);
-			for (Experiment experiment : experiments) {
-				ExperimentScore experimentScore = experimentScoreDao.selectExpScoreByStuId(student.getStudentId(), experiment.getExperimentId());
-				if (experimentScore==null) {
-					continue;
+			if (!experiments.isEmpty()) {
+				for (Experiment experiment : experiments) {
+					ExperimentScore experimentScore = experimentScoreDao.selectExpScoreByStuId(student.getStudentId(), experiment.getExperimentId());
+					if (experimentScore==null) {
+						continue;
+					}
+					ExpScore expScore = new ExpScore();
+					expScore.setExpName(experiment.getExperimentName());
+					expScore.setReportScore(String.valueOf(experimentScore.getReportscore()));
+					expScore.setResultsScore(String.valueOf(experimentScore.getResultsscore()));
+					expScore.setFinalScore(String.valueOf(experimentScore.getExpFinalscore()));
+					eList.add(expScore);
 				}
-				ExpScore expScore = new ExpScore();
-				expScore.setExpName(experiment.getExperimentName());
-				expScore.setReportScore(String.valueOf(experimentScore.getReportscore()));
-				expScore.setResultsScore(String.valueOf(experimentScore.getResultsscore()));
-				expScore.setFinalScore(String.valueOf(experimentScore.getExpFinalscore()));
-				eList.add(expScore);
+				eQuery.setExplist(eList);
+				//算出最终的成绩
+				int score = 0;
+				for(ExpScore expScore:eList)
+				{
+					score = score+Integer.parseInt(expScore.getFinalScore());;
+				}
+				score = score/eList.size();
+				eQuery.setFinalScore(String.valueOf(score));
+				experimentScoreQueries.add(eQuery);
 			}
-			eQuery.setExplist(eList);
-			//算出最终的成绩
-			int score = 0;
-			for(ExpScore expScore:eList)
-			{
-				score = score+Integer.parseInt(expScore.getFinalScore());;
-			}
-			score = score/eList.size();
-			eQuery.setFinalScore(String.valueOf(score));
-			experimentScoreQueries.add(eQuery);
 		}
 		return experimentScoreQueries;
 	}

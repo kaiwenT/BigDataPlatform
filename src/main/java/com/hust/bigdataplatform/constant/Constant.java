@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
  *
  */
 public class Constant {
-	public static String FFMPEG_PATH = "F:\\工具\\ffmpeg-20171022-72c3d9a-win64-static\\ffmpeg-20171022-72c3d9a-win64-static\\bin\\ffmpeg";
+	//public static String FFMPEG_PATH = "F:\\工具\\ffmpeg-20171022-72c3d9a-win64-static\\ffmpeg-20171022-72c3d9a-win64-static\\bin\\ffmpeg";
+    	public static String FFMPEG_PATH = "/home/huster/BigDataPlatform/ffmpeg-3.4.2/ffmpeg";
     
 	// 把config.properties中的变量值，赋给当前的变量
 	private void init(){

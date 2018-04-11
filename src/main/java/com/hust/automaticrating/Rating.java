@@ -98,7 +98,7 @@ public class Rating {
 				//	}
 				//}
 				try {
-					if(fs.get() != null)
+					if(fs != null)
 						expScores.add(fs.get());
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block

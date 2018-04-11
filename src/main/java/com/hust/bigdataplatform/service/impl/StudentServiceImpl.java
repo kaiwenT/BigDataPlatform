@@ -68,4 +68,12 @@ public class StudentServiceImpl implements StudentService {
 		return 1;
 	}
 
+	@Override
+	public int deleteStudent(String studentId) {
+		if(studentId == null){
+			return 0;
+		}
+		return studentDao.deleteById(studentId);
+	}
+
 }

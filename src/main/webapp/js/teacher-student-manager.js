@@ -43,6 +43,31 @@ function submit(e) {
         }
     })
 }
+
+function deletestudent(element){
+	
+	var studentId=$(element).parents("tr").find("td:first").html();
+	$.ajax({
+    	type:"POST",
+		url:"/teacher/deleteStudent",
+		data:
+		{	studentId:studentId, 
+		},
+		datatype:"json",
+		success:function(msg){
+			if(msg.status=="OK"){
+				showStudent();
+			}else{
+				alert(msg.result);
+			}
+    	},
+		error:function(msg){
+			alert(msg.result);
+		},
+    })
+
+}
+
 //显示学生名单
 function showStudent() {
     $(".grade-body").empty();  
@@ -65,7 +90,7 @@ function showStudent() {
 					student +="<td>"+s.studentName+"</td>";
 					student +="<td>"+s.studentFaculty+"</td>";
 					student +="<td>"+s.groupId+"</td>";
-					student +="<td><a >删除</a></td>";
+					student +="<td><a onclick='deletestudent(this)'>删除</a></td>";
 				})
 				var content='<table >'+
 		        '<tr>'+

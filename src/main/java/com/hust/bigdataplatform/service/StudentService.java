@@ -31,4 +31,6 @@ public interface StudentService {
 	
 	public int add(List<Student> student);
 	
+	public int deleteStudent(String studentId);
+	
 }

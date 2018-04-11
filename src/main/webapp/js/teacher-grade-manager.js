@@ -38,6 +38,7 @@ function regularGradeShow() {
 			if(msg.status=="OK"){
 				var list = msg.result;
 				//转化为int
+				console.log(msg.result);
 				var num = parseInt(list[0]["tasknum"]);
 				for(i =0; i <num;i++){
 					regularWork +="<th>平时作业"+(i+1)+"</th>";

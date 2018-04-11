@@ -141,7 +141,7 @@ public class TeacherController {
 			student.setStudentId(map.get("学号"));
 			student.setStudentPwd(map.get("学号"));
 			student.setStudentName(map.get("姓名"));
-			student.setStudentFaculty(map.get("院系"));
+			student.setStudentFaculty(map.get("学院"));
 			students.add(student);
 			sGroup.setGroupId(map.get("组号"));
 			sGroup.setStudentId(map.get("学号"));
@@ -237,5 +237,18 @@ public class TeacherController {
 			
 		}
 		return ResultUtil.success("上传成功");
+	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteStudent")
+	public Object TeacherLogin(@RequestParam(value="studentId", required=true) String studentId)
+	{
+		int status = studentService.deleteStudent(studentId);
+		if (status == 0) {
+			return ResultUtil.errorWithMsg("删除学生失败！");
+		}
+		else {
+			return ResultUtil.errorWithMsg("删除学生成功！");
+		}
 	}
 }

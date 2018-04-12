@@ -65,9 +65,12 @@ public class fileUtil {
      {
 		 File file = new File(road);
 		 File[] file2 = file.listFiles();
-		 for (File file3 : file2) {
-			 file3.delete();
+		 if (file2!=null) {
+			 for (File file3 : file2) {
+				 file3.delete();
+			 }
 		 }
+		
 		 file.delete();
 		
     }
@@ -76,9 +79,11 @@ public class fileUtil {
      {
    	   File file = new File(road);
    	   File[] file2 = file.listFiles();
-   	   for (File file3 : file2) {
-		   	 deleteSection(file3.getPath());
-		  }
+   	   if (file2!=null) {
+		 for (File file3 : file2) {
+			 file3.delete();
+		 }
+   	   }
    	   file.delete();
     }
 

@@ -12,15 +12,17 @@ public class GetScoreOfCrawlExcel {
 	public int getScore(String filepath)
 	{
 		List<List<String>> excel = readExcel.read(filepath); //读取excel
-		int row ,cell=0;
-		row=excel.size();  //获取行数
-	
-		List<String> list = excel.get(0);
-		cell = list.size(); //获取列数
-		int result,type;
-		result=(int) (setResultOfRow(row)*scaleOfRow+setResultOfValide(excel)*scaleOfValide);
+		if (excel !=null) {
+			int row ,cell=0;
+			row=excel.size();  //获取行数
 		
-		return result;
+			List<String> list = excel.get(0);
+			cell = list.size(); //获取列数
+			int result,type;
+			result=(int) (setResultOfRow(row)*scaleOfRow+setResultOfValide(excel)*scaleOfValide);
+			return result;
+		}
+		return 0;
 		
 	}
 	

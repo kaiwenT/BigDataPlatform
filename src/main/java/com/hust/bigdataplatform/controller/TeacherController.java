@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hust.bigdataplatform.constant.Constant;
+import com.hust.bigdataplatform.model.Experiment;
 import com.hust.bigdataplatform.model.Student;
 import com.hust.bigdataplatform.model.StudentCourse;
 import com.hust.bigdataplatform.model.Teacher;
 import com.hust.bigdataplatform.model.params.StudentAndGroup;
 import com.hust.bigdataplatform.service.ExperimentScoreService;
+import com.hust.bigdataplatform.service.ExperimentService;
 import com.hust.bigdataplatform.service.SessionService;
 import com.hust.bigdataplatform.service.StudentCourseService;
 import com.hust.bigdataplatform.service.StudentScoreService;
@@ -30,6 +32,7 @@ import com.hust.bigdataplatform.service.StudentTaskService;
 import com.hust.bigdataplatform.service.TeacherService;
 import com.hust.bigdataplatform.util.ResultUtil;
 import com.hust.bigdataplatform.util.UploadUtils;
+import com.hust.bigdataplatform.util.fileUtil;
 import com.hust.utils.readExcel;
 
 @Controller
@@ -50,6 +53,8 @@ public class TeacherController {
 	private StudentTaskService studentTaskService;
 	@Autowired
 	private ExperimentScoreService experimentScoreService;
+	@Autowired
+	private ExperimentService experimentService;
 	/**
 	 * 登录
 	 * @param teacherId
@@ -243,12 +248,31 @@ public class TeacherController {
 	@RequestMapping("/deleteStudent")
 	public Object TeacherLogin(@RequestParam(value="studentId", required=true) String studentId)
 	{
+		List<StudentCourse> sCourse = studentCourseService.findStudentCourseByStuId(studentId);
+		if (sCourse!=null) {
+			for (StudentCourse studentCourse : sCourse) 
+			{
+				String courseId = studentCourse.getCourseId();
+				List<Experiment> experiments = experimentService.findExperimentByCourseId(studentCourse.getCourseId());
+				if (experiments!=null) {
+					for (Experiment experiment : experiments) {
+						String road = Constant.DIRECTORY.EXPERIMENT_DATA_SUBMIT+experiment.getExperimentId()+"/"+studentId;
+						System.out.println(road);
+						String road1 = Constant.DIRECTORY.REPORT_SUBMIT+experiment.getExperimentId()+"/"+studentId+".pdf";
+						System.out.println(road1);
+						fileUtil.deleteSection(road);
+						File file = new File(road1);
+						file.delete();
+					}
+				}
+			}
+		}
 		int status = studentService.deleteStudent(studentId);
 		if (status == 0) {
 			return ResultUtil.errorWithMsg("删除学生失败！");
 		}
 		else {
-			return ResultUtil.errorWithMsg("删除学生成功！");
+			return ResultUtil.success("删除学生成功！");
 		}
 	}
 }

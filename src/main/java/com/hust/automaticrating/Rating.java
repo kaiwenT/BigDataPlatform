@@ -4,10 +4,13 @@ import java.io.File;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletionService;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import com.hust.bigdataplatform.constant.Constant;
 import com.hust.bigdataplatform.model.ExperimentScore;
@@ -85,22 +88,15 @@ public class Rating {
 		{
 			//实验三自动评分-----用线程池来并发计算学生的作业分数，每个线程处理一个学生的作业
 			ExecutorService exec = Executors.newFixedThreadPool(fileList.size());  
-	        ArrayList<Future<ExperimentScore>> results = new ArrayList<Future<ExperimentScore>>();
+//	        ArrayList<Future<ExperimentScore>> results = new ArrayList<Future<ExperimentScore>>();
+			CompletionService<ExperimentScore> results = new ExecutorCompletionService<ExperimentScore>(exec);
 			for (String stuId : fileList) {
-				results.add(exec.submit(new GetScoreOfClustering(stuId, expId)));				
+//				results.add(exec.submit(new GetScoreOfClustering(stuId, expId)));
+				results.submit(new GetScoreOfClustering(stuId, expId));
 			}
-			for(Future<ExperimentScore> fs : results){
-				//while(!fs.isDone());{
-				//	try {
-				//		Thread.sleep(5000);
-				//	} catch (InterruptedException e) {
-				//		// TODO Auto-generated catch block
-				//		e.printStackTrace();
-				//	}
-				//}
+			for(int i = 0 ; i < fileList.size(); i++){
 				try {
-					if(fs != null)
-						expScores.add(fs.get());
+					expScores.add(results.take().get());
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -108,8 +104,28 @@ public class Rating {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}
+//			for(Future<ExperimentScore> fs : results){
+//				while(!fs.isDone()){
+//					try {
+//						Thread.sleep(5000);
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				}
+//				try {
+//					if(fs != null)
+//						expScores.add(fs.get());
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} catch (ExecutionException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				
+//			}
 			exec.shutdown();
 			System.out.println("评分线程终止");
 		}

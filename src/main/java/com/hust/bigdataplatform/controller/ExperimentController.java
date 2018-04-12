@@ -195,7 +195,7 @@ public class ExperimentController {
 
 		//更新实验信息时启动自动评分线程
 		AutoRating.rating(experiment.get(0), oldName);
-		return ResultUtil.errorWithMsg("修改实验内容成功！");
+		return ResultUtil.success("修改实验内容成功！");
 	}
 	
 	@RequestMapping("/UpdateExpSubmitDemand")

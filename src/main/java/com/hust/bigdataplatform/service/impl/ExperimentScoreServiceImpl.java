@@ -52,7 +52,7 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 		if(experimentScore == null){
 			return 0;
 		}
-		return experimentScoreDao.insert(experimentScore);
+		return experimentScoreDao.insertSelective(experimentScore);
 	}
 
 	@Override

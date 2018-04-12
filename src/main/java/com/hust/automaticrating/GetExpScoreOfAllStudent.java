@@ -43,11 +43,20 @@ public class GetExpScoreOfAllStudent {
 		for (String string : filelist) { //遍历子文件夹下所有的excel文件
 			List<String> excellist = new ArrayList<>();
 			excellist = getALLFile(string); //存放的是所有待打分的文件的路径
+			for (String string2 : excellist) {
+				System.out.println(string2);
+			}
 			int result = 0; //用于记录分数
 			for (String excelfilepath : excellist) { //统计多个文件的总成绩
+				System.out.println("统计文件："+excelfilepath);
 				result +=getScoreOfCrawlExcel.getScore(excelfilepath);
 			}
-			result = (int)(result/excellist.size());  //取平均成绩
+			if (excellist.size() < 4) {
+				result = (int)(result/4);  //取平均成绩
+			}
+			else {
+				result = (int)(result/excellist.size());  //取平均成绩
+			}
 			String[] strings = string.split("[\\\\|/]"); //以 /划分路径
 			String studentid = strings[strings.length-1];  //学号
 			strings = filepath.split("[\\\\|/]"); //以 /划分路径
@@ -59,12 +68,6 @@ public class GetExpScoreOfAllStudent {
 			result2.setStudentId(studentid);
 			result2.setExperimentId(expId);
 			expScores.add(result2);
-			/*try {
-				resultService.updateExperimentScore(result2); //更新数据库
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
 			System.out.println(studentid+"的分数是"+result);
 			System.out.println("********");
 		}

@@ -49,9 +49,12 @@ public class StudentExpController {
 		List<String> ids = fileUtil.getFileName(Constant.DIRECTORY.REPORT_SUBMIT+experimentId,"pdf");
 		if(ids == null || ids.isEmpty()){
 			return ResultUtil.errorWithMsg("暂无实验报告");
-		}
+		}		
 		List<String> fids = new ArrayList<>();
-		for(String id : ids){			
+		for(String id : ids){
+			if(stuId.equals(id)){
+				continue;
+			}
 			String gid = studentCourseService.findStudentCourseByStuId(id, e.getCourseId()).getStudentGroupid();
 			if(gid != null && gid.equals(egroupid) && expEvaluateService.selectByPrimaryKey(experimentId, id, stuId) == null){
 				fids.add(id);

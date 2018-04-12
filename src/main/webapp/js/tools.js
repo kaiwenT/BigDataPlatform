@@ -2,7 +2,7 @@
  * 工具包
  */
 //文件服务器ip
-var ip = 'http://211.69.197.168:8081/bigdataplatform/'
+//var ip = 'http://211.69.197.168:8081/bigdataplatform/'
 
 // 日期对象转换为年月日格式
 function dateFormat(jsondate) {

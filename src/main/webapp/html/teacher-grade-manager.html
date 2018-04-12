@@ -34,8 +34,8 @@
                 <option value="2">实验成绩</option>
                 <option value="3">总成绩</option>
             </select>
-            <button class="u-btn u-btn-primary f-pr f-fl" style="margin: 0 10px;width: 120px;" onclick="importFile()">导入考勤成绩</button>
-             <button class="u-btn u-btn-primary f-pr f-fl" style="margin: 0 10px;width: 120px;" onclick="publish()">发布学生成绩</button>
+            <button class="u-btn u-btn-primary f-pr f-fl" style="margin: 0 10px;width: 180px;" onclick="importFile()">导入考勤成绩和考试成绩</button>
+   <!--          <button class="u-btn u-btn-primary f-pr f-fl" style="margin: 0 10px;width: 120px;" onclick="publish()">发布学生成绩</button>  -->  
             <button class="u-btn u-btn-primary f-pr f-fl" style="margin: 0 10px;width: 120px;" onclick="download()">导出学生成绩</button>
         </div>
         <div class="grade-body" style="width: 100%">
@@ -44,7 +44,7 @@
     </div>
 </div>
 <div class="m-mask" style="display: none">
-    <div class="m-container submit-box" style="width:420px;height: 300px; margin: -150px -210px;">
+    <div class="m-container submit-box" style="width:500px;height: 300px; margin: -150px -210px;">
         <div class="m-close" onclick="closeBox()">
             <span class="u-icon-close"></span>
         </div>
@@ -57,19 +57,22 @@
                         <th>学号</th>
                         <th>姓名</th>
                         <th>考勤成绩</th>
+                        <th>考试成绩</th>
                     </tr>
                     <tr>
                         <td>U123456789</td>
                         <td>张三</td>
                         <td>100</td>
+                        <td>80</td>
                     </tr>
                     <tr>
                         <td>U123654987</td>
                         <td>李四</td>
                         <td>90</td>
+                        <td>70</td>
                     </tr>
                     <tr>
-                        <td colspan="3">···</td>
+                        <td colspan="4">···</td>
                     </tr>
                 </table>
             </div>

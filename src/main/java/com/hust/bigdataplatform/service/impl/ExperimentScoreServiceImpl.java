@@ -1,6 +1,7 @@
 package com.hust.bigdataplatform.service.impl;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,17 +9,18 @@ import org.springframework.stereotype.Service;
 
 import com.hust.bigdataplatform.dao.ExperimentDao;
 import com.hust.bigdataplatform.dao.ExperimentScoreDao;
+import com.hust.bigdataplatform.model.CourseScale;
+import com.hust.bigdataplatform.model.ExpEvaluate;
 import com.hust.bigdataplatform.model.Experiment;
 import com.hust.bigdataplatform.model.ExperimentScore;
-import com.hust.bigdataplatform.model.ExperimentScoreExample;
 import com.hust.bigdataplatform.model.Student;
-import com.hust.bigdataplatform.model.StudentCourse;
-import com.hust.bigdataplatform.model.ExperimentScoreExample.Criteria;
 import com.hust.bigdataplatform.model.params.ExpScore;
 import com.hust.bigdataplatform.model.params.ExperimentScoreQuery;
+import com.hust.bigdataplatform.service.ExpEvaluateService;
 import com.hust.bigdataplatform.service.ExperimentScoreService;
 import com.hust.bigdataplatform.service.ExperimentService;
 import com.hust.bigdataplatform.service.StudentCourseService;
+import com.hust.bigdataplatform.service.CourseScaleService;
 @Service
 public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 
@@ -30,6 +32,10 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 	private StudentCourseService studentCourseService;
 	@Autowired
 	private ExperimentService experimentService;
+	@Autowired
+	private ExpEvaluateService expEvaluateService;
+	@Autowired
+	private CourseScaleService CourseScaleService;
 	
 	@Override
 	public ExperimentScore selectExpScoreByStu(String studentId, String experimentId) {
@@ -80,6 +86,7 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 		if(exps == null || exps.isEmpty()){
 			return 0;
 		}
+		ShowExpScore(courseId);
 		int score = 0;
 		for(Experiment e : exps){
 			ExperimentScore esc = experimentScoreDao.selectExpScoreByStuId(studentId, e.getExperimentId());
@@ -106,6 +113,7 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 			List<Experiment> experiments = experimentService.findExperimentByCourseId(courseId);
 			if (!experiments.isEmpty()) {
 				for (Experiment experiment : experiments) {
+					updateReportScore(courseId,  experiment.getExperimentId(), student.getStudentId());
 					ExperimentScore experimentScore = experimentScoreDao.selectExpScoreByStuId(student.getStudentId(), experiment.getExperimentId());
 					if (experimentScore==null) {
 						continue;
@@ -196,6 +204,37 @@ public class ExperimentScoreServiceImpl implements ExperimentScoreService {
 			}
 		}
 		return 1;
+	}
+	//更新学生的报告总成绩
+	@Override
+	public int updateReportScore(String courseId, String expId, String studentId) {
+		if (courseId==" " || courseId == null|| expId==" " || expId == null || studentId==" " || studentId == null ) {
+			return 0;
+			
+		}
+		else {
+			List<ExpEvaluate> evaluates = expEvaluateService.selectByStudentId(expId, studentId);
+			int expscore = 0;
+			if (evaluates.size()>0) {
+				for (ExpEvaluate expEvaluate : evaluates) {
+					expscore +=expEvaluate.getEvaluatesore();
+				}
+				expscore = expscore/evaluates.size();
+			}
+			CourseScale courseScale = CourseScaleService.findByCourseId(courseId);
+			ExperimentScore exp= experimentScoreDao.selectExpScoreByStuId(studentId, expId);
+			int finalsorce = (int) (expscore*courseScale.getExpReportRate()+(1-courseScale.getExpReportRate())*exp.getResultsscore());
+			exp.setExpFinalscore(finalsorce);
+			exp.setReportscore(expscore);
+			int s = experimentScoreDao.updateByPrimaryKey(exp);
+			if (s==0) {
+				return 0;
+			}
+			else {
+				return 1;
+			}
+		}
+		
 	}
 	
 }

@@ -97,6 +97,13 @@ public class StudentScoreController {
 		if (courseId==null||courseId.equals("")) {
 			return ResultUtil.errorWithMsg("登录超时，查询成绩失败");
 		}
+		List<Student> students = studentCourseService.findBycourseId(courseId);
+		for (Student student : students) {
+			int status = studentScoreService.UpdateByStuIdAndCourseId(student.getStudentId(), courseId);
+			if (status==0) {
+				return ResultUtil.errorWithMsg("计算总成绩有误");
+			}
+		}
 		List<Map<String, String>> result=studentScoreService.ShowStudentFinalScore(courseId);
 		if (result==null) {
 			return ResultUtil.errorWithMsg("查询成绩失败");

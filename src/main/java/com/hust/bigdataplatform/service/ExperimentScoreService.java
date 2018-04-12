@@ -54,4 +54,6 @@ public interface ExperimentScoreService {
 	
 	public int AddExperimentScore(String courseId, String expId );
 	
+	public int updateReportScore(String courseId, String expId, String studentId);
+	
 }

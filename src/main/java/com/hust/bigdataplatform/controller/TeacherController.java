@@ -20,6 +20,7 @@ import com.hust.bigdataplatform.constant.Constant;
 import com.hust.bigdataplatform.model.Experiment;
 import com.hust.bigdataplatform.model.Student;
 import com.hust.bigdataplatform.model.StudentCourse;
+import com.hust.bigdataplatform.model.StudentScore;
 import com.hust.bigdataplatform.model.Teacher;
 import com.hust.bigdataplatform.model.params.StudentAndGroup;
 import com.hust.bigdataplatform.service.ExperimentScoreService;
@@ -209,7 +210,7 @@ public class TeacherController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/importUsualScore",method = RequestMethod.POST)
+	@RequestMapping(value="/importUsualAndTestScore",method = RequestMethod.POST)
 	public Object importUsualScore(@RequestParam(value = "formData", required = false) MultipartFile uploadfile,
 			@RequestParam(value="courseId")String courseId) throws Exception
 	{
@@ -231,12 +232,17 @@ public class TeacherController {
 		{
 			String studentId = map.get("学号");
 			String score = map.get("考勤成绩");
+			String testscore = map.get("考试成绩");
 			StudentCourse studentCourse = new StudentCourse();
+			StudentScore studentScore = new StudentScore();
 			studentCourse.setCourseId(courseId);
 			studentCourse.setStudentId(studentId);
 			int i= (int)Float.parseFloat(score);
 			studentCourse.setAttendancerate(i);
-			if (studentCourseService.update(studentCourse)==0) {
+			studentScore.setCourseId(courseId);
+			studentScore.setStudentId(studentId);
+			studentScore.setTestResults((int)Float.parseFloat(testscore));
+			if (studentCourseService.update(studentCourse)==0 || studentScoreService.update(studentScore)==0) {
 				return ResultUtil.errorWithMsg("上传失败！");
 			}
 			
